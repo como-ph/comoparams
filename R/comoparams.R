@@ -17,6 +17,7 @@
 #' @docType package
 #' @name comoparams
 #' @keywords internal
+#' @importFrom googlesheets4 read_sheet
 #'
 #
 ################################################################################
