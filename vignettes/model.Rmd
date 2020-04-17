@@ -1,0 +1,72 @@
+---
+title: "The Model"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{The Model}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, echo = FALSE}
+library(comoparams)
+```
+
+The age structured SEIR model with infected compartments stratified by symptoms, severity and treatment seeking and access.
+
+```{r model, echo = FALSE, eval = TRUE, out.width = "98%"}
+knitr::include_graphics(path = "../man/figures/CoMoModel.png")
+```
+
+$$\begin{aligned}
+\frac{dS}{dt} ~  & = ~ -S ~ \circ ~ \Lambda ~ + ~ \omega R ~ + ~ A ~ \cdot ~ S ~ - ~ \mu ~ \cdot ~ S ~ + ~ bP \\
+\\
+\frac{dE}{dt} ~ & = ~ S ~ \circ ~ \Lambda ~ - ~ \gamma E ~ + ~ A ~ \cdot ~ E ~ - ~ \mu ~ \cdot ~ E \\
+\\
+\frac{dI}{dt} ~ & = ~ \gamma(1 ~ - ~ p_{clin})(1 ~ - ~ p_{ihr}) ~ \cdot ~ E ~ - ~ v_I I ~ + ~ A ~ \cdot ~ I ~ - ~ \mu ~ \cdot ~ I \\
+\\
+\frac{dC}{dt} ~ & = ~ \gamma p_{clin}(1 ~ - ~ p_{ihr}) ~ \cdot ~ E ~ - ~ v_I C ~ + ~ A ~ \cdot ~ C ~ - ~ \mu \cdot C \\
+\\
+\frac{dR}{dt} ~ & = ~ v_I (I ~ + ~ C) ~ + ~ A ~ \cdot ~ R ~ - ~ \omega R ~ - ~ \mu ~ \cdot ~ R ~ + ~ (1 ~ - ~ \delta_H p_{ifr})v_H ~ \cdot ~ H \\
+ ~ & + ~ (1 ~ - ~ \delta_{H_c} p_{ifr})v_H ~ \cdot ~ H ~ + ~ (1 ~ - ~ \delta_U p_{ifr})v_U ~ \cdot ~ U \\
+ ~ & + ~ (1 ~ - ~ \delta_{U_c} p_{ifr})v_U ~ \cdot ~ U ~ + ~ (1 ~ - ~ \delta_{V} p_{ifr})v_V ~ \cdot ~ V \\
+ ~ & + ~ (1 ~ - ~ \delta_{V_c} p_{ifr})v_V ~ \cdot ~ V \\
+\\
+\frac{dH}{dt} ~ & = ~ p_{ihr}(1 ~ - ~ p_U)(1 ~ - ~ p{K_H})\gamma E ~ - ~ v_H H ~ + ~ A ~ \cdot ~ H ~ - ~ \mu ~ \cdot ~ H \\
+\\
+\frac{dH_c}{dt} ~ & = ~ p_{ihr}(1 ~ - ~ p_U)p_{K_H}\gamma E ~ - ~ v_H H_c ~ + ~ A ~ \cdot ~ H_c ~ - ~ \mu ~ \cdot ~ H_c \\
+\\
+\frac{dU}{dt} ~ & = ~ p_{ihr} p_U (1 ~ - ~ p_{K_U})(1 ~ - ~ p_V)\gamma E ~ - ~ v_U U ~ + ~ A ~ \cdot ~ U ~ - ~ \mu ~ \cdot ~ U \\
+\\
+\frac{dU_c}{dt} ~ & = ~ p_{ihr} p_U p_{K_U} (1 ~ - ~ p_v)\gamma E ~ - ~ v_U U_c ~ + ~ A ~ \cdot ~ U_c ~ - ~ \mu ~ \cdot ~ U_c \\
+\\
+\frac{dV}{dt} ~ & = ~ p_{ihr} p_U(1 ~ - ~ p_{K_U})(1 ~ - ~ p_{K_V})p_V \gamma E ~ - ~ v_V V ~ + ~ A ~ \cdot ~ V ~ - ~ \mu ~ \cdot ~ V \\
+\\
+\frac{dV_c}{dt} ~ & = ~ p_{ihr} p_U(1 ~ - ~ p_{K_U})p_{K_V} p_V \gamma E ~ - ~ v_V V_c ~ + ~ A ~ \cdot ~ V_c ~ - ~ \mu ~ \cdot ~ V_c \\
+\\
+\\
+P ~ & = ~ (S ~ + ~ E ~ + ~ I ~ + ~ R ~ + ~ H ~ + ~ H_c ~ + ~ U ~ + ~ U_c ~ + ~ V ~ + ~ V_c) \\
+\\
+\\
+s ~ & = ~ 1 ~ + ~ a cos \left (2\pi \frac{ \left (t ~ - ~ \left (\frac{365.25\phi}{12} \right) \right ) ~ + ~ t_{in}}{365.25} \right) \\
+\\
+\\
+W ~ & = ~ W_{home} ~ + ~ W_{work} ~ + ~ W_{school} ~ + ~ W_{other} \\
+\\
+\\
+\Lambda ~ & = ~ p ~ s ~ W ~ \cdot ~ \left (\frac{\rho E ~ + ~ I ~ + ~ C ~ + ~ \rho_s ~ \times ~ (H ~ + ~ H_c ~ + ~ U ~ + ~ U_c ~ + ~ V ~ + ~ V_c)}{P}  \right ) \\
+\\
+\\
+A ~ & = ~ \begin{pmatrix} 
+\begin{pmatrix} -1 & 0 \\ 1 & -1 \end{pmatrix} & \ldots & 0 \\
+\vdots & \ddots \begin{pmatrix} -1 & 0 \\ 1 & -1 \end{pmatrix} \ddots  & \vdots \\
+0 & \ldots & \begin{pmatrix} -1 & 0 \\ 1 & 0 \end{pmatrix}
+\end{pmatrix}
+\end{aligned}$$
+
