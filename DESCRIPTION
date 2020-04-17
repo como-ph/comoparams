@@ -3,18 +3,19 @@ Type: Package
 Title: COVID-19 International Modelling Consortium Parameters Processor and 
   Aggregator in R
 Version: 0.1.0
-Authors@R: person(given = "Ernest", family = "Guevarra", 
-    email = "ernest@guevarra.io", role = c("aut", "cre"),
-    comment = c(ORCID = "0000-0002-4887-4415"))
+Authors@R: c(person(given = "Ernest", family = "Guevarra", 
+                    email = "ernest@guevarra.io", role = c("aut", "cre"),
+                    comment = c(ORCID = "0000-0002-4887-4415")),
+             person(given = "Chris", family = "Mercado", role = "aut"),
+             person(given = "Robert", family = "Medina", role = "aut"))
 Description: The Oxford Modelling Group for Global Health (OMGH) is developing 
     model structures to estimate the impact of potential mitigation strategies. 
     By changing the input data and parameter values, the models can be adjusted 
     to represent a national or subnational setting. In addition, a user friendly 
     application and interface is being developed to enable widespread utility.
-    This package supports in the processing of respective national and/or 
-    subnational input data and parameter values into data structures appropriate 
-    for use with the modelling application and/or other packages developed for
-    this purpose.
+    This package supports in the processing of Philippines-specific input data 
+    and parameter values into data structures appropriate for use with the 
+    modelling application and/or other packages developed for this purpose.
 License: GPL-3
 Imports: 
     googlesheets4,
