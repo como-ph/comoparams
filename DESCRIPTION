@@ -19,7 +19,9 @@ License: GPL-3
 Imports: 
     googlesheets4,
     stringr,
-    magrittr
+    magrittr,
+    googledrive,
+    tibble
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.0
