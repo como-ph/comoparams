@@ -5,9 +5,7 @@
 \title{Calculate infection fatality rate (IFR), infection hospitalisation rate, and
 hospitalisation fatality rate (HFR) from Philippines data}
 \usage{
-ph_calculate_rates(
-  date = stringr::str_remove_all(string = Sys.Date(), pattern = "-")
-)
+ph_calculate_rates(date = Sys.Date())
 }
 \arguments{
 \item{date}{Date in <YYYY-MM-DD> format; This is the date up to which
@@ -22,6 +20,6 @@ Calculate infection fatality rate (IFR), infection hospitalisation rate, and
 hospitalisation fatality rate (HFR) from Philippines data
 }
 \examples{
-ph_calculate_rates(date = "20200416")
+ph_calculate_rates(date = "2020-04-17")
 
 }

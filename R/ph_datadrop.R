@@ -13,7 +13,7 @@
 #' @return A tibble
 #'
 #' @examples
-#' ph_get_fields(date = "20200416")
+#' ph_get_fields(date = "2020-04-17")
 #'
 #' @export
 #'
@@ -28,11 +28,12 @@ ph_get_fields <- function(date = Sys.Date()) {
   w <- googledrive::drive_ls(googledrive::drive_get(id = "10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP"))
   x <- w$id[w$name == paste("DOH COVID Data Drop_ ", date, sep = "")]
   y <- googledrive::drive_ls(googledrive::drive_get(id = x))
-  if(date == "20200416") {
-    z <- y$id[y$name == paste("DOH COVID Data Drop_", date, " - 03 Metadata - Fields.csv", sep = "")]
-  } else {
-    z <- y$id[y$name == paste("DOH COVID Data Drop_ ", date, " - 03 Metadata - Fields.csv", sep = "")]
-  }
+  #if(date == "20200416") {
+  #  z <- y$id[y$name == paste("DOH COVID Data Drop_", date, " - 03 Metadata - Fields.csv", sep = "")]
+  #} else {
+  #  z <- y$id[y$name == paste("DOH COVID Data Drop_ ", date, " - 03 Metadata - Fields.csv", sep = "")]
+  #}
+  z <- y$id[stringr::str_detect(string = y$name, pattern = "Fields.csv")]
   #googlesheets4::sheets_deauth()
   #fields <- googlesheets4::sheets_read(ss = z)
   fields <- read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
@@ -58,7 +59,7 @@ ph_get_fields <- function(date = Sys.Date()) {
 #' @return A tibble
 #'
 #' @examples
-#' ph_get_cases(date = "20200416")
+#' ph_get_cases(date = "2020-04-17")
 #'
 #' @export
 #'
@@ -73,11 +74,12 @@ ph_get_cases <- function(date = Sys.Date()) {
   w <- googledrive::drive_ls(googledrive::drive_get(id = "10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP"))
   x <- w$id[w$name == paste("DOH COVID Data Drop_ ", date, sep = "")]
   y <- googledrive::drive_ls(googledrive::drive_get(id = x))
-  if(date == "20200416") {
-    z <- y$id[y$name == paste("DOH COVID Data Drop_", date, " - 04 Case Information.csv", sep = "")]
-  } else {
-    z <- y$id[y$name == paste("DOH COVID Data Drop_ ", date, " - 04 Case Information.csv", sep = "")]
-  }
+  #if(date == "20200416") {
+  #  z <- y$id[y$name == paste("DOH COVID Data Drop_", date, " - 04 Case Information.csv", sep = "")]
+  #} else {
+  #  z <- y$id[y$name == paste("DOH COVID Data Drop_ ", date, " - 04 Case Information.csv", sep = "")]
+  #}
+  z <- y$id[stringr::str_detect(string = y$name, pattern = "Case Information.csv")]
   #googlesheets4::sheets_deauth()
   #cases <- googlesheets4::sheets_read(ss = z)
   cases <- read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
