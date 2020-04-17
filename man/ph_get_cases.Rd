@@ -20,6 +20,6 @@ Philppines' COVID-19 Data Drop resource that is publicly distributed via
 Google Drive
 }
 \examples{
-ph_get_cases(date = "20200416")
+ph_get_cases(date = "2020-04-17")
 
 }

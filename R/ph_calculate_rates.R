@@ -11,7 +11,7 @@
 #'   consistent with CoMo model data structure requirements.
 #'
 #' @examples
-#' ph_calculate_rates(date = "20200416")
+#' ph_calculate_rates(date = "2020-04-17")
 #'
 #' @export
 #'
@@ -19,7 +19,7 @@
 #
 ################################################################################
 
-ph_calculate_rates <- function(date = stringr::str_remove_all(string = Sys.Date(), pattern = "-")) {
+ph_calculate_rates <- function(date = Sys.Date()) {
   ## Get dataset
   df <- ph_get_cases(date = date)
   ## Create age group and express as factor
@@ -42,14 +42,15 @@ ph_calculate_rates <- function(date = stringr::str_remove_all(string = Sys.Date(
   cases <- 1
   admissions <- ifelse(df$Admitted != "Yes" | is.na(df$Admitted), 0, 1)
   deaths <- ifelse(df$RemovalType != "Died" | is.na(df$RemovalType), 0, 1)
+  deathsAdmitted <- ifelse(df$RemovalType != "Died" | is.na(df$RemovalType) | (df$RemovalType == "Died" & admissions == 0), 0, 1)
   ##
-  casesDeaths <- aggregate(cbind(deaths, admissions, cases) ~ age_category,
-                           data = data.frame(age_category, deaths, cases),
+  casesDeaths <- aggregate(cbind(deaths, deathsAdmitted, admissions, cases) ~ age_category,
+                           data = data.frame(age_category, deaths, deathsAdmitted, cases),
                            FUN = sum)
   ##
   ifr <- casesDeaths$deaths / casesDeaths$cases
   ihr <- casesDeaths$admissions / casesDeaths$cases
-  hfr <- casesDeaths$deaths / casesDeaths$admissions
+  hfr <- casesDeaths$deathsAdmitted / casesDeaths$admissions
   ##
   casesDeaths <- data.frame(casesDeaths, ifr, ihr, hfr)
   ##
