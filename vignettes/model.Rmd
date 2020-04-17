@@ -67,6 +67,40 @@ A ~ & = ~ \begin{pmatrix}
 \begin{pmatrix} -1 & 0 \\ 1 & -1 \end{pmatrix} & \ldots & 0 \\
 \vdots & \ddots \begin{pmatrix} -1 & 0 \\ 1 & -1 \end{pmatrix} \ddots  & \vdots \\
 0 & \ldots & \begin{pmatrix} -1 & 0 \\ 1 & 0 \end{pmatrix}
-\end{pmatrix}
+\end{pmatrix} \\
+\\
+\\
+where: &
+\\
+\\
+\text{Model variables defined as:} & \\
+\\
+S ~ & = ~ \text{Susceptible} \\
+E ~ & = ~ \text{Infected and incubating} \\
+I ~ & = ~ \text{Infected and asymptomatic following incubation} \\
+C ~ & = ~ \text{Infected and mildly symptomatic following incubation} \\
+R ~ & = ~ \text{Recovered and immune} \\
+H ~ & = ~ \text{Severe infection: hospitalised} \\
+H_c ~ & = ~ \text{Severe infection: not hospitalised due to lack of capacity} \\
+U ~ & = ~ \text{Severe infection: hospitalised in ICU} \\
+U_c ~ & = ~ \text{Severe infection: hospitalised and requiring ICU but placed in surge ward} \\
+V ~ & = ~ \text{Severe infection: hospitalised in ICU and on a ventilator} \\
+V_c ~ & = ~ \text{Severe infection: hospitalised in ICU requiring a ventilator but not on one} \\
+\\
+and \\
+\\
+\text{Model parameters are:} & \\
+\\
+W_{home} ~ & = ~ \text{} \\
+W_{work} ~ & = ~ \text{} \\
+W_{school} ~ & = ~ \text{} \\
+W_{other} ~ & = ~ \text{} \\
+\mu ~ & = ~ \text{} \\
+b ~ & = ~ \text{} \\
+p ~ & = ~ \text{Probability of infection given a single contact}
+
 \end{aligned}$$
+
+
+
 
