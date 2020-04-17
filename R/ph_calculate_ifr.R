@@ -4,14 +4,12 @@
 #' Calculate infection fatality rate (IFR) and infection hospitalisation rate
 #' from Philippines data
 #'
-#' @param df Data.frame containing data on cases and deaths by age group.
-#'   Default is data.frame pulled from DoH DataDrop pulled using
-#'   \code{ph_get_cases()}
+#' @param date Date in format used by COVID-19 Data Drop system <YYYYMMDD>
 #'
 #' @return A data.frame with calculated IHR and IFR by age group
 #'
 #' @examples
-#' ph_calculate_rates()
+#' ph_calculate_rates(date = "20200416)
 #'
 #' @export
 #'
@@ -19,7 +17,9 @@
 #
 ################################################################################
 
-ph_calculate_rates <- function(df = ph_get_cases()) {
+ph_calculate_rates <- function(date = stringr::str_remove_all(string = Sys.Date(), pattern = "-")) {
+  ## Get dataset
+  df <- ph_get_cases(date = date)
   ## Create age group and express as factor
   labs <- cut(x = 0:100,
               breaks = seq(from = 0, to = 105, by = 5),

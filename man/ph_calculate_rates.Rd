@@ -5,12 +5,12 @@
 \title{Calculate infection fatality rate (IFR) and infection hospitalisation rate
 from Philippines data}
 \usage{
-ph_calculate_rates(df = ph_get_cases())
+ph_calculate_rates(
+  date = stringr::str_remove_all(string = Sys.Date(), pattern = "-")
+)
 }
 \arguments{
-\item{df}{Data.frame containing data on cases and deaths by age group.
-Default is data.frame pulled from DoH DataDrop pulled using
-\code{ph_get_cases()}}
+\item{date}{Date in format used by COVID-19 Data Drop system <YYYYMMDD>}
 }
 \value{
 A data.frame with calculated IHR and IFR by age group
@@ -18,8 +18,4 @@ A data.frame with calculated IHR and IFR by age group
 \description{
 Calculate infection fatality rate (IFR) and infection hospitalisation rate
 from Philippines data
-}
-\examples{
-ph_calculate_rates()
-
 }

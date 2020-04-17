@@ -17,10 +17,14 @@
 #' @docType package
 #' @name comoparams
 #' @keywords internal
-#' @importFrom googlesheets4 read_sheet
+#' @importFrom googlesheets4 sheets_read
+#' @importFrom googledrive drive_deauth drive_get drive_ls
 #' @importFrom stringr str_remove_all str_replace_all
 #' @importFrom stats aggregate
 #' @importFrom magrittr %>%
+#' @importFrom tibble tibble
+#' @importFrom utils read.csv
+#'
 #'
 #
 ################################################################################
