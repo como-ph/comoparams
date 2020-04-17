@@ -7,7 +7,8 @@
 #' Philppines' COVID-19 Data Drop resource that is publicly distributed via
 #' Google Drive
 #'
-#' @param date Date in format used by COVID-19 Data Drop system <YYYYMMDD>
+#' @param date Date in <YYYY-MM-DD> format; This is the date up to which
+#'   extracted data reports to. Default is current date (\code{Sys.Date()})
 #'
 #' @return A tibble
 #'
@@ -19,7 +20,10 @@
 #
 ################################################################################
 
-ph_get_fields <- function(date = stringr::str_remove_all(string = Sys.Date(), pattern = "-")) {
+ph_get_fields <- function(date = Sys.Date()) {
+  ## Process date
+  date <- stringr::str_remove_all(string = date, pattern = "-")
+  ##
   googledrive::drive_deauth()
   w <- googledrive::drive_ls(googledrive::drive_get(id = "10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP"))
   x <- w$id[w$name == paste("DOH COVID Data Drop_ ", date, sep = "")]
@@ -48,7 +52,8 @@ ph_get_fields <- function(date = stringr::str_remove_all(string = Sys.Date(), pa
 #' Philppines' COVID-19 Data Drop resource that is publicly distributed via
 #' Google Drive
 #'
-#' @param date Date in format used by COVID-19 Data Drop system <YYYYMMDD>
+#' @param date Date in <YYYY-MM-DD> format; This is the date up to which
+#'   extracted data reports to. Default is current date (\code{Sys.Date()})
 #'
 #' @return A tibble
 #'
@@ -60,7 +65,10 @@ ph_get_fields <- function(date = stringr::str_remove_all(string = Sys.Date(), pa
 #
 ################################################################################
 
-ph_get_cases <- function(date = stringr::str_remove_all(string = Sys.Date(), pattern = "-")) {
+ph_get_cases <- function(date = Sys.Date()) {
+  ## Process date
+  date <- stringr::str_remove_all(string = date, pattern = "-")
+  ##
   googledrive::drive_deauth()
   w <- googledrive::drive_ls(googledrive::drive_get(id = "10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP"))
   x <- w$id[w$name == paste("DOH COVID Data Drop_ ", date, sep = "")]
