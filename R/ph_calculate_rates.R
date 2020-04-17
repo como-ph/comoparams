@@ -1,0 +1,57 @@
+################################################################################
+#
+#'
+#' Calculate infection fatality rate (IFR), infection hospitalisation rate, and
+#' hospitalisation fatality rate (HFR) from Philippines data
+#'
+#' @param date Date in <YYYY-MM-DD> format; This is the date up to which
+#'   extracted data reports to. Default is current date (\code{Sys.Date()})
+#'
+#' @return A data.frame with calculated IHR, IFR, and HFR by age group structure
+#'   consistent with CoMo model data structure requirements.
+#'
+#' @examples
+#' ph_calculate_rates(date = "20200416")
+#'
+#' @export
+#'
+#'
+#
+################################################################################
+
+ph_calculate_rates <- function(date = stringr::str_remove_all(string = Sys.Date(), pattern = "-")) {
+  ## Get dataset
+  df <- ph_get_cases(date = date)
+  ## Create age group and express as factor
+  labs <- cut(x = 0:100,
+              breaks = seq(from = 0, to = 105, by = 5),
+              right = FALSE)
+  labs <- levels(labs) %>%
+    stringr::str_remove_all(pattern = "\\[") %>%
+    stringr::str_replace_all(pattern = ",", replacement = "-") %>%
+    stringr::str_replace_all(pattern = "-105\\)", replacement = "+ y.o.") %>%
+    stringr::str_replace_all(pattern = "\\)", replacement = " y.o.")
+  age_category <- cut(x = df$Age,
+                      breaks = seq(from = 0, to = 100, by = 5),
+                      labels = labs[1:20],
+                      right = FALSE)
+  age_category <- as.character(age_category)
+  age_category <- ifelse(is.na(age_category), labs[21], age_category)
+  age_category <- factor(x = age_category, levels = labs)
+  ## Recode cases and deaths
+  cases <- 1
+  admissions <- ifelse(df$Admitted != "Yes" | is.na(df$Admitted), 0, 1)
+  deaths <- ifelse(df$RemovalType != "Died" | is.na(df$RemovalType), 0, 1)
+  ##
+  casesDeaths <- aggregate(cbind(deaths, admissions, cases) ~ age_category,
+                           data = data.frame(age_category, deaths, cases),
+                           FUN = sum)
+  ##
+  ifr <- casesDeaths$deaths / casesDeaths$cases
+  ihr <- casesDeaths$admissions / casesDeaths$cases
+  hfr <- casesDeaths$deaths / casesDeaths$admissions
+  ##
+  casesDeaths <- data.frame(casesDeaths, ifr, ihr, hfr)
+  ##
+  return(casesDeaths)
+}
