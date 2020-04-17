@@ -20,5 +20,11 @@ this purpose.
 \author{
 \strong{Maintainer}: Ernest Guevarra \email{ernest@guevarra.io} (\href{https://orcid.org/0000-0002-4887-4415}{ORCID})
 
+Authors:
+\itemize{
+  \item Chris Mercado
+  \item Robert Medina
+}
+
 }
 \keyword{internal}
