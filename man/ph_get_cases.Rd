@@ -5,12 +5,11 @@
 \title{Pull Philippines data on cases information from the publicly available
 Department of Health COVID-19 Data Drop}
 \usage{
-ph_get_cases(
-  date = stringr::str_remove_all(string = Sys.Date(), pattern = "-")
-)
+ph_get_cases(date = Sys.Date())
 }
 \arguments{
-\item{date}{Date in format used by COVID-19 Data Drop system <YYYYMMDD>}
+\item{date}{Date in <YYYY-MM-DD> format; This is the date up to which
+extracted data reports to. Default is current date (\code{Sys.Date()})}
 }
 \value{
 A tibble

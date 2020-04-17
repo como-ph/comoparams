@@ -1,15 +1,17 @@
 ################################################################################
 #
 #'
-#' Calculate infection fatality rate (IFR) and infection hospitalisation rate
-#' from Philippines data
+#' Calculate infection fatality rate (IFR), infection hospitalisation rate, and
+#' hospitalisation fatality rate (HFR) from Philippines data
 #'
-#' @param date Date in format used by COVID-19 Data Drop system <YYYYMMDD>
+#' @param date Date in <YYYY-MM-DD> format; This is the date up to which
+#'   extracted data reports to. Default is current date (\code{Sys.Date()})
 #'
-#' @return A data.frame with calculated IHR and IFR by age group
+#' @return A data.frame with calculated IHR, IFR, and HFR by age group structure
+#'   consistent with CoMo model data structure requirements.
 #'
 #' @examples
-#' ph_calculate_rates(date = "20200416)
+#' ph_calculate_rates(date = "20200416")
 #'
 #' @export
 #'
@@ -47,8 +49,9 @@ ph_calculate_rates <- function(date = stringr::str_remove_all(string = Sys.Date(
   ##
   ifr <- casesDeaths$deaths / casesDeaths$cases
   ihr <- casesDeaths$admissions / casesDeaths$cases
+  hfr <- casesDeaths$deaths / casesDeaths$admissions
   ##
-  casesDeaths <- data.frame(casesDeaths, ifr, ihr)
+  casesDeaths <- data.frame(casesDeaths, ifr, ihr, hfr)
   ##
   return(casesDeaths)
 }
