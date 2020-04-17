@@ -5,17 +5,22 @@
 \title{Pull Philippines data on cases information from the publicly available
 Department of Health COVID-19 Data Drop}
 \usage{
-ph_get_cases()
+ph_get_cases(
+  date = stringr::str_remove_all(string = Sys.Date(), pattern = "-")
+)
+}
+\arguments{
+\item{date}{Date in format used by COVID-19 Data Drop system <YYYYMMDD>}
 }
 \value{
 A tibble
 }
 \description{
-A wrapper to the googlesheets4 read_sheet() function to pull data from the
+A wrapper to googledrive and googlesheets4 functions to pull data from the
 Philppines' COVID-19 Data Drop resource that is publicly distributed via
-Google Sheets
+Google Drive
 }
 \examples{
-ph_get_cases()
+ph_get_cases(date = "20200416")
 
 }

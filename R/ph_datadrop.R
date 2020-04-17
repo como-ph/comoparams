@@ -3,26 +3,40 @@
 #' Pull Philippines data fields information from the publicly available
 #' Department of Health COVID-19 Data Drop
 #'
-#' A wrapper to the googlesheets4 read_sheet() function to pull data from the
+#' A wrapper to googledrive and googlesheets4 functions to pull data from the
 #' Philppines' COVID-19 Data Drop resource that is publicly distributed via
-#' Google Sheets
+#' Google Drive
+#'
+#' @param date Date in format used by COVID-19 Data Drop system <YYYYMMDD>
 #'
 #' @return A tibble
 #'
 #' @examples
-#' ph_get_fields()
+#' ph_get_fields(date = "20200416")
 #'
 #' @export
 #'
 #
 ################################################################################
 
-ph_get_fields <- function() {
-  googlesheets4::sheets_deauth()
-  fields <- googlesheets4::sheets_read(ss = "1BLbrvgjkBWxr9g73xX9DLOqmbmuYyKc-_b8jIxCX1uo",
-                                       sheet = "Metadata - Fields")
+ph_get_fields <- function(date = stringr::str_remove_all(string = Sys.Date(), pattern = "-")) {
+  googledrive::drive_deauth()
+  w <- googledrive::drive_ls(googledrive::drive_get(id = "10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP"))
+  x <- w$id[w$name == paste("DOH COVID Data Drop_ ", date, sep = "")]
+  y <- googledrive::drive_ls(googledrive::drive_get(id = x))
+  if(date == "20200416") {
+    z <- y$id[y$name == paste("DOH COVID Data Drop_", date, " - 03 Metadata - Fields.csv", sep = "")]
+  } else {
+    z <- y$id[y$name == paste("DOH COVID Data Drop_ ", date, " - 03 Metadata - Fields.csv", sep = "")]
+  }
+  #googlesheets4::sheets_deauth()
+  #fields <- googlesheets4::sheets_read(ss = z)
+  fields <- read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
+  fields <- tibble::tibble(fields)
   return(fields)
 }
+
+
 
 
 ################################################################################
@@ -30,25 +44,38 @@ ph_get_fields <- function() {
 #' Pull Philippines data on cases information from the publicly available
 #' Department of Health COVID-19 Data Drop
 #'
-#' A wrapper to the googlesheets4 read_sheet() function to pull data from the
+#' A wrapper to googledrive and googlesheets4 functions to pull data from the
 #' Philppines' COVID-19 Data Drop resource that is publicly distributed via
-#' Google Sheets
+#' Google Drive
+#'
+#' @param date Date in format used by COVID-19 Data Drop system <YYYYMMDD>
 #'
 #' @return A tibble
 #'
 #' @examples
-#' ph_get_cases()
+#' ph_get_cases(date = "20200416")
 #'
 #' @export
 #'
 #
 ################################################################################
 
-ph_get_cases <- function() {
-  googlesheets4::sheets_deauth()
-  cases <- googlesheets4::sheets_read(ss = "1BLbrvgjkBWxr9g73xX9DLOqmbmuYyKc-_b8jIxCX1uo",
-                                      sheet = "Case Information")
+ph_get_cases <- function(date = stringr::str_remove_all(string = Sys.Date(), pattern = "-")) {
+  googledrive::drive_deauth()
+  w <- googledrive::drive_ls(googledrive::drive_get(id = "10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP"))
+  x <- w$id[w$name == paste("DOH COVID Data Drop_ ", date, sep = "")]
+  y <- googledrive::drive_ls(googledrive::drive_get(id = x))
+  if(date == "20200416") {
+    z <- y$id[y$name == paste("DOH COVID Data Drop_", date, " - 04 Case Information.csv", sep = "")]
+  } else {
+    z <- y$id[y$name == paste("DOH COVID Data Drop_ ", date, " - 04 Case Information.csv", sep = "")]
+  }
+  #googlesheets4::sheets_deauth()
+  #cases <- googlesheets4::sheets_read(ss = z)
+  cases <- read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
+  cases <- tibble::tibble(cases)
   return(cases)
 }
+
 
 
