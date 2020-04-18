@@ -28,9 +28,12 @@ reference:
   - ph_get_tests
   - ph_get_daily
 
-- title: Cases model parameters
+- title: Cases
   contents:
   - ph_calculate_cases
+
+- title: Severity and mortality
+  contents:
   - ph_calculate_rates
 
 
