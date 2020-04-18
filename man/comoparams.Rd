@@ -4,8 +4,8 @@
 \name{comoparams}
 \alias{comoparams}
 \alias{comoparams-package}
-\title{COVID-19 International Modelling Consortium Parameters Processor and
-Aggregator in R}
+\title{R Utility Tool to Extract, Process and Structure Philippines-specific Datasets
+for Use in CoMo Consortium Model}
 \description{
 The Oxford Modelling Group for Global Health (OMGH) is developing model
 structures to estimate the impact of potential mitigation strategies. By
