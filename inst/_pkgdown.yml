@@ -25,6 +25,8 @@ reference:
   contents:
   - ph_get_fields
   - ph_get_cases
+  - ph_get_tests
+  - ph_get_daily
 
 - title: Calculate
   contents:
