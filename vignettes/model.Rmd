@@ -24,7 +24,7 @@ The age structured SEIR model with infected compartments stratified by symptoms,
 knitr::include_graphics(path = "../man/figures/CoMoModel.png")
 ```
 
-$$\begin{aligned}
+$$ \begin{aligned}
 \frac{dS}{dt} ~  & = ~ -S ~ \circ ~ \Lambda ~ + ~ \omega R ~ + ~ A ~ \cdot ~ S ~ - ~ \mu ~ \cdot ~ S ~ + ~ bP \\
 \\
 \frac{dE}{dt} ~ & = ~ S ~ \circ ~ \Lambda ~ - ~ \gamma E ~ + ~ A ~ \cdot ~ E ~ - ~ \mu ~ \cdot ~ E \\
@@ -54,7 +54,7 @@ $$\begin{aligned}
 P ~ & = ~ (S ~ + ~ E ~ + ~ I ~ + ~ R ~ + ~ H ~ + ~ H_c ~ + ~ U ~ + ~ U_c ~ + ~ V ~ + ~ V_c) \\
 \\
 \\
-s ~ & = ~ 1 ~ + ~ a cos \left (2\pi \frac{ \left (t ~ - ~ \left (\frac{365.25\phi}{12} \right) \right ) ~ + ~ t_{in}}{365.25} \right) \\
+s ~ & = ~ 1 ~ + ~ a ~ cos \left (2\pi \frac{ \left (t ~ - ~ \left (\frac{365.25\phi}{12} \right) \right ) ~ + ~ t_{in}}{365.25} \right) \\
 \\
 \\
 W ~ & = ~ W_{home} ~ + ~ W_{work} ~ + ~ W_{school} ~ + ~ W_{other} \\
@@ -63,10 +63,11 @@ W ~ & = ~ W_{home} ~ + ~ W_{work} ~ + ~ W_{school} ~ + ~ W_{other} \\
 \Lambda ~ & = ~ p ~ s ~ W ~ \cdot ~ \left (\frac{\rho E ~ + ~ I ~ + ~ C ~ + ~ \rho_s ~ \times ~ (H ~ + ~ H_c ~ + ~ U ~ + ~ U_c ~ + ~ V ~ + ~ V_c)}{P}  \right ) \\
 \\
 \\
-A ~ & = ~ \begin{pmatrix} 
-\begin{pmatrix} -1 & 0 \\ 1 & -1 \end{pmatrix} & \ldots & 0 \\
-\vdots & \ddots \begin{pmatrix} -1 & 0 \\ 1 & -1 \end{pmatrix} \ddots  & \vdots \\
-0 & \ldots & \begin{pmatrix} -1 & 0 \\ 1 & 0 \end{pmatrix}
+A ~ & = ~ 
+\begin{pmatrix} 
+\begin{pmatrix} -1 & 0 \\ 1 & -1 \end{pmatrix} & \ldots & 0 \\ 
+\vdots & \ddots \begin{pmatrix} -1 & 0 \\ 1 & -1 \end{pmatrix} \ddots  & \vdots \\ 
+0 & \ldots & \begin{pmatrix} -1 & 0 \\ 1 & 0 \end{pmatrix} 
 \end{pmatrix} \\
 \\
 \\
@@ -87,9 +88,7 @@ U_c ~ & = ~ \text{Severe infection: hospitalised and requiring ICU but placed in
 V ~ & = ~ \text{Severe infection: hospitalised in ICU and on a ventilator} \\
 V_c ~ & = ~ \text{Severe infection: hospitalised in ICU requiring a ventilator but not on one} \\
 \\
-and \\
-\\
-\text{Model parameters are:} & \\
+\text{and model parameters defined as:} & \\
 \\
 W_{home} ~ & = ~ \text{} \\
 W_{work} ~ & = ~ \text{} \\
@@ -98,8 +97,7 @@ W_{other} ~ & = ~ \text{} \\
 \mu ~ & = ~ \text{} \\
 b ~ & = ~ \text{} \\
 p ~ & = ~ \text{Probability of infection given a single contact}
-
-\end{aligned}$$
+\end{aligned} $$
 
 
 
