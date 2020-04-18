@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculate infection fatality rate (IFR), infection hospitalisation rate, and
-hospitalisation fatality rate (HFR) from Philippines data — ph_calculate_rates • comoparams</title>
+<title>Calculate daily cases and daily deaths from Philippines COVID-19 Data Drop — ph_calculate_cases • comoparams</title>
 
 
 <!-- jquery -->
@@ -40,10 +39,8 @@ hospitalisation fatality rate (HFR) from Philippines data — ph_calculate_rates
 
 
 
-<meta property="og:title" content="Calculate infection fatality rate (IFR), infection hospitalisation rate, and
-hospitalisation fatality rate (HFR) from Philippines data — ph_calculate_rates" />
-<meta property="og:description" content="Calculate infection fatality rate (IFR), infection hospitalisation rate, and
-hospitalisation fatality rate (HFR) from Philippines data" />
+<meta property="og:title" content="Calculate daily cases and daily deaths from Philippines COVID-19 Data Drop — ph_calculate_cases" />
+<meta property="og:description" content="Calculate daily cases and daily deaths from Philippines COVID-19 Data Drop" />
 
 
 
@@ -126,18 +123,16 @@ hospitalisation fatality rate (HFR) from Philippines data" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Calculate infection fatality rate (IFR), infection hospitalisation rate, and
-hospitalisation fatality rate (HFR) from Philippines data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/como-ph/comoparams/blob/master/R/03-ph_calculate_rates.R'><code>R/03-ph_calculate_rates.R</code></a></small>
-    <div class="hidden name"><code>ph_calculate_rates.Rd</code></div>
+    <h1>Calculate daily cases and daily deaths from Philippines COVID-19 Data Drop</h1>
+    <small class="dont-index">Source: <a href='https://github.com/como-ph/comoparams/blob/master/R/02-ph_calculate_cases.R'><code>R/02-ph_calculate_cases.R</code></a></small>
+    <div class="hidden name"><code>ph_calculate_cases.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Calculate infection fatality rate (IFR), infection hospitalisation rate, and
-hospitalisation fatality rate (HFR) from Philippines data</p>
+    <p>Calculate daily cases and daily deaths from Philippines COVID-19 Data Drop</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ph_calculate_rates</span>(<span class='kw'>date</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>())</pre>
+    <pre class="usage"><span class='fu'>ph_calculate_cases</span>(<span class='kw'>date</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>())</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -151,54 +146,121 @@ extracted data reports to. Default is current date (<code><a href='https://rdrr.
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data.frame with calculated IHR, IFR, and HFR by age group structure
-  consistent with CoMo model data structure requirements.</p>
+    <p>A data.frame with calculated number of cases per and number of deaths
+  per day with structure consistent with CoMo model data structure
+  requirements.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>ph_calculate_rates</span>(<span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"2020-04-17"</span>)</div><div class='output co'>#&gt;    age_category deaths deathsAdmitted admissions cases         ifr       ihr
-#&gt; 1      0-5 y.o.      2              2         29    44 0.045454545 0.6590909
-#&gt; 2     5-10 y.o.      1              1         13    23 0.043478261 0.5652174
-#&gt; 3    10-15 y.o.      0              0         10    19 0.000000000 0.5263158
-#&gt; 4    15-20 y.o.      3              3         34    65 0.046153846 0.5230769
-#&gt; 5    20-25 y.o.      2              2        173   294 0.006802721 0.5884354
-#&gt; 6    25-30 y.o.      1              1        398   576 0.001736111 0.6909722
-#&gt; 7    30-35 y.o.      6              5        442   662 0.009063444 0.6676737
-#&gt; 8    35-40 y.o.      7              6        310   440 0.015909091 0.7045455
-#&gt; 9    40-45 y.o.     13              8        287   432 0.030092593 0.6643519
-#&gt; 10   45-50 y.o.     23             19        324   482 0.047717842 0.6721992
-#&gt; 11   50-55 y.o.     30             26        364   509 0.058939096 0.7151277
-#&gt; 12   55-60 y.o.     39             36        396   527 0.074003795 0.7514231
-#&gt; 13   60-65 y.o.     62             56        423   567 0.109347443 0.7460317
-#&gt; 14   65-70 y.o.     70             65        379   490 0.142857143 0.7734694
-#&gt; 15   70-75 y.o.     53             45        280   365 0.145205479 0.7671233
-#&gt; 16   75-80 y.o.     26             24        137   184 0.141304348 0.7445652
-#&gt; 17   80-85 y.o.     28             25         95   120 0.233333333 0.7916667
-#&gt; 18   85-90 y.o.     17             15         51    58 0.293103448 0.8793103
-#&gt; 19   90-95 y.o.      4              4         11    15 0.266666667 0.7333333
-#&gt; 20  95-100 y.o.      0              0          3     3 0.000000000 1.0000000
-#&gt; 21    100+ y.o.      0              0          0     3 0.000000000 0.0000000
-#&gt;            hfr
-#&gt; 1  0.068965517
-#&gt; 2  0.076923077
-#&gt; 3  0.000000000
-#&gt; 4  0.088235294
-#&gt; 5  0.011560694
-#&gt; 6  0.002512563
-#&gt; 7  0.011312217
-#&gt; 8  0.019354839
-#&gt; 9  0.027874564
-#&gt; 10 0.058641975
-#&gt; 11 0.071428571
-#&gt; 12 0.090909091
-#&gt; 13 0.132387707
-#&gt; 14 0.171503958
-#&gt; 15 0.160714286
-#&gt; 16 0.175182482
-#&gt; 17 0.263157895
-#&gt; 18 0.294117647
-#&gt; 19 0.363636364
-#&gt; 20 0.000000000
-#&gt; 21         NaN</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>ph_calculate_cases</span>(<span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"2020-04-17"</span>)</div><div class='output co'>#&gt;        repDate cases deaths
+#&gt; 1   2020-01-01     0      0
+#&gt; 2   2020-01-02     0      0
+#&gt; 3   2020-01-03     0      0
+#&gt; 4   2020-01-04     0      0
+#&gt; 5   2020-01-05     0      0
+#&gt; 6   2020-01-06     0      0
+#&gt; 7   2020-01-07     0      0
+#&gt; 8   2020-01-08     0      0
+#&gt; 9   2020-01-09     0      0
+#&gt; 10  2020-01-10     0      0
+#&gt; 11  2020-01-11     0      0
+#&gt; 12  2020-01-12     0      0
+#&gt; 13  2020-01-13     0      0
+#&gt; 14  2020-01-14     0      0
+#&gt; 15  2020-01-15     0      0
+#&gt; 16  2020-01-16     0      0
+#&gt; 17  2020-01-17     0      0
+#&gt; 18  2020-01-18     0      0
+#&gt; 19  2020-01-19     0      0
+#&gt; 20  2020-01-20     0      0
+#&gt; 21  2020-01-21     0      0
+#&gt; 22  2020-01-22     0      0
+#&gt; 23  2020-01-23     0      0
+#&gt; 24  2020-01-24     0      0
+#&gt; 25  2020-01-25     0      0
+#&gt; 26  2020-01-26     0      0
+#&gt; 27  2020-01-27     0      0
+#&gt; 28  2020-01-28     0      0
+#&gt; 29  2020-01-29     0      0
+#&gt; 30  2020-01-30     1      0
+#&gt; 31  2020-01-31     0      0
+#&gt; 32  2020-02-01     0      1
+#&gt; 33  2020-02-02     0      0
+#&gt; 34  2020-02-03     1      0
+#&gt; 35  2020-02-04     0      0
+#&gt; 36  2020-02-05     1      0
+#&gt; 37  2020-02-06     0      0
+#&gt; 38  2020-02-07     0      0
+#&gt; 39  2020-02-08     0      0
+#&gt; 40  2020-02-09     0      0
+#&gt; 41  2020-02-10     0      0
+#&gt; 42  2020-02-11     0      0
+#&gt; 43  2020-02-12     0      0
+#&gt; 44  2020-02-13     0      0
+#&gt; 45  2020-02-14     0      0
+#&gt; 46  2020-02-15     0      0
+#&gt; 47  2020-02-16     0      0
+#&gt; 48  2020-02-17     0      0
+#&gt; 49  2020-02-18     0      0
+#&gt; 50  2020-02-19     0      0
+#&gt; 51  2020-02-20     0      0
+#&gt; 52  2020-02-21     0      0
+#&gt; 53  2020-02-22     0      0
+#&gt; 54  2020-02-23     0      0
+#&gt; 55  2020-02-24     0      0
+#&gt; 56  2020-02-25     0      0
+#&gt; 57  2020-02-26     0      0
+#&gt; 58  2020-02-27     0      0
+#&gt; 59  2020-02-28     0      0
+#&gt; 60  2020-02-29     0      0
+#&gt; 61  2020-03-01     0      0
+#&gt; 62  2020-03-02     0      0
+#&gt; 63  2020-03-03     0      0
+#&gt; 64  2020-03-04     0      0
+#&gt; 65  2020-03-05     0      0
+#&gt; 66  2020-03-06     2      0
+#&gt; 67  2020-03-07     1      0
+#&gt; 68  2020-03-08     4      0
+#&gt; 69  2020-03-09    14      0
+#&gt; 70  2020-03-10     9      0
+#&gt; 71  2020-03-11    16      3
+#&gt; 72  2020-03-12     3      3
+#&gt; 73  2020-03-13    12      4
+#&gt; 74  2020-03-14    47      4
+#&gt; 75  2020-03-15    29      5
+#&gt; 76  2020-03-16     2      3
+#&gt; 77  2020-03-17    45     11
+#&gt; 78  2020-03-18    15      8
+#&gt; 79  2020-03-19    15     12
+#&gt; 80  2020-03-20    13     12
+#&gt; 81  2020-03-21    77     10
+#&gt; 82  2020-03-22    73     14
+#&gt; 83  2020-03-23    82     18
+#&gt; 84  2020-03-24    90     12
+#&gt; 85  2020-03-25    84     12
+#&gt; 86  2020-03-26    70     18
+#&gt; 87  2020-03-27   102     21
+#&gt; 88  2020-03-28   267     15
+#&gt; 89  2020-03-29   343     17
+#&gt; 90  2020-03-30   128     10
+#&gt; 91  2020-03-31   538     13
+#&gt; 92  2020-04-01   227     12
+#&gt; 93  2020-04-02   322     12
+#&gt; 94  2020-04-03   385     14
+#&gt; 95  2020-04-04    76     12
+#&gt; 96  2020-04-05   152      6
+#&gt; 97  2020-04-06   414     10
+#&gt; 98  2020-04-07   104      3
+#&gt; 99  2020-04-08   106      8
+#&gt; 100 2020-04-09   206      4
+#&gt; 101 2020-04-10   119      5
+#&gt; 102 2020-04-11   233      3
+#&gt; 103 2020-04-12   220      4
+#&gt; 104 2020-04-13   284      2
+#&gt; 105 2020-04-14   291      1
+#&gt; 106 2020-04-15   230      1
+#&gt; 107 2020-04-16   207      0
+#&gt; 108 2020-04-17   218      0
+#&gt; 109 2020-04-18     0      0</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

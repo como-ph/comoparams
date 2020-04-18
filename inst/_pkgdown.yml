@@ -28,6 +28,10 @@ reference:
   - ph_get_tests
   - ph_get_daily
 
-- title: Calculate
+- title: Cases model parameters
   contents:
+  - ph_calculate_cases
   - ph_calculate_rates
+
+
+
