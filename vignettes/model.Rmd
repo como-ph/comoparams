@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup, echo = FALSE, eval = FALSE}
+```{r setup, echo = FALSE, eval = TRUE}
 library(comoparams)
 ```
 
