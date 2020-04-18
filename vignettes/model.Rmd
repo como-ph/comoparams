@@ -71,10 +71,7 @@ A ~ & = ~
 \end{pmatrix} \\
 \\
 \\
-where: &
-\\
-\\
-\text{Model variables defined as:} & \\
+& \text{where model variables are defined as:} \\
 \\
 S ~ & = ~ \text{Susceptible} \\
 E ~ & = ~ \text{Infected and incubating} \\
@@ -88,7 +85,7 @@ U_c ~ & = ~ \text{Severe infection: hospitalised and requiring ICU but placed in
 V ~ & = ~ \text{Severe infection: hospitalised in ICU and on a ventilator} \\
 V_c ~ & = ~ \text{Severe infection: hospitalised in ICU requiring a ventilator but not on one} \\
 \\
-\text{and model parameters defined as:} & \\
+& \text{and model parameters are defined as:} \\
 \\
 W_{home} ~ & = ~ \text{} \\
 W_{work} ~ & = ~ \text{} \\
