@@ -9,10 +9,13 @@ ph_get_fields(date = Sys.Date())
 }
 \arguments{
 \item{date}{Date in <YYYY-MM-DD> format; This is the date up to which
-extracted data reports to. Default is current date (\code{Sys.Date()})}
+extracted data reports to. Default is current date (\code{Sys.Date()}).
+Data Drop started on 14 April 2020 so earliest date value that can be used
+is 2020-04-14.}
 }
 \value{
-A tibble
+A tibble of metadata for the fields used in the various datasets
+  distributed via the COVID-19 Data Drop
 }
 \description{
 A wrapper to googledrive and googlesheets4 functions to pull data from the

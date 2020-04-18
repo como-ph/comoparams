@@ -30,8 +30,8 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Chris Mercado
-  \item Robert Medina
+  \item Chris Mercado \email{cegmercado@gmail.com}
+  \item Robert Medina \email{jcmedina1@up.edu.ph}
 }
 
 }
