@@ -2,12 +2,16 @@ Package: comoparams
 Type: Package
 Title: R Utility Tool to Extract, Process and Structure Philippines-specific 
   Datasets for Use in CoMo Consortium Model
-Version: 0.1.0
+Version: 0.1.0.9000
 Authors@R: c(person(given = "Ernest", family = "Guevarra", 
                     email = "ernest@guevarra.io", role = c("aut", "cre"),
                     comment = c(ORCID = "0000-0002-4887-4415")),
-             person(given = "Chris", family = "Mercado", role = "aut"),
-             person(given = "Robert", family = "Medina", role = "aut"))
+             person(given = "Chris", family = "Mercado", 
+                    email = "cegmercado@gmail.com",
+                    role = "aut"),
+             person(given = "Robert", family = "Medina", 
+                    email = "jcmedina1@up.edu.ph",
+                    role = "aut"))
 Description: The Oxford Modelling Group for Global Health (OMGH) is developing 
     model structures to estimate the impact of potential mitigation strategies. 
     By changing the input data and parameter values, the models can be adjusted 

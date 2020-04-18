@@ -1,8 +1,8 @@
 ################################################################################
 #
 #'
-#' COVID-19 International Modelling Consortium Parameters Processor and
-#' Aggregator in R
+#' R Utility Tool to Extract, Process and Structure Philippines-specific Datasets
+#' for Use in CoMo Consortium Model
 #'
 #' The Oxford Modelling Group for Global Health (OMGH) is developing model
 #' structures to estimate the impact of potential mitigation strategies. By
