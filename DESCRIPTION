@@ -30,3 +30,5 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+URL: https://github.com/como-ph/comoparams
+BugReports: https://github.com/como-ph/comoparams/issues

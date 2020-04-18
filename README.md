@@ -24,7 +24,7 @@ The CoMo-PH group is the Philippines country team that is supporting the
 use of the model specific to the Philppines as part of the COVID-19
 International Modeling Consortium (CoMo Consortium).
 
-This package has been developed by the CoMo-PH group to support its
+This R package has been developed by the CoMo-PH group to support its
 efforts in the collection of Philippines-specific and
 Philppines-appropriate data that will define the parameters used in the
 CoMo model as applied to the Philippines. This package facilitates the

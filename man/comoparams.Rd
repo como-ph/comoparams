@@ -17,6 +17,14 @@ subnational input data and parameter values into data structures appropriate
 for use with the modelling application and/or other packages developed for
 this purpose.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/como-ph/comoparams}
+  \item Report bugs at \url{https://github.com/como-ph/comoparams/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Ernest Guevarra \email{ernest@guevarra.io} (\href{https://orcid.org/0000-0002-4887-4415}{ORCID})
 
