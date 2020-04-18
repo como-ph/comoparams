@@ -1,7 +1,7 @@
 Package: comoparams
 Type: Package
-Title: COVID-19 International Modelling Consortium Parameters Processor and 
-  Aggregator in R
+Title: R Utility Tool to Extract, Process and Structure Philippines-specific 
+  Datasets for Use in CoMo Consortium Model
 Version: 0.1.0
 Authors@R: c(person(given = "Ernest", family = "Guevarra", 
                     email = "ernest@guevarra.io", role = c("aut", "cre"),
