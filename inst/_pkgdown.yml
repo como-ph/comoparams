@@ -1,9 +1,11 @@
 title: comoparams
+
 url: https://como-ph.github.io/comoparams
+
 template:
   params:
-    bootswatch: sandstone
-    #ganalytics: UA-102485058-4
+    bootswatch: flatly
+    ganalytics:
 
 #home:
   #strip_header: true
