@@ -84,51 +84,14 @@
     
 <p>The age structured SEIR model with infected compartments stratified by symptoms, severity and treatment seeking and access.</p>
 <p><img src="../man/figures/CoMoModel.png" width="98%"></p>
-<p><span class="math display">\[\begin{aligned}
-\frac{dS}{dt} ~  &amp; = ~ -S ~ \circ ~ \Lambda ~ + ~ \omega R ~ + ~ A ~ \cdot ~ S ~ - ~ \mu ~ \cdot ~ S ~ + ~ bP \\
-\\
-\frac{dE}{dt} ~ &amp; = ~ S ~ \circ ~ \Lambda ~ - ~ \gamma E ~ + ~ A ~ \cdot ~ E ~ - ~ \mu ~ \cdot ~ E \\
-\\
-\frac{dI}{dt} ~ &amp; = ~ \gamma(1 ~ - ~ p_{clin})(1 ~ - ~ p_{ihr}) ~ \cdot ~ E ~ - ~ v_I I ~ + ~ A ~ \cdot ~ I ~ - ~ \mu ~ \cdot ~ I \\
-\\
-\frac{dC}{dt} ~ &amp; = ~ \gamma p_{clin}(1 ~ - ~ p_{ihr}) ~ \cdot ~ E ~ - ~ v_I C ~ + ~ A ~ \cdot ~ C ~ - ~ \mu \cdot C \\
-\\
-\frac{dR}{dt} ~ &amp; = ~ v_I (I ~ + ~ C) ~ + ~ A ~ \cdot ~ R ~ - ~ \omega R ~ - ~ \mu ~ \cdot ~ R ~ + ~ (1 ~ - ~ \delta_H p_{ifr})v_H ~ \cdot ~ H \\
- ~ &amp; + ~ (1 ~ - ~ \delta_{H_c} p_{ifr})v_H ~ \cdot ~ H ~ + ~ (1 ~ - ~ \delta_U p_{ifr})v_U ~ \cdot ~ U \\
- ~ &amp; + ~ (1 ~ - ~ \delta_{U_c} p_{ifr})v_U ~ \cdot ~ U ~ + ~ (1 ~ - ~ \delta_{V} p_{ifr})v_V ~ \cdot ~ V \\
- ~ &amp; + ~ (1 ~ - ~ \delta_{V_c} p_{ifr})v_V ~ \cdot ~ V \\
-\\
-\frac{dH}{dt} ~ &amp; = ~ p_{ihr}(1 ~ - ~ p_U)(1 ~ - ~ p{K_H})\gamma E ~ - ~ v_H H ~ + ~ A ~ \cdot ~ H ~ - ~ \mu ~ \cdot ~ H \\
-\\
-\frac{dH_c}{dt} ~ &amp; = ~ p_{ihr}(1 ~ - ~ p_U)p_{K_H}\gamma E ~ - ~ v_H H_c ~ + ~ A ~ \cdot ~ H_c ~ - ~ \mu ~ \cdot ~ H_c \\
-\\
-\frac{dU}{dt} ~ &amp; = ~ p_{ihr} p_U (1 ~ - ~ p_{K_U})(1 ~ - ~ p_V)\gamma E ~ - ~ v_U U ~ + ~ A ~ \cdot ~ U ~ - ~ \mu ~ \cdot ~ U \\
-\\
-\frac{dU_c}{dt} ~ &amp; = ~ p_{ihr} p_U p_{K_U} (1 ~ - ~ p_v)\gamma E ~ - ~ v_U U_c ~ + ~ A ~ \cdot ~ U_c ~ - ~ \mu ~ \cdot ~ U_c \\
-\\
-\frac{dV}{dt} ~ &amp; = ~ p_{ihr} p_U(1 ~ - ~ p_{K_U})(1 ~ - ~ p_{K_V})p_V \gamma E ~ - ~ v_V V ~ + ~ A ~ \cdot ~ V ~ - ~ \mu ~ \cdot ~ V \\
-\\
-\frac{dV_c}{dt} ~ &amp; = ~ p_{ihr} p_U(1 ~ - ~ p_{K_U})p_{K_V} p_V \gamma E ~ - ~ v_V V_c ~ + ~ A ~ \cdot ~ V_c ~ - ~ \mu ~ \cdot ~ V_c \\
-\\
-\\
-P ~ &amp; = ~ (S ~ + ~ E ~ + ~ I ~ + ~ R ~ + ~ H ~ + ~ H_c ~ + ~ U ~ + ~ U_c ~ + ~ V ~ + ~ V_c) \\
-\\
-\\
-s ~ &amp; = ~ 1 ~ + ~ a cos \left (2\pi \frac{ \left (t ~ - ~ \left (\frac{365.25\phi}{12} \right) \right ) ~ + ~ t_{in}}{365.25} \right) \\
-\\
-\\
-W ~ &amp; = ~ W_{home} ~ + ~ W_{work} ~ + ~ W_{school} ~ + ~ W_{other} \\
-\\
-\\
-\Lambda ~ &amp; = ~ p ~ s ~ W ~ \cdot ~ \left (\frac{\rho E ~ + ~ I ~ + ~ C ~ + ~ \rho_s ~ \times ~ (H ~ + ~ H_c ~ + ~ U ~ + ~ U_c ~ + ~ V ~ + ~ V_c)}{P}  \right ) \\
-\\
-\\
-A ~ &amp; = ~ \begin{pmatrix} 
+$$\begin{aligned}  ~ &amp; = ~ -S ~ ~ ~ + ~ R ~ + ~ A ~ ~ S ~ - ~ ~ ~ S ~ + ~ bP \ \  ~ &amp; = ~ S ~ ~ ~ - ~ E ~ + ~ A ~ ~ E ~ - ~ ~ ~ E \ \  ~ &amp; = ~ (1 ~ - ~ p_{clin})(1 ~ - ~ p_{ihr}) ~ ~ E ~ - ~ v_I I ~ + ~ A ~ ~ I ~ - ~ ~ ~ I \ \  ~ &amp; = ~ p_{clin}(1 ~ - ~ p_{ihr}) ~ ~ E ~ - ~ v_I C ~ + ~ A ~ ~ C ~ - ~ C \ \  ~ &amp; = ~ v_I (I ~ + ~ C) ~ + ~ A ~ ~ R ~ - ~ R ~ - ~ ~ ~ R ~ + ~ (1 ~ - ~ <em>H p</em>{ifr})v_H ~ ~ H \ ~ &amp; + ~ (1 ~ - ~ <em>{H_c} p</em>{ifr})v_H ~ ~ H ~ + ~ (1 ~ - ~ <em>U p</em>{ifr})v_U ~ ~ U \ ~ &amp; + ~ (1 ~ - ~ <em>{U_c} p</em>{ifr})v_U ~ ~ U ~ + ~ (1 ~ - ~ <em>{V} p</em>{ifr})v_V ~ ~ V \ ~ &amp; + ~ (1 ~ - ~ <em>{V_c} p</em>{ifr})v_V ~ ~ V \ \  ~ &amp; = ~ p_{ihr}(1 ~ - ~ p_U)(1 ~ - ~ p{K_H})E ~ - ~ v_H H ~ + ~ A ~ ~ H ~ - ~ ~ ~ H \ \  ~ &amp; = ~ p_{ihr}(1 ~ - ~ p_U)p_{K_H}E ~ - ~ v_H H_c ~ + ~ A ~ ~ H_c ~ - ~ ~ ~ H_c \ \  ~ &amp; = ~ p_{ihr} p_U (1 ~ - ~ p_{K_U})(1 ~ - ~ p_V)E ~ - ~ v_U U ~ + ~ A ~ ~ U ~ - ~ ~ ~ U \ \  ~ &amp; = ~ p_{ihr} p_U p_{K_U} (1 ~ - ~ p_v)E ~ - ~ v_U U_c ~ + ~ A ~ ~ U_c ~ - ~ ~ ~ U_c \ \  ~ &amp; = ~ p_{ihr} p_U(1 ~ - ~ p_{K_U})(1 ~ - ~ p_{K_V})p_V E ~ - ~ v_V V ~ + ~ A ~ ~ V ~ - ~ ~ ~ V \ \  ~ &amp; = ~ p_{ihr} p_U(1 ~ - ~ p_{K_U})p_{K_V} p_V E ~ - ~ v_V V_c ~ + ~ A ~ ~ V_c ~ - ~ ~ ~ V_c \ \ \ P ~ &amp; = ~ (S ~ + ~ E ~ + ~ I ~ + ~ R ~ + ~ H ~ + ~ H_c ~ + ~ U ~ + ~ U_c ~ + ~ V ~ + ~ V_c) \ \ \ s ~ &amp; = ~ 1 ~ + ~ a cos (2 ) \ \ \ W ~ &amp; = ~ W_{home} ~ + ~ W_{work} ~ + ~ W_{school} ~ + ~ W_{other} \ \ \ ~ &amp; = ~ p ~ s ~ W ~ ~ ( ) \ \ \ A ~ &amp; = ~
+<span class="math display">\[\begin{pmatrix} 
 \begin{pmatrix} -1 &amp; 0 \\ 1 &amp; -1 \end{pmatrix} &amp; \ldots &amp; 0 \\
 \vdots &amp; \ddots \begin{pmatrix} -1 &amp; 0 \\ 1 &amp; -1 \end{pmatrix} \ddots  &amp; \vdots \\
 0 &amp; \ldots &amp; \begin{pmatrix} -1 &amp; 0 \\ 1 &amp; 0 \end{pmatrix}
-\end{pmatrix}
-\end{aligned}\]</span></p>
+\end{pmatrix}\]</span>
+<p>\ \ \ where: &amp; \ \  &amp; \ \ S ~ &amp; = ~  \ E ~ &amp; = ~  \ I ~ &amp; = ~  \ C ~ &amp; = ~  \ R ~ &amp; = ~  \ H ~ &amp; = ~  \ H_c ~ &amp; = ~  \ U ~ &amp; = ~  \ U_c ~ &amp; = ~  \ V ~ &amp; = ~  \ V_c ~ &amp; = ~  \ \ and \ \  &amp; \ \ W_{home} ~ &amp; = ~  \ W_{work} ~ &amp; = ~  \ W_{school} ~ &amp; = ~  \ W_{other} ~ &amp; = ~  \ ~ &amp; = ~  \ b ~ &amp; = ~  \ p ~ &amp; = ~ </p>
+<p>\end{aligned}$$</p>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
