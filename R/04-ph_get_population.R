@@ -14,14 +14,14 @@
 #' @examples
 #' link <- "https://psa.gov.ph/sites/default/files/attachments/hsd/pressrelease/"
 #' fname <- "Updated%20Population%20Projections%20based%20on%202015%20POPCEN_0.xlsx"
-#' ph_get_popcen2015(file = paste(link, fname, sep = ""))
+#' ph_get_psa2015_pop(file = paste(link, fname, sep = ""))
 #'
 #' @export
 #'
 #
 ################################################################################
 
-ph_get_popcen2015 <- function(file) {
+ph_get_psa2015_pop <- function(file) {
   ## Create a concatenating data.frame
   df <- data.frame()
   ## Loop through the different years up to 2024
@@ -99,23 +99,97 @@ ph_get_popcen2015 <- function(file) {
 #' @examples
 #' link <- "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/CSV_FILES/"
 #' fname <- "WPP2019_PopulationByAgeSex_Medium.csv"
-#' ph_get_wpp2019(file = paste(link, fname, sep = ""))
+#' ph_get_wpp2019_pop(file = paste(link, fname, sep = ""))
 #'
 #' @export
 #'
 #
 ################################################################################
 
-ph_get_wpp2019 <- function(file,
-                           location = "Philippines",
-                           year = lubridate::year(Sys.Date())) {
+ph_get_wpp2019_pop <- function(file,
+                               location = "Philippines",
+                               year = lubridate::year(Sys.Date())) {
   ## Read file
   x <- read.csv(file = file)
-  ##
+  ## Extract the specific location and year and only the needed columns
   df <- x[x$Location == location & x$Time %in% year,
           c("Location", "Time", "AgeGrp", "PopTotal", "PopMale", "PopFemale")]
-  ##
+  ## Rename df compatible to CoMo requirements
   names(df) <- c("area", "year", "age_categories", "total", "male", "female")
-  ##
+  ## Report exact population estimates (multiple by 1000)
+  df[ , c("total", "male", "female")] <- df[ , c("total", "male", "female")] * 1000
+  ## Conver df to tibble
+  df <- tibble::tibble(df)
+  ## Return df
   return(df)
 }
+
+
+################################################################################
+#
+#'
+#' Get Philippines age-specific births per 1000 women estimates or projections
+#' by 5-year periods given a year or range of years from the World Population
+#' Prospects 2019
+#'
+#' @param file Either a path or a URL to the World Population Prospects 2019
+#'   file containing population estimates and projections in 5-year age groups
+#' @param location Location to get population estimates/projections for;
+#'   Default to the "Philippines"
+#' @param year A year (numeric) or range of years (YYYY:YYYY) in 5 year
+#'   intervals starting from 1950 to get population estimates/projections for;
+#'   Default is current year corresponding to the five year period that
+#'   contains the current year
+#'
+#' @return A tibble in tidy format containing age-speciic births per 1000 women
+#'   for the entire Philippines and by region from 1950 to 2100
+#'
+#' @examples
+#' link <- "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/CSV_FILES/"
+#' fname <- "WPP2019_Fertility_by_Age.csv"
+#' ph_get_wpp2019_births(file = paste(link, fname, sep = ""))
+#'
+#' @export
+#'
+#
+################################################################################
+
+ph_get_wpp2019_births <- function(file,
+                                  location = "Philippines",
+                                  year = lubridate::year(Sys.Date())) {
+  ##
+  df <- read.csv(file = file, stringsAsFactors = FALSE)
+  ##
+  yrGrp <- levels(cut(1950:2100,
+                      breaks = seq(from = 1950, to = 2100, by = 5),
+                      right = FALSE,
+                      include.lowest = TRUE))
+  yrGrp <- stringr::str_remove_all(string = yrGrp, pattern = "\\[|\\)|]")
+  yrGrp <- stringr::str_replace_all(string = yrGrp, pattern = ",", replacement = "-")
+  ##
+  if(length(year) > 1) {
+    year <- paste(year[1], tail(year, 1), sep = "-")
+    df <- df[df$Location == "Philippines" & df$Time == year, ]
+  } else {
+    ##
+    t <- stringr::str_replace_all(string = yrGrp, pattern = "-", replacement = ":")
+    u <- vector(mode = numeric, length = length(t))
+    for(i in length(t)) {
+      u[i] <- year %in% eval(parse(text = t[i]))[1:5]
+    }
+  }
+    ##
+    df <- df[df$Location == "Philippines" & year %in% t, ]
+    ##
+    return(df)
+  }
+}
+
+
+
+
+
+
+
+
+
