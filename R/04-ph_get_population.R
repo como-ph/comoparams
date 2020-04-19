@@ -71,7 +71,7 @@ ph_get_psa2015_pop <- function(file) {
   ## Remove total rows
   df <- df[df$X1 != "Total", ]
   ## Rename df
-  names(df) <- c("area", "year", "age_categories", "total", "male", "female")
+  names(df) <- c("area", "year", "age_category", "total", "male", "female")
   ## Convert df to tibble
   df <- tibble::tibble(df)
   ##
@@ -110,12 +110,12 @@ ph_get_wpp2019_pop <- function(file,
                                location = "Philippines",
                                period = lubridate::year(Sys.Date())) {
   ## Read file
-  x <- read.csv(file = file)
+  x <- read.csv(file = file, stringsAsFactors = FALSE)
   ## Extract the specific location and year and only the needed columns
   df <- x[x$Location == location & x$Time %in% period,
           c("Location", "Time", "AgeGrp", "PopTotal", "PopMale", "PopFemale")]
   ## Rename df compatible to CoMo requirements
-  names(df) <- c("area", "year", "age_categories", "total", "male", "female")
+  names(df) <- c("area", "year", "age_category", "total", "male", "female")
   ## Report exact population estimates (multiple by 1000)
   df[ , c("total", "male", "female")] <- df[ , c("total", "male", "female")] * 1000
   ## Conver df to tibble
@@ -128,7 +128,7 @@ ph_get_wpp2019_pop <- function(file,
 ################################################################################
 #
 #'
-#' Get Philippines age-specific births per 1000 women estimates or projections
+#' Get Philippines age-specific number of births estimates or projections
 #' by 5-year periods given a year or range of years from the World Population
 #' Prospects 2019
 #'
@@ -141,12 +141,12 @@ ph_get_wpp2019_pop <- function(file,
 #'   Default is current year corresponding to the five year period that
 #'   contains the current year
 #'
-#' @return A tibble in tidy format containing age-speciic births per 1000 women
-#'   for the entire Philippines and by region from 1950 to 2100
+#' @return A tibble in tidy format containing age-specific number of births
+#'   for the entire Philippines from 1950 to 2100
 #'
 #' @examples
-#' link <- "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/CSV_FILES/"
-#' fname <- "WPP2019_Fertility_by_Age.csv"
+#' link <- "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/"
+#' fname <- "EXCEL_FILES/2_Fertility/WPP2019_FERT_F06_BIRTHS_BY_AGE_OF_MOTHER.xlsx"
 #' ph_get_wpp2019_births(file = paste(link, fname, sep = ""))
 #'
 #' @export
@@ -158,11 +158,18 @@ ph_get_wpp2019_births <- function(file,
                                   location = "Philippines",
                                   period = lubridate::year(Sys.Date())) {
   ##
-  df <- read.csv(file = file, stringsAsFactors = FALSE)
+  #df <- read.csv(file = file, stringsAsFactors = FALSE)
+  df <- openxlsx::read.xlsx(xlsxFile = file, sheet = 1, startRow = 17)
+  df <- df[ , c(3, 8:15)]
+  df <- tidyr::pivot_longer(data = df,
+                            cols = "15-19":"45-49",
+                            names_to = "age_category",
+                            values_to = "birth")
+  names(df) <- c("area", "year", "age_category", "birth")
   ##
   if(length(period) > 1) {
     period <- paste(period[1], tail(period, 1), sep = "-")
-    df <- df[df$Location == location & df$Time == period, ]
+    df <- df[df$area == location & df$year == period, ]
   } else {
     ## Create 5-year group vector
     yrGrp <- levels(cut(1950:2100,
@@ -181,16 +188,87 @@ ph_get_wpp2019_births <- function(file,
     ## Convert single year to 5-year groups
     period <- yrGrp[u]
     ## Get df specific to location and time
-    df <- df[df$Location == location & df$Time == period, ]
+    df <- df[df$area == location & df$year == period, ]
   }
-  # Convert df to tibble
+  ## Rename df
+  #names(df) <- c("area", "year", "age_category", "birth")
+  ## Convert df to tibble
   df <- tibble::tibble(df)
   ## Return df
   return(df)
 }
 
 
+################################################################################
+#
+#'
+#' Get Philippines number of deaths estimates or projections by 5-year periods
+#' given a year or range of years from the World Population Prospects 2019
+#'
+#' @param file Either a path or a URL to the World Population Prospects 2019
+#'   file containing population estimates and projections in 5-year age groups
+#' @param location Location to get population estimates/projections for;
+#'   Default to the "Philippines"
+#' @param period A year (numeric) or range of years (YYYY:YYYY) in 5 year
+#'   intervals starting from 1950 to get population estimates/projections for;
+#'   Default is current year corresponding to the five year period that
+#'   contains the current year
+#'
+#' @return A tibble in tidy format containing age-specific number of deaths
+#'   for the entire Philippines from 1950 to 2100
+#'
+#' @examples
+#' link <- "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/"
+#' fname <- "EXCEL_FILES/3_Mortality/WPP2019_MORT_F04_1_DEATHS_BY_AGE_BOTH_SEXES.xlsx"
+#' ph_get_wpp2019_deaths(file = paste(link, fname, sep = ""))
+#'
+#' @export
+#'
+#
+################################################################################
 
+ph_get_wpp2019_deaths <- function(file,
+                                  location = "Philippines",
+                                  period = lubridate::year(Sys.Date())) {
+  ##
+  #df <- read.csv(file = file, stringsAsFactors = FALSE)
+  df <- openxlsx::read.xlsx(xlsxFile = file, sheet = 1, startRow = 17)
+  df <- df[ , c(3, 8:28)]
+  df <- tidyr::pivot_longer(data = df, cols = "0-4":"95+",
+                            names_to = "age_category",
+                            values_to = "death")
+  names(df) <- c("area", "year", "age_category", "death")
+  ##
+  if(length(period) > 1) {
+    period <- paste(period[1], tail(period, 1), sep = "-")
+    df <- df[df$area == location & df$year == period, ]
+  } else {
+    ## Create 5-year group vector
+    yrGrp <- levels(cut(1950:2100,
+                        breaks = seq(from = 1950, to = 2100, by = 5),
+                        right = FALSE,
+                        include.lowest = TRUE))
+    yrGrp <- stringr::str_remove_all(string = yrGrp, pattern = "\\[|\\)|]")
+    yrGrp <- stringr::str_replace_all(string = yrGrp, pattern = ",", replacement = "-")
+    ## Convert single year to 5-year group
+    t <- stringr::str_replace_all(string = yrGrp, pattern = "-", replacement = ":")
+    u <- NULL
+    ## Cycle through various year groups
+    for(i in 1:length(t)) {
+      u[i] <- period %in% eval(parse(text = t[i]))[1:5]
+    }
+    ## Convert single year to 5-year groups
+    period <- yrGrp[u]
+    ## Get df specific to location and time
+    df <- df[df$area == location & df$year == period, ]
+  }
+  ## Rename df
+  ##names(df) <- c("area", "year", "age_category", "death2")
+  ## Convert df to tibble
+  df <- tibble::tibble(df)
+  ## Return df
+  return(df)
+}
 
 
 

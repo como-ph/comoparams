@@ -26,6 +26,7 @@
 #' @importFrom utils read.csv tail
 #' @importFrom lubridate %within% interval ymd ymd_hms year
 #' @importFrom openxlsx read.xlsx
+#' @importFrom tidyr pivot_longer
 #'
 #'
 #
