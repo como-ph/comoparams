@@ -165,8 +165,11 @@ ph_get_wpp2019_births <- function(file,
                             cols = "15-19":"45-49",
                             names_to = "age_category",
                             values_to = "birth")
+  ## Rename df
   names(df) <- c("area", "year", "age_category", "birth")
-  ##
+  ## Make age_category compatible with CoMo template
+  df$age_category <- paste(df$age_category, "y.o.", sep = " ")
+  ## Check if period is a range of years
   if(length(period) > 1) {
     period <- paste(period[1], tail(period, 1), sep = "-")
     df <- df[df$area == location & df$year == period, ]
@@ -190,8 +193,8 @@ ph_get_wpp2019_births <- function(file,
     ## Get df specific to location and time
     df <- df[df$area == location & df$year == period, ]
   }
-  ## Rename df
-  #names(df) <- c("area", "year", "age_category", "birth")
+  ##
+  df$births <- as.numeric(df$birth) * 1000
   ## Convert df to tibble
   df <- tibble::tibble(df)
   ## Return df
@@ -234,10 +237,16 @@ ph_get_wpp2019_deaths <- function(file,
   #df <- read.csv(file = file, stringsAsFactors = FALSE)
   df <- openxlsx::read.xlsx(xlsxFile = file, sheet = 1, startRow = 17)
   df <- df[ , c(3, 8:28)]
-  df <- tidyr::pivot_longer(data = df, cols = "0-4":"95+",
-                            names_to = "age_category",
-                            values_to = "death")
+  df$`95-99` <- df$`95+`
+  df$`100+` <- df$`95+`
+  df <- df[ , c(1:21, 23:24)] %>%
+    tidyr::pivot_longer(cols = "0-4":"100+",
+                        names_to = "age_category",
+                        values_to = "death")
+  ## Rename df
   names(df) <- c("area", "year", "age_category", "death")
+  ## Make age_category compatible with CoMo template
+  df$age_category <- paste(df$age_category, "y.o.", sep = " ")
   ##
   if(length(period) > 1) {
     period <- paste(period[1], tail(period, 1), sep = "-")
@@ -262,8 +271,8 @@ ph_get_wpp2019_deaths <- function(file,
     ## Get df specific to location and time
     df <- df[df$area == location & df$year == period, ]
   }
-  ## Rename df
-  ##names(df) <- c("area", "year", "age_category", "death2")
+  ## Convert deaths to 1000
+  df$death <- as.numeric(df$death) * 1000
   ## Convert df to tibble
   df <- tibble::tibble(df)
   ## Return df
