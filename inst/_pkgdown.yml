@@ -38,7 +38,8 @@ reference:
 
 - title: Population
   contents:
-  - ph_get_pop2015
+  - ph_get_popcen2015
+  - ph_get_wpp2019
 
 
 
