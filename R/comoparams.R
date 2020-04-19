@@ -19,12 +19,13 @@
 #' @keywords internal
 #' @importFrom googlesheets4 sheets_read
 #' @importFrom googledrive drive_deauth drive_get drive_ls
-#' @importFrom stringr str_remove_all str_replace_all
+#' @importFrom stringr str_remove_all str_replace_all str_to_title
 #' @importFrom stats aggregate
 #' @importFrom magrittr %>%
 #' @importFrom tibble tibble
 #' @importFrom utils read.csv
 #' @importFrom lubridate %within% interval ymd ymd_hms
+#' @importFrom openxlsx read.xlsx
 #'
 #'
 #
