@@ -22,13 +22,19 @@
     <loc>https://como-ph.github.io/comoparams/reference/ph_get_fields.html</loc>
   </url>
   <url>
-    <loc>https://como-ph.github.io/comoparams/reference/ph_get_popcen2015.html</loc>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_get_psa2015_pop.html</loc>
   </url>
   <url>
     <loc>https://como-ph.github.io/comoparams/reference/ph_get_tests.html</loc>
   </url>
   <url>
-    <loc>https://como-ph.github.io/comoparams/reference/ph_get_wpp2019.html</loc>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_get_wpp2019_births.html</loc>
+  </url>
+  <url>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_get_wpp2019_deaths.html</loc>
+  </url>
+  <url>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_get_wpp2019_pop.html</loc>
   </url>
   <url>
     <loc>https://como-ph.github.io/comoparams/articles/model.html</loc>

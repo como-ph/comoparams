@@ -38,8 +38,10 @@ reference:
 
 - title: Population
   contents:
-  - ph_get_popcen2015
-  - ph_get_wpp2019
+  - ph_get_psa2015_pop
+  - ph_get_wpp2019_pop
+  - ph_get_wpp2019_births
+  - ph_get_wpp2019_deaths
 
 
 
