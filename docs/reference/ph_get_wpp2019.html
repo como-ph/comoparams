@@ -6,8 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculate infection fatality rate (IFR), infection hospitalisation rate, and
-hospitalisation fatality rate (HFR) from Philippines data — ph_calculate_rates • comoparams</title>
+<title>Get Philippines population estimates or projections by 5-year age groups
+given a year or range of years from the World Population Prospects 2019 — ph_get_wpp2019 • comoparams</title>
 
 
 <!-- jquery -->
@@ -40,10 +40,10 @@ hospitalisation fatality rate (HFR) from Philippines data — ph_calculate_rates
 
 
 
-<meta property="og:title" content="Calculate infection fatality rate (IFR), infection hospitalisation rate, and
-hospitalisation fatality rate (HFR) from Philippines data — ph_calculate_rates" />
-<meta property="og:description" content="Calculate infection fatality rate (IFR), infection hospitalisation rate, and
-hospitalisation fatality rate (HFR) from Philippines data" />
+<meta property="og:title" content="Get Philippines population estimates or projections by 5-year age groups
+given a year or range of years from the World Population Prospects 2019 — ph_get_wpp2019" />
+<meta property="og:description" content="Get Philippines population estimates or projections by 5-year age groups
+given a year or range of years from the World Population Prospects 2019" />
 
 
 
@@ -126,79 +126,74 @@ hospitalisation fatality rate (HFR) from Philippines data" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Calculate infection fatality rate (IFR), infection hospitalisation rate, and
-hospitalisation fatality rate (HFR) from Philippines data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/como-ph/comoparams/blob/master/R/03-ph_calculate_rates.R'><code>R/03-ph_calculate_rates.R</code></a></small>
-    <div class="hidden name"><code>ph_calculate_rates.Rd</code></div>
+    <h1>Get Philippines population estimates or projections by 5-year age groups
+given a year or range of years from the World Population Prospects 2019</h1>
+    <small class="dont-index">Source: <a href='https://github.com/como-ph/comoparams/blob/master/R/04-ph_get_population.R'><code>R/04-ph_get_population.R</code></a></small>
+    <div class="hidden name"><code>ph_get_wpp2019.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Calculate infection fatality rate (IFR), infection hospitalisation rate, and
-hospitalisation fatality rate (HFR) from Philippines data</p>
+    <p>Get Philippines population estimates or projections by 5-year age groups
+given a year or range of years from the World Population Prospects 2019</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ph_calculate_rates</span>(<span class='kw'>date</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>())</pre>
+    <pre class="usage"><span class='fu'>ph_get_wpp2019</span>(
+  <span class='no'>file</span>,
+  <span class='kw'>location</span> <span class='kw'>=</span> <span class='st'>"Philippines"</span>,
+  <span class='kw'>year</span> <span class='kw'>=</span> <span class='kw pkg'>lubridate</span><span class='kw ns'>::</span><span class='fu'><a href='http://lubridate.tidyverse.org/reference/year.html'>year</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>())
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>date</th>
-      <td><p>Date in &lt;YYYY-MM-DD&gt; format; This is the date up to which
-extracted data reports to. Default is current date (<code><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date()</a></code>)</p></td>
+      <th>file</th>
+      <td><p>Either a path or a URL to the World Population Prospects 2019
+file containing population estimates and projections in 5-year age groups</p></td>
+    </tr>
+    <tr>
+      <th>location</th>
+      <td><p>Location to get population estimates/projections for;
+Default to the "Philippines"</p></td>
+    </tr>
+    <tr>
+      <th>year</th>
+      <td><p>A year (numeric) or range of years (YYYY:YYYY) to get population
+estimates/projections for; Default to current year.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data.frame with calculated IHR, IFR, and HFR by age group structure
-  consistent with CoMo model data structure requirements.</p>
+    <p>A tibble in tidy format containing population data by 5-year age
+  groups for the entire Philippines and by region from 2015 (estimates) to
+  2025 (projections)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>ph_calculate_rates</span>(<span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"2020-04-17"</span>)</div><div class='output co'>#&gt;    age_category deaths deathsAdmitted admissions cases         ifr       ihr
-#&gt; 1      0-5 y.o.      2              2         29    44 0.045454545 0.6590909
-#&gt; 2     5-10 y.o.      1              1         13    23 0.043478261 0.5652174
-#&gt; 3    10-15 y.o.      0              0         10    19 0.000000000 0.5263158
-#&gt; 4    15-20 y.o.      3              3         34    65 0.046153846 0.5230769
-#&gt; 5    20-25 y.o.      2              2        173   294 0.006802721 0.5884354
-#&gt; 6    25-30 y.o.      1              1        398   576 0.001736111 0.6909722
-#&gt; 7    30-35 y.o.      6              5        442   662 0.009063444 0.6676737
-#&gt; 8    35-40 y.o.      7              6        310   440 0.015909091 0.7045455
-#&gt; 9    40-45 y.o.     13              8        287   432 0.030092593 0.6643519
-#&gt; 10   45-50 y.o.     23             19        324   482 0.047717842 0.6721992
-#&gt; 11   50-55 y.o.     30             26        364   509 0.058939096 0.7151277
-#&gt; 12   55-60 y.o.     39             36        396   527 0.074003795 0.7514231
-#&gt; 13   60-65 y.o.     62             56        423   567 0.109347443 0.7460317
-#&gt; 14   65-70 y.o.     70             65        379   490 0.142857143 0.7734694
-#&gt; 15   70-75 y.o.     53             45        280   365 0.145205479 0.7671233
-#&gt; 16   75-80 y.o.     26             24        137   184 0.141304348 0.7445652
-#&gt; 17   80-85 y.o.     28             25         95   120 0.233333333 0.7916667
-#&gt; 18   85-90 y.o.     17             15         51    58 0.293103448 0.8793103
-#&gt; 19   90-95 y.o.      4              4         11    15 0.266666667 0.7333333
-#&gt; 20  95-100 y.o.      0              0          3     3 0.000000000 1.0000000
-#&gt; 21    100+ y.o.      0              0          0     3 0.000000000 0.0000000
-#&gt;            hfr
-#&gt; 1  0.068965517
-#&gt; 2  0.076923077
-#&gt; 3  0.000000000
-#&gt; 4  0.088235294
-#&gt; 5  0.011560694
-#&gt; 6  0.002512563
-#&gt; 7  0.011312217
-#&gt; 8  0.019354839
-#&gt; 9  0.027874564
-#&gt; 10 0.058641975
-#&gt; 11 0.071428571
-#&gt; 12 0.090909091
-#&gt; 13 0.132387707
-#&gt; 14 0.171503958
-#&gt; 15 0.160714286
-#&gt; 16 0.175182482
-#&gt; 17 0.263157895
-#&gt; 18 0.294117647
-#&gt; 19 0.363636364
-#&gt; 20 0.000000000
-#&gt; 21         NaN</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>link</span> <span class='kw'>&lt;-</span> <span class='st'>"https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/CSV_FILES/"</span>
+<span class='no'>fname</span> <span class='kw'>&lt;-</span> <span class='st'>"WPP2019_PopulationByAgeSex_Medium.csv"</span>
+<span class='fu'>ph_get_wpp2019</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='no'>link</span>, <span class='no'>fname</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>))</div><div class='output co'>#&gt;               area year age_categories     total     male   female
+#&gt; 984481 Philippines 2020            0-4 10616.342 5450.633 5165.709
+#&gt; 984482 Philippines 2020            5-9 11397.952 5846.072 5551.880
+#&gt; 984483 Philippines 2020          10-14 10906.801 5578.251 5328.550
+#&gt; 984484 Philippines 2020          15-19 10462.894 5407.659 5055.235
+#&gt; 984485 Philippines 2020          20-24 10104.334 5191.755 4912.579
+#&gt; 984486 Philippines 2020          25-29  9479.780 4807.611 4672.169
+#&gt; 984487 Philippines 2020          30-34  8247.197 4166.778 4080.419
+#&gt; 984488 Philippines 2020          35-39  7254.730 3644.549 3610.181
+#&gt; 984489 Philippines 2020          40-44  6551.963 3297.341 3254.622
+#&gt; 984490 Philippines 2020          45-49  5759.264 2883.722 2875.542
+#&gt; 984491 Philippines 2020          50-54  5116.997 2538.943 2578.054
+#&gt; 984492 Philippines 2020          55-59  4249.923 2075.862 2174.061
+#&gt; 984493 Philippines 2020          60-64  3393.186 1614.771 1778.415
+#&gt; 984494 Philippines 2020          65-69  2485.685 1137.017 1348.668
+#&gt; 984495 Philippines 2020          70-74  1661.429  709.616  951.813
+#&gt; 984496 Philippines 2020          75-79   978.190  381.080  597.110
+#&gt; 984497 Philippines 2020          80-84   580.536  202.363  378.173
+#&gt; 984498 Philippines 2020          85-89   241.033   75.335  165.698
+#&gt; 984499 Philippines 2020          90-94    76.064   16.873   59.191
+#&gt; 984500 Philippines 2020          95-99    14.988    2.375   12.613
+#&gt; 984501 Philippines 2020           100+     1.797    0.219    1.578</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

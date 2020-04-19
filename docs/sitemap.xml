@@ -22,10 +22,13 @@
     <loc>https://como-ph.github.io/comoparams/reference/ph_get_fields.html</loc>
   </url>
   <url>
-    <loc>https://como-ph.github.io/comoparams/reference/ph_get_pop2015.html</loc>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_get_popcen2015.html</loc>
   </url>
   <url>
     <loc>https://como-ph.github.io/comoparams/reference/ph_get_tests.html</loc>
+  </url>
+  <url>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_get_wpp2019.html</loc>
   </url>
   <url>
     <loc>https://como-ph.github.io/comoparams/articles/model.html</loc>
