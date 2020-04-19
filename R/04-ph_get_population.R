@@ -12,15 +12,16 @@
 #'   2025 (projections)
 #'
 #' @examples
-#' ph_get_pop2015(file = system.file("population/popcen2015.xlsx",
-#'                                   package = "comoparams"))
+#' link <- "https://psa.gov.ph/sites/default/files/attachments/hsd/pressrelease/"
+#' fname <- "Updated%20Population%20Projections%20based%20on%202015%20POPCEN_0.xlsx"
+#' ph_get_popcen2015(file = paste(link, fname, sep = ""))
 #'
 #' @export
 #'
 #
 ################################################################################
 
-ph_get_pop2015 <- function(file) {
+ph_get_popcen2015 <- function(file) {
   ## Create a concatenating data.frame
   df <- data.frame()
   ## Loop through the different years up to 2024
@@ -67,9 +68,54 @@ ph_get_pop2015 <- function(file) {
   df <- rbind(df, temp)
   ## Adjust area names for consistency
   df$Area <- stringr::str_to_title(string = df$Area)
-  ##
+  ## Remove total rows
+  df <- df[df$X1 != "Total", ]
+  ## Rename df
+  names(df) <- c("area", "year", "age_categories", "total", "male", "female")
+  ## Convert df to tibble
   df <- tibble::tibble(df)
   ##
   return(df)
 }
 
+
+################################################################################
+#
+#'
+#' Get Philippines population estimates or projections by 5-year age groups
+#' given a year or range of years from the World Population Prospects 2019
+#'
+#' @param file Either a path or a URL to the World Population Prospects 2019
+#'   file containing population estimates and projections in 5-year age groups
+#' @param location Location to get population estimates/projections for;
+#'   Default to the "Philippines"
+#' @param year A year (numeric) or range of years (YYYY:YYYY) to get population
+#'   estimates/projections for; Default to current year.
+#'
+#' @return A tibble in tidy format containing population data by 5-year age
+#'   groups for the entire Philippines and by region from 2015 (estimates) to
+#'   2025 (projections)
+#'
+#' @examples
+#' link <- "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/CSV_FILES/"
+#' fname <- "WPP2019_PopulationByAgeSex_Medium.csv"
+#' ph_get_wpp2019(file = paste(link, fname, sep = ""))
+#'
+#' @export
+#'
+#
+################################################################################
+
+ph_get_wpp2019 <- function(file,
+                           location = "Philippines",
+                           year = lubridate::year(Sys.Date())) {
+  ## Read file
+  x <- read.csv(file = file)
+  ##
+  df <- x[x$Location == location & x$Time %in% year,
+          c("Location", "Time", "AgeGrp", "PopTotal", "PopMale", "PopFemale")]
+  ##
+  names(df) <- c("area", "year", "age_categories", "total", "male", "female")
+  ##
+  return(df)
+}
