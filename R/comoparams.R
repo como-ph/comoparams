@@ -23,7 +23,7 @@
 #' @importFrom stats aggregate
 #' @importFrom magrittr %>%
 #' @importFrom tibble tibble
-#' @importFrom utils read.csv
+#' @importFrom utils read.csv tail
 #' @importFrom lubridate %within% interval ymd ymd_hms year
 #' @importFrom openxlsx read.xlsx
 #'

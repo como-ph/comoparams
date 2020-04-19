@@ -89,7 +89,7 @@ ph_get_psa2015_pop <- function(file) {
 #'   file containing population estimates and projections in 5-year age groups
 #' @param location Location to get population estimates/projections for;
 #'   Default to the "Philippines"
-#' @param year A year (numeric) or range of years (YYYY:YYYY) to get population
+#' @param period A year (numeric) or range of years (YYYY:YYYY) to get population
 #'   estimates/projections for; Default to current year.
 #'
 #' @return A tibble in tidy format containing population data by 5-year age
@@ -108,11 +108,11 @@ ph_get_psa2015_pop <- function(file) {
 
 ph_get_wpp2019_pop <- function(file,
                                location = "Philippines",
-                               year = lubridate::year(Sys.Date())) {
+                               period = lubridate::year(Sys.Date())) {
   ## Read file
   x <- read.csv(file = file)
   ## Extract the specific location and year and only the needed columns
-  df <- x[x$Location == location & x$Time %in% year,
+  df <- x[x$Location == location & x$Time %in% period,
           c("Location", "Time", "AgeGrp", "PopTotal", "PopMale", "PopFemale")]
   ## Rename df compatible to CoMo requirements
   names(df) <- c("area", "year", "age_categories", "total", "male", "female")
@@ -136,7 +136,7 @@ ph_get_wpp2019_pop <- function(file,
 #'   file containing population estimates and projections in 5-year age groups
 #' @param location Location to get population estimates/projections for;
 #'   Default to the "Philippines"
-#' @param year A year (numeric) or range of years (YYYY:YYYY) in 5 year
+#' @param period A year (numeric) or range of years (YYYY:YYYY) in 5 year
 #'   intervals starting from 1950 to get population estimates/projections for;
 #'   Default is current year corresponding to the five year period that
 #'   contains the current year
@@ -156,33 +156,37 @@ ph_get_wpp2019_pop <- function(file,
 
 ph_get_wpp2019_births <- function(file,
                                   location = "Philippines",
-                                  year = lubridate::year(Sys.Date())) {
+                                  period = lubridate::year(Sys.Date())) {
   ##
   df <- read.csv(file = file, stringsAsFactors = FALSE)
   ##
-  yrGrp <- levels(cut(1950:2100,
-                      breaks = seq(from = 1950, to = 2100, by = 5),
-                      right = FALSE,
-                      include.lowest = TRUE))
-  yrGrp <- stringr::str_remove_all(string = yrGrp, pattern = "\\[|\\)|]")
-  yrGrp <- stringr::str_replace_all(string = yrGrp, pattern = ",", replacement = "-")
-  ##
-  if(length(year) > 1) {
-    year <- paste(year[1], tail(year, 1), sep = "-")
-    df <- df[df$Location == "Philippines" & df$Time == year, ]
+  if(length(period) > 1) {
+    period <- paste(period[1], tail(period, 1), sep = "-")
+    df <- df[df$Location == location & df$Time == period, ]
   } else {
-    ##
+    ## Create 5-year group vector
+    yrGrp <- levels(cut(1950:2100,
+                        breaks = seq(from = 1950, to = 2100, by = 5),
+                        right = FALSE,
+                        include.lowest = TRUE))
+    yrGrp <- stringr::str_remove_all(string = yrGrp, pattern = "\\[|\\)|]")
+    yrGrp <- stringr::str_replace_all(string = yrGrp, pattern = ",", replacement = "-")
+    ## Convert single year to 5-year group
     t <- stringr::str_replace_all(string = yrGrp, pattern = "-", replacement = ":")
-    u <- vector(mode = numeric, length = length(t))
-    for(i in length(t)) {
-      u[i] <- year %in% eval(parse(text = t[i]))[1:5]
+    u <- NULL
+    ## Cycle through various year groups
+    for(i in 1:length(t)) {
+      u[i] <- period %in% eval(parse(text = t[i]))[1:5]
     }
+    ## Convert single year to 5-year groups
+    period <- yrGrp[u]
+    ## Get df specific to location and time
+    df <- df[df$Location == location & df$Time == period, ]
   }
-    ##
-    df <- df[df$Location == "Philippines" & year %in% t, ]
-    ##
-    return(df)
-  }
+  # Convert df to tibble
+  df <- tibble::tibble(df)
+  ## Return df
+  return(df)
 }
 
 
