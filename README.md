@@ -39,6 +39,6 @@ Consortium model.
 [GitHub](https://github.com/como-ph/comoparams):
 
 ``` r
-if(!requireNamespace(remotes)) install.packages("remotes")
+if(!requireNamespace("remotes")) install.packages("remotes")
 remotes::install_github("como-ph/comoparams")
 ```
