@@ -28,10 +28,12 @@ ph_calculate_cases <- function(date = Sys.Date()) {
   deaths <- ifelse(df$RemovalType != "Died" | is.na(df$RemovalType), 0, 1)
   ##
   x <- data.frame(df[ , "DateRepConf"], cases)
-  x$DateRepConf <- lubridate::mdy(x$DateRepConf)
+  #x$DateRepConf <- lubridate::mdy(x$DateRepConf)
+  x$DateRepConf <- lubridate::dmy(x$DateRepConf)
   ##
   y <- data.frame(df[ , "DateDied"], deaths)
-  y$DateDied <- lubridate::mdy(y$DateDied)
+  #y$DateDied <- lubridate::mdy(y$DateDied)
+  y$DateDied <- lubridate::dmy(y$DateDied)
   ##
   dailyCases <- aggregate(cases ~ DateRepConf,
                           data = x[ , c("DateRepConf", "cases")],
