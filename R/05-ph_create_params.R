@@ -45,5 +45,5 @@ ph_create_params <- function(date = Sys.Date(),
                       x = severity_mortality)
   ## Output XLSX workbook
   openxlsx::saveWorkbook(wb = comoparams,
-                         file = paste(path, "Template_CoMo-PH.xlsx"))
+                         file = paste(path, "Template_CoMo-PH.xlsx", sep = "/"))
 }
