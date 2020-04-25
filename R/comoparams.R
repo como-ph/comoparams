@@ -24,7 +24,8 @@
 #' @importFrom tibble tibble
 #' @importFrom utils read.csv tail
 #' @importFrom lubridate %within% interval ymd ymd_hms year dmy
-#' @importFrom openxlsx read.xlsx
+#' @importFrom openxlsx read.xlsx createWorkbook addWorksheet writeData
+#'   saveWorkbook
 #' @importFrom tidyr pivot_longer
 #'
 #'
