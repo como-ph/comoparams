@@ -38,6 +38,7 @@ reference:
 
 - title: Output
   contents:
+  - ph_set_params
   - ph_create_params
 
 - title: Population
