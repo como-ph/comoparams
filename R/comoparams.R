@@ -22,7 +22,7 @@
 #' @importFrom stats aggregate
 #' @importFrom magrittr %>%
 #' @importFrom tibble tibble
-#' @importFrom utils read.csv tail download.file
+#' @importFrom utils read.csv tail download.file menu
 #' @importFrom lubridate %within% interval ymd ymd_hms year dmy
 #' @importFrom openxlsx read.xlsx createWorkbook addWorksheet writeData
 #'   saveWorkbook getSheetNames
