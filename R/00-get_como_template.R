@@ -15,19 +15,17 @@
 ################################################################################
 
 get_como_template <- function() {
+  ##
+  template <- tempfile()
   ## Retrieve template XLSX and assign to system file
   utils::download.file(url = "https://github.com/ocelhay/como/raw/master/Template_CoMoCOVID-19App.xlsx",
-                       destfile = paste(tempdir(), "/template.xlsx", sep = ""))
+                       destfile = template)
   ##
   params <- list()
-  paramsSet <- openxlsx::getSheetNames(file = paste(tempdir(),
-                                                    "/template.xlsx",
-                                                    sep = ""))
+  paramsSet <- openxlsx::getSheetNames(file = template)
   ##
   for(i in paramsSet) {
-    params[[i]] <- openxlsx::read.xlsx(xlsxFile = paste(tempdir(),
-                                                        "/template.xlsx",
-                                                        sep = ""),
+    params[[i]] <- openxlsx::read.xlsx(xlsxFile = "https://github.com/ocelhay/como/raw/master/Template_CoMoCOVID-19App.xlsx",
                                        sheet = i)
   }
   ##
