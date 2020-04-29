@@ -44,9 +44,9 @@ ph_calculate_rates <- function(date = Sys.Date()) {
   deaths <- ifelse(df$RemovalType != "Died" | is.na(df$RemovalType), 0, 1)
   deathsAdmitted <- ifelse(df$RemovalType != "Died" | is.na(df$RemovalType) | (df$RemovalType == "Died" & admissions == 0), 0, 1)
   ##
-  casesDeaths <- aggregate(cbind(deaths, deathsAdmitted, admissions, cases) ~ age_category,
-                           data = data.frame(age_category, deaths, deathsAdmitted, cases),
-                           FUN = sum)
+  casesDeaths <- stats::aggregate(cbind(deaths, deathsAdmitted, admissions, cases) ~ age_category,
+                                  data = data.frame(age_category, deaths, deathsAdmitted, cases),
+                                  FUN = sum)
   ##
   ifr <- casesDeaths$deaths / casesDeaths$cases
   ihr <- casesDeaths$admissions / casesDeaths$cases

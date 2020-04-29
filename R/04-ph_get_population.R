@@ -171,7 +171,7 @@ ph_get_wpp2019_births <- function(file,
   df$age_category <- paste(df$age_category, "y.o.", sep = " ")
   ## Check if period is a range of years
   if(length(period) > 1) {
-    period <- paste(period[1], tail(period, 1), sep = "-")
+    period <- paste(period[1], utils::tail(period, 1), sep = "-")
     df <- df[df$area == location & df$year == period, ]
   } else {
     ## Create 5-year group vector
@@ -249,7 +249,7 @@ ph_get_wpp2019_deaths <- function(file,
   df$age_category <- paste(df$age_category, "y.o.", sep = " ")
   ##
   if(length(period) > 1) {
-    period <- paste(period[1], tail(period, 1), sep = "-")
+    period <- paste(period[1], utils::tail(period, 1), sep = "-")
     df <- df[df$area == location & df$year == period, ]
   } else {
     ## Create 5-year group vector
