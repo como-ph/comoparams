@@ -44,12 +44,12 @@ ph_get_fields <- function(date = Sys.Date()) {
   date <- stringr::str_remove_all(string = date, pattern = "-")
   ##
   googledrive::drive_deauth()
-  w <- googledrive::drive_ls(googledrive::drive_get(id = "10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP"))
+  w <- googledrive::drive_ls(googledrive::drive_get(id = "1w_O-vweBFbqCgzgmCpux2F0HVB4P6ni2"))
   x <- w$id[w$name == paste("DOH COVID Data Drop_ ", date, sep = "")]
   y <- googledrive::drive_ls(googledrive::drive_get(id = x))
   z <- y$id[stringr::str_detect(string = y$name, pattern = "Fields.csv")]
   ##
-  fields <- read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
+  fields <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
   fields <- tibble::tibble(fields)
   return(fields)
 }
@@ -99,12 +99,12 @@ ph_get_cases <- function(date = Sys.Date()) {
   date <- stringr::str_remove_all(string = date, pattern = "-")
   ##
   googledrive::drive_deauth()
-  w <- googledrive::drive_ls(googledrive::drive_get(id = "10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP"))
+  w <- googledrive::drive_ls(googledrive::drive_get(id = "1w_O-vweBFbqCgzgmCpux2F0HVB4P6ni2"))
   x <- w$id[w$name == paste("DOH COVID Data Drop_ ", date, sep = "")]
   y <- googledrive::drive_ls(googledrive::drive_get(id = x))
   z <- y$id[stringr::str_detect(string = y$name, pattern = "Case Information.csv")]
   ##
-  cases <- read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
+  cases <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
   cases <- tibble::tibble(cases)
   return(cases)
 }
@@ -154,12 +154,12 @@ ph_get_tests <- function(date = Sys.Date()) {
   date <- stringr::str_remove_all(string = date, pattern = "-")
   ##
   googledrive::drive_deauth()
-  w <- googledrive::drive_ls(googledrive::drive_get(id = "10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP"))
+  w <- googledrive::drive_ls(googledrive::drive_get(id = "1w_O-vweBFbqCgzgmCpux2F0HVB4P6ni2"))
   x <- w$id[w$name == paste("DOH COVID Data Drop_ ", date, sep = "")]
   y <- googledrive::drive_ls(googledrive::drive_get(id = x))
   z <- y$id[stringr::str_detect(string = y$name, pattern = "Testing Aggregates.csv")]
   ##
-  tests <- read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
+  tests <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
   tests <- tibble::tibble(tests)
   return(tests)
 }
@@ -209,12 +209,12 @@ ph_get_daily <- function(date = Sys.Date()) {
   date <- stringr::str_remove_all(string = date, pattern = "-")
   ##
   googledrive::drive_deauth()
-  w <- googledrive::drive_ls(googledrive::drive_get(id = "10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP"))
+  w <- googledrive::drive_ls(googledrive::drive_get(id = "1w_O-vweBFbqCgzgmCpux2F0HVB4P6ni2"))
   x <- w$id[w$name == paste("DOH COVID Data Drop_ ", date, sep = "")]
   y <- googledrive::drive_ls(googledrive::drive_get(id = x))
   z <- y$id[stringr::str_detect(string = y$name, pattern = "Daily Report.csv")]
   ##
-  daily <- read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
+  daily <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
   daily <- tibble::tibble(daily)
   return(daily)
 }
