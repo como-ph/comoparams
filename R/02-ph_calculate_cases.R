@@ -35,16 +35,16 @@ ph_calculate_cases <- function(date = Sys.Date()) {
   #y$DateDied <- lubridate::mdy(y$DateDied)
   y$DateDied <- lubridate::dmy(y$DateDied)
   ##
-  dailyCases <- aggregate(cases ~ DateRepConf,
-                          data = x[ , c("DateRepConf", "cases")],
-                          FUN = sum, drop = FALSE)
+  dailyCases <- stats::aggregate(cases ~ DateRepConf,
+                                 data = x[ , c("DateRepConf", "cases")],
+                                 FUN = sum, drop = FALSE)
   dailyCases <- merge(data.frame(repDate), dailyCases,
                       by.x = "repDate", by.y = "DateRepConf", all.x = TRUE)
   dailyCases$cases <- ifelse(is.na(dailyCases$cases), 0, dailyCases$cases)
   ##
-  dailyDeaths <- aggregate(deaths ~ DateDied,
-                           data = y[ , c("DateDied", "deaths")],
-                           FUN = sum, drop = FALSE)
+  dailyDeaths <- stats::aggregate(deaths ~ DateDied,
+                                  data = y[ , c("DateDied", "deaths")],
+                                  FUN = sum, drop = FALSE)
   dailyDeaths <- merge(data.frame(repDate), dailyDeaths,
                        by.x = "repDate", by.y = "DateDied", all.x = TRUE)
   dailyDeaths$deaths <- ifelse(is.na(dailyDeaths$deaths), 0, dailyDeaths$deaths)
