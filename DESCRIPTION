@@ -21,6 +21,7 @@ Description: The Oxford Modelling Group for Global Health (OMGH) is developing
     and parameter values into data structures appropriate for use with the 
     modelling application and/or other packages developed for this purpose.
 License: GPL-3
+Depends: R (>= 2.10)
 Imports: 
     stringr,
     magrittr,
@@ -39,3 +40,4 @@ RoxygenNote: 7.1.0
 VignetteBuilder: knitr
 URL: https://github.com/como-ph/comoparams
 BugReports: https://github.com/como-ph/comoparams/issues
+

@@ -25,11 +25,16 @@ get_como_template <- function() {
   paramsSet <- openxlsx::getSheetNames(file = template)
   ##
   for(i in paramsSet) {
-    params[[i]] <- openxlsx::read.xlsx(xlsxFile = template, sheet = i)
+    params[[i]] <- openxlsx::read.xlsx(xlsxFile = "https://github.com/ocelhay/como/raw/master/Template_CoMoCOVID-19App.xlsx",
+                                       sheet = i)
   }
   ##
   return(params)
 }
+
+como_template <- get_como_template()
+
+usethis::use_data(como_template, internal = TRUE, overwrite = TRUE, compress = "xz")
 
 
 
