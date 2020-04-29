@@ -6,14 +6,14 @@
 #' @return A list of Philippines-specific CoMo model parameters
 #'
 #' @examples
-#' if(interactive()) ph_set_param()
+#' if(interactive()) ph_set_params()
 #'
 #' @export
 #'
 #
 ################################################################################
 
-ph_set_param <- function() {
+ph_set_params <- function() {
   ## Header
   cat("Setting CoMo modelling parameters for the Philippines")
   cat("\n")
