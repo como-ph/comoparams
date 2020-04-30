@@ -367,7 +367,7 @@ ph_set_params <- function() {
   }
 
   ## Input average incubation period
-  if(!is.null(reporth) | !is.na(reporth)) {
+  if(!is.null(rho) | !is.na(rho)) {
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
@@ -685,6 +685,14 @@ ph_set_params <- function() {
       }
     } else prob_vent <- 75
   }
+
+  ## Concatenate params
+  params <- list(country, household_size, mean_imports, date_range_simul_start,
+                 date_range_simul_end, p, report, reportc, reporth, gamma, nui,
+                 phi, amp, omega, pclin, prob_icu, prob_vent)
+
+  ## Return params
+  return(params)
 }
 
 
