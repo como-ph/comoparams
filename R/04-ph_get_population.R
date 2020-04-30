@@ -110,7 +110,7 @@ ph_get_wpp2019_pop <- function(file,
                                location = "Philippines",
                                period = lubridate::year(Sys.Date())) {
   ## Read file
-  x <- read.csv(file = file, stringsAsFactors = FALSE)
+  x <- utils::read.csv(file = file, stringsAsFactors = FALSE)
   ## Extract the specific location and year and only the needed columns
   df <- x[x$Location == location & x$Time %in% period,
           c("Location", "Time", "AgeGrp", "PopTotal", "PopMale", "PopFemale")]
@@ -157,8 +157,6 @@ ph_get_wpp2019_pop <- function(file,
 ph_get_wpp2019_births <- function(file,
                                   location = "Philippines",
                                   period = lubridate::year(Sys.Date())) {
-  ##
-  #df <- read.csv(file = file, stringsAsFactors = FALSE)
   df <- openxlsx::read.xlsx(xlsxFile = file, sheet = 1, startRow = 17)
   df <- df[ , c(3, 8:15)]
   df <- tidyr::pivot_longer(data = df,
@@ -233,8 +231,6 @@ ph_get_wpp2019_births <- function(file,
 ph_get_wpp2019_deaths <- function(file,
                                   location = "Philippines",
                                   period = lubridate::year(Sys.Date())) {
-  ##
-  #df <- read.csv(file = file, stringsAsFactors = FALSE)
   df <- openxlsx::read.xlsx(xlsxFile = file, sheet = 1, startRow = 17)
   df <- df[ , c(3, 8:28)]
   df$`95-99` <- df$`95+`
