@@ -40,7 +40,7 @@ ph_set_hospital <- function() {
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    cat("17. Maximum number of hospital beds\n")
+    cat("Maximum number of hospital beds\n")
     cat("\n")
 
     repeat {
@@ -72,7 +72,7 @@ ph_set_hospital <- function() {
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    cat("17. Maximum number of ICU beds\n")
+    cat("Maximum number of ICU beds\n")
     cat("\n")
 
     repeat {
@@ -104,7 +104,7 @@ ph_set_hospital <- function() {
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    cat("18. Maximum number of ventilators\n")
+    cat("Maximum number of ventilators\n")
     cat("\n")
 
     repeat {
@@ -136,7 +136,7 @@ ph_set_hospital <- function() {
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    cat("19. Relative percentage of regular daily contacts when hospitalised\n")
+    cat("Relative percentage of regular daily contacts when hospitalised\n")
     cat("\n")
     cat("Current literature suggest a default value of 15%.\n")
     rhos_default <- utils::menu(choices = c("Yes", "No"),
@@ -179,7 +179,7 @@ ph_set_hospital <- function() {
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    cat("20. Scaling factor for infection hospitalisation rate\n")
+    cat("Scaling factor for infection hospitalisation rate\n")
     cat("\n")
     cat("This is currently set at a default value of 1.\n")
     ihr_scaling_default <- utils::menu(choices = c("Yes", "No"),
@@ -222,7 +222,7 @@ ph_set_hospital <- function() {
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    cat("21. Probability of dying when hospitalised\n")
+    cat("Probability of dying when hospitalised\n")
     cat("\n")
     cat("Current literature suggest a default value of 35%.\n")
     pdeath_h_default <- utils::menu(choices = c("Yes", "No"),
@@ -265,7 +265,7 @@ ph_set_hospital <- function() {
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    cat("22. Probability of dying when denied hospitalisation\n")
+    cat("Probability of dying when denied hospitalisation\n")
     cat("\n")
     cat("Current literature suggest a default value of 45%.\n")
     pdeath_hc_default <- utils::menu(choices = c("Yes", "No"),
@@ -308,7 +308,7 @@ ph_set_hospital <- function() {
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    cat("23. Probability of dying when admitted to ICU\n")
+    cat("Probability of dying when admitted to ICU\n")
     cat("\n")
     cat("Current literature suggest a default value of 55%.\n")
     pdeath_icu_default <- utils::menu(choices = c("Yes", "No"),
@@ -351,7 +351,7 @@ ph_set_hospital <- function() {
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    cat("24. Probability of dying when admission to ICU denied\n")
+    cat("Probability of dying when admission to ICU denied\n")
     cat("\n")
     cat("Current literature suggest a default value of 55%.\n")
     pdeath_icuc_default <- utils::menu(choices = c("Yes", "No"),
@@ -394,7 +394,7 @@ ph_set_hospital <- function() {
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    cat("24. Probability of dying when ventilated\n")
+    cat("Probability of dying when ventilated\n")
     cat("\n")
     cat("Current literature suggest a default value of 80%.\n")
     pdeath_vent_default <- utils::menu(choices = c("Yes", "No"),
@@ -437,7 +437,7 @@ ph_set_hospital <- function() {
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    cat("25. Probability of dying when ventilator denied\n")
+    cat("Probability of dying when ventilator denied\n")
     cat("\n")
     cat("Current literature suggest a default value of 95%.\n")
     pdeath_ventc_default <- utils::menu(choices = c("Yes", "No"),
@@ -480,7 +480,7 @@ ph_set_hospital <- function() {
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    cat("26. Duration of hospitalised infection\n")
+    cat("Duration of hospitalised infection\n")
     cat("\n")
 
     repeat {
@@ -518,7 +518,7 @@ ph_set_hospital <- function() {
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    cat("27. Duration of denied hospitalisation infection\n")
+    cat("Duration of denied hospitalisation infection\n")
     cat("\n")
 
     repeat {
@@ -556,7 +556,7 @@ ph_set_hospital <- function() {
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    cat("28. Duration of ICU infection\n")
+    cat("Duration of ICU infection\n")
     cat("\n")
 
     repeat {
@@ -594,7 +594,7 @@ ph_set_hospital <- function() {
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    cat("29. Duration of denied ICU infection\n")
+    cat("Duration of denied ICU infection\n")
     cat("\n")
 
     repeat {
@@ -632,7 +632,7 @@ ph_set_hospital <- function() {
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    cat("30. Duration of ventilated infection\n")
+    cat("Duration of ventilated infection\n")
     cat("\n")
 
     repeat {
@@ -670,7 +670,7 @@ ph_set_hospital <- function() {
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    cat("31. Duration of denied ventilated infection\n")
+    cat("Duration of denied ventilated infection\n")
     cat("\n")
 
     repeat {
