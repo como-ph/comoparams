@@ -40,11 +40,15 @@ ph_get_fields <- function(date = Sys.Date()) {
            call. = TRUE)
     }
   }
+  ## Determine which Google Drive ID to use
+  gdriveID <- ifelse(lubridate::month(lubridate::ymd(date)) == 4,
+                     "1-Jm64yuvkKjRkiDR4WDvz44jYlOH1aKv",
+                     "1PEJZur082d2oLp9ZWaBfp1sj5WIlVBRI")
   ## Process date
   date <- stringr::str_remove_all(string = date, pattern = "-")
   ##
   googledrive::drive_deauth()
-  w <- googledrive::drive_ls(googledrive::drive_get(id = "1w_O-vweBFbqCgzgmCpux2F0HVB4P6ni2"))
+  w <- googledrive::drive_ls(googledrive::drive_get(id = gdriveID))
   x <- w$id[w$name == paste("DOH COVID Data Drop_ ", date, sep = "")]
   y <- googledrive::drive_ls(googledrive::drive_get(id = x))
   z <- y$id[stringr::str_detect(string = y$name, pattern = "Fields.csv")]
@@ -95,11 +99,15 @@ ph_get_cases <- function(date = Sys.Date()) {
            call. = TRUE)
     }
   }
+  ## Determine which Google Drive ID to use
+  gdriveID <- ifelse(lubridate::month(lubridate::ymd(date)) == 4,
+                     "1-Jm64yuvkKjRkiDR4WDvz44jYlOH1aKv",
+                     "1PEJZur082d2oLp9ZWaBfp1sj5WIlVBRI")
   ## Process date
   date <- stringr::str_remove_all(string = date, pattern = "-")
   ##
   googledrive::drive_deauth()
-  w <- googledrive::drive_ls(googledrive::drive_get(id = "1w_O-vweBFbqCgzgmCpux2F0HVB4P6ni2"))
+  w <- googledrive::drive_ls(googledrive::drive_get(id = gdriveID))
   x <- w$id[w$name == paste("DOH COVID Data Drop_ ", date, sep = "")]
   y <- googledrive::drive_ls(googledrive::drive_get(id = x))
   z <- y$id[stringr::str_detect(string = y$name, pattern = "Case Information.csv")]
@@ -150,11 +158,15 @@ ph_get_tests <- function(date = Sys.Date()) {
            call. = TRUE)
     }
   }
+  ## Determine which Google Drive ID to use
+  gdriveID <- ifelse(lubridate::month(lubridate::ymd(date)) == 4,
+                     "1-Jm64yuvkKjRkiDR4WDvz44jYlOH1aKv",
+                     "1PEJZur082d2oLp9ZWaBfp1sj5WIlVBRI")
   ## Process date
   date <- stringr::str_remove_all(string = date, pattern = "-")
   ##
   googledrive::drive_deauth()
-  w <- googledrive::drive_ls(googledrive::drive_get(id = "1w_O-vweBFbqCgzgmCpux2F0HVB4P6ni2"))
+  w <- googledrive::drive_ls(googledrive::drive_get(id = gdriveID))
   x <- w$id[w$name == paste("DOH COVID Data Drop_ ", date, sep = "")]
   y <- googledrive::drive_ls(googledrive::drive_get(id = x))
   z <- y$id[stringr::str_detect(string = y$name, pattern = "Testing Aggregates.csv")]
@@ -205,11 +217,15 @@ ph_get_daily <- function(date = Sys.Date()) {
            call. = TRUE)
     }
   }
+  ## Determine which Google Drive ID to use
+  gdriveID <- ifelse(lubridate::month(lubridate::ymd(date)) == 4,
+                     "1-Jm64yuvkKjRkiDR4WDvz44jYlOH1aKv",
+                     "1PEJZur082d2oLp9ZWaBfp1sj5WIlVBRI")
   ## Process date
   date <- stringr::str_remove_all(string = date, pattern = "-")
   ##
   googledrive::drive_deauth()
-  w <- googledrive::drive_ls(googledrive::drive_get(id = "1w_O-vweBFbqCgzgmCpux2F0HVB4P6ni2"))
+  w <- googledrive::drive_ls(googledrive::drive_get(id = gdriveID))
   x <- w$id[w$name == paste("DOH COVID Data Drop_ ", date, sep = "")]
   y <- googledrive::drive_ls(googledrive::drive_get(id = x))
   z <- y$id[stringr::str_detect(string = y$name, pattern = "Daily Report.csv")]
