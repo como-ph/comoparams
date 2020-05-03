@@ -36,11 +36,6 @@ reference:
   contents:
   - ph_calculate_rates
 
-- title: Output
-  contents:
-  - ph_set_params
-  - ph_create_params
-
 - title: Population
   contents:
   - ph_get_psa2015_pop
@@ -48,5 +43,23 @@ reference:
   - ph_get_wpp2019_births
   - ph_get_wpp2019_deaths
 
+- title: Parameters
+  contents:
+  - ph_set_general
+  - ph_set_virus
+  - ph_set_hospital
+  - ph_set_lockdown
+  - ph_set_isolation
+  - ph_set_distancing
+  - ph_set_handwashing
+  - ph_set_work
+  - ph_set_school
+  - ph_set_elderly
+  - ph_set_travel
+  - ph_set_quarantine
+  - ph_set_vaccination
+  - ph_set_interventions
+  - ph_set_params
+  - ph_create_params
 
 
