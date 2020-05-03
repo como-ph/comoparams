@@ -6,7 +6,7 @@
 #' @return A list of Philippines-specific CoMo model intervention parameters
 #'
 #' @examples
-#' if(interactive()) ph_set_interevention()
+#' if(interactive()) ph_set_intervention()
 #'
 #' @export
 #'

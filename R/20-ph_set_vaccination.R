@@ -212,8 +212,8 @@ ph_set_vaccination <- function() {
   }
 
   ## Concatenate params
-  params <- list(vaccine, data_vaccine_on, vac_campaign, vaccine_cov, vaccine_eff)
-  names(params) <- c("vaccine", "data_vaccine_on", "vac_campaign", "vaccine_cov", "vaccine_eff")
+  params <- list(vaccine, date_vaccine_on, vac_campaign, vaccine_cov, vaccine_eff)
+  names(params) <- c("vaccine", "date_vaccine_on", "vac_campaign", "vaccine_cov", "vaccine_eff")
 
   ## Return params
   return(params)
