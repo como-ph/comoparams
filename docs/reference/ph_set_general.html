@@ -6,8 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Output cases and severity-mortality input tables compatible with CoMo
-template — ph_create_params • comoparams</title>
+<title>Set Philippines-specific CoMo model simulation parameters for general and
+area factors — ph_set_general • comoparams</title>
 
 
 <!-- jquery -->
@@ -40,10 +40,10 @@ template — ph_create_params • comoparams</title>
 
 
 
-<meta property="og:title" content="Output cases and severity-mortality input tables compatible with CoMo
-template — ph_create_params" />
-<meta property="og:description" content="Output cases and severity-mortality input tables compatible with CoMo
-template" />
+<meta property="og:title" content="Set Philippines-specific CoMo model simulation parameters for general and
+area factors — ph_set_general" />
+<meta property="og:description" content="Set Philippines-specific CoMo model simulation parameters for general and
+area factors" />
 
 
 
@@ -126,42 +126,27 @@ template" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Output cases and severity-mortality input tables compatible with CoMo
-template</h1>
-    <small class="dont-index">Source: <a href='https://github.com/como-ph/comoparams/blob/master/R/23-ph_create_params.R'><code>R/23-ph_create_params.R</code></a></small>
-    <div class="hidden name"><code>ph_create_params.Rd</code></div>
+    <h1>Set Philippines-specific CoMo model simulation parameters for general and
+area factors</h1>
+    <small class="dont-index">Source: <a href='https://github.com/como-ph/comoparams/blob/master/R/08-ph_set_general.R'><code>R/08-ph_set_general.R</code></a></small>
+    <div class="hidden name"><code>ph_set_general.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Output cases and severity-mortality input tables compatible with CoMo
-template</p>
+    <p>Set Philippines-specific CoMo model simulation parameters for general and
+area factors</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ph_create_params</span>(<span class='kw'>date</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>(), <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>""</span>)</pre>
+    <pre class="usage"><span class='fu'>ph_set_general</span>()</pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>date</th>
-      <td><p>Date in &lt;YYYY-MM-DD&gt; format; This is the date up to which
-extracted data reports to. Default is current date (<code><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date()</a></code>)</p></td>
-    </tr>
-    <tr>
-      <th>path</th>
-      <td><p>Directory to save output to</p></td>
-    </tr>
-    </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An XLSX workbook with 2 worksheets for cases and severity-mortality
-  formatted according to the CoMo template</p>
+    <p>A list of Philippines-specific CoMo model parameters for general and
+  area factors</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-  <span class='fu'>ph_create_params</span>()
-}</div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) <span class='fu'>ph_set_general</span>()</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
