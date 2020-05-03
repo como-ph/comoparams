@@ -40,7 +40,49 @@
     <loc>https://como-ph.github.io/comoparams/reference/ph_get_wpp2019_pop.html</loc>
   </url>
   <url>
-    <loc>https://como-ph.github.io/comoparams/reference/ph_set_param.html</loc>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_set_cocoon.html</loc>
+  </url>
+  <url>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_set_distancing.html</loc>
+  </url>
+  <url>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_set_general.html</loc>
+  </url>
+  <url>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_set_handwashing.html</loc>
+  </url>
+  <url>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_set_hospital.html</loc>
+  </url>
+  <url>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_set_intervention.html</loc>
+  </url>
+  <url>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_set_isolation.html</loc>
+  </url>
+  <url>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_set_lockdown.html</loc>
+  </url>
+  <url>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_set_params.html</loc>
+  </url>
+  <url>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_set_quarantine.html</loc>
+  </url>
+  <url>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_set_school.html</loc>
+  </url>
+  <url>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_set_travel.html</loc>
+  </url>
+  <url>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_set_vaccination.html</loc>
+  </url>
+  <url>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_set_virus.html</loc>
+  </url>
+  <url>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_set_work.html</loc>
   </url>
   <url>
     <loc>https://como-ph.github.io/comoparams/articles/model.html</loc>
