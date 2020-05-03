@@ -1,19 +1,21 @@
 ################################################################################
 #
 #'
-#' Set Philippines-specific CoMo model simulation intervention parameters
+#' Set Philippines-specific CoMo model simulation work from home intervention
+#' parameters
 #'
-#' @return A list of Philippines-specific CoMo model intervention parameters
+#' @return A list of Philippines-specific CoMo model work from home intervention
+#' parameters
 #'
 #' @examples
-#' if(interactive()) ph_set_interevention()
+#' if(interactive()) ph_set_work()
 #'
 #' @export
 #'
 #
 ################################################################################
 
-ph_set_intervention <- function() {
+ph_set_work <- function() {
   ## Header
   cat("================================================================================\n")
   cat("\n")
@@ -31,7 +33,7 @@ ph_set_intervention <- function() {
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    hand <- menu(choices = c("Yes", "No"),
+    work <- menu(choices = c("Yes", "No"),
                  title = "Has working from home intervention been implemented?")
     cat("\n")
 
@@ -223,7 +225,7 @@ ph_set_intervention <- function() {
             }
             if(as.numeric(w2h) > 100) {
               cat("\n")
-              cat("Home contacts inflation cannot be greater than 10. Try again.\n")
+              cat("Home contacts inflation cannot be greater than 100. Try again.\n")
               cat("\n")
             }
           }
@@ -232,13 +234,13 @@ ph_set_intervention <- function() {
         ## If in correct format, go to next
         if(stringr::str_detect(string = w2h, pattern = "[0-9]")) {
           if(as.numeric(w2h) > 0 &
-             as.numeric(w2h) <= 10) break
+             as.numeric(w2h) <= 100) break
         }
       }
     } else {
       ## Set params to NA
       work <- FALSE
-      work_hand_on <- NA
+      date_work_on <- NA
       work_dur <- NA
       work_cov <- NA
       work_eff <- NA
@@ -252,8 +254,8 @@ ph_set_intervention <- function() {
   }
 
   ## Concatenate params
-  params <- list(work, work_hand_on, work_dur, work_cov, work_eff, w2h)
-  names(param) <- c("work", "work_hand_on", "work_dur", "work_cov", "work_eff", "w2h")
+  params <- list(work, date_work_on, work_dur, work_cov, work_eff, w2h)
+  names(param) <- c("work", "date_work_on", "work_dur", "work_cov", "work_eff", "w2h")
 
   ## Return params
   return(params)
