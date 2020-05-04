@@ -116,6 +116,8 @@ ph_get_wpp2019_pop <- function(file,
           c("Location", "Time", "AgeGrp", "PopTotal", "PopMale", "PopFemale")]
   ## Rename df compatible to CoMo requirements
   names(df) <- c("area", "year", "age_category", "total", "male", "female")
+  ## Make age_category compatible with CoMo template
+  df$age_category <- paste(df$age_category, "y.o.", sep = " ")
   ## Report exact population estimates (multiple by 1000)
   df[ , c("total", "male", "female")] <- df[ , c("total", "male", "female")] * 1000
   ## Conver df to tibble
@@ -192,7 +194,7 @@ ph_get_wpp2019_births <- function(file,
     df <- df[df$area == location & df$year == period, ]
   }
   ##
-  df$births <- as.numeric(df$birth) * 1000
+  df$birth <- as.numeric(df$birth) * 1000
   ## Convert df to tibble
   df <- tibble::tibble(df)
   ## Return df
