@@ -352,8 +352,9 @@ ph_set_quarantine <- function() {
   }
 
   ##
-  if(all(!is.na(c(quarantine, date_quarantine_on, quarantine_dur, quarantine_cov,
-                  quarantine_effort, quarantine_eff_other, quarantine_eff_home)))) {
+  if(all(!is.na(c(quarantine, date_quarantine_on, quarantine_dur, quarantine_days,
+                  quarantine_cov, quarantine_effort, quarantine_eff_other,
+                  quarantine_eff_home)))) {
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
@@ -363,11 +364,12 @@ ph_set_quarantine <- function() {
 
   ## Concatenate params
   params <- list(quarantine, date_quarantine_on, as.numeric(quarantine_dur),
-                 as.numeric(quarantine_cov), as.numeric(quarantine_effort),
-                 as.numeric(quarantine_eff_other), as.numeric(quarantine_eff_home))
+                 as.numeric(quarantine_days), as.numeric(quarantine_cov),
+                 as.numeric(quarantine_effort), as.numeric(quarantine_eff_other),
+                 as.numeric(quarantine_eff_home))
 
   ##
-  names(params) <- c("quarantine", "date_quarantine_on", "quarantine_dur",
+  names(params) <- c("quarantine", "date_quarantine_on", "quarantine_dur", "quarantine_days",
                      "quarantine_cov", "quarantine_effort", "quarantine_eff_other",
                      "quarantine_eff_home")
 
