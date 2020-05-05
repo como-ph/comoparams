@@ -20,10 +20,10 @@ ph_set_cases <- function() {
   if(lubridate::now(tzone = "UTC") %within%
      lubridate::interval(lubridate::ymd_hms(paste(Sys.Date(),
                                                   "12:00:00 UTC",
-                                                  sep = "")),
+                                                  sep = " ")),
                          lubridate::ymd_hms(paste(Sys.Date(),
                                                   "23:59:59 UTC",
-                                                  sep = "")))) {
+                                                  sep = " ")))) {
     refDate <- Sys.Date()
   } else {
     refDate <- lubridate::ymd(Sys.Date()) - lubridate::days(1)
