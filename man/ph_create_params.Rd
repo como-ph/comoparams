@@ -5,16 +5,17 @@
 \title{Output cases and severity-mortality input tables compatible with CoMo
 template}
 \usage{
-ph_create_params(date = Sys.Date(), path = "")
+ph_create_params(params, path = ".")
 }
 \arguments{
-\item{date}{Date in <YYYY-MM-DD> format; This is the date up to which
-extracted data reports to. Default is current date (\code{Sys.Date()})}
+\item{params}{A list of parameters produced using the \code{ph_set_params()}
+function}
 
-\item{path}{Directory to save output to}
+\item{path}{Directory to save output to. Defaults to current working
+directory}
 }
 \value{
-An XLSX workbook with 2 worksheets for cases and severity-mortality
+An XLSX workbook with 10 worksheets for various sets of parameters
   formatted according to the CoMo template
 }
 \description{
