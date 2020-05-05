@@ -19,21 +19,13 @@ ph_set_lockdown <- function() {
   ## Header
   cat("================================================================================\n")
   cat("\n")
-  cat("Setting CoMo modelling lockdown intervention parameters for the Philippines")
-  cat("\n")
+  cat("Setting CoMo modelling LOCKDOWN intervention parameters for the Philippines\n")
   cat("\n")
   cat("================================================================================\n")
   cat("\n")
   ## Confirm if ready to proceed
   set_params <- utils::menu(choices = c("Yes", "No"),
                             title = "Are you ready to proceed?")
-  ##
-  if(set_params == 2) {
-    cat("\n")
-    cat("================================================================================\n")
-    cat("\n")
-    return(cat("Thank you for using comoparams!\n"))
-  }
 
   ## Input lockdown information
   if(set_params == 1) {
@@ -42,7 +34,6 @@ ph_set_lockdown <- function() {
     cat("\n")
     lockdown <- menu(choices = c("Yes", "No"),
                      title = "Has lockdown been implemented?")
-    cat("\n")
 
     if(lockdown == 1) {
       cat("\n")
@@ -131,43 +122,88 @@ ph_set_lockdown <- function() {
 
       ## Lockdown low
       if(lockdown_level == 1) {
-        lockdown_low_switch <- TRUE
+        lockdown_low_switch  <- TRUE
         date_lockdown_low_on <- lockdown_start
-        lockdown_low_dur <- lockdown_duration
+        lockdown_low_dur     <- lockdown_duration
       } else {
-        lockdown_low_switch <- FALSE
+        lockdown_low_switch  <- FALSE
         date_lockdown_low_on <- NA
-        lockdown_low_dur <- NA
+        lockdown_low_dur     <- NA
       }
 
       ## Lockdown mid
       if(lockdown_level == 2) {
-        lockdown_mid_switch <- TRUE
+        lockdown_mid_switch  <- TRUE
         date_lockdown_mid_on <- lockdown_start
-        lockdown_mid_dur <- lockdown_duration
+        lockdown_mid_dur     <- lockdown_duration
       } else {
-        lockdown_mid_switch <- FALSE
+        lockdown_mid_switch  <- FALSE
         date_lockdown_mid_on <- NA
-        lockdown_mid_dur <- NA
+        lockdown_mid_dur     <- NA
       }
 
       ## Lockdown high
       if(lockdown_level == 3) {
-        lockdown_high_switch <- TRUE
+        lockdown_high_switch  <- TRUE
         date_lockdown_high_on <- lockdown_start
-        lockdown_high_dur <- lockdown_duration
+        lockdown_high_dur     <- lockdown_duration
       } else {
-        lockdown_high_switch <- FALSE
+        lockdown_high_switch  <- FALSE
         date_lockdown_high_on <- NA
-        lockdown_high_dur <- NA
+        lockdown_high_dur     <- NA
       }
+    } else {
+      lockdown_low_switch   <- NA
+      date_lockdown_low_on  <- NA
+      lockdown_low_dur      <- NA
+      lockdown_mid_switch   <- NA
+      date_lockdown_mid_on  <- NA
+      lockdown_mid_dur      <- NA
+      lockdown_high_switch  <- NA
+      date_lockdown_high_on <- NA
+      lockdown_high_dur     <- NA
+      cat("\n")
+      cat("================================================================================\n")
+      cat("\n")
+      cat("LOCKDOWN intervention has NOT been implemented yet. Proceed to next intervention.\n")
+      cat("\n")
     }
+  } else {
+    lockdown_low_switch   <- NA
+    date_lockdown_low_on  <- NA
+    lockdown_low_dur      <- NA
+    lockdown_mid_switch   <- NA
+    date_lockdown_mid_on  <- NA
+    lockdown_mid_dur      <- NA
+    lockdown_high_switch  <- NA
+    date_lockdown_high_on <- NA
+    lockdown_high_dur     <- NA
+    cat("\n")
+    cat("================================================================================\n")
+    cat("\n")
+    cat("LOCKDOWN intervention parameters have NOT been set.\n")
+    cat("\n")
+  }
+
+  if(all(!is.na(c(lockdown_low_switch, date_lockdown_low_on, lockdown_low_dur)) |
+         !is.na(c(lockdown_mid_switch, date_lockdown_mid_on, lockdown_mid_dur)) |
+         !is.na(c(lockdown_high_switch, date_lockdown_high_on, lockdown_high_dur)))) {
+    cat("\n")
+    cat("================================================================================\n")
+    cat("\n")
+    cat("LOCKDOWN intervention parameters have been set. Proceed to next intervention.\n")
+    cat("\n")
   }
 
   ## Concatenate params
-  params <- list(lockdown_low_switch, date_lockdown_low_on, lockdown_low_dur,
-                 lockdown_mid_switch, date_lockdown_mid_on, lockdown_mid_dur,
-                 lockdown_high_switch, date_lockdown_high_on, lockdown_high_dur)
+  params <- list(lockdown_low_switch, date_lockdown_low_on, as.numeric(lockdown_low_dur),
+                 lockdown_mid_switch, date_lockdown_mid_on, as.numeric(lockdown_mid_dur),
+                 lockdown_high_switch, date_lockdown_high_on, as.numeric(lockdown_high_dur))
+
+  ## Rename list elements
+  names(params) <- c("lockdown_low_switch", "date_lockdown_low_on", "lockdown_low_dur",
+                     "lockdown_mid_switch", "date_lockdown_mid_on", "lockdown_mid_dur",
+                     "lockdown_high_switch", "date_lockdown_high_on", "lockdown_high_dur")
 
   ## Return params
   return(params)

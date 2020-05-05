@@ -19,8 +19,7 @@ ph_set_work <- function() {
   ## Header
   cat("================================================================================\n")
   cat("\n")
-  cat("Setting CoMo modelling intervention parameters for the Philippines")
-  cat("\n")
+  cat("Setting CoMo modelling WORKING FROM HOME intervention parameters for the Philippines\n")
   cat("\n")
   cat("================================================================================\n")
   cat("\n")
@@ -239,23 +238,47 @@ ph_set_work <- function() {
       }
     } else {
       ## Set params to NA
-      work <- FALSE
+      work         <- FALSE
       date_work_on <- NA
-      work_dur <- NA
-      work_cov <- NA
-      work_eff <- NA
-      w2h <- NA
+      work_dur     <- NA
+      work_cov     <- NA
+      work_eff     <- NA
+      w2h          <- NA
+      cat("\n")
+      cat("================================================================================\n")
+      cat("\n")
+      cat("WORKING FROM HOME intervention has not been implemented yet. Proceed to next intervention.\n")
+      cat("\n")
     }
   } else {
+    ## Set params to NA
+    work         <- FALSE
+    date_work_on <- NA
+    work_dur     <- NA
+    work_cov     <- NA
+    work_eff     <- NA
+    w2h          <- NA
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    return(cat("Thank you for using comoparams!\n"))
+    cat("WORKING FROM HOME intervention parameters have NOT been set.\n")
+    cat("\n")
+  }
+
+  if(all(!is.na(c(work, date_work_on, work_dur, work_cov, work_eff, w2h)))) {
+    cat("\n")
+    cat("================================================================================\n")
+    cat("\n")
+    cat("WORKING FROM HOME intervention parameters have been set. Proceed to next intervention.\n")
+    cat("\n")
   }
 
   ## Concatenate params
-  params <- list(work, date_work_on, work_dur, work_cov, work_eff, w2h)
-  names(param) <- c("work", "date_work_on", "work_dur", "work_cov", "work_eff", "w2h")
+  params <- list(work, date_work_on, as.numeric(work_dur),
+                 as.numeric(work_cov), as.numeric(work_eff), as.numeric(w2h))
+
+  ##
+  names(params) <- c("work", "date_work_on", "work_dur", "work_cov", "work_eff", "w2h")
 
   ## Return params
   return(params)

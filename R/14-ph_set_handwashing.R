@@ -19,8 +19,7 @@ ph_set_handwashing <- function() {
   ## Header
   cat("================================================================================\n")
   cat("\n")
-  cat("Setting CoMo modelling handwashing intervention parameters for the Philippines")
-  cat("\n")
+  cat("Setting CoMo modelling handwashing intervention parameters for the Philippines\n")
   cat("\n")
   cat("================================================================================\n")
   cat("\n")
@@ -161,17 +160,37 @@ ph_set_handwashing <- function() {
       date_hand_on <- NA
       hand_dur <- NA
       hand_eff <- NA
+      cat("\n")
+      cat("================================================================================\n")
+      cat("\n")
+      cat("HANDWASHING intervention has not been implemented yet. Proceed to next intervention.\n")
+      cat("\n")
     }
   } else {
+    ## Set params to NA
+    hand <- FALSE
+    date_hand_on <- NA
+    hand_dur <- NA
+    hand_eff <- NA
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    return(cat("Thank you for using comoparams!\n"))
+    cat("HANDWASHING intervention parameters have NOT been set.\n")
+    cat("\n")
+  }
+
+  ##
+  if(all(!is.na(c(hand, date_hand_on, hand_dur, hand_eff)))) {
+    cat("\n")
+    cat("================================================================================\n")
+    cat("\n")
+    cat("HANDWASHING intervention parameters have been set. Proceed to next intervention.\n")
+    cat("\n")
   }
 
   ## Concatenate params
-  params <- list(hand, date_hand_on, hand_dur, hand_eff)
-  names(param) <- c("hand", "date_hand_on", "hand_dur", "hand_deff")
+  params <- list(hand, date_hand_on, as.numeric(hand_dur), as.numeric(hand_eff))
+  names(params) <- c("hand", "date_hand_on", "hand_dur", "hand_deff")
 
   ## Return params
   return(params)

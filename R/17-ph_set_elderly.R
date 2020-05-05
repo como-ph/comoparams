@@ -19,8 +19,7 @@ ph_set_cocoon <- function() {
   ## Header
   cat("================================================================================\n")
   cat("\n")
-  cat("Setting CoMo modelling shielding the elderly intervention parameters for the Philippines")
-  cat("\n")
+  cat("Setting CoMo modelling SHIELDING THE ELDERLY intervention parameters for the Philippines\n")
   cat("\n")
   cat("================================================================================\n")
   cat("\n")
@@ -33,8 +32,8 @@ ph_set_cocoon <- function() {
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    work <- menu(choices = c("Yes", "No"),
-                 title = "Has shielding the elderly intervention been implemented?")
+    cocoon <- menu(choices = c("Yes", "No"),
+                   title = "Has shielding the elderly intervention been implemented?")
     cat("\n")
 
     if(cocoon == 1) {
@@ -119,7 +118,7 @@ ph_set_cocoon <- function() {
       cat("\n")
       cat("================================================================================\n")
       cat("\n")
-      cat("What is the level of shielding the elderl coverage?\n")
+      cat("What is the level of shielding the elderly coverage?\n")
       cat("\n")
       repeat {
         ## Shielding the eldearly coverage
@@ -234,23 +233,49 @@ ph_set_cocoon <- function() {
       }
     } else {
       ## Set params to NA
-      cocoon <- FALSE
+      cocoon         <- FALSE
       date_cocoon_on <- NA
-      cocoon_dur <- NA
-      cocoon_cov <- NA
-      cocoon_eff <- NA
-      age_cocoon <- NA
+      cocoon_dur     <- NA
+      cocoon_cov     <- NA
+      cocoon_eff     <- NA
+      age_cocoon     <- NA
+      cat("\n")
+      cat("================================================================================\n")
+      cat("\n")
+      cat("SHIELDING THE ELDERLY intervention has not been implemented yet. Proceed to next intervention.\n")
+      cat("\n")
     }
   } else {
+    ## Set params to NA
+    cocoon         <- FALSE
+    date_cocoon_on <- NA
+    cocoon_dur     <- NA
+    cocoon_cov     <- NA
+    cocoon_eff     <- NA
+    age_cocoon     <- NA
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    return(cat("Thank you for using comoparams!\n"))
+    cat("SHIELDING THE ELDERLY intervention parameters have NOT been set.\n")
+    cat("\n")
+  }
+
+  if(all(!is.na(c(cocoon, date_cocoon_on, cocoon_dur, cocoon_cov, cocoon_eff, age_cocoon)))) {
+    cat("\n")
+    cat("================================================================================\n")
+    cat("\n")
+    cat("SHIELDING THE ELDERLY intervention parameters have been set. Proceed to next intervention.\n")
+    cat("\n")
   }
 
   ## Concatenate params
-  params <- list(cocoon, date_cocoon_on, cocoon_dur, cocoon_cov, cocoon_eff, age_cocoon)
-  names(param) <- c("cocoon", "date_cocoon_on", "cocoon_dur", "cocoon_cov", "cocoon_eff", "age_cocoon")
+  params <- list(cocoon, date_cocoon_on, as.numeric(cocoon_dur),
+                 as.numeric(cocoon_cov), as.numeric(cocoon_eff),
+                 as.numeric(age_cocoon))
+
+  ##
+  names(params) <- c("cocoon", "date_cocoon_on", "cocoon_dur", "cocoon_cov",
+                     "cocoon_eff", "age_cocoon")
 
   ## Return params
   return(params)

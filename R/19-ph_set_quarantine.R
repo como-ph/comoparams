@@ -19,8 +19,7 @@ ph_set_quarantine <- function() {
   ## Header
   cat("================================================================================\n")
   cat("\n")
-  cat("Setting CoMo modelling voluntary home quarantine intervention parameters for the Philippines")
-  cat("\n")
+  cat("Setting CoMo modelling VOLUNTARY HOME QUARANTINE intervention parameters for the Philippines\n")
   cat("\n")
   cat("================================================================================\n")
   cat("\n")
@@ -321,27 +320,56 @@ ph_set_quarantine <- function() {
       }
     } else {
       ## Set params to NA
-      quarantine <- FALSE
-      date_quarantine_on <- NA
-      quarantine_dur <- NA
-      quarantine_days <- NA
-      quarantine_cov <- NA
-      quarantine_effort
+      quarantine           <- FALSE
+      date_quarantine_on   <- NA
+      quarantine_dur       <- NA
+      quarantine_days      <- NA
+      quarantine_cov       <- NA
+      quarantine_effort    <- NA
       quarantine_eff_other <- NA
-      quarantine_eff_home <- NA
+      quarantine_eff_home  <- NA
+      cat("\n")
+      cat("================================================================================\n")
+      cat("\n")
+      cat("VOLUNTARY HOME QUARANTINE intervention has not been implemented yet. Proceed to next intervention.\n")
+      cat("\n")
     }
   } else {
+    ## Set params to NA
+    quarantine           <- FALSE
+    date_quarantine_on   <- NA
+    quarantine_dur       <- NA
+    quarantine_days      <- NA
+    quarantine_cov       <- NA
+    quarantine_effort    <- NA
+    quarantine_eff_other <- NA
+    quarantine_eff_home  <- NA
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    return(cat("Thank you for using comoparams!\n"))
+    cat("VOLUNTARY HOME QUARANTINE intervention parameters have NOT been set.\n")
+    cat("\n")
+  }
+
+  ##
+  if(all(!is.na(c(quarantine, date_quarantine_on, quarantine_dur, quarantine_cov,
+                  quarantine_effort, quarantine_eff_other, quarantine_eff_home)))) {
+    cat("\n")
+    cat("================================================================================\n")
+    cat("\n")
+    cat("VOLUNTARY HOME QUARANTINE intervention parameters have been set. Proceed to next intervention\n")
+    cat("\n")
   }
 
   ## Concatenate params
-  params <- list(quarantine, date_quarantine_on, quarantine_dur, quarantine_cov,
-                 quarantine_effort, quarantine_eff_other, quarantine_eff_home)
-  names(param) <- c("quarantine", "date_quarantine_on", "quarantine_dur",
-                    "quarantine_cov", "quarantine_effort", "quarantine_eff_other", "quarantine_eff_home")
+  params <- list(quarantine, date_quarantine_on, as.numeric(quarantine_dur),
+                 as.numeric(quarantine_cov), as.numeric(quarantine_effort),
+                 as.numeric(quarantine_eff_other), as.numeric(quarantine_eff_home))
+
+  ##
+  names(params) <- c("quarantine", "date_quarantine_on", "quarantine_dur",
+                     "quarantine_cov", "quarantine_effort", "quarantine_eff_other",
+                     "quarantine_eff_home")
 
   ## Return params
   return(params)

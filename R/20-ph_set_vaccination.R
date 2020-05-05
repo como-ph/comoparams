@@ -19,8 +19,7 @@ ph_set_vaccination <- function() {
   ## Header
   cat("================================================================================\n")
   cat("\n")
-  cat("Setting CoMo modelling vaccination intervention parameters for the Philippines")
-  cat("\n")
+  cat("Setting CoMo modelling VACCINATION intervention parameters for the Philippines\n")
   cat("\n")
   cat("================================================================================\n")
   cat("\n")
@@ -34,7 +33,7 @@ ph_set_vaccination <- function() {
     cat("================================================================================\n")
     cat("\n")
     vaccine <- menu(choices = c("Yes", "No"),
-                 title = "Has vaccination intervention been implemented?")
+                    title = "Has vaccination intervention been implemented?")
     cat("\n")
 
     if(vaccine == 1) {
@@ -198,22 +197,45 @@ ph_set_vaccination <- function() {
       }
     } else {
       ## Set params to NA
-      vaccine <- FALSE
+      vaccine         <- FALSE
       date_vaccine_on <- NA
-      vac_campaign <- NA
-      vaccine_cov <- NA
-      vaccine_eff <- NA
+      vac_campaign    <- NA
+      vaccine_cov     <- NA
+      vaccine_eff     <- NA
+      cat("\n")
+      cat("================================================================================\n")
+      cat("\n")
+      cat("VACCINATION intervention has not been implemented yet. Proceed to next intervention.\n")
+      cat("\n")
     }
   } else {
+    vaccine         <- FALSE
+    date_vaccine_on <- NA
+    vac_campaign    <- NA
+    vaccine_cov     <- NA
+    vaccine_eff     <- NA
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    return(cat("Thank you for using comoparams!\n"))
+    cat("VACCINATION intervention parameters have NOT been set.\n")
+    cat("\n")
+  }
+
+  if(all(!is.na(c(vaccine, date_vaccine_on, vac_campaign, vaccine_cov, vaccine_eff)))) {
+    cat("\n")
+    cat("================================================================================\n")
+    cat("\n")
+    cat("VACCINATION intervention parameters have been set. Proceed to next intervention.\n")
+    cat("\n")
   }
 
   ## Concatenate params
-  params <- list(vaccine, date_vaccine_on, vac_campaign, vaccine_cov, vaccine_eff)
-  names(params) <- c("vaccine", "date_vaccine_on", "vac_campaign", "vaccine_cov", "vaccine_eff")
+  params <- list(vaccine, date_vaccine_on, as.numeric(vac_campaign),
+                 as.numeric(vaccine_cov), as.numeric(vaccine_eff))
+
+  ##
+  names(params) <- c("vaccine", "date_vaccine_on", "vac_campaign",
+                     "vaccine_cov", "vaccine_eff")
 
   ## Return params
   return(params)

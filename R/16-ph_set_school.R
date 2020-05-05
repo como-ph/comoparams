@@ -19,8 +19,7 @@ ph_set_school <- function() {
   ## Header
   cat("================================================================================\n")
   cat("\n")
-  cat("Setting CoMo modelling schools closure intervention parameters for the Philippines")
-  cat("\n")
+  cat("Setting CoMo modelling SCHOOLS CLOSURE intervention parameters for the Philippines\n")
   cat("\n")
   cat("================================================================================\n")
   cat("\n")
@@ -198,22 +197,46 @@ ph_set_school <- function() {
       }
     } else {
       ## Set params to NA
-      school <- FALSE
+      school         <- FALSE
       date_school_on <- NA
-      school_dur <- NA
-      school_eff <- NA
-      s2h <- NA
+      school_dur     <- NA
+      school_eff     <- NA
+      s2h            <- NA
+      cat("\n")
+      cat("================================================================================\n")
+      cat("\n")
+      cat("SCHOOLS CLOSURE intervention has not been implemented yet. Proceed to next intervention.\n")
+      cat("\n")
     }
   } else {
+    ## Set params to NA
+    school         <- FALSE
+    date_school_on <- NA
+    school_dur     <- NA
+    school_eff     <- NA
+    s2h            <- NA
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    return(cat("Thank you for using comoparams!\n"))
+    cat("SCHOOLS CLOSURE intervention parameters have NOT been set.\n")
+    cat("\n")
+  }
+
+  if(all(!is.na(c(school, date_school_on, school_dur, school_eff, s2h)))) {
+    cat("\n")
+    cat("================================================================================\n")
+    cat("\n")
+    cat("SCHOOLS CLOSURE intervention parameters have been set. Proceed to next intervention.\n")
+    cat("\n")
   }
 
   ## Concatenate params
-  params <- list(school, date_school_on, school_dur, school_eff, s2h)
-  names(param) <- c("school", "date_school_on", "school_dur", "school_cov", "school_eff", "s2h")
+  params <- list(school, date_school_on, as.numeric(school_dur),
+                 as.numeric(school_eff), as.numeric(s2h))
+
+  ##
+  names(params) <- c("school", "date_school_on", "school_dur",
+                     "school_eff", "s2h")
 
   ## Return params
   return(params)
