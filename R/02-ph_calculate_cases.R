@@ -21,35 +21,79 @@
 ph_calculate_cases <- function(date = Sys.Date()) {
   ## Get dataset
   df <- ph_get_cases(date = date)
+
   ## Create reporting date vector
-  repDate <- seq.Date(from = as.Date("2020-01-01"), to = Sys.Date(), by = 1)
+  repDate <- seq.Date(from = as.Date("2020-01-01"),
+                      to = as.Date(date),
+                      by = 1)
+
   ## Recode cases and deaths
   cases <- 1
   deaths <- ifelse(df$RemovalType != "Died" | is.na(df$RemovalType), 0, 1)
+
   ##
   x <- data.frame(df[ , "DateRepConf"], cases)
-  #x$DateRepConf <- lubridate::mdy(x$DateRepConf)
-  x$DateRepConf <- lubridate::dmy(x$DateRepConf)
+
+  testDateFormat <- tryCatch(expr = lubridate::dmy(x$DateRepConf),
+                             warning = function(w) w)
+
+  if(lubridate::is.Date(testDateFormat)) {
+    x$DateRepConf <- testDateFormat
+  } else {
+    testDateFormat <- tryCatch(expr = lubridate::mdy(x$DateRepConf),
+                               warning = function(w) w)
+
+    ##
+    if(lubridate::is.Date(testDateFormat)) {
+      x$DateRepConf <- testDateFormat
+    } else {
+      x$DateRepConf <- lubridate::ymd(x$DateRepConf)
+    }
+  }
+
   ##
   y <- data.frame(df[ , "DateDied"], deaths)
-  #y$DateDied <- lubridate::mdy(y$DateDied)
-  y$DateDied <- lubridate::dmy(y$DateDied)
+
+  testDateFormat <- tryCatch(expr = lubridate::dmy(y$DateDied),
+                             warning = function(w) w)
+
+  if(lubridate::is.Date(testDateFormat)) {
+    y$DateDied <- testDateFormat
+  } else {
+    testDateFormat <- tryCatch(expr = lubridate::mdy(y$DateDied),
+                               warning = function(w) w)
+
+    ##
+    if(lubridate::is.Date(testDateFormat)) {
+      y$DateDied <- testDateFormat
+    } else {
+      y$DateDied <- lubridate::ymd(y$DateDied)
+    }
+  }
+
   ##
   dailyCases <- stats::aggregate(cases ~ DateRepConf,
                                  data = x[ , c("DateRepConf", "cases")],
                                  FUN = sum, drop = FALSE)
+
   dailyCases <- merge(data.frame(repDate), dailyCases,
                       by.x = "repDate", by.y = "DateRepConf", all.x = TRUE)
+
   dailyCases$cases <- ifelse(is.na(dailyCases$cases), 0, dailyCases$cases)
+
   ##
   dailyDeaths <- stats::aggregate(deaths ~ DateDied,
                                   data = y[ , c("DateDied", "deaths")],
                                   FUN = sum, drop = FALSE)
+
   dailyDeaths <- merge(data.frame(repDate), dailyDeaths,
                        by.x = "repDate", by.y = "DateDied", all.x = TRUE)
+
   dailyDeaths$deaths <- ifelse(is.na(dailyDeaths$deaths), 0, dailyDeaths$deaths)
+
   ##
   casesDeaths <- merge(dailyCases, dailyDeaths, all.x = TRUE)
+
   ##
   return(casesDeaths)
 }
