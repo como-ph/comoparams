@@ -19,8 +19,7 @@ ph_set_distancing <- function() {
   ## Header
   cat("================================================================================\n")
   cat("\n")
-  cat("Setting CoMo modelling social distancing intervention parameters for the Philippines")
-  cat("\n")
+  cat("Setting CoMo modelling SOCIAL DISTANCING intervention parameters for the Philippines\n")
   cat("\n")
   cat("================================================================================\n")
   cat("\n")
@@ -198,21 +197,46 @@ ph_set_distancing <- function() {
       }
     } else {
       ## Set params to NA
-      dist <- FALSE
+      dist         <- FALSE
       date_dist_on <- NA
-      dist_dur <- NA
-      dist_cov <- NA
-      dist_eff <- NA
+      dist_dur     <- NA
+      dist_cov     <- NA
+      dist_eff     <- NA
+      cat("\n")
+      cat("================================================================================\n")
+      cat("\n")
+      cat("SOCIAL DISTANCING intervention has not been implemented yet. Proceed to next intervention.\n")
+      cat("\n")
     }
   } else {
+    ## Set params to NA
+    dist         <- FALSE
+    date_dist_on <- NA
+    dist_dur     <- NA
+    dist_cov     <- NA
+    dist_eff     <- NA
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    return(cat("Thank you for using comoparams!\n"))
+    cat("SOCIAL DISTANCING intervention parameters have NOT been set.\n")
+    cat("\n")
+  }
+
+  if(all(!is.na(list(dist, date_dist_on, dist_dur, dist_cov, dist_eff)))) {
+    cat("\n")
+    cat("================================================================================\n")
+    cat("\n")
+    cat("SOCIAL DISTANCING intervention parameters have been set. Proceed to next intervention.\n")
+    cat("\n")
   }
 
   ## Concatenate params
-  params <- list(dist, date_dist_on, dist_dur, dist_cov, dist_eff)
+  params <- list(dist, date_dist_on,
+                 as.numeric(dist_dur),
+                 as.numeric(dist_cov),
+                 as.numeric(dist_eff))
+
+  ##
   names(params) <- c("dist", "date_dist_on", "dist_dur", "dist_cov", "dist_eff")
 
   ## Return params

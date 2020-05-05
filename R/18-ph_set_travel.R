@@ -19,8 +19,7 @@ ph_set_travel <- function() {
   ## Header
   cat("================================================================================\n")
   cat("\n")
-  cat("Setting CoMo modelling travel ban intervention parameters for the Philippines")
-  cat("\n")
+  cat("Setting CoMo modelling TRAVEL BAN intervention parameters for the Philippines\n")
   cat("\n")
   cat("================================================================================\n")
   cat("\n")
@@ -33,8 +32,8 @@ ph_set_travel <- function() {
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    tavel <- menu(choices = c("Yes", "No"),
-                  title = "Has travel ban been implemented?")
+    travel <- menu(choices = c("Yes", "No"),
+                   title = "Has travel ban been implemented?")
     cat("\n")
 
     if(travel == 1) {
@@ -157,21 +156,44 @@ ph_set_travel <- function() {
       }
     } else {
       ## Set params to NA
-      travel <- FALSE
+      travel            <- FALSE
       date_travelban_on <- NA
-      travelban_dur <- NA
-      travelban_eff <- NA
+      travelban_dur     <- NA
+      travelban_eff     <- NA
+      cat("\n")
+      cat("================================================================================\n")
+      cat("\n")
+      cat("TRAVEL BAN intervention has not been implemented yet. Proceed to next intervention.\n")
+      cat("\n")
     }
   } else {
+    ## Set params to NA
+    travel            <- FALSE
+    date_travelban_on <- NA
+    travelban_dur     <- NA
+    travelban_eff     <- NA
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    return(cat("Thank you for using comoparams!\n"))
+    cat("TRAVEL BAN intervention parameters have NOT been set.\n")
+    cat("\n")
+  }
+
+  if(all(!is.na(c(travel, date_travelban_on, travelban_dur, travelban_eff)))) {
+    cat("\n")
+    cat("================================================================================\n")
+    cat("\n")
+    cat("TRAVEL BAN intervention parameters have been set. Proceed to next intervention.\n")
+    cat("\n")
   }
 
   ## Concatenate params
-  params <- list(travel, date_travelban_on, travelban_dur, travelban_eff)
-  names(param) <- c("travel", "date_travelban_on", "travelban_dur", "travelban_eff")
+  params <- list(travel, date_travelban_on,
+                 as.numeric(travelban_dur), as.numeric(travelban_eff))
+
+  ##
+  names(params) <- c("travel", "date_travelban_on",
+                    "travelban_dur", "travelban_eff")
 
   ## Return params
   return(params)

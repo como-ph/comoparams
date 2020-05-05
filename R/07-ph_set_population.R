@@ -18,8 +18,7 @@ ph_set_population <- function() {
   ## Header
   cat("================================================================================\n")
   cat("\n")
-  cat("Setting CoMo modelling population parameters for the Philippines")
-  cat("\n")
+  cat("Setting CoMo modelling POPULATION parameters for the Philippines\n")
   cat("\n")
   cat("================================================================================\n")
   cat("\n")
@@ -32,24 +31,37 @@ ph_set_population <- function() {
     cat("================================================================================\n")
     cat("\n")
     cat("Reading population data...")
+
+    ##
     pop <- ph_get_wpp2019_pop(file = "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/CSV_FILES/WPP2019_PopulationByAgeSex_Medium.csv")
 
+    ##
     birth <- ph_get_wpp2019_births(file = "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/EXCEL_FILES/2_Fertility/WPP2019_FERT_F06_BIRTHS_BY_AGE_OF_MOTHER.xlsx",
                                    period = 2019)
 
+    ##
     death <- ph_get_wpp2019_deaths(file = "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/EXCEL_FILES/3_Mortality/WPP2019_MORT_F04_1_DEATHS_BY_AGE_BOTH_SEXES.xlsx",
                                    period = 2019)
+
+    ##
     pop <- merge(pop[ , c("age_category", "total")], birth[ , c("age_category", "birth")], by = "age_category", all.x = TRUE)
     pop <- merge(pop[ , c("age_category", "total", "birth")], death[ , c("age_category", "death")], by = "age_category", all.x = TRUE)
-    cat("\n")
-    cat("\n")
-    cat("================================================================================\n")
+
     ##
-    return(pop)
-  } else {
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    return(cat("Thank you for using comoparams!\n"))
+    cat("POPULATION parameters have been set. Proceed to next parameter.\n")
+    cat("\n")
+  } else {
+    pop <- NA
+    cat("\n")
+    cat("================================================================================\n")
+    cat("\n")
+    cat("POPULATION parameters have NOT been set.\n")
+    cat("\n")
   }
+
+  ##
+  return(pop)
 }

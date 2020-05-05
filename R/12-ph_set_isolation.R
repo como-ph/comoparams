@@ -19,21 +19,13 @@ ph_set_isolation <- function() {
   ## Header
   cat("================================================================================\n")
   cat("\n")
-  cat("Setting CoMo modelling isolation intervention parameters for the Philippines")
-  cat("\n")
+  cat("Setting CoMo modelling SELF-ISOLATION intervention parameters for the Philippines\n")
   cat("\n")
   cat("================================================================================\n")
   cat("\n")
   ## Confirm if ready to proceed
   set_params <- utils::menu(choices = c("Yes", "No"),
                             title = "Are you ready to proceed?")
-  ##
-  if(set_params == 2) {
-    cat("\n")
-    cat("================================================================================\n")
-    cat("\n")
-    return(cat("Thank you for using comoparams!\n"))
-  }
 
   ## Input self-isolation information
   if(set_params == 1) {
@@ -42,7 +34,6 @@ ph_set_isolation <- function() {
     cat("\n")
     selfis <- menu(choices = c("Yes", "No"),
                    title = "Has self-isolation of symptomatics been implemented?")
-    cat("\n")
 
     if(selfis == 1) {
       ## Calculate comparison values
@@ -413,39 +404,69 @@ ph_set_isolation <- function() {
         }
       } else {
         ## set screening params to NA
-        ## set params to NA
-        date_screen_on <- NA
-        screen_cov <- NA
-        screen_dur <- NA
+        date_screen_on        <- NA
+        screen_cov            <- NA
+        screen_dur            <- NA
         screen_overdispersion <- NA
-        screen_contacts <- NA
+        screen_contacts       <- NA
       }
     } else {
+      cat("\n")
+      cat("================================================================================\n")
+      cat("\n")
+      cat("SELF-ISOLATION intervention parameters have NOT been set.\n")
+      cat("\n")
       ## set params to NA
-      selfis <- FALSE
-      date_selfis_on <- NA
-      selfis_dur <- NA
-      selfis_cov <- NA
-      selfis_eff <- NA
-      screen_switch <- NA
-      date_screen_on <- NA
-      screen_cov <- NA
-      screen_dur <- NA
+      selfis                <- FALSE
+      date_selfis_on        <- NA
+      selfis_dur            <- NA
+      selfis_cov            <- NA
+      selfis_eff            <- NA
+      screen_switch         <- NA
+      date_screen_on        <- NA
+      screen_cov            <- NA
+      screen_dur            <- NA
       screen_overdispersion <- NA
-      screen_contacts <- NA
+      screen_contacts       <- NA
     }
   } else {
     cat("\n")
     cat("================================================================================\n")
     cat("\n")
-    return(cat("Thank you for using comoparams!\n"))
+    cat("SELF-ISOLATION intervention has NOT been implemented yet. Proceed to next intervention.\n")
+    cat("\n")
+    ## set params to NA
+    selfis                <- FALSE
+    date_selfis_on        <- NA
+    selfis_dur            <- NA
+    selfis_cov            <- NA
+    selfis_eff            <- NA
+    screen_switch         <- NA
+    date_screen_on        <- NA
+    screen_cov            <- NA
+    screen_dur            <- NA
+    screen_overdispersion <- NA
+    screen_contacts       <- NA
+  }
+
+  if(all(!is.na(c(selfis, date_selfis_on, selfis_dur, selfis_cov, selfis_eff,
+                  screen_switch, date_screen_on, screen_cov, screen_dur,
+                  screen_overdispersion, screen_contacts)))) {
+    cat("\n")
+    cat("================================================================================\n")
+    cat("\n")
+    cat("SELF-ISOLATION intervention parameters have been set. Proceed to next intervention.\n")
+    cat("\n")
   }
 
   ## Concatenate params
-  params <- list(date_selfis_on, selfis_dur, selfis_cov, selfis_eff,
-                 screen_switch, date_screen_on, screen_cov, screen_dur,
-                 screen_overdispersion, screen_contacts)
-  names(params) <- list("date_selfis_on", "selfis_dur", "selfis_cov", "selfis_eff",
+  params <- list(selfis, date_selfis_on, as.numeric(selfis_dur), as.numeric(selfis_cov),
+                 as.numeric(selfis_eff), screen_switch, date_screen_on,
+                 as.numeric(screen_cov), as.numeric(screen_dur),
+                 as.numeric(screen_overdispersion), as.numeric(screen_contacts))
+
+  ##
+  names(params) <- list("selfis", "date_selfis_on", "selfis_dur", "selfis_cov", "selfis_eff",
                         "screen_switch", "date_screen_on", "screen_cov",
                         "screen_dur", "screen_overdispersion", "screen_contacts")
 

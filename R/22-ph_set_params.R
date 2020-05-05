@@ -16,7 +16,7 @@
 ph_set_params <- function() {
   ## Check current date and time to see what date is the most recently
   ## available cases data
-  if(!lubridate::now(tzone = "UTC") %within%
+  if(lubridate::now(tzone = "UTC") %within%
      lubridate::interval(lubridate::ymd_hms(paste(Sys.Date(),
                                                   "12:00:00 UTC",
                                                   sep = "")),
