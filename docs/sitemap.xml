@@ -40,6 +40,9 @@
     <loc>https://como-ph.github.io/comoparams/reference/ph_get_wpp2019_pop.html</loc>
   </url>
   <url>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_set_cases.html</loc>
+  </url>
+  <url>
     <loc>https://como-ph.github.io/comoparams/reference/ph_set_cocoon.html</loc>
   </url>
   <url>
@@ -55,7 +58,7 @@
     <loc>https://como-ph.github.io/comoparams/reference/ph_set_hospital.html</loc>
   </url>
   <url>
-    <loc>https://como-ph.github.io/comoparams/reference/ph_set_intervention.html</loc>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_set_interventions.html</loc>
   </url>
   <url>
     <loc>https://como-ph.github.io/comoparams/reference/ph_set_isolation.html</loc>
@@ -67,10 +70,16 @@
     <loc>https://como-ph.github.io/comoparams/reference/ph_set_params.html</loc>
   </url>
   <url>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_set_population.html</loc>
+  </url>
+  <url>
     <loc>https://como-ph.github.io/comoparams/reference/ph_set_quarantine.html</loc>
   </url>
   <url>
     <loc>https://como-ph.github.io/comoparams/reference/ph_set_school.html</loc>
+  </url>
+  <url>
+    <loc>https://como-ph.github.io/comoparams/reference/ph_set_severe.html</loc>
   </url>
   <url>
     <loc>https://como-ph.github.io/comoparams/reference/ph_set_travel.html</loc>
