@@ -26,7 +26,8 @@ get_como_template <- function() {
   ##
   for(i in paramsSet) {
     params[[i]] <- openxlsx::read.xlsx(xlsxFile = "https://github.com/ocelhay/como/raw/master/Template_CoMoCOVID-19App.xlsx",
-                                       sheet = i)
+                                       sheet = i,
+                                       detectDates = TRUE)
   }
   ##
   return(params)
