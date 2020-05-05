@@ -45,6 +45,9 @@ reference:
 
 - title: Parameters
   contents:
+  - ph_set_cases
+  - ph_set_severe
+  - ph_set_population
   - ph_set_general
   - ph_set_virus
   - ph_set_hospital
