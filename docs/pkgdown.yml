@@ -3,7 +3,7 @@ pkgdown: 1.5.1
 pkgdown_sha: ~
 articles:
   model: model.html
-last_built: 2020-05-05T17:19Z
+last_built: 2020-05-05T21:14Z
 urls:
   reference: https://como-ph.github.io/comoparams/reference
   article: https://como-ph.github.io/comoparams/articles
