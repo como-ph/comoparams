@@ -61,7 +61,7 @@ reference:
   - ph_set_travel
   - ph_set_quarantine
   - ph_set_vaccination
-  - ph_set_intervention
+  - ph_set_interventions
   - ph_set_params
   - ph_create_params
 
