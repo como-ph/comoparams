@@ -45,20 +45,26 @@ ph_set_virus <- function() {
         rho <- readline(prompt = "Relative infectiousness of incubation phase (numeric; %): ")
 
         ## Check that rho is in correct format (numeric)
-        if(stringr::str_detect(string = rho, pattern = "[a-zA-Z]")) {
+        if(is.na(rho) | rho == "") {
           cat("\n")
-          cat("Relative infectiousness of incubation phase should be numeric. Try again.\n")
+          cat("Relative infectiousness of incubation phase should be provided. Try again.\n")
           cat("\n")
         } else {
-          if(as.numeric(rho) <= 0) {
+          if(stringr::str_detect(string = rho, pattern = "[a-zA-Z]")) {
             cat("\n")
-            cat("Relative infectiousness of incubation phase cannot be 0% or less. Try again.\n")
+            cat("Relative infectiousness of incubation phase should be numeric. Try again.\n")
             cat("\n")
-          }
-          if(as.numeric(rho) > 100 ) {
-            cat("\n")
-            cat("Relative infectiousness of incubation phase cannot be more than 100%. Try again.\n")
-            cat("\n")
+          } else {
+            if(as.numeric(rho) <= 0) {
+              cat("\n")
+              cat("Relative infectiousness of incubation phase cannot be 0% or less. Try again.\n")
+              cat("\n")
+            }
+            if(as.numeric(rho) > 100 ) {
+              cat("\n")
+              cat("Relative infectiousness of incubation phase cannot be more than 100%. Try again.\n")
+              cat("\n")
+            }
           }
         }
 
@@ -88,20 +94,26 @@ ph_set_virus <- function() {
           gamma <- readline(prompt = "Average incubation period (numeric; days): ")
 
           ## Check that gamma is in correct format (numeric)
-          if(stringr::str_detect(string = gamma, pattern = "[a-zA-Z]")) {
+          if(is.na(gamma) | gamma == "") {
             cat("\n")
-            cat("Average incubation period should be numeric. Try again.\n")
+            cat("Average incubation period should be provided. Try again.\n")
             cat("\n")
           } else {
-            if(as.numeric(gamma) <= 0) {
+            if(stringr::str_detect(string = gamma, pattern = "[a-zA-Z]")) {
               cat("\n")
-              cat("Average incubation period cannot be 0 or less. Try again.\n")
+              cat("Average incubation period should be numeric. Try again.\n")
               cat("\n")
-            }
-            if(as.numeric(gamma) > 7 ) {
-              cat("\n")
-              cat("Average incubation period cannot be more than 7. Try again.\n")
-              cat("\n")
+            } else {
+              if(as.numeric(gamma) <= 0) {
+                cat("\n")
+                cat("Average incubation period cannot be 0 or less. Try again.\n")
+                cat("\n")
+              }
+              if(as.numeric(gamma) > 7 ) {
+                cat("\n")
+                cat("Average incubation period cannot be more than 7. Try again.\n")
+                cat("\n")
+              }
             }
           }
 
@@ -132,20 +144,26 @@ ph_set_virus <- function() {
           nui <- readline(prompt = "Average duration of symptomatic infection period (numeric; days): ")
 
           ## Check that nui is in correct format (numeric)
-          if(stringr::str_detect(string = nui, pattern = "[a-zA-Z]")) {
+          if(is.na(nui) | nui == "") {
             cat("\n")
-            cat("Average duration of symptomatic infection period should be numeric. Try again.\n")
+            cat("Average duration of symptomatic infection period should be provided. Try again.\n")
             cat("\n")
           } else {
-            if(as.numeric(nui) <= 0) {
+            if(stringr::str_detect(string = nui, pattern = "[a-zA-Z]")) {
               cat("\n")
-              cat("Average duration of symptomatic infection period cannot be 0 or less. Try again.\n")
+              cat("Average duration of symptomatic infection period should be numeric. Try again.\n")
               cat("\n")
-            }
-            if(as.numeric(nui) > 7 ) {
-              cat("\n")
-              cat("Average duration of symptomatic infection period cannot be more than 7. Try again.\n")
-              cat("\n")
+            } else {
+              if(as.numeric(nui) <= 0) {
+                cat("\n")
+                cat("Average duration of symptomatic infection period cannot be 0 or less. Try again.\n")
+                cat("\n")
+              }
+              if(as.numeric(nui) > 7 ) {
+                cat("\n")
+                cat("Average duration of symptomatic infection period cannot be more than 7. Try again.\n")
+                cat("\n")
+              }
             }
           }
 
@@ -196,20 +214,26 @@ ph_set_virus <- function() {
           amp <- readline(prompt = "Annual variation in infectivity of the virus (numeric; %): ")
 
           ## Check that amp is in correct format (numeric)
-          if(stringr::str_detect(string = amp, pattern = "[a-zA-Z]")) {
+          if(is.na(amp) | amp == "") {
             cat("\n")
-            cat("Annual variation in infectivity of the virus should be numeric. Try again.\n")
+            cat("Annual variation in infectivity of the virus should be provided. Try again.\n")
             cat("\n")
           } else {
-            if(as.numeric(amp) < 0) {
+            if(stringr::str_detect(string = amp, pattern = "[a-zA-Z]")) {
               cat("\n")
-              cat("Annual variation in infectivity of the virus cannot be less than 0%. Try again.\n")
+              cat("Annual variation in infectivity of the virus should be numeric. Try again.\n")
               cat("\n")
-            }
-            if(as.numeric(amp) > 100 ) {
-              cat("\n")
-              cat("Annual variation in infectivity of the virus cannot be more than 100%. Try again.\n")
-              cat("\n")
+            } else {
+              if(as.numeric(amp) < 0) {
+                cat("\n")
+                cat("Annual variation in infectivity of the virus cannot be less than 0%. Try again.\n")
+                cat("\n")
+              }
+              if(as.numeric(amp) > 100 ) {
+                cat("\n")
+                cat("Annual variation in infectivity of the virus cannot be more than 100%. Try again.\n")
+                cat("\n")
+              }
             }
           }
 
@@ -240,20 +264,26 @@ ph_set_virus <- function() {
           omega <- readline(prompt = "Average duration of immunity (numeric; years): ")
 
           ## Check that omega is in correct format (numeric)
-          if(stringr::str_detect(string = omega, pattern = "[a-zA-Z]")) {
+          if(is.na(omega) | omega == "") {
             cat("\n")
-            cat("Average duration of immunity should be numeric. Try again.\n")
+            cat("Average duration of immunity should be provided. Try again.\n")
             cat("\n")
           } else {
-            if(as.numeric(omega) < 0.5) {
+            if(stringr::str_detect(string = omega, pattern = "[a-zA-Z]")) {
               cat("\n")
-              cat("Average duration of immunity cannot be less than 0.5. Try again.\n")
+              cat("Average duration of immunity should be numeric. Try again.\n")
               cat("\n")
-            }
-            if(as.numeric(omega) > 150 ) {
-              cat("\n")
-              cat("Average duration of immunity cannot be more than 150. Try again.\n")
-              cat("\n")
+            } else {
+              if(as.numeric(omega) < 0.5) {
+                cat("\n")
+                cat("Average duration of immunity cannot be less than 0.5. Try again.\n")
+                cat("\n")
+              }
+              if(as.numeric(omega) > 150 ) {
+                cat("\n")
+                cat("Average duration of immunity cannot be more than 150. Try again.\n")
+                cat("\n")
+              }
             }
           }
 
@@ -284,20 +314,26 @@ ph_set_virus <- function() {
           pclin <- readline(prompt = "Probability upon infection of developing clinical symptoms (numeric; %): ")
 
           ## Check that pclin is in correct format (numeric)
-          if(stringr::str_detect(string = pclin, pattern = "[a-zA-Z]")) {
+          if(is.na(pclin) | pclin == "") {
             cat("\n")
-            cat("Probability upon infection of developing clinical symptoms should be numeric. Try again.\n")
+            cat("Probability upon infection of developing clinical symptoms should be provided. Try again.\n")
             cat("\n")
           } else {
-            if(as.numeric(pclin) <= 0) {
+            if(stringr::str_detect(string = pclin, pattern = "[a-zA-Z]")) {
               cat("\n")
-              cat("Probability upon infection of developing clinical symptoms cannot be 0% or less. Try again.\n")
+              cat("Probability upon infection of developing clinical symptoms should be numeric. Try again.\n")
               cat("\n")
-            }
-            if(as.numeric(pclin) >= 100 ) {
-              cat("\n")
-              cat("Probability upon infection of developing clinical symptoms cannot be 100% or more. Try again.\n")
-              cat("\n")
+            } else {
+              if(as.numeric(pclin) <= 0) {
+                cat("\n")
+                cat("Probability upon infection of developing clinical symptoms cannot be 0% or less. Try again.\n")
+                cat("\n")
+              }
+              if(as.numeric(pclin) >= 100 ) {
+                cat("\n")
+                cat("Probability upon infection of developing clinical symptoms cannot be 100% or more. Try again.\n")
+                cat("\n")
+              }
             }
           }
 
@@ -327,20 +363,26 @@ ph_set_virus <- function() {
           prob_icu <- readline(prompt = "Probability upon hospitalisation of requiring ICU admission (numeric; %): ")
 
           ## Check that prob_icu is in correct format (numeric)
-          if(stringr::str_detect(string = prob_icu, pattern = "[a-zA-Z]")) {
+          if(is.na(prob_icu) | prob_icu == "") {
             cat("\n")
-            cat("Probability upon hospitalisation of requiring ICU admission should be numeric. Try again.\n")
+            cat("Probability upon hospitalisation of requiring ICU admission should be provided. Try again.\n")
             cat("\n")
           } else {
-            if(as.numeric(prob_icu) <= 0) {
+            if(stringr::str_detect(string = prob_icu, pattern = "[a-zA-Z]")) {
               cat("\n")
-              cat("Probability upon hospitalisation of requiring ICU admission cannot be 0% or less. Try again.\n")
+              cat("Probability upon hospitalisation of requiring ICU admission should be numeric. Try again.\n")
               cat("\n")
-            }
-            if(as.numeric(prob_icu) >= 100 ) {
-              cat("\n")
-              cat("Probability upon hospitalisation of requiring ICU admission cannot be 100% or more. Try again.\n")
-              cat("\n")
+            } else {
+              if(as.numeric(prob_icu) <= 0) {
+                cat("\n")
+                cat("Probability upon hospitalisation of requiring ICU admission cannot be 0% or less. Try again.\n")
+                cat("\n")
+              }
+              if(as.numeric(prob_icu) >= 100 ) {
+                cat("\n")
+                cat("Probability upon hospitalisation of requiring ICU admission cannot be 100% or more. Try again.\n")
+                cat("\n")
+              }
             }
           }
 
@@ -370,20 +412,26 @@ ph_set_virus <- function() {
           prob_vent <- readline(prompt = "Probability upon admission to the ICU of requiring a ventilator (numeric; %): ")
 
           ## Check that prob_vent is in correct format (numeric)
-          if(stringr::str_detect(string = prob_vent, pattern = "[a-zA-Z]")) {
+          if(is.na(prob_vent) | prob_vent == "") {
             cat("\n")
-            cat("Probability upon admission to the ICU of requiring a ventilator should be numeric. Try again.\n")
+            cat("Probability upon admission to the ICU of requiring a ventilator should be provided. Try again.\n")
             cat("\n")
           } else {
-            if(as.numeric(prob_vent) <= 0) {
+            if(stringr::str_detect(string = prob_vent, pattern = "[a-zA-Z]")) {
               cat("\n")
-              cat("Probability upon admission to the ICU of requiring a ventilator cannot be 0% or less. Try again.\n")
+              cat("Probability upon admission to the ICU of requiring a ventilator should be numeric. Try again.\n")
               cat("\n")
-            }
-            if(as.numeric(prob_vent) >= 100 ) {
-              cat("\n")
-              cat("Probability upon admission to the ICU of requiring a ventilator cannot be 100% or more. Try again.\n")
-              cat("\n")
+            } else {
+              if(as.numeric(prob_vent) <= 0) {
+                cat("\n")
+                cat("Probability upon admission to the ICU of requiring a ventilator cannot be 0% or less. Try again.\n")
+                cat("\n")
+              }
+              if(as.numeric(prob_vent) >= 100 ) {
+                cat("\n")
+                cat("Probability upon admission to the ICU of requiring a ventilator cannot be 100% or more. Try again.\n")
+                cat("\n")
+              }
             }
           }
 
