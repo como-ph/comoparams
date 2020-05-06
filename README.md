@@ -11,6 +11,7 @@ maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www
 status](https://travis-ci.org/como-ph/comoparams.svg?branch=master)](https://travis-ci.org/como-ph/comoparams)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/como-ph/comoparams?branch=master&svg=true)](https://ci.appveyor.com/project/como-ph/comoparams)
+[![DOI](https://zenodo.org/badge/255850150.svg)](https://zenodo.org/badge/latestdoi/255850150)
 <!-- badges: end -->
 
 The **Oxford Modelling Group for Global Health (OMGH)** is developing
@@ -326,132 +327,17 @@ The daily cases and deaths output can be produced as follows:
 ph_calculate_cases()
 ```
 
-    #>        repDate cases deaths
-    #> 1   2020-01-01     0      0
-    #> 2   2020-01-02     0      0
-    #> 3   2020-01-03     0      0
-    #> 4   2020-01-04     0      0
-    #> 5   2020-01-05     0      0
-    #> 6   2020-01-06     0      0
-    #> 7   2020-01-07     0      0
-    #> 8   2020-01-08     0      0
-    #> 9   2020-01-09     0      0
-    #> 10  2020-01-10     0      0
-    #> 11  2020-01-11     0      0
-    #> 12  2020-01-12     0      0
-    #> 13  2020-01-13     0      0
-    #> 14  2020-01-14     0      0
-    #> 15  2020-01-15     0      0
-    #> 16  2020-01-16     0      0
-    #> 17  2020-01-17     0      0
-    #> 18  2020-01-18     0      0
-    #> 19  2020-01-19     0      0
-    #> 20  2020-01-20     0      0
-    #> 21  2020-01-21     0      0
-    #> 22  2020-01-22     0      0
-    #> 23  2020-01-23     0      0
-    #> 24  2020-01-24     0      0
-    #> 25  2020-01-25     0      0
-    #> 26  2020-01-26     0      0
-    #> 27  2020-01-27     0      0
-    #> 28  2020-01-28     0      0
-    #> 29  2020-01-29     0      0
-    #> 30  2020-01-30     1      0
-    #> 31  2020-01-31     0      0
-    #> 32  2020-02-01     0      1
-    #> 33  2020-02-02     0      0
-    #> 34  2020-02-03     1      0
-    #> 35  2020-02-04     0      0
-    #> 36  2020-02-05     1      0
-    #> 37  2020-02-06     0      0
-    #> 38  2020-02-07     0      0
-    #> 39  2020-02-08     0      0
-    #> 40  2020-02-09     0      0
-    #> 41  2020-02-10     0      0
-    #> 42  2020-02-11     0      0
-    #> 43  2020-02-12     0      0
-    #> 44  2020-02-13     0      0
-    #> 45  2020-02-14     0      0
-    #> 46  2020-02-15     0      0
-    #> 47  2020-02-16     0      0
-    #> 48  2020-02-17     0      0
-    #> 49  2020-02-18     0      0
-    #> 50  2020-02-19     0      0
-    #> 51  2020-02-20     0      0
-    #> 52  2020-02-21     0      0
-    #> 53  2020-02-22     0      0
-    #> 54  2020-02-23     0      0
-    #> 55  2020-02-24     0      0
-    #> 56  2020-02-25     0      0
-    #> 57  2020-02-26     0      0
-    #> 58  2020-02-27     0      0
-    #> 59  2020-02-28     0      0
-    #> 60  2020-02-29     0      0
-    #> 61  2020-03-01     0      0
-    #> 62  2020-03-02     0      0
-    #> 63  2020-03-03     0      0
-    #> 64  2020-03-04     0      0
-    #> 65  2020-03-05     0      0
-    #> 66  2020-03-06     2      0
-    #> 67  2020-03-07     1      0
-    #> 68  2020-03-08     4      0
-    #> 69  2020-03-09    14      0
-    #> 70  2020-03-10     9      0
-    #> 71  2020-03-11    16      3
-    #> 72  2020-03-12     3      3
-    #> 73  2020-03-13    12      4
-    #> 74  2020-03-14    47      5
-    #> 75  2020-03-15    29      5
-    #> 76  2020-03-16     2      3
-    #> 77  2020-03-17    45     12
-    #> 78  2020-03-18    15      8
-    #> 79  2020-03-19    15     13
-    #> 80  2020-03-20    13     14
-    #> 81  2020-03-21    77     10
-    #> 82  2020-03-22    73     18
-    #> 83  2020-03-23    82     20
-    #> 84  2020-03-24    90     18
-    #> 85  2020-03-25    84     18
-    #> 86  2020-03-26    70     23
-    #> 87  2020-03-27   102     27
-    #> 88  2020-03-28   267     18
-    #> 89  2020-03-29   343     21
-    #> 90  2020-03-30   128     19
-    #> 91  2020-03-31   538     17
-    #> 92  2020-04-01   227     16
-    #> 93  2020-04-02   322     17
-    #> 94  2020-04-03   385     17
-    #> 95  2020-04-04    76     17
-    #> 96  2020-04-05   152     15
-    #> 97  2020-04-06   414     14
-    #> 98  2020-04-07   104      9
-    #> 99  2020-04-08   106     13
-    #> 100 2020-04-09   206      9
-    #> 101 2020-04-10   119     12
-    #> 102 2020-04-11   233     11
-    #> 103 2020-04-12   220     11
-    #> 104 2020-04-13   284      6
-    #> 105 2020-04-14   291      4
-    #> 106 2020-04-15   230     11
-    #> 107 2020-04-16   207      0
-    #> 108 2020-04-17   218      3
-    #> 109 2020-04-18   209      6
-    #> 110 2020-04-19   172      5
-    #> 111 2020-04-20   200      7
-    #> 112 2020-04-21   140      3
-    #> 113 2020-04-22   111      2
-    #> 114 2020-04-23   271      7
-    #> 115 2020-04-24   211      1
-    #> 116 2020-04-25   102      2
-    #> 117 2020-04-26   285      4
-    #> 118 2020-04-27   198      4
-    #> 119 2020-04-28   181      2
-    #> 120 2020-04-29   254      1
-    #> 121 2020-04-30   276      0
-    #> 122 2020-05-01   284      0
-    #> 123 2020-05-02   156      0
-    #> 124 2020-05-03   295      0
-    #> 125 2020-05-04   262      0
+    #>       repDate cases deaths
+    #> 1  2020-01-01     0      0
+    #> 2  2020-01-02     0      0
+    #> 3  2020-01-03     0      0
+    #> 4  2020-01-04     0      0
+    #> 5  2020-01-05     0      0
+    #> 6  2020-01-06     0      0
+    #> 7  2020-01-07     0      0
+    #> 8  2020-01-08     0      0
+    #> 9  2020-01-09     0      0
+    #> 10 2020-01-10     0      0
 
 The IFR and IHR output can be produced as
     follows:
@@ -471,17 +357,6 @@ ph_calculate_rates()
     #> 8    35-40 y.o.     10              9        422   810 0.012345679 0.5209877
     #> 9    40-45 y.o.     24             16        402   738 0.032520325 0.5447154
     #> 10   45-50 y.o.     29             25        464   805 0.036024845 0.5763975
-    #> 11   50-55 y.o.     47             41        469   786 0.059796438 0.5966921
-    #> 12   55-60 y.o.     63             54        506   789 0.079847909 0.6413181
-    #> 13   60-65 y.o.    102             87        526   775 0.131612903 0.6787097
-    #> 14   65-70 y.o.    109             95        471   621 0.175523349 0.7584541
-    #> 15   70-75 y.o.     86             77        337   463 0.185745140 0.7278618
-    #> 16   75-80 y.o.     54             48        173   242 0.223140496 0.7148760
-    #> 17   80-85 y.o.     44             38        113   154 0.285714286 0.7337662
-    #> 18   85-90 y.o.     27             25         59    72 0.375000000 0.8194444
-    #> 19   90-95 y.o.      6              6         15    20 0.300000000 0.7500000
-    #> 20  95-100 y.o.      0              0          4     6 0.000000000 0.6666667
-    #> 21    100+ y.o.      0              0          2     8 0.000000000 0.2500000
     #>            hfr
     #> 1  0.040816327
     #> 2  0.034482759
@@ -493,17 +368,6 @@ ph_calculate_rates()
     #> 8  0.021327014
     #> 9  0.039800995
     #> 10 0.053879310
-    #> 11 0.087420043
-    #> 12 0.106719368
-    #> 13 0.165399240
-    #> 14 0.201698514
-    #> 15 0.228486647
-    #> 16 0.277456647
-    #> 17 0.336283186
-    #> 18 0.423728814
-    #> 19 0.400000000
-    #> 20 0.000000000
-    #> 21 0.000000000
 
 As mentioned earlier, these two functions use the pull functions for the
 Philippines COVID-19 DataDrop (described above) to pull the cases
@@ -521,48 +385,28 @@ functions within `comoparams` (a total of 19 functions).
 The **parameter settings** functions again uses a common prefix syntax
 of `ph_set_` followed by the descriptor of the parameter that is being
 defined or set. This syntax applies to 18 of the 19 functions in the
-set. The descriptors are:
+set. The descriptors
+are:
 
-  - `cases` - set the *cases parameters* using the
-    `ph_calculate_cases()` function to process, calculate and output the
-    cases data in the appropriate parameters format.
-
-  - `severe` - set the *severty-mortality parameters* using the
-    `ph_calculate_rates()` function to process, calculate and output the
-    cases data in the appropriate parameters format.
-
-  - `population` - set the *populations parameters* using the
-    `ph_get_population()` function to process and output the population
-    data in the appropriate parameters format.
-
-  - `general` - set the *general* and *country parameters*
-
-  - `virus` - set the *virus parameters*
-
-  - `hospital` - set the *hospitalisation parameters*
-
-  - `lockdown` - set the *lockdown intervention parameters*
-
-  - `isolation` - set the *self-isolation interveniton parameters*
-
-  - `distancing` - set the *social distancing interveniton parameters*
-
-  - `handwashing` - set the *handwashing intervention parameters*
-
-  - `work` - set the *work from home intervention parameters*
-
-  - `school` - set the *schools closure intervention parameters*
-
-  - `elderly` - set the *shielding the elderly interveniton parameters*
-
-  - `travel` - set the *travel ban intervention parameters*
-
-  - `quarantine` - set the *voluntary home quarantine parameters*
-
-  - `vaccination` - set the *vaccination interveniton parameters*
-
-  - `interventions` - set all the *intervention parameters* using all
-    the single intervention paramter setting functions
+| **Descriptor**  | **Definition**                                                                                                                                                         |
+| :-------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `cases`         | Set the *cases parameters* using the `ph_calculate_cases()` function to process, calculate and output the cases data in the appropriate parameters format.             |
+| `severe`        | Set the *severty-mortality parameters* using the `ph_calculate_rates()` function to process, calculate and output the cases data in the appropriate parameters format. |
+| `population`    | Set the *populations parameters* using the `ph_get_population()` function to process and output the population data in the appropriate parameters format.              |
+| `general`       | Set the *general* and *country parameters*                                                                                                                             |
+| `virus`         | Set the *virus parameters*                                                                                                                                             |
+| `hospital`      | Set the *hospitalisation parameters*                                                                                                                                   |
+| `lockdown`      | Set the *lockdown intervention parameters*                                                                                                                             |
+| `isolation`     | Set the *self-isolation interveniton parameters*                                                                                                                       |
+| `distancing`    | Set the *social distancing interveniton parameters*                                                                                                                    |
+| `handwashing`   | Set the *handwashing intervention parameters*                                                                                                                          |
+| `work`          | Set the *work from home intervention parameters*                                                                                                                       |
+| `school`        | Set the *schools closure intervention parameters*                                                                                                                      |
+| `elderly`       | Set the *shielding the elderly interveniton parameters*                                                                                                                |
+| `travel`        | Set the *travel ban intervention parameters*                                                                                                                           |
+| `quarantine`    | Set the *voluntary home quarantine parameters*                                                                                                                         |
+| `vaccination`   | Set the *vaccination interveniton parameters*                                                                                                                          |
+| `interventions` | Set all the *intervention parameters* using all the single intervention paramter setting functions                                                                     |
 
 The functions with this syntax are interactive command line functions
 that guide the user through the various parameters required and
