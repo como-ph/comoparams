@@ -178,8 +178,16 @@ contains the current year</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>link</span> <span class='kw'>&lt;-</span> <span class='st'>"https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/"</span>
 <span class='no'>fname</span> <span class='kw'>&lt;-</span> <span class='st'>"EXCEL_FILES/2_Fertility/WPP2019_FERT_F06_BIRTHS_BY_AGE_OF_MOTHER.xlsx"</span>
-<span class='fu'>ph_get_wpp2019_births</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='no'>link</span>, <span class='no'>fname</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>))</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 0 x 4</span><span>
-#&gt; </span><span style='color: #555555;'># … with 4 variables: area </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, year </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, age_category </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, birth </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+<span class='fu'>ph_get_wpp2019_births</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='no'>link</span>, <span class='no'>fname</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>), <span class='kw'>period</span> <span class='kw'>=</span> <span class='fl'>2019</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 7 x 4</span><span>
+#&gt;   area        year      age_category   birth
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> Philippines 2015-2020 15-19 y.o.   1</span><span style='text-decoration: underline;'>358</span><span>136
+#&gt; </span><span style='color: #555555;'>2</span><span> Philippines 2015-2020 20-24 y.o.   2</span><span style='text-decoration: underline;'>986</span><span>917
+#&gt; </span><span style='color: #555555;'>3</span><span> Philippines 2015-2020 25-29 y.o.   2</span><span style='text-decoration: underline;'>594</span><span>038
+#&gt; </span><span style='color: #555555;'>4</span><span> Philippines 2015-2020 30-34 y.o.   2</span><span style='text-decoration: underline;'>121</span><span>630
+#&gt; </span><span style='color: #555555;'>5</span><span> Philippines 2015-2020 35-39 y.o.   1</span><span style='text-decoration: underline;'>239</span><span>266
+#&gt; </span><span style='color: #555555;'>6</span><span> Philippines 2015-2020 40-44 y.o.    </span><span style='text-decoration: underline;'>488</span><span>424
+#&gt; </span><span style='color: #555555;'>7</span><span> Philippines 2015-2020 45-49 y.o.    </span><span style='text-decoration: underline;'>100</span><span>986</div><div class='input'>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
