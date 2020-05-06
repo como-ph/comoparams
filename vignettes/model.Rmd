@@ -93,7 +93,32 @@ W_{school} ~ & = ~ \text{} \\
 W_{other} ~ & = ~ \text{} \\
 \mu ~ & = ~ \text{} \\
 b ~ & = ~ \text{} \\
-p ~ & = ~ \text{Probability of infection given a single contact}
+p ~ & = ~ \text{Probability of infection given a single contact} \\
+\gamma ~ & = ~ \frac{1}{\text{Duration of incubation period}} \\
+\rho ~ & = ~ \text{Relative infectiousness of incubating phase per contact} \\
+p_{clin} ~ & = ~ \text{Proportion of all infections that ever develop symptoms} \\
+\nu_I ~ & = ~ \frac{1}{\text{Duration of infectious phase}} \\
+\rho_s ~ & = ~ \text{Relative number of contacts for hospitalised patients} \\
+\omega ~ & = ~ \frac{1}{\text{Duration of immunity}} \\
+\alpha ~ & = ~ \text{Relative variation in transmissibility throughout the year} \pm \text{a proportion} \\
+\phi ~ & = ~ \text{Month of peak in transmissibility} \\
+t_{in} ~ & = ~ \text{Start date} \\
+p_{ihr} ~ & = ~ \text{Probability of an infection being severe (requiring hospitalisation) by age} \\
+p_{ifr} ~ & = ~ \text{Probability of an infection being fatal by age} \\
+\nu_H ~ & = ~ \text{Duration of hospitalised infection} \\
+\nu_U ~ & = ~ \text{Duration of ICU infection} \\
+\nu_V ~ & = ~ \text{Duration of ventilated infection} \\
+\delta_H ~ & = ~ \text{Probability of death for a hospitalised infection} \\
+\delta_{H_c} ~ & = ~ \text{Probability of death for an infection requiring hospital not get} \\
+\delta_U ~ & = ~ \text{} \\
+\delta_{U_c} ~ & = ~ \text{} \\
+\delta_V ~ & = ~ \text{} \\
+\delta_{V_c} ~ & = ~ \text{} \\
+p_U ~ & = ~ \text{Probability of an infected patient needing ICU} \\
+p_V ~ & = ~ \text{Probability of an infected patient needing ICU and a ventilator} \\
+p_{K_H} ~ & = ~ \text{Decision to assign a patient a hospital bed depending on capacity} \\
+p_{K_U} ~ & = ~ \text{Decision to assign a patient an ICU bed depending on capacity} \\
+p_{K_V} ~ & = ~ \text{Decision to assign a patient a ventilator depending on capacity}
 \end{aligned} $$
 
 
