@@ -27,23 +27,17 @@ reference:
   - ph_get_cases
   - ph_get_tests
   - ph_get_daily
-
-- title: Cases
-  contents:
-  - ph_calculate_cases
-
-- title: Severity and mortality
-  contents:
-  - ph_calculate_rates
-
-- title: Population
-  contents:
   - ph_get_psa2015_pop
   - ph_get_wpp2019_pop
   - ph_get_wpp2019_births
   - ph_get_wpp2019_deaths
 
-- title: Parameters
+- title: Calculate values
+  contents:
+  - ph_calculate_cases
+  - ph_calculate_rates
+
+- title: Set parameters
   contents:
   - ph_set_cases
   - ph_set_severe
