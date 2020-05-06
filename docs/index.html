@@ -90,20 +90,379 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="comoparams-r-utility-tool-to-extract-process-and-structure-philippines-specific-datasets-for-use-in-como-consortium-model" class="section level1">
+<div id="comoparams-r-utility-tool-to-extract-process-and-structure-philippines-specific-datasets-for-use-in-the-como-consortium-model" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#comoparams-r-utility-tool-to-extract-process-and-structure-philippines-specific-datasets-for-use-in-como-consortium-model" class="anchor"></a>comoparams: R utility tool to extract, process and structure Philippines-specific datasets for use in CoMo Consortium model</h1></div>
+<a href="#comoparams-r-utility-tool-to-extract-process-and-structure-philippines-specific-datasets-for-use-in-the-como-consortium-model" class="anchor"></a>comoparams: R utility tool to extract, process and structure Philippines-specific datasets for use in the CoMo Consortium Model</h1></div>
 <!-- badges: start -->
 
-<p>The Oxford Modelling Group for Global Health (OMGH) is developing model structures to estimate the impact of potential mitigation strategies. By changing the input data and parameter values, the models can be adjusted to represent a national or subnational setting. In addition, a user friendly application and interface is being developed to enable widespread utility.</p>
-<p>The CoMo-PH group is the Philippines country team that is supporting the use of the model specific to the Philppines as part of the COVID-19 International Modeling Consortium (CoMo Consortium).</p>
-<p>This R package has been developed by the CoMo-PH group to support its efforts in the collection of Philippines-specific and Philppines-appropriate data that will define the parameters used in the CoMo model as applied to the Philippines. This package facilitates the processing of Philippines national and/or subnational input data and parameter values into data structures appropriate for use with the modelling application and/or other packages developed for the CoMo Consortium model.</p>
+<p>The <strong>Oxford Modelling Group for Global Health (OMGH)</strong> is developing model structures to estimate the impact of potential mitigation strategies. By changing the input data and parameter values, the models can be adjusted to represent a national or subnational setting. In addition, a user friendly application and interface is being developed to enable widespread utility.</p>
+<p>The CoMo-PH group is the Philippines country team that is supporting the use of the model specific to the Philppines as part of the <strong>COVID-19 International Modeling Consortium (CoMo Consortium)</strong>.</p>
+<p>This R package has been developed by the <strong>CoMo-PH</strong> group to support its efforts in the collection of Philippines-specific and Philppines-appropriate data that will define the parameters used in the <strong>CoMo Consortium Model</strong> as applied to the Philippines. This package facilitates the processing of Philippines national and/or subnational input data and parameter values into data structures appropriate for use with the modelling application and/or other packages developed for the <strong>CoMo Consortium Model</strong>.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p><code>comoparams</code> is available to install via <a href="https://github.com/como-ph/comoparams">GitHub</a>:</p>
+<p><code>comoparams</code> is in active development and is currently only available to install via <a href="https://github.com/como-ph/comoparams">GitHub</a>:</p>
 <div class="sourceCode" id="cb1"><pre class="r"><span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span>(<span class="st">"remotes"</span>)) <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"remotes"</span>)
 <span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"como-ph/comoparams"</span>)</pre></div>
+<p>To use, load the package:</p>
+<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">comoparams</span>)</pre></div>
+</div>
+<div id="usage" class="section level2">
+<h2 class="hasAnchor">
+<a href="#usage" class="anchor"></a>Usage</h2>
+<p><code>comoparams</code> currently has three main function sets: 1) <strong>pull data</strong> functions; 2) <strong>calculate</strong> values functions; and, 3) <strong>parameter</strong> setting functions.</p>
+<div id="pull-data" class="section level3">
+<h3 class="hasAnchor">
+<a href="#pull-data" class="anchor"></a>Pull data</h3>
+<p><code>comoparams</code> incorporates functions that support the extraction of data relevant to the <strong>CoMo Model</strong> parameters and specific to the Philippines. Currently, these functions allow for 1) pulling of data from the Philippines <a href="https://drive.google.com/drive/folders/10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP">Department of Health’s official COVID-19 DataDrop</a> repository; 2) pulling of data from the <a href="http://www.psa.gov.ph">Philippines Statistics Authority (PSA)</a> <a href="http://www.psa.gov.ph/content/highlights-philippine-population-2015-census-population">2015 Population Census (2015 POPCEN)</a>; and 3) pulling of population, births and deaths data from the <a href="https://population.un.org/wpp/">World Population Prospects 2019</a>.</p>
+<div id="pulling-data-from-the-philippines-department-of-health-covid-19-datadrop" class="section level4">
+<h4 class="hasAnchor">
+<a href="#pulling-data-from-the-philippines-department-of-health-covid-19-datadrop" class="anchor"></a>Pulling data from the Philippines Department of Health COVID-19 DataDrop</h4>
+<p>On the 14th of April 2020, the <a href="https://www.doh.gov.ph">Philippines Department of Health</a> released publicly its data related to COVID-19 initally in Google Sheets format and subsequently as comma-separated value (CSV) files stored in Google Drive. There are 4 functions in <code>comoparams</code> that interacts with the <a href="https://drive.google.com/drive/folders/10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP">Philippines COVID-19 DataDrop</a>. These functions are wrapper functions utilising the <code>googledrive</code> package functions in R. Each of these functions pulls a specific type of data from the <a href="https://drive.google.com/drive/folders/10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP">COVID-19 DataDrop</a> repository.</p>
+<ul>
+<li><p><code>fields</code> - data describing the various fields or variables in the different datasets found in <a href="https://drive.google.com/drive/folders/10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP">COVID-19 DataDrop</a>.</p></li>
+<li><p><code>cases</code> - data on all COVID-19 cases recorded up to the date the specific dataset has been released.</p></li>
+<li><p><code>tests</code> - data on tests performed and recorded up to the date the specific dataset has been released.</p></li>
+<li><p><code>daily</code> - data on health facilities’ daily COVID-19 specific equipment status.</p></li>
+</ul>
+<p>The syntax for this set of pull functions has a common prefix of <code>ph_get_</code> followed by the short name of the specific dataset listed above.</p>
+<p>All four functions in this set has one argument - <code>date</code> - which is the date (in <yyyy-mm-dd> format) up to which exracted data reports to. This argument defaults to the current date as given by <code><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date()</a></code> and will only accept dates starting from 14 April 2020 when <a href="https://drive.google.com/drive/folders/10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP">COVID-19 DataDrop</a> was launched.</yyyy-mm-dd></p>
+<p>It should be noted that <a href="https://drive.google.com/drive/folders/10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP">COVID-19 DataDrop</a> is updated everyday at 16:00 Philippine Standard Time (PHT). If these functions are used without specifying a <code>date</code> and at a time that is before 16:00 PHT, an error message will indicate that the dataset for the current day is not yet available and will suggest to specify a date at least one day earlier.</p>
+<p>The output of these functions is a <code>tibble</code>.</p>
+<p>To pull the data on <code>cases</code> up to the current date, we use the function <code><a href="reference/ph_get_cases.html">ph_get_cases()</a></code> as follows:</p>
+<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="reference/ph_get_cases.html">ph_get_cases</a></span>()</pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co">#&gt; # A tibble: 9,684 x 18</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt;    CaseCode   Age AgeGroup Sex   DateRepConf DateDied DateRecover RemovalType</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt;    &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt;      </span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt;  1 C100119     31 30 to 34 Male  2020-04-12  ""       ""          ""         </span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt;  2 C100264     58 55 to 59 Male  2020-03-29  ""       ""          ""         </span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt;  3 C100648     34 30 to 34 Fema… 2020-04-16  ""       ""          ""         </span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt;  4 C100660     43 40 to 44 Fema… 2020-04-02  ""       "2020-04-2… ""         </span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt;  5 C100776     43 40 to 44 Male  2020-04-01  ""       ""          ""         </span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt;  6 C101015     79 75 to 79 Male  2020-04-03  ""       ""          ""         </span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt;  7 C101097     33 30 to 34 Male  2020-03-27  ""       ""          ""         </span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt;  8 C101232     31 30 to 34 Male  2020-03-21  ""       "2020-03-2… "Recovered"</span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt;  9 C101376     30 30 to 34 Male  2020-04-11  ""       ""          ""         </span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt; 10 C101483     40 40 to 44 Fema… 2020-04-14  ""       ""          ""         </span></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt; # … with 9,674 more rows, and 10 more variables: DateRepRem &lt;chr&gt;,</span></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt; #   Admitted &lt;chr&gt;, RegionRes &lt;chr&gt;, ProvRes &lt;chr&gt;, CityMunRes &lt;chr&gt;,</span></a>
+<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="co">#&gt; #   RegionPSGC &lt;chr&gt;, ProvPSGC &lt;chr&gt;, CityMuniPSGC &lt;chr&gt;, HealthStatus &lt;chr&gt;,</span></a>
+<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co">#&gt; #   Quarantined &lt;chr&gt;</span></a></code></pre></div>
+<p>To pull the data on <code>cases</code> for up to 1 May 2020, we use the function <code><a href="reference/ph_get_cases.html">ph_get_cases()</a></code> as follows:</p>
+<div class="sourceCode" id="cb5"><pre class="r"><span class="fu"><a href="reference/ph_get_cases.html">ph_get_cases</a></span>(<span class="kw">date</span> <span class="kw">=</span> <span class="st">"2020-05-01"</span>)
+<span class="co">#&gt; # A tibble: 8,772 x 18</span>
+<span class="co">#&gt;    CaseCode   Age AgeGroup Sex   DateRepConf DateRecover DateDied RemovalType</span>
+<span class="co">#&gt;    &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;      </span>
+<span class="co">#&gt;  1 C100119     30 30 to 34 Male  12-Apr-20   ""          ""       ""         </span>
+<span class="co">#&gt;  2 C100264     57 55 to 59 Male  29-Mar-20   ""          ""       ""         </span>
+<span class="co">#&gt;  3 C100648     33 30 to 34 Fema… 16-Apr-20   ""          ""       ""         </span>
+<span class="co">#&gt;  4 C100660     42 40 to 44 Fema… 02-Apr-20   ""          ""       ""         </span>
+<span class="co">#&gt;  5 C100776     42 40 to 44 Male  01-Apr-20   ""          ""       ""         </span>
+<span class="co">#&gt;  6 C101015     79 75 to 79 Male  03-Apr-20   ""          ""       ""         </span>
+<span class="co">#&gt;  7 C101097     33 30 to 34 Male  27-Mar-20   ""          ""       ""         </span>
+<span class="co">#&gt;  8 C101232     30 30 to 34 Male  21-Mar-20   "25-Mar-20" ""       "Recovered"</span>
+<span class="co">#&gt;  9 C101376     29 25 to 29 Male  11-Apr-20   ""          ""       ""         </span>
+<span class="co">#&gt; 10 C101483     40 40 to 44 Fema… 14-Apr-20   ""          ""       ""         </span>
+<span class="co">#&gt; # … with 8,762 more rows, and 10 more variables: DateRepRem &lt;chr&gt;,</span>
+<span class="co">#&gt; #   Admitted &lt;chr&gt;, RegionRes &lt;chr&gt;, ProvRes &lt;chr&gt;, CityMunRes &lt;chr&gt;,</span>
+<span class="co">#&gt; #   RegionPSGC &lt;chr&gt;, ProvPSGC &lt;chr&gt;, CityMuniPSGC &lt;chr&gt;, HealthStatus &lt;chr&gt;,</span>
+<span class="co">#&gt; #   Quarantined &lt;chr&gt;</span></pre></div>
+<p>The <strong>pull data</strong> set of functions in <code>comoparams</code> are helper functions that are called within the <strong>calculate</strong> set of functions to extract data needed to make specfic calculations needed for the actual <strong>CoMo Consortium Model</strong> parameters.</p>
+</div>
+<div id="pulling-data-from-the-philippines-statistics-authority-psa-2015-population-census-2015-popcen" class="section level4">
+<h4 class="hasAnchor">
+<a href="#pulling-data-from-the-philippines-statistics-authority-psa-2015-population-census-2015-popcen" class="anchor"></a>Pulling data from the Philippines Statistics Authority (PSA) 2015 Population Census (2015 POPCEN)</h4>
+<p>The last Philippines census was in 2015. A 2020 census was planned but due to the COVID-19 pandemic, this is most likely goint to be put on hold. The <a href="http://www.psa.gov.ph">Philippines Statistics Authority (PSA)</a> provides an XLSX file for its updated 2020 population projections based on the 2015 POPCEN. This file is downloadable from the <a href="http://www.psa.gov.ph">PSA</a> website via this <a href="https://psa.gov.ph/sites/default/files/attachments/hsd/pressrelease/Updated%20Population%20Projections%20based%20on%202015%20POPCEN_0.xlsx">link</a>.</p>
+<p>A helper function with the same <code>ph_get_</code> prefix is provided by the <code>comoparams</code> package - <code><a href="reference/ph_get_psa2015_pop.html">ph_get_psa2015_pop()</a></code> - which downloads the XLSX file from the <a href="http://www.psa.gov.ph">PSA</a> website, reads the file and then extracts and re-structures the population data in the file to long format (tidy format).</p>
+<p>The function can be called as follows:</p>
+<div class="sourceCode" id="cb6"><pre class="r"><span class="no">linkToFile</span> <span class="kw">&lt;-</span> <span class="st">"https://psa.gov.ph/sites/default/files/attachments/hsd/pressrelease/Updated%20Population%20Projections%20based%20on%202015%20POPCEN_0.xlsx"</span>
+
+<span class="fu"><a href="reference/ph_get_psa2015_pop.html">ph_get_psa2015_pop</a></span>(<span class="kw">file</span> <span class="kw">=</span> <span class="no">linkToFile</span>)
+<span class="co">#&gt; # A tibble: 87,567 x 6</span>
+<span class="co">#&gt;    area         year age_category    total    male  female</span>
+<span class="co">#&gt;    &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 Philippines  2015 0-4          10803297 5582405 5220892</span>
+<span class="co">#&gt;  2 Philippines  2015 5-9          10827294 5588769 5238525</span>
+<span class="co">#&gt;  3 Philippines  2015 10-14        10478834 5397638 5081196</span>
+<span class="co">#&gt;  4 Philippines  2015 15-19        10176450 5194725 4981725</span>
+<span class="co">#&gt;  5 Philippines  2015 20-24         9453737 4788812 4664925</span>
+<span class="co">#&gt;  6 Philippines  2015 25-29         8348285 4246632 4101653</span>
+<span class="co">#&gt;  7 Philippines  2015 30-34         7331213 3750503 3580710</span>
+<span class="co">#&gt;  8 Philippines  2015 35-39         6732896 3442349 3290547</span>
+<span class="co">#&gt;  9 Philippines  2015 40-44         5840861 2991059 2849802</span>
+<span class="co">#&gt; 10 Philippines  2015 45-49         5276700 2676602 2600098</span>
+<span class="co">#&gt; # … with 87,557 more rows</span></pre></div>
+<p>The main limitation of the PSA population projections based on the 2015 POPCEN is that the age grouping only goes up 85+ whilst the <strong>CoMo Consortium Model</strong> requires population data with an age-structure that goes up to 95+. However, this can potentially be imputed to create the additional older age groupings if needed/wanted.</p>
+</div>
+<div id="pulling-population-births-and-deaths-data-from-the-world-population-prospects-2019" class="section level4">
+<h4 class="hasAnchor">
+<a href="#pulling-population-births-and-deaths-data-from-the-world-population-prospects-2019" class="anchor"></a>Pulling population, births and deaths data from the World Population Prospects 2019</h4>
+<p>The <a href="https://population.un.org/wpp/">United Nations World Population Prospects 2019</a> provides population projections for 152 countries with a 5-year age grouping structure required by the <strong>CoMo Consortium Model</strong> which are available either as XLSX or as CSV files. The <code>comoparams</code> package provides three functions to extract these datasets. These functions follow the same prefix syntax of <code>ph_get_</code> as the other pull data functions followed by a descriptor of the data that is being pulled. The descriptors used are:</p>
+<ul>
+<li><p><code>wpp2019_pop</code> - Five-year age group structured population by male and female</p></li>
+<li><p><code>wpp2019_births</code> - Number of births by age of mother in 5-year age groups</p></li>
+<li><p><code>wpp2019_deaths</code> - Number of deaths by 5-year age groups and by male and female</p></li>
+</ul>
+<p>To pull the five-year age group structured population, we make a call for the following:</p>
+<div class="sourceCode" id="cb7"><pre class="r"><span class="no">linkToFile</span> <span class="kw">&lt;-</span> <span class="st">"https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/CSV_FILES/WPP2019_PopulationByAgeSex_Medium.csv"</span>
+
+<span class="fu"><a href="reference/ph_get_wpp2019_pop.html">ph_get_wpp2019_pop</a></span>(<span class="kw">file</span> <span class="kw">=</span> <span class="no">linkToFile</span>, <span class="kw">location</span> <span class="kw">=</span> <span class="st">"Philippines"</span>)
+<span class="co">#&gt; # A tibble: 21 x 6</span>
+<span class="co">#&gt;    area         year age_category    total     male  female</span>
+<span class="co">#&gt;    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 Philippines  2020 0-4 y.o.     10616342 5450633  5165709</span>
+<span class="co">#&gt;  2 Philippines  2020 5-9 y.o.     11397952 5846072  5551880</span>
+<span class="co">#&gt;  3 Philippines  2020 10-14 y.o.   10906801 5578251  5328550</span>
+<span class="co">#&gt;  4 Philippines  2020 15-19 y.o.   10462894 5407659  5055235</span>
+<span class="co">#&gt;  5 Philippines  2020 20-24 y.o.   10104334 5191755  4912579</span>
+<span class="co">#&gt;  6 Philippines  2020 25-29 y.o.    9479780 4807611  4672169</span>
+<span class="co">#&gt;  7 Philippines  2020 30-34 y.o.    8247197 4166778. 4080419</span>
+<span class="co">#&gt;  8 Philippines  2020 35-39 y.o.    7254730 3644549  3610181</span>
+<span class="co">#&gt;  9 Philippines  2020 40-44 y.o.    6551963 3297341  3254622</span>
+<span class="co">#&gt; 10 Philippines  2020 45-49 y.o.    5759264 2883722  2875542</span>
+<span class="co">#&gt; # … with 11 more rows</span></pre></div>
+<p>To pull the number of births by age of mother in 5-year age groups, we make a call for the following:</p>
+<div class="sourceCode" id="cb8"><pre class="r"><span class="no">linkToFile</span> <span class="kw">&lt;-</span> <span class="st">"https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/EXCEL_FILES/2_Fertility/WPP2019_FERT_F06_BIRTHS_BY_AGE_OF_MOTHER.xlsx"</span>
+
+<span class="fu"><a href="reference/ph_get_wpp2019_births.html">ph_get_wpp2019_births</a></span>(<span class="kw">file</span> <span class="kw">=</span> <span class="no">linkToFile</span>, <span class="kw">period</span> <span class="kw">=</span> <span class="fl">2019</span>)
+<span class="co">#&gt; # A tibble: 7 x 4</span>
+<span class="co">#&gt;   area        year      age_category   birth</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 Philippines 2015-2020 15-19 y.o.   1358136</span>
+<span class="co">#&gt; 2 Philippines 2015-2020 20-24 y.o.   2986917</span>
+<span class="co">#&gt; 3 Philippines 2015-2020 25-29 y.o.   2594038</span>
+<span class="co">#&gt; 4 Philippines 2015-2020 30-34 y.o.   2121630</span>
+<span class="co">#&gt; 5 Philippines 2015-2020 35-39 y.o.   1239266</span>
+<span class="co">#&gt; 6 Philippines 2015-2020 40-44 y.o.    488424</span>
+<span class="co">#&gt; 7 Philippines 2015-2020 45-49 y.o.    100986</span></pre></div>
+<p>To pull the number of deaths by 5-year age groups and by male and female, we make a call for the following:</p>
+<div class="sourceCode" id="cb9"><pre class="r"><span class="no">linkToFile</span> <span class="kw">&lt;-</span> <span class="st">"https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/EXCEL_FILES/3_Mortality/WPP2019_MORT_F04_1_DEATHS_BY_AGE_BOTH_SEXES.xlsx"</span>
+
+<span class="fu"><a href="reference/ph_get_wpp2019_deaths.html">ph_get_wpp2019_deaths</a></span>(<span class="kw">file</span> <span class="kw">=</span> <span class="no">linkToFile</span>, <span class="kw">period</span> <span class="kw">=</span> <span class="fl">2019</span>)
+<span class="co">#&gt; # A tibble: 21 x 4</span>
+<span class="co">#&gt;    area        year      age_category  death</span>
+<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;         &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 Philippines 2015-2020 0-4 y.o.     306206</span>
+<span class="co">#&gt;  2 Philippines 2015-2020 5-9 y.o.      34260</span>
+<span class="co">#&gt;  3 Philippines 2015-2020 10-14 y.o.    28539</span>
+<span class="co">#&gt;  4 Philippines 2015-2020 15-19 y.o.    59008</span>
+<span class="co">#&gt;  5 Philippines 2015-2020 20-24 y.o.    78740</span>
+<span class="co">#&gt;  6 Philippines 2015-2020 25-29 y.o.    77908</span>
+<span class="co">#&gt;  7 Philippines 2015-2020 30-34 y.o.    81415</span>
+<span class="co">#&gt;  8 Philippines 2015-2020 35-39 y.o.    96548</span>
+<span class="co">#&gt;  9 Philippines 2015-2020 40-44 y.o.   121537</span>
+<span class="co">#&gt; 10 Philippines 2015-2020 45-49 y.o.   160660</span>
+<span class="co">#&gt; # … with 11 more rows</span></pre></div>
+</div>
+</div>
+<div id="calculate-values" class="section level3">
+<h3 class="hasAnchor">
+<a href="#calculate-values" class="anchor"></a>Calculate values</h3>
+<p>For some of the required parameters, further calculation and processing of data is required. Specifically, the cases data needs to be processed into number of cases and number of deaths per day since the start of the COVID-19 pandemic in the Philippines. The cases data also needs to be processed to calculate the infection fatality rate (IFR) and the infection hospitalisation rate (IHR) by 5-year age groups. Two calculate functions are available in <code>comoparams</code> for this purpose. Both functions have the same prefix syntax of <code>ph_calculate_</code> followed by a descriptor for the type of output calculation it will produce - <code>cases</code> for daily cases and deaths since the first reported case in the Philippines and <code>rates</code> for the IFR and IHR output.</p>
+<p>The daily cases and deaths output can be produced as follows:</p>
+<div class="sourceCode" id="cb10"><pre class="r"><span class="fu"><a href="reference/ph_calculate_cases.html">ph_calculate_cases</a></span>()</pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co">#&gt;        repDate cases deaths</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="co">#&gt; 1   2020-01-01     0      0</span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">#&gt; 2   2020-01-02     0      0</span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co">#&gt; 3   2020-01-03     0      0</span></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co">#&gt; 4   2020-01-04     0      0</span></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">#&gt; 5   2020-01-05     0      0</span></a>
+<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt; 6   2020-01-06     0      0</span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt; 7   2020-01-07     0      0</span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="co">#&gt; 8   2020-01-08     0      0</span></a>
+<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="co">#&gt; 9   2020-01-09     0      0</span></a>
+<a class="sourceLine" id="cb11-11" data-line-number="11"><span class="co">#&gt; 10  2020-01-10     0      0</span></a>
+<a class="sourceLine" id="cb11-12" data-line-number="12"><span class="co">#&gt; 11  2020-01-11     0      0</span></a>
+<a class="sourceLine" id="cb11-13" data-line-number="13"><span class="co">#&gt; 12  2020-01-12     0      0</span></a>
+<a class="sourceLine" id="cb11-14" data-line-number="14"><span class="co">#&gt; 13  2020-01-13     0      0</span></a>
+<a class="sourceLine" id="cb11-15" data-line-number="15"><span class="co">#&gt; 14  2020-01-14     0      0</span></a>
+<a class="sourceLine" id="cb11-16" data-line-number="16"><span class="co">#&gt; 15  2020-01-15     0      0</span></a>
+<a class="sourceLine" id="cb11-17" data-line-number="17"><span class="co">#&gt; 16  2020-01-16     0      0</span></a>
+<a class="sourceLine" id="cb11-18" data-line-number="18"><span class="co">#&gt; 17  2020-01-17     0      0</span></a>
+<a class="sourceLine" id="cb11-19" data-line-number="19"><span class="co">#&gt; 18  2020-01-18     0      0</span></a>
+<a class="sourceLine" id="cb11-20" data-line-number="20"><span class="co">#&gt; 19  2020-01-19     0      0</span></a>
+<a class="sourceLine" id="cb11-21" data-line-number="21"><span class="co">#&gt; 20  2020-01-20     0      0</span></a>
+<a class="sourceLine" id="cb11-22" data-line-number="22"><span class="co">#&gt; 21  2020-01-21     0      0</span></a>
+<a class="sourceLine" id="cb11-23" data-line-number="23"><span class="co">#&gt; 22  2020-01-22     0      0</span></a>
+<a class="sourceLine" id="cb11-24" data-line-number="24"><span class="co">#&gt; 23  2020-01-23     0      0</span></a>
+<a class="sourceLine" id="cb11-25" data-line-number="25"><span class="co">#&gt; 24  2020-01-24     0      0</span></a>
+<a class="sourceLine" id="cb11-26" data-line-number="26"><span class="co">#&gt; 25  2020-01-25     0      0</span></a>
+<a class="sourceLine" id="cb11-27" data-line-number="27"><span class="co">#&gt; 26  2020-01-26     0      0</span></a>
+<a class="sourceLine" id="cb11-28" data-line-number="28"><span class="co">#&gt; 27  2020-01-27     0      0</span></a>
+<a class="sourceLine" id="cb11-29" data-line-number="29"><span class="co">#&gt; 28  2020-01-28     0      0</span></a>
+<a class="sourceLine" id="cb11-30" data-line-number="30"><span class="co">#&gt; 29  2020-01-29     0      0</span></a>
+<a class="sourceLine" id="cb11-31" data-line-number="31"><span class="co">#&gt; 30  2020-01-30     1      0</span></a>
+<a class="sourceLine" id="cb11-32" data-line-number="32"><span class="co">#&gt; 31  2020-01-31     0      0</span></a>
+<a class="sourceLine" id="cb11-33" data-line-number="33"><span class="co">#&gt; 32  2020-02-01     0      1</span></a>
+<a class="sourceLine" id="cb11-34" data-line-number="34"><span class="co">#&gt; 33  2020-02-02     0      0</span></a>
+<a class="sourceLine" id="cb11-35" data-line-number="35"><span class="co">#&gt; 34  2020-02-03     1      0</span></a>
+<a class="sourceLine" id="cb11-36" data-line-number="36"><span class="co">#&gt; 35  2020-02-04     0      0</span></a>
+<a class="sourceLine" id="cb11-37" data-line-number="37"><span class="co">#&gt; 36  2020-02-05     1      0</span></a>
+<a class="sourceLine" id="cb11-38" data-line-number="38"><span class="co">#&gt; 37  2020-02-06     0      0</span></a>
+<a class="sourceLine" id="cb11-39" data-line-number="39"><span class="co">#&gt; 38  2020-02-07     0      0</span></a>
+<a class="sourceLine" id="cb11-40" data-line-number="40"><span class="co">#&gt; 39  2020-02-08     0      0</span></a>
+<a class="sourceLine" id="cb11-41" data-line-number="41"><span class="co">#&gt; 40  2020-02-09     0      0</span></a>
+<a class="sourceLine" id="cb11-42" data-line-number="42"><span class="co">#&gt; 41  2020-02-10     0      0</span></a>
+<a class="sourceLine" id="cb11-43" data-line-number="43"><span class="co">#&gt; 42  2020-02-11     0      0</span></a>
+<a class="sourceLine" id="cb11-44" data-line-number="44"><span class="co">#&gt; 43  2020-02-12     0      0</span></a>
+<a class="sourceLine" id="cb11-45" data-line-number="45"><span class="co">#&gt; 44  2020-02-13     0      0</span></a>
+<a class="sourceLine" id="cb11-46" data-line-number="46"><span class="co">#&gt; 45  2020-02-14     0      0</span></a>
+<a class="sourceLine" id="cb11-47" data-line-number="47"><span class="co">#&gt; 46  2020-02-15     0      0</span></a>
+<a class="sourceLine" id="cb11-48" data-line-number="48"><span class="co">#&gt; 47  2020-02-16     0      0</span></a>
+<a class="sourceLine" id="cb11-49" data-line-number="49"><span class="co">#&gt; 48  2020-02-17     0      0</span></a>
+<a class="sourceLine" id="cb11-50" data-line-number="50"><span class="co">#&gt; 49  2020-02-18     0      0</span></a>
+<a class="sourceLine" id="cb11-51" data-line-number="51"><span class="co">#&gt; 50  2020-02-19     0      0</span></a>
+<a class="sourceLine" id="cb11-52" data-line-number="52"><span class="co">#&gt; 51  2020-02-20     0      0</span></a>
+<a class="sourceLine" id="cb11-53" data-line-number="53"><span class="co">#&gt; 52  2020-02-21     0      0</span></a>
+<a class="sourceLine" id="cb11-54" data-line-number="54"><span class="co">#&gt; 53  2020-02-22     0      0</span></a>
+<a class="sourceLine" id="cb11-55" data-line-number="55"><span class="co">#&gt; 54  2020-02-23     0      0</span></a>
+<a class="sourceLine" id="cb11-56" data-line-number="56"><span class="co">#&gt; 55  2020-02-24     0      0</span></a>
+<a class="sourceLine" id="cb11-57" data-line-number="57"><span class="co">#&gt; 56  2020-02-25     0      0</span></a>
+<a class="sourceLine" id="cb11-58" data-line-number="58"><span class="co">#&gt; 57  2020-02-26     0      0</span></a>
+<a class="sourceLine" id="cb11-59" data-line-number="59"><span class="co">#&gt; 58  2020-02-27     0      0</span></a>
+<a class="sourceLine" id="cb11-60" data-line-number="60"><span class="co">#&gt; 59  2020-02-28     0      0</span></a>
+<a class="sourceLine" id="cb11-61" data-line-number="61"><span class="co">#&gt; 60  2020-02-29     0      0</span></a>
+<a class="sourceLine" id="cb11-62" data-line-number="62"><span class="co">#&gt; 61  2020-03-01     0      0</span></a>
+<a class="sourceLine" id="cb11-63" data-line-number="63"><span class="co">#&gt; 62  2020-03-02     0      0</span></a>
+<a class="sourceLine" id="cb11-64" data-line-number="64"><span class="co">#&gt; 63  2020-03-03     0      0</span></a>
+<a class="sourceLine" id="cb11-65" data-line-number="65"><span class="co">#&gt; 64  2020-03-04     0      0</span></a>
+<a class="sourceLine" id="cb11-66" data-line-number="66"><span class="co">#&gt; 65  2020-03-05     0      0</span></a>
+<a class="sourceLine" id="cb11-67" data-line-number="67"><span class="co">#&gt; 66  2020-03-06     2      0</span></a>
+<a class="sourceLine" id="cb11-68" data-line-number="68"><span class="co">#&gt; 67  2020-03-07     1      0</span></a>
+<a class="sourceLine" id="cb11-69" data-line-number="69"><span class="co">#&gt; 68  2020-03-08     4      0</span></a>
+<a class="sourceLine" id="cb11-70" data-line-number="70"><span class="co">#&gt; 69  2020-03-09    14      0</span></a>
+<a class="sourceLine" id="cb11-71" data-line-number="71"><span class="co">#&gt; 70  2020-03-10     9      0</span></a>
+<a class="sourceLine" id="cb11-72" data-line-number="72"><span class="co">#&gt; 71  2020-03-11    16      3</span></a>
+<a class="sourceLine" id="cb11-73" data-line-number="73"><span class="co">#&gt; 72  2020-03-12     3      3</span></a>
+<a class="sourceLine" id="cb11-74" data-line-number="74"><span class="co">#&gt; 73  2020-03-13    12      4</span></a>
+<a class="sourceLine" id="cb11-75" data-line-number="75"><span class="co">#&gt; 74  2020-03-14    47      5</span></a>
+<a class="sourceLine" id="cb11-76" data-line-number="76"><span class="co">#&gt; 75  2020-03-15    29      5</span></a>
+<a class="sourceLine" id="cb11-77" data-line-number="77"><span class="co">#&gt; 76  2020-03-16     2      3</span></a>
+<a class="sourceLine" id="cb11-78" data-line-number="78"><span class="co">#&gt; 77  2020-03-17    45     12</span></a>
+<a class="sourceLine" id="cb11-79" data-line-number="79"><span class="co">#&gt; 78  2020-03-18    15      8</span></a>
+<a class="sourceLine" id="cb11-80" data-line-number="80"><span class="co">#&gt; 79  2020-03-19    15     13</span></a>
+<a class="sourceLine" id="cb11-81" data-line-number="81"><span class="co">#&gt; 80  2020-03-20    13     14</span></a>
+<a class="sourceLine" id="cb11-82" data-line-number="82"><span class="co">#&gt; 81  2020-03-21    77     10</span></a>
+<a class="sourceLine" id="cb11-83" data-line-number="83"><span class="co">#&gt; 82  2020-03-22    73     18</span></a>
+<a class="sourceLine" id="cb11-84" data-line-number="84"><span class="co">#&gt; 83  2020-03-23    82     20</span></a>
+<a class="sourceLine" id="cb11-85" data-line-number="85"><span class="co">#&gt; 84  2020-03-24    90     18</span></a>
+<a class="sourceLine" id="cb11-86" data-line-number="86"><span class="co">#&gt; 85  2020-03-25    84     18</span></a>
+<a class="sourceLine" id="cb11-87" data-line-number="87"><span class="co">#&gt; 86  2020-03-26    70     23</span></a>
+<a class="sourceLine" id="cb11-88" data-line-number="88"><span class="co">#&gt; 87  2020-03-27   102     27</span></a>
+<a class="sourceLine" id="cb11-89" data-line-number="89"><span class="co">#&gt; 88  2020-03-28   267     18</span></a>
+<a class="sourceLine" id="cb11-90" data-line-number="90"><span class="co">#&gt; 89  2020-03-29   343     21</span></a>
+<a class="sourceLine" id="cb11-91" data-line-number="91"><span class="co">#&gt; 90  2020-03-30   128     19</span></a>
+<a class="sourceLine" id="cb11-92" data-line-number="92"><span class="co">#&gt; 91  2020-03-31   538     17</span></a>
+<a class="sourceLine" id="cb11-93" data-line-number="93"><span class="co">#&gt; 92  2020-04-01   227     16</span></a>
+<a class="sourceLine" id="cb11-94" data-line-number="94"><span class="co">#&gt; 93  2020-04-02   322     17</span></a>
+<a class="sourceLine" id="cb11-95" data-line-number="95"><span class="co">#&gt; 94  2020-04-03   385     17</span></a>
+<a class="sourceLine" id="cb11-96" data-line-number="96"><span class="co">#&gt; 95  2020-04-04    76     17</span></a>
+<a class="sourceLine" id="cb11-97" data-line-number="97"><span class="co">#&gt; 96  2020-04-05   152     15</span></a>
+<a class="sourceLine" id="cb11-98" data-line-number="98"><span class="co">#&gt; 97  2020-04-06   414     14</span></a>
+<a class="sourceLine" id="cb11-99" data-line-number="99"><span class="co">#&gt; 98  2020-04-07   104      9</span></a>
+<a class="sourceLine" id="cb11-100" data-line-number="100"><span class="co">#&gt; 99  2020-04-08   106     13</span></a>
+<a class="sourceLine" id="cb11-101" data-line-number="101"><span class="co">#&gt; 100 2020-04-09   206      9</span></a>
+<a class="sourceLine" id="cb11-102" data-line-number="102"><span class="co">#&gt; 101 2020-04-10   119     12</span></a>
+<a class="sourceLine" id="cb11-103" data-line-number="103"><span class="co">#&gt; 102 2020-04-11   233     11</span></a>
+<a class="sourceLine" id="cb11-104" data-line-number="104"><span class="co">#&gt; 103 2020-04-12   220     11</span></a>
+<a class="sourceLine" id="cb11-105" data-line-number="105"><span class="co">#&gt; 104 2020-04-13   284      6</span></a>
+<a class="sourceLine" id="cb11-106" data-line-number="106"><span class="co">#&gt; 105 2020-04-14   291      4</span></a>
+<a class="sourceLine" id="cb11-107" data-line-number="107"><span class="co">#&gt; 106 2020-04-15   230     11</span></a>
+<a class="sourceLine" id="cb11-108" data-line-number="108"><span class="co">#&gt; 107 2020-04-16   207      0</span></a>
+<a class="sourceLine" id="cb11-109" data-line-number="109"><span class="co">#&gt; 108 2020-04-17   218      3</span></a>
+<a class="sourceLine" id="cb11-110" data-line-number="110"><span class="co">#&gt; 109 2020-04-18   209      6</span></a>
+<a class="sourceLine" id="cb11-111" data-line-number="111"><span class="co">#&gt; 110 2020-04-19   172      5</span></a>
+<a class="sourceLine" id="cb11-112" data-line-number="112"><span class="co">#&gt; 111 2020-04-20   200      7</span></a>
+<a class="sourceLine" id="cb11-113" data-line-number="113"><span class="co">#&gt; 112 2020-04-21   140      3</span></a>
+<a class="sourceLine" id="cb11-114" data-line-number="114"><span class="co">#&gt; 113 2020-04-22   111      2</span></a>
+<a class="sourceLine" id="cb11-115" data-line-number="115"><span class="co">#&gt; 114 2020-04-23   271      7</span></a>
+<a class="sourceLine" id="cb11-116" data-line-number="116"><span class="co">#&gt; 115 2020-04-24   211      1</span></a>
+<a class="sourceLine" id="cb11-117" data-line-number="117"><span class="co">#&gt; 116 2020-04-25   102      2</span></a>
+<a class="sourceLine" id="cb11-118" data-line-number="118"><span class="co">#&gt; 117 2020-04-26   285      4</span></a>
+<a class="sourceLine" id="cb11-119" data-line-number="119"><span class="co">#&gt; 118 2020-04-27   198      4</span></a>
+<a class="sourceLine" id="cb11-120" data-line-number="120"><span class="co">#&gt; 119 2020-04-28   181      2</span></a>
+<a class="sourceLine" id="cb11-121" data-line-number="121"><span class="co">#&gt; 120 2020-04-29   254      1</span></a>
+<a class="sourceLine" id="cb11-122" data-line-number="122"><span class="co">#&gt; 121 2020-04-30   276      0</span></a>
+<a class="sourceLine" id="cb11-123" data-line-number="123"><span class="co">#&gt; 122 2020-05-01   284      0</span></a>
+<a class="sourceLine" id="cb11-124" data-line-number="124"><span class="co">#&gt; 123 2020-05-02   156      0</span></a>
+<a class="sourceLine" id="cb11-125" data-line-number="125"><span class="co">#&gt; 124 2020-05-03   295      0</span></a>
+<a class="sourceLine" id="cb11-126" data-line-number="126"><span class="co">#&gt; 125 2020-05-04   262      0</span></a></code></pre></div>
+<p>The IFR and IHR output can be produced as follows:</p>
+<div class="sourceCode" id="cb12"><pre class="r"><span class="fu"><a href="reference/ph_calculate_rates.html">ph_calculate_rates</a></span>()</pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co">#&gt;    age_category deaths deathsAdmitted admissions cases         ifr       ihr</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="co">#&gt; 1      0-5 y.o.      2              2         49    93 0.021505376 0.5268817</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="co">#&gt; 2     5-10 y.o.      1              1         29    71 0.014084507 0.4084507</span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="co">#&gt; 3    10-15 y.o.      1              1         21    80 0.012500000 0.2625000</span></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="co">#&gt; 4    15-20 y.o.      5              4         59   165 0.030303030 0.3575758</span></a>
+<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="co">#&gt; 5    20-25 y.o.      2              2        282   583 0.003430532 0.4837050</span></a>
+<a class="sourceLine" id="cb13-7" data-line-number="7"><span class="co">#&gt; 6    25-30 y.o.      4              3        545  1070 0.003738318 0.5093458</span></a>
+<a class="sourceLine" id="cb13-8" data-line-number="8"><span class="co">#&gt; 7    30-35 y.o.      7              6        597  1134 0.006172840 0.5264550</span></a>
+<a class="sourceLine" id="cb13-9" data-line-number="9"><span class="co">#&gt; 8    35-40 y.o.     10              9        422   810 0.012345679 0.5209877</span></a>
+<a class="sourceLine" id="cb13-10" data-line-number="10"><span class="co">#&gt; 9    40-45 y.o.     24             16        402   738 0.032520325 0.5447154</span></a>
+<a class="sourceLine" id="cb13-11" data-line-number="11"><span class="co">#&gt; 10   45-50 y.o.     29             25        464   805 0.036024845 0.5763975</span></a>
+<a class="sourceLine" id="cb13-12" data-line-number="12"><span class="co">#&gt; 11   50-55 y.o.     47             41        469   786 0.059796438 0.5966921</span></a>
+<a class="sourceLine" id="cb13-13" data-line-number="13"><span class="co">#&gt; 12   55-60 y.o.     63             54        506   789 0.079847909 0.6413181</span></a>
+<a class="sourceLine" id="cb13-14" data-line-number="14"><span class="co">#&gt; 13   60-65 y.o.    102             87        526   775 0.131612903 0.6787097</span></a>
+<a class="sourceLine" id="cb13-15" data-line-number="15"><span class="co">#&gt; 14   65-70 y.o.    109             95        471   621 0.175523349 0.7584541</span></a>
+<a class="sourceLine" id="cb13-16" data-line-number="16"><span class="co">#&gt; 15   70-75 y.o.     86             77        337   463 0.185745140 0.7278618</span></a>
+<a class="sourceLine" id="cb13-17" data-line-number="17"><span class="co">#&gt; 16   75-80 y.o.     54             48        173   242 0.223140496 0.7148760</span></a>
+<a class="sourceLine" id="cb13-18" data-line-number="18"><span class="co">#&gt; 17   80-85 y.o.     44             38        113   154 0.285714286 0.7337662</span></a>
+<a class="sourceLine" id="cb13-19" data-line-number="19"><span class="co">#&gt; 18   85-90 y.o.     27             25         59    72 0.375000000 0.8194444</span></a>
+<a class="sourceLine" id="cb13-20" data-line-number="20"><span class="co">#&gt; 19   90-95 y.o.      6              6         15    20 0.300000000 0.7500000</span></a>
+<a class="sourceLine" id="cb13-21" data-line-number="21"><span class="co">#&gt; 20  95-100 y.o.      0              0          4     6 0.000000000 0.6666667</span></a>
+<a class="sourceLine" id="cb13-22" data-line-number="22"><span class="co">#&gt; 21    100+ y.o.      0              0          2     8 0.000000000 0.2500000</span></a>
+<a class="sourceLine" id="cb13-23" data-line-number="23"><span class="co">#&gt;            hfr</span></a>
+<a class="sourceLine" id="cb13-24" data-line-number="24"><span class="co">#&gt; 1  0.040816327</span></a>
+<a class="sourceLine" id="cb13-25" data-line-number="25"><span class="co">#&gt; 2  0.034482759</span></a>
+<a class="sourceLine" id="cb13-26" data-line-number="26"><span class="co">#&gt; 3  0.047619048</span></a>
+<a class="sourceLine" id="cb13-27" data-line-number="27"><span class="co">#&gt; 4  0.067796610</span></a>
+<a class="sourceLine" id="cb13-28" data-line-number="28"><span class="co">#&gt; 5  0.007092199</span></a>
+<a class="sourceLine" id="cb13-29" data-line-number="29"><span class="co">#&gt; 6  0.005504587</span></a>
+<a class="sourceLine" id="cb13-30" data-line-number="30"><span class="co">#&gt; 7  0.010050251</span></a>
+<a class="sourceLine" id="cb13-31" data-line-number="31"><span class="co">#&gt; 8  0.021327014</span></a>
+<a class="sourceLine" id="cb13-32" data-line-number="32"><span class="co">#&gt; 9  0.039800995</span></a>
+<a class="sourceLine" id="cb13-33" data-line-number="33"><span class="co">#&gt; 10 0.053879310</span></a>
+<a class="sourceLine" id="cb13-34" data-line-number="34"><span class="co">#&gt; 11 0.087420043</span></a>
+<a class="sourceLine" id="cb13-35" data-line-number="35"><span class="co">#&gt; 12 0.106719368</span></a>
+<a class="sourceLine" id="cb13-36" data-line-number="36"><span class="co">#&gt; 13 0.165399240</span></a>
+<a class="sourceLine" id="cb13-37" data-line-number="37"><span class="co">#&gt; 14 0.201698514</span></a>
+<a class="sourceLine" id="cb13-38" data-line-number="38"><span class="co">#&gt; 15 0.228486647</span></a>
+<a class="sourceLine" id="cb13-39" data-line-number="39"><span class="co">#&gt; 16 0.277456647</span></a>
+<a class="sourceLine" id="cb13-40" data-line-number="40"><span class="co">#&gt; 17 0.336283186</span></a>
+<a class="sourceLine" id="cb13-41" data-line-number="41"><span class="co">#&gt; 18 0.423728814</span></a>
+<a class="sourceLine" id="cb13-42" data-line-number="42"><span class="co">#&gt; 19 0.400000000</span></a>
+<a class="sourceLine" id="cb13-43" data-line-number="43"><span class="co">#&gt; 20 0.000000000</span></a>
+<a class="sourceLine" id="cb13-44" data-line-number="44"><span class="co">#&gt; 21 0.000000000</span></a></code></pre></div>
+<p>As mentioned earlier, these two functions use the pull functions for the Philippines COVID-19 DataDrop (described above) to pull the cases information and then processes these to get the needed output. It is important to note therefore that when calling these two calculate functions, the <code>date</code> argument will need to be considered particularly when the current time is before 16:00 PHT.</p>
+</div>
+<div id="parameters-setting" class="section level3">
+<h3 class="hasAnchor">
+<a href="#parameters-setting" class="anchor"></a>Parameters setting</h3>
+<p>The final set of functions in the <code>comoparams</code> package is the <strong>parameters setting</strong> functions. This set contains majority of the functions within <code>comoparams</code> (a total of 19 functions).</p>
+<p>The <strong>parameter settings</strong> functions again uses a common prefix syntax of <code>ph_set_</code> followed by the descriptor of the parameter that is being defined or set. This syntax applies to 18 of the 19 functions in the set. The descriptors are:</p>
+<ul>
+<li><p><code>cases</code> - set the <em>cases parameters</em> using the <code><a href="reference/ph_calculate_cases.html">ph_calculate_cases()</a></code> function to process, calculate and output the cases data in the appropriate parameters format.</p></li>
+<li><p><code>severe</code> - set the <em>severty-mortality parameters</em> using the <code><a href="reference/ph_calculate_rates.html">ph_calculate_rates()</a></code> function to process, calculate and output the cases data in the appropriate parameters format.</p></li>
+<li><p><code>population</code> - set the <em>populations parameters</em> using the <code>ph_get_population()</code> function to process and output the population data in the appropriate parameters format.</p></li>
+<li><p><code>general</code> - set the <em>general</em> and <em>country parameters</em></p></li>
+<li><p><code>virus</code> - set the <em>virus parameters</em></p></li>
+<li><p><code>hospital</code> - set the <em>hospitalisation parameters</em></p></li>
+<li><p><code>lockdown</code> - set the <em>lockdown intervention parameters</em></p></li>
+<li><p><code>isolation</code> - set the <em>self-isolation interveniton parameters</em></p></li>
+<li><p><code>distancing</code> - set the <em>social distancing interveniton parameters</em></p></li>
+<li><p><code>handwashing</code> - set the <em>handwashing intervention parameters</em></p></li>
+<li><p><code>work</code> - set the <em>work from home intervention parameters</em></p></li>
+<li><p><code>school</code> - set the <em>schools closure intervention parameters</em></p></li>
+<li><p><code>elderly</code> - set the <em>shielding the elderly interveniton parameters</em></p></li>
+<li><p><code>travel</code> - set the <em>travel ban intervention parameters</em></p></li>
+<li><p><code>quarantine</code> - set the <em>voluntary home quarantine parameters</em></p></li>
+<li><p><code>vaccination</code> - set the <em>vaccination interveniton parameters</em></p></li>
+<li><p><code>interventions</code> - set all the <em>intervention parameters</em> using all the single intervention paramter setting functions</p></li>
+</ul>
+<p>The functions with this syntax are interactive command line functions that guide the user through the various parameters required and faciliates the user to input values for the needed parameters. In this set, there is a summary function (<code>ph_set_params</code>) that pulls together all the interactive command line functions and guides the user in specifying all the parameters.</p>
+<p>Finally, the 19th function in the parameter setting function set is a function that takes the output of <code><a href="reference/ph_set_params.html">ph_set_params()</a></code> and then converts it into the <strong>CoMo Consortium Model</strong> parameters template format in an XLSX workbook and saves it as an XLSX file in the specified directory.</p>
+<div class="sourceCode" id="cb14"><pre class="r"><span class="fu"><a href="reference/ph_create_params.html">ph_create_params</a></span>(<span class="kw">params</span> <span class="kw">=</span> <span class="fu"><a href="reference/ph_set_params.html">ph_set_params</a></span>(), <span class="kw">path</span> <span class="kw">=</span> <span class="st">"."</span>)</pre></div>
+</div>
 </div>
 </div>
   </div>
@@ -137,7 +496,7 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+<li><a href="https://www.tidyverse.org/lifecycle/#maturing"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="Lifecycle: maturing"></a></li>
 <li><a href="https://travis-ci.org/como-ph/comoparams"><img src="https://travis-ci.org/como-ph/comoparams.svg?branch=master" alt="Travis build status"></a></li>
 <li><a href="https://ci.appveyor.com/project/como-ph/comoparams"><img src="https://ci.appveyor.com/api/projects/status/github/como-ph/comoparams?branch=master&amp;svg=true" alt="AppVeyor build status"></a></li>
 </ul>
