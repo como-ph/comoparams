@@ -42,20 +42,26 @@ ph_set_general <- function() {
       household_size <- readline(prompt = "Enter mean household size (numeric): ")
 
       ## Check that household_size is in correct format
-      if(stringr::str_detect(string = household_size, pattern = "[a-zA-Z]")) {
+      if(is.na(household_size) | household_size == "") {
         cat("\n")
-        cat("Mean household size should be numeric. Try again.\n")
+        cat("Mean household size should be provided. Try again.\n")
         cat("\n")
       } else {
-        if(as.numeric(household_size) < 1) {
+        if(stringr::str_detect(string = household_size, pattern = "[a-zA-Z]")) {
           cat("\n")
-          cat("Mean household size cannot be less than 1. Try again.\n")
+          cat("Mean household size should be numeric. Try again.\n")
           cat("\n")
-        }
-        if(as.numeric(household_size) > 9) {
-          cat("\n")
-          cat("Mean household size cannot be more than 9. Try again.\n")
-          cat("\n")
+        } else {
+          if(as.numeric(household_size) < 1) {
+            cat("\n")
+            cat("Mean household size cannot be less than 1. Try again.\n")
+            cat("\n")
+          }
+          if(as.numeric(household_size) > 9) {
+            cat("\n")
+            cat("Mean household size cannot be more than 9. Try again.\n")
+            cat("\n")
+          }
         }
       }
 
@@ -78,10 +84,16 @@ ph_set_general <- function() {
         mean_imports <- readline(prompt = "Mean number of infectious migrants per day (numeric): ")
 
         ## Check that mean_imports is in correct format
-        if(stringr::str_detect(string = mean_imports, pattern = "[a-zA-Z]")) {
+        if(is.na(mean_imports) | mean_imports == "") {
           cat("\n")
-          cat("Mean imports should be numeric. Try again.\n")
+          cat("Mean imports should be provided. Try again.\n")
           cat("\n")
+        } else {
+          if(stringr::str_detect(string = mean_imports, pattern = "[a-zA-Z]")) {
+            cat("\n")
+            cat("Mean imports should be numeric. Try again.\n")
+            cat("\n")
+          }
         }
 
         ## If in correct format, go to next
@@ -173,20 +185,26 @@ ph_set_general <- function() {
         p <- readline(prompt = "Probability of infection (numeric; proportion): ")
 
         ## Check that p is in correct format (numeric)
-        if(stringr::str_detect(string = p, pattern = "[a-zA-Z]|%")) {
+        if(is.na(p) | p == "") {
           cat("\n")
-          cat("Probability of infection (p) should be numeric. Try again.\n")
+          cat("Probability of infection (p) should be provided. Try again.\n")
           cat("\n")
         } else {
-          if(as.numeric(p) <= 0) {
+          if(stringr::str_detect(string = p, pattern = "[a-zA-Z]|%")) {
             cat("\n")
-            cat("Probability of infection (p) cannot be 0 or less. Try again.\n")
+            cat("Probability of infection (p) should be numeric. Try again.\n")
             cat("\n")
-          }
-          if(as.numeric(p) >= 1 ) {
-            cat("\n")
-            cat("Probability of infection (p) cannot be 1 or more. Try again.\n")
-            cat("\n")
+          } else {
+            if(as.numeric(p) <= 0) {
+              cat("\n")
+              cat("Probability of infection (p) cannot be 0 or less. Try again.\n")
+              cat("\n")
+            }
+            if(as.numeric(p) >= 1 ) {
+              cat("\n")
+              cat("Probability of infection (p) cannot be 1 or more. Try again.\n")
+              cat("\n")
+            }
           }
         }
 
@@ -211,20 +229,26 @@ ph_set_general <- function() {
         report <- readline(prompt = "Percentage of asymptomatic infections (numeric; %): ")
 
         ## Check that report is in correct format (numeric)
-        if(stringr::str_detect(string = report, pattern = "[a-zA-Z]")) {
+        if(is.na(report) | report == "") {
           cat("\n")
-          cat("Percentage of asymptomatic infections should be numeric. Try again.\n")
+          cat("Percentage of asymptomatic infections should be provided. Try again.\n")
           cat("\n")
         } else {
-          if(as.numeric(report) <= 0) {
+          if(stringr::str_detect(string = report, pattern = "[a-zA-Z]")) {
             cat("\n")
-            cat("Percentage of asymptomatic infections cannot be 0% or less. Try again.\n")
+            cat("Percentage of asymptomatic infections should be numeric. Try again.\n")
             cat("\n")
-          }
-          if(as.numeric(report) >= 100 ) {
-            cat("\n")
-            cat("Percentage of asymptomatic infection cannot be 100% or more. Try again.\n")
-            cat("\n")
+          } else {
+            if(as.numeric(report) <= 0) {
+              cat("\n")
+              cat("Percentage of asymptomatic infections cannot be 0% or less. Try again.\n")
+              cat("\n")
+            }
+            if(as.numeric(report) >= 100 ) {
+              cat("\n")
+              cat("Percentage of asymptomatic infection cannot be 100% or more. Try again.\n")
+              cat("\n")
+            }
           }
         }
 
@@ -249,20 +273,26 @@ ph_set_general <- function() {
         reportc <- readline(prompt = "Percentage of symptomatic infections (numeric; %): ")
 
         ## Check that reportc is in correct format (numeric)
-        if(stringr::str_detect(string = reportc, pattern = "[a-zA-Z]")) {
+        if(is.na(reportc) | reportc == "") {
           cat("\n")
-          cat("Percentage of symptomatic infections should be numeric. Try again.\n")
+          cat("Percentage of symptomatic infections should be provided. Try again.\n")
           cat("\n")
         } else {
-          if(as.numeric(reportc) <= 0) {
+          if(stringr::str_detect(string = reportc, pattern = "[a-zA-Z]")) {
             cat("\n")
-            cat("Percentage of symptomatic infections cannot be 0% or less. Try again.\n")
+            cat("Percentage of symptomatic infections should be numeric. Try again.\n")
             cat("\n")
-          }
-          if(as.numeric(reportc) >= 100 ) {
-            cat("\n")
-            cat("Percentage of symptomatic infections cannot be 100% or more. Try again.\n")
-            cat("\n")
+          } else {
+            if(as.numeric(reportc) <= 0) {
+              cat("\n")
+              cat("Percentage of symptomatic infections cannot be 0% or less. Try again.\n")
+              cat("\n")
+            }
+            if(as.numeric(reportc) >= 100 ) {
+              cat("\n")
+              cat("Percentage of symptomatic infections cannot be 100% or more. Try again.\n")
+              cat("\n")
+            }
           }
         }
 
@@ -287,20 +317,26 @@ ph_set_general <- function() {
         reporth <- readline(prompt = "Percentage of reported hospitalisations (numeric; %): ")
 
         ## Check that reporth is in correct format (numeric)
-        if(stringr::str_detect(string = reporth, pattern = "[a-zA-Z]")) {
+        if(is.na(reportc) | reportc == "") {
           cat("\n")
-          cat("Percentage of reported hospitalisations should be numeric. Try again.\n")
+          cat("Percentage of reported hospitalisations should be provided. Try again.\n")
           cat("\n")
         } else {
-          if(as.numeric(reporth) <= 0) {
+          if(stringr::str_detect(string = reporth, pattern = "[a-zA-Z]")) {
             cat("\n")
-            cat("Percentage of reported hospitalisations cannot be 0% or less. Try again.\n")
+            cat("Percentage of reported hospitalisations should be numeric. Try again.\n")
             cat("\n")
-          }
-          if(as.numeric(reporth) > 100 ) {
-            cat("\n")
-            cat("Percentage of reported hospitalisations cannot be more than 100%. Try again.\n")
-            cat("\n")
+          } else {
+            if(as.numeric(reporth) <= 0) {
+              cat("\n")
+              cat("Percentage of reported hospitalisations cannot be 0% or less. Try again.\n")
+              cat("\n")
+            }
+            if(as.numeric(reporth) > 100 ) {
+              cat("\n")
+              cat("Percentage of reported hospitalisations cannot be more than 100%. Try again.\n")
+              cat("\n")
+            }
           }
         }
 
