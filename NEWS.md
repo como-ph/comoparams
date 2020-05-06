@@ -1,8 +1,14 @@
-# comoparams 0.1.0
+# comoparams 0.1.0.9000
 
-* Created pull data functions for the Department of Health COVID-19 Data Drop initially using a Google Sheets interface and then shifting to a Googl Drive interface
+* Created pull data functions for the Department of Health COVID-19 Data Drop initially using a Google Sheets interface and then shifting to a Google Drive interface
+
+* Updated pull data functions to adapt to changes made by the Department of Health on the COVID-19 DataDrop Google Drive directory structure
+
+* Updated pull data functions to adapt to a shift in date value specifications starting from datasets published on 2020-05-05
 
 * Created a calculate rates function to organise and structure data on case information into format compatible with CoMo model parameters requirement and for calculating infection fatality rate (IFR), infection hospitalisation rate (IHR), and hospitalisation fatality rate (HFR)
+
+* Created parameter setting functions to provide interactive assistance in putting together the informaiton needed for the model parameters
 
 * Added a `NEWS.md` file to track changes to the package.
 
