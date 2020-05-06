@@ -36,6 +36,6 @@ Prospects 2019
 \examples{
 link <- "https://population.un.org/wpp/Download/Files/1_Indicators\%20(Standard)/"
 fname <- "EXCEL_FILES/2_Fertility/WPP2019_FERT_F06_BIRTHS_BY_AGE_OF_MOTHER.xlsx"
-ph_get_wpp2019_births(file = paste(link, fname, sep = ""))
+ph_get_wpp2019_births(file = paste(link, fname, sep = ""), period = 2019)
 
 }
