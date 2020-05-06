@@ -149,7 +149,7 @@ ph_get_wpp2019_pop <- function(file,
 #' @examples
 #' link <- "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/"
 #' fname <- "EXCEL_FILES/2_Fertility/WPP2019_FERT_F06_BIRTHS_BY_AGE_OF_MOTHER.xlsx"
-#' ph_get_wpp2019_births(file = paste(link, fname, sep = ""))
+#' ph_get_wpp2019_births(file = paste(link, fname, sep = ""), period = 2019)
 #'
 #' @export
 #'
@@ -223,7 +223,7 @@ ph_get_wpp2019_births <- function(file,
 #' @examples
 #' link <- "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/"
 #' fname <- "EXCEL_FILES/3_Mortality/WPP2019_MORT_F04_1_DEATHS_BY_AGE_BOTH_SEXES.xlsx"
-#' ph_get_wpp2019_deaths(file = paste(link, fname, sep = ""))
+#' ph_get_wpp2019_deaths(file = paste(link, fname, sep = ""), period = 2019)
 #'
 #' @export
 #'
@@ -251,8 +251,8 @@ ph_get_wpp2019_deaths <- function(file,
     df <- df[df$area == location & df$year == period, ]
   } else {
     ## Create 5-year group vector
-    yrGrp <- levels(cut(1950:2100,
-                        breaks = seq(from = 1950, to = 2100, by = 5),
+    yrGrp <- levels(cut(1950:2020,
+                        breaks = seq(from = 1950, to = 2020, by = 5),
                         right = FALSE,
                         include.lowest = TRUE))
     yrGrp <- stringr::str_remove_all(string = yrGrp, pattern = "\\[|\\)|]")
