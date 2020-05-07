@@ -22,6 +22,7 @@ knitr::opts_chunk$set(
 [![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Travis build status](https://travis-ci.org/como-ph/comoparams.svg?branch=master)](https://travis-ci.org/como-ph/comoparams)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/como-ph/comoparams?branch=master&svg=true)](https://ci.appveyor.com/project/como-ph/comoparams)
+[![DOI](https://zenodo.org/badge/255850150.svg)](https://zenodo.org/badge/latestdoi/255850150)
 <!-- badges: end -->
 
 The **Oxford Modelling Group for Global Health (OMGH)** is developing model structures to estimate the impact of potential mitigation strategies. By changing the input data and parameter values, the models can be adjusted to represent a national or subnational setting. In addition, a user friendly application and interface is being developed to enable widespread utility.
@@ -152,7 +153,7 @@ ph_calculate_cases()
 ```
 
 ```{r calculate1b, echo = FALSE, eval = TRUE}
-ph_calculate_cases(date = "2020-05-04")
+head(ph_calculate_cases(date = "2020-05-04"), 10)
 ```
 
 The IFR and IHR output can be produced as follows:
@@ -162,7 +163,7 @@ ph_calculate_rates()
 ```
 
 ```{r calculate2b, echo = FALSE, eval = TRUE}
-ph_calculate_rates(date = "2020-05-04")
+head(ph_calculate_rates(date = "2020-05-04"), 10)
 ```
 
 As mentioned earlier, these two functions use the pull functions for the Philippines COVID-19 DataDrop (described above) to pull the cases information and then processes these to get the needed output. It is important to note therefore that when calling these two calculate functions, the `date` argument will need to be considered particularly when the current time is before 16:00 PHT.
@@ -173,39 +174,50 @@ The final set of functions in the `comoparams` package is the **parameters setti
 
 The **parameter settings** functions again uses a common prefix syntax of `ph_set_` followed by the descriptor of the parameter that is being defined or set. This syntax applies to 18 of the 19 functions in the set. The descriptors are:
 
-* `cases` - set the *cases parameters* using the `ph_calculate_cases()` function to process, calculate and output the cases data in the appropriate parameters format.
-
-* `severe` - set the *severty-mortality parameters* using the `ph_calculate_rates()` function to process, calculate and output the cases data in the appropriate parameters format.
-
-* `population` - set the *populations parameters* using the `ph_get_population()` function to process and output the population data in the appropriate parameters format.
-
-* `general` - set the *general* and *country parameters*
-
-* `virus` - set the *virus parameters*
-
-* `hospital` - set the *hospitalisation parameters*
-
-* `lockdown` - set the *lockdown intervention parameters*
-
-* `isolation` - set the *self-isolation interveniton parameters*
-
-* `distancing` - set the *social distancing interveniton parameters*
-
-* `handwashing` - set the *handwashing intervention parameters*
-
-* `work` - set the *work from home intervention parameters*
-
-* `school` - set the *schools closure intervention parameters*
-
-* `elderly` - set the *shielding the elderly interveniton parameters*
-
-* `travel` - set the *travel ban intervention parameters*
-
-* `quarantine` - set the *voluntary home quarantine parameters*
-
-* `vaccination` - set the *vaccination interveniton parameters*
-
-* `interventions` - set all the *intervention parameters* using all the single intervention paramter setting functions
++--------------------+----------------------------------------------------------------------+
+| **Descriptor**     | **Definition**                                                       |
++:===================+:=====================================================================+
+| `cases`            | Set the *cases parameters* using the `ph_calculate_cases()` function |
+|                    | to process, calculate and output the cases data in the appropriate   |
+|                    | parameters format.                                                   |
++--------------------+----------------------------------------------------------------------+
+| `severe`           | Set the *severty-mortality parameters* using the                     |
+|                    | `ph_calculate_rates()` function to process, calculate and output the |
+|                    | cases data in the appropriate parameters format.                     |
++--------------------+----------------------------------------------------------------------+
+| `population`       | Set the *populations parameters* using the `ph_get_population()`     |
+|                    | function to process and output the population data in the appropriate|
+|                    | parameters format.                                                   |
++--------------------+----------------------------------------------------------------------+
+| `general`          | Set the *general* and *country parameters*                           |
++--------------------+----------------------------------------------------------------------+
+| `virus`            | Set the *virus parameters*                                           |
++--------------------+----------------------------------------------------------------------+
+| `hospital`         | Set the *hospitalisation parameters*                                 |
++--------------------+----------------------------------------------------------------------+
+| `lockdown`         | Set the *lockdown intervention parameters*                           |
++--------------------+----------------------------------------------------------------------+
+| `isolation`        | Set the *self-isolation interveniton parameters*                     |
++--------------------+----------------------------------------------------------------------+
+| `distancing`       | Set the *social distancing interveniton parameters*                  |
++--------------------+----------------------------------------------------------------------+
+| `handwashing`      | Set the *handwashing intervention parameters*                        |
++--------------------+----------------------------------------------------------------------+
+| `work`             | Set the *work from home intervention parameters*                     |
++--------------------+----------------------------------------------------------------------+
+| `school`           | Set the *schools closure intervention parameters*                    |
++--------------------+----------------------------------------------------------------------+
+| `elderly`          | Set the *shielding the elderly interveniton parameters*              |
++--------------------+----------------------------------------------------------------------+
+| `travel`           | Set the *travel ban intervention parameters*                         |
++--------------------+----------------------------------------------------------------------+
+| `quarantine`       | Set the *voluntary home quarantine parameters*                       |
++--------------------+----------------------------------------------------------------------+
+| `vaccination`      | Set the *vaccination interveniton parameters*                        |
++--------------------+----------------------------------------------------------------------+
+| `interventions`    | Set all the *intervention parameters* using all the single           |
+|                    | intervention paramter setting functions                              |
++--------------------+----------------------------------------------------------------------+
 
 The functions with this syntax are interactive command line functions that guide the user through the various parameters required and faciliates the user to input values for the needed parameters. In this set, there is a summary function (`ph_set_params`) that pulls together all the interactive command line functions and guides the user in specifying all the parameters.
 
