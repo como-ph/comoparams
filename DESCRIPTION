@@ -2,7 +2,7 @@ Package: comoparams
 Type: Package
 Title: R Utility Tool to Extract, Process and Structure Philippines-specific 
   Datasets for Use in CoMo Consortium Model
-Version: 0.1.0.9000
+Version: 0.1.1.9000
 Authors@R: c(person(given = "Ernest", family = "Guevarra", 
                     email = "ernest@guevarra.io", role = c("aut", "cre"),
                     comment = c(ORCID = "0000-0002-4887-4415")),
