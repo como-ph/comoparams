@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# comoparams: R utility tool to extract, process and structure Philippines-specific datasets for use in the CoMo Consortium Model
+# comoparams: R utility tool to extract, process and structure Philippines-specific datasets for use in the CoMo Consortium Model <img src="man/figures/comoparams.png" width="200px" align="right" />
 
 <!-- badges: start -->
 
