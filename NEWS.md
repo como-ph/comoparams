@@ -1,3 +1,14 @@
+# comoparams 0.1.1.9000
+
+* Revised README using tables
+
+* Updated vignette on CoMo model
+
+* Created new package hex sticker
+
+
+
+
 # comoparams 0.1.0.9000
 
 * Created pull data functions for the Department of Health COVID-19 Data Drop initially using a Google Sheets interface and then shifting to a Google Drive interface
@@ -16,8 +27,3 @@
 
 * Created CI/CD setup using Travis [![Travis build status](https://travis-ci.org/como-ph/comoparams.svg?branch=master)](https://travis-ci.org/como-ph/comoparams) and Appveyor [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/como-ph/comoparams?branch=master&svg=true)](https://ci.appveyor.com/project/como-ph/comoparams)
 
-# comoparams 0.1.1.9000
-
-* Revised README using tables
-
-* Updated vignette on CoMo model
