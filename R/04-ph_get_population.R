@@ -195,6 +195,15 @@ ph_get_wpp2019_births <- function(file,
   }
   ##
   df$birth <- as.numeric(df$birth) * 1000
+  ##
+  #df$age_category <- factor(x = df$age_category,
+  #                          levels = c("0-4 y.o.", "5-9 y.o.", "10-14 y.o.",
+  #                                     "15-19 y.o.", "20-24 y.o.", "25-29 y.o.",
+  #                                     "30-34 y.o.", "35-39 y.o.", "40-44 y.o.",
+  #                                     "45-49 y.o.", "50-54 y.o.", "55-59 y.o.",
+  #                                     "60-64 y.o.", "65-69 y.o.", "70-74 y.o.",
+  #                                     "75-79 y.o.", "80-84 y.o.", "85-89 y.o.",
+  #                                     "90-94 y.o.", "95-99 y.o.", "100+ y.o."))
   ## Convert df to tibble
   df <- tibble::tibble(df)
   ## Return df

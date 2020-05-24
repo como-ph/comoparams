@@ -42,10 +42,17 @@ ph_calculate_rates <- function(date = Sys.Date()) {
   cases <- 1
   admissions <- ifelse(df$Admitted != "Yes" | is.na(df$Admitted), 0, 1)
   deaths <- ifelse(df$RemovalType != "Died" | is.na(df$RemovalType), 0, 1)
-  deathsAdmitted <- ifelse(df$RemovalType != "Died" | is.na(df$RemovalType) | (df$RemovalType == "Died" & admissions == 0), 0, 1)
+  deathsAdmitted <- ifelse(df$RemovalType != "Died" |
+                             is.na(df$RemovalType) |
+                             (df$RemovalType == "Died" & admissions == 0), 0, 1)
   ##
-  casesDeaths <- stats::aggregate(cbind(deaths, deathsAdmitted, admissions, cases) ~ age_category,
-                                  data = data.frame(age_category, deaths, deathsAdmitted, cases),
+  casesDeaths <- stats::aggregate(cbind(deaths,
+                                        deathsAdmitted,
+                                        admissions, cases) ~ age_category,
+                                  data = data.frame(age_category,
+                                                    deaths,
+                                                    deathsAdmitted,
+                                                    cases),
                                   FUN = sum)
   ##
   ifr <- casesDeaths$deaths / casesDeaths$cases
@@ -55,4 +62,75 @@ ph_calculate_rates <- function(date = Sys.Date()) {
   casesDeaths <- data.frame(casesDeaths, ifr, ihr, hfr)
   ##
   return(casesDeaths)
+}
+
+
+################################################################################
+#
+#'
+#' Calculate probability of dying when hospitalised
+#'
+#' @param date Date in <YYYY-MM-DD> format; This is the date up to which
+#'   extracted data reports to. Default is current date (\code{Sys.Date()})
+#'
+#' @return Value for probability of dying when hospitalised.
+#'
+#' @examples
+#' ph_calculate_pdeath(date = "2020-04-17")
+#'
+#' @export
+#'
+#
+################################################################################
+
+ph_calculate_pdeath <- function(date = Sys.Date()) {
+  ## Get dataset
+  df <- ph_get_cases(date = date)
+  ## Recode cases and deaths
+  cases <- 1
+  admissions <- ifelse(df$Admitted != "Yes" | is.na(df$Admitted), 0, 1)
+  deaths <- ifelse(df$RemovalType != "Died" | is.na(df$RemovalType), 0, 1)
+  deathsAdmitted <- ifelse(df$RemovalType != "Died" |
+                             is.na(df$RemovalType) |
+                             (df$RemovalType == "Died" & admissions == 0), 0, 1)
+  ##
+  casesDeaths <- data.frame(cases, admissions, deaths, deathsAdmitted,
+                            stringsAsFactors = FALSE)
+  ##
+  pdeath <- stats::prop.test(x = colSums(casesDeaths)[4],
+                             n = colSums(casesDeaths)[2])
+  ##
+  #names(pdeath) <- "Probability of death when hospitalised"
+  ##
+  return(pdeath)
+}
+
+
+################################################################################
+#
+#'
+#' Duration of hospitalised infection
+#'
+#' @param date Date in <YYYY-MM-DD> format; This is the date up to which
+#'   extracted data reports to. Default is current date (\code{Sys.Date()})
+#'
+#' @return Value for duration of hospitalised infection.
+#'
+#' @examples
+#' ph_calculate_nus(date = "2020-04-17")
+#'
+#' @export
+#'
+#
+################################################################################
+
+ph_calculate_nus <- function(date = Sys.Date()) {
+  ## Get dataset
+  df <- ph_get_cases(date = date)
+  ##
+  x <- lubridate::dmy(df$DateRecover) - lubridate::dmy(df$DateRepConf)
+  ##
+  y <- stats::t.test(x)
+  ##
+  return(y)
 }
