@@ -17,6 +17,6 @@ Value for duration of hospitalised infection.
 Duration of hospitalised infection
 }
 \examples{
-ph_calculate_nus(date = "2020-04-17")
+ph_calculate_nus(date = "2020-05-20")
 
 }

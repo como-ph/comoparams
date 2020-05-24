@@ -117,7 +117,7 @@ ph_calculate_pdeath <- function(date = Sys.Date()) {
 #' @return Value for duration of hospitalised infection.
 #'
 #' @examples
-#' ph_calculate_nus(date = "2020-04-17")
+#' ph_calculate_nus(date = "2020-05-20")
 #'
 #' @export
 #'
@@ -128,7 +128,12 @@ ph_calculate_nus <- function(date = Sys.Date()) {
   ## Get dataset
   df <- ph_get_cases(date = date)
   ##
-  x <- lubridate::dmy(df$DateRecover) - lubridate::dmy(df$DateRepConf)
+  x <- tryCatch(lubridate::dmy(df$DateRecover) - lubridate::dmy(df$DateRepConf),
+                warning = function(e) e)
+  ##
+  if(any(class(x) == "warning")) {
+    x <- lubridate::ymd(df$DateRecover) - lubridate::ymd(df$DateRepConf)
+  }
   ##
   y <- stats::t.test(x)
   ##
