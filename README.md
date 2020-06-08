@@ -125,6 +125,9 @@ To pull the data on `cases` up to the current date, we use the function
 ph_get_cases()
 ```
 
+To pull the data on `cases` for up to 5 May 2020, we use the function
+`ph_get_cases()` as follows:
+
     #> # A tibble: 9,684 x 18
     #>    CaseCode   Age AgeGroup Sex   DateRepConf DateDied DateRecover RemovalType
     #>    <chr>    <int> <chr>    <chr> <chr>       <chr>    <chr>       <chr>      
@@ -271,16 +274,20 @@ following:
 linkToFile <- "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/EXCEL_FILES/2_Fertility/WPP2019_FERT_F06_BIRTHS_BY_AGE_OF_MOTHER.xlsx"
 
 ph_get_wpp2019_births(file = linkToFile, period = 2019)
-#> # A tibble: 7 x 4
-#>   area        year      age_category   birth
-#>   <chr>       <chr>     <chr>          <dbl>
-#> 1 Philippines 2015-2020 15-19 y.o.   1358136
-#> 2 Philippines 2015-2020 20-24 y.o.   2986917
-#> 3 Philippines 2015-2020 25-29 y.o.   2594038
-#> 4 Philippines 2015-2020 30-34 y.o.   2121630
-#> 5 Philippines 2015-2020 35-39 y.o.   1239266
-#> 6 Philippines 2015-2020 40-44 y.o.    488424
-#> 7 Philippines 2015-2020 45-49 y.o.    100986
+#> # A tibble: 21 x 4
+#>    area        year      age_category   birth
+#>    <fct>       <fct>     <fct>          <dbl>
+#>  1 Philippines 2015-2020 0-4 y.o.          NA
+#>  2 Philippines 2015-2020 5-9 y.o           NA
+#>  3 Philippines 2015-2020 10-14 y.o.        NA
+#>  4 Philippines 2015-2020 15-19 y.o.   1358136
+#>  5 Philippines 2015-2020 20-24 y.o.   2986917
+#>  6 Philippines 2015-2020 25-29 y.o.   2594038
+#>  7 Philippines 2015-2020 30-34 y.o.   2121630
+#>  8 Philippines 2015-2020 35-39 y.o.   1239266
+#>  9 Philippines 2015-2020 40-44 y.o.    488424
+#> 10 Philippines 2015-2020 45-49 y.o.    100986
+#> # … with 11 more rows
 ```
 
 To pull the number of deaths by 5-year age groups and by male and

@@ -35,7 +35,7 @@ This R package has been developed by the **CoMo-PH** group to support its effort
 
 `comoparams` is in active development and is currently only available to install via [GitHub](https://github.com/como-ph/comoparams):
 
-```{r install, echo = TRUE, eval = TRUE}
+```{r install, echo = TRUE, eval = FALSE}
 if(!requireNamespace("remotes")) install.packages("remotes")
 remotes::install_github("como-ph/comoparams")
 ```
@@ -79,6 +79,8 @@ To pull the data on `cases` up to the current date, we use the function `ph_get_
 ```{r pull1a, echo = TRUE, eval = FALSE}
 ph_get_cases()
 ```
+
+To pull the data on `cases` for up to 5 May 2020, we use the function `ph_get_cases()` as follows:
 
 ```{r pull1b, echo = FALSE, eval = TRUE}
 ph_get_cases(date = "2020-05-05")
