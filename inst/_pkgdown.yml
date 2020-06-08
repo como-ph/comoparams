@@ -12,6 +12,10 @@ reference:
   contents:
   - comoparams
 
+- title: Utility functions
+  contents:
+  - ph_gdrive_files
+
 - title: Pull data
   contents:
   - ph_get_fields
