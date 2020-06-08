@@ -6,7 +6,11 @@
 
 * Created new package hex sticker
 
+* Updated pull data functions to adapt to changes made by the Department of Health on the COVID-19 DataDrop Google Drive directory structure after 27 April 2020
 
+* Created new calculate functions for certain rates needed for model parameters: `ph_calcualte_pdeath()` for calculating probability of dying when hospitalised; `ph_calculate_nus()` for calculating duration of hospitalised infection
+
+* Updated pull functions for COVID-19 Data Drop to account for non-standard naming of directories in the Google Drive archives
 
 
 # comoparams 0.1.0.9000
