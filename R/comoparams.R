@@ -24,7 +24,7 @@
 #' @importFrom tibble tibble
 #' @importFrom utils read.csv tail download.file menu
 #' @importFrom lubridate %within% interval ymd ymd_hms year dmy days mdy
-#'   is.Date
+#'   is.Date parse_date_time month
 #' @importFrom openxlsx read.xlsx createWorkbook addWorksheet writeData
 #'   saveWorkbook getSheetNames
 #' @importFrom tidyr pivot_longer
