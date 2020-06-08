@@ -19,12 +19,12 @@
 #' @keywords internal
 #' @importFrom googledrive drive_deauth drive_get drive_ls
 #' @importFrom stringr str_remove_all str_replace_all str_to_title
-#' @importFrom stats aggregate
+#' @importFrom stats aggregate prop.test t.test
 #' @importFrom magrittr %>%
 #' @importFrom tibble tibble
 #' @importFrom utils read.csv tail download.file menu
 #' @importFrom lubridate %within% interval ymd ymd_hms year dmy days mdy
-#'   is.Date
+#'   is.Date parse_date_time month
 #' @importFrom openxlsx read.xlsx createWorkbook addWorksheet writeData
 #'   saveWorkbook getSheetNames
 #' @importFrom tidyr pivot_longer

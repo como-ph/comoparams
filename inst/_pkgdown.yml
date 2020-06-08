@@ -7,19 +7,14 @@ template:
     bootswatch: flatly
     ganalytics:
 
-#home:
-  #strip_header: true
-#  links:
-#  - text: Read more about the WHO Growth Standards
-#    href: https://www.who.int/childgrowth/en/
-#
-#  - text: Read more about MUAC-for-age z-scores development
-#    href: https://doi.org/10.1136/bmj.j3423
-
 reference:
 - title: Description
   contents:
   - comoparams
+
+- title: Utility functions
+  contents:
+  - ph_gdrive_files
 
 - title: Pull data
   contents:
@@ -36,6 +31,8 @@ reference:
   contents:
   - ph_calculate_cases
   - ph_calculate_rates
+  - ph_calculate_pdeath
+  - ph_calculate_nus
 
 - title: Set parameters
   contents:

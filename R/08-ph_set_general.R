@@ -158,7 +158,9 @@ ph_set_general <- function() {
           cat("\n")
         } else {
           ## Check if date is within plausible ending date for simulation
-          if(lubridate::dmy(date_range_simul_end) %within% startEnd) {
+          if(lubridate::dmy(date_range_simul_end) %within%
+             lubridate::interval(start = lubridate::dmy(date_range_simul_start),
+                                 end = Sys.Date())) {
             cat("\n")
             cat("Ending date should be beyond current date. Try again.\n")
             cat("\n")

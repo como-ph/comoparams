@@ -1,5 +1,62 @@
 ################################################################################
 #
+#' Get Department of Health COVID-19 Data Drop Google Drive specific directory
+#' information
+#'
+#' A wrapper to googledrive functions to extract information on contents of
+#' a specific COVID-19 Data Drop Google Drive directory
+#'
+#' @param date Date in <YYYY-MM-DD> format; This is the date up to which
+#'   extracted data reports to. Default is current date (\code{Sys.Date()}).
+#'   Data Drop started on 14 April 2020 so earliest date value that can be used
+#'   is 2020-04-14.
+#'
+#' @return A tibble containing information on the various files in a specified
+#'   COVID-19 Data Drop Google Drive directory
+#'
+#' @examples
+#' ph_gdrive_files(date = "2020-06-01")
+#'
+#' @export
+#'
+#'
+#
+################################################################################
+
+ph_gdrive_files <- function(date = Sys.Date()) {
+  ## Google Drive deauthorisation
+  googledrive::drive_deauth()
+
+  ## List contents of Data Drop Archive Google Drive Folder
+  dropArchive <- googledrive::drive_ls(googledrive::drive_get(id = "1w_O-vweBFbqCgzgmCpux2F0HVB4P6ni2"))
+
+  ## Get gdriveID based on date
+  dropArchiveMonth <- stringr::str_remove_all(string = dropArchive$name,
+                                              pattern = "DOH COVID-19 Data Drop \\(|\\)") %>%
+    lubridate::parse_date_time(orders = "my") %>%
+    lubridate::month()
+
+  gdriveID <- dropArchive$id[dropArchiveMonth == lubridate::month(lubridate::ymd(date))]
+
+  ## Process date
+  date <- stringr::str_remove_all(string = date, pattern = "-")
+
+  ## Get list of contents directory specified by gdriveID
+  w <- googledrive::drive_ls(googledrive::drive_get(id = gdriveID))
+
+  ## Get the unique identifier for directory for specified date
+  x <- w$id[stringr::str_extract(string = w$name, pattern = "[0-9]{8}$") == date]
+
+  ## Get listing of contents of specified directory
+  y <- googledrive::drive_ls(googledrive::drive_get(id = x))
+
+  ## Return list of contents
+  return(y)
+}
+
+
+################################################################################
+#
 #' Pull Philippines data fields information from the publicly available
 #' Department of Health COVID-19 Data Drop
 #'
@@ -42,26 +99,19 @@ ph_get_fields <- function(date = Sys.Date()) {
     }
   }
 
-  ## Determine which Google Drive ID to use
-  gdriveID <- ifelse(lubridate::month(lubridate::ymd(date)) == 4,
-                     "1-Jm64yuvkKjRkiDR4WDvz44jYlOH1aKv",
-                     "1PEJZur082d2oLp9ZWaBfp1sj5WIlVBRI")
+  ## Get list of contents of specified Google drive directory
+  y <- ph_gdrive_files(date = date)
 
-  ## Process date
-  date <- stringr::str_remove_all(string = date, pattern = "-")
-
-  ##
-  googledrive::drive_deauth()
-  w <- googledrive::drive_ls(googledrive::drive_get(id = gdriveID))
-  x <- w$id[w$name == paste("DOH COVID Data Drop_ ", date, sep = "")]
-  y <- googledrive::drive_ls(googledrive::drive_get(id = x))
+  ## Get identifier of Fields data
   z <- y$id[stringr::str_detect(string = y$name, pattern = "Fields.csv")]
 
-  ##
+  ## Read fields data CSV
   fields <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
+
+  ## Convert to tibble
   fields <- tibble::tibble(fields)
 
-  ##
+  ## Return dataset
   return(fields)
 }
 
@@ -97,7 +147,7 @@ ph_get_cases <- function(date = Sys.Date()) {
          call. = TRUE)
   }
 
-  ## Check curren time to see if current data downloadable
+  ## Check current time to see if current data downloadable
   if(date == Sys.Date()) {
     if(!lubridate::now(tzone = "UTC") %within%
        lubridate::interval(lubridate::ymd_hms(paste(Sys.Date(), "12:00:00 UTC")),
@@ -108,27 +158,20 @@ ph_get_cases <- function(date = Sys.Date()) {
     }
   }
 
-  ## Determine which Google Drive ID to use
-  gdriveID <- ifelse(lubridate::month(lubridate::ymd(date)) == 4,
-                     "1-Jm64yuvkKjRkiDR4WDvz44jYlOH1aKv",
-                     "1PEJZur082d2oLp9ZWaBfp1sj5WIlVBRI")
+  ## Get list of contents of specified Google Drive directory
+  y <- ph_gdrive_files(date = date)
 
-  ## Process date
-  date <- stringr::str_remove_all(string = date, pattern = "-")
-
-  ##
-  googledrive::drive_deauth()
-  w <- googledrive::drive_ls(googledrive::drive_get(id = gdriveID))
-  x <- w$id[w$name == paste("DOH COVID Data Drop_ ", date, sep = "")]
-  y <- googledrive::drive_ls(googledrive::drive_get(id = x))
+  ## Get unique identifier for Cases data
   z <- y$id[stringr::str_detect(string = y$name, pattern = "Case Information.csv")]
 
-  ##
+  ## Read Case Information CSV
   cases <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z),
                            stringsAsFactors = FALSE)
+
+  ## Convert to tibble
   cases <- tibble::tibble(cases)
 
-  ##
+  ## Return dataset
   return(cases)
 }
 
@@ -175,26 +218,19 @@ ph_get_tests <- function(date = Sys.Date()) {
     }
   }
 
-  ## Determine which Google Drive ID to use
-  gdriveID <- ifelse(lubridate::month(lubridate::ymd(date)) == 4,
-                     "1-Jm64yuvkKjRkiDR4WDvz44jYlOH1aKv",
-                     "1PEJZur082d2oLp9ZWaBfp1sj5WIlVBRI")
+  ## Get list of contents of specified Google Drive directory
+  y <- ph_gdrive_files(date = date)
 
-  ## Process date
-  date <- stringr::str_remove_all(string = date, pattern = "-")
-
-  ##
-  googledrive::drive_deauth()
-  w <- googledrive::drive_ls(googledrive::drive_get(id = gdriveID))
-  x <- w$id[w$name == paste("DOH COVID Data Drop_ ", date, sep = "")]
-  y <- googledrive::drive_ls(googledrive::drive_get(id = x))
+  ## Get unique identifier for testing aggregates dataset
   z <- y$id[stringr::str_detect(string = y$name, pattern = "Testing Aggregates.csv")]
 
-  ##
+  ## Read testing aggregates CSV
   tests <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
+
+  ## Convert to tibble
   tests <- tibble::tibble(tests)
 
-  ##
+  ## Return dataset
   return(tests)
 }
 
@@ -239,21 +275,20 @@ ph_get_daily <- function(date = Sys.Date()) {
            call. = TRUE)
     }
   }
-  ## Determine which Google Drive ID to use
-  gdriveID <- ifelse(lubridate::month(lubridate::ymd(date)) == 4,
-                     "1-Jm64yuvkKjRkiDR4WDvz44jYlOH1aKv",
-                     "1PEJZur082d2oLp9ZWaBfp1sj5WIlVBRI")
-  ## Process date
-  date <- stringr::str_remove_all(string = date, pattern = "-")
-  ##
-  googledrive::drive_deauth()
-  w <- googledrive::drive_ls(googledrive::drive_get(id = gdriveID))
-  x <- w$id[w$name == paste("DOH COVID Data Drop_ ", date, sep = "")]
-  y <- googledrive::drive_ls(googledrive::drive_get(id = x))
+
+  ## Get list of contents of specified Google Drive directory
+  y <- ph_gdrive_files(date = date)
+
+  ## Get unique identifier for Daily Report CSV
   z <- y$id[stringr::str_detect(string = y$name, pattern = "Daily Report.csv")]
-  ##
+
+  ## Read daily report CSV
   daily <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
+
+  ## Convert to tibble
   daily <- tibble::tibble(daily)
+
+  ## Return dataset
   return(daily)
 }
 

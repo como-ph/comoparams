@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Set Philippines-specific CoMo model simulation parameters for COVID-19 cases — ph_set_cases • comoparams</title>
+<title>Duration of hospitalised infection — ph_calculate_nus • comoparams</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Set Philippines-specific CoMo model simulation parameters for COVID-19 cases — ph_set_cases" />
-<meta property="og:description" content="Set Philippines-specific CoMo model simulation parameters for COVID-19 cases" />
+<meta property="og:title" content="Duration of hospitalised infection — ph_calculate_nus" />
+<meta property="og:description" content="Duration of hospitalised infection" />
 
 
 
@@ -123,25 +123,44 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Set Philippines-specific CoMo model simulation parameters for COVID-19 cases</h1>
-    <small class="dont-index">Source: <a href='https://github.com/como-ph/comoparams/blob/master/R/05-ph_set_cases.R'><code>R/05-ph_set_cases.R</code></a></small>
-    <div class="hidden name"><code>ph_set_cases.Rd</code></div>
+    <h1>Duration of hospitalised infection</h1>
+    <small class="dont-index">Source: <a href='https://github.com/como-ph/comoparams/blob/master/R/03-ph_calculate_rates.R'><code>R/03-ph_calculate_rates.R</code></a></small>
+    <div class="hidden name"><code>ph_calculate_nus.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Set Philippines-specific CoMo model simulation parameters for COVID-19 cases</p>
+    <p>Duration of hospitalised infection</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ph_set_cases</span>()</pre>
+    <pre class="usage"><span class='fu'>ph_calculate_nus</span>(<span class='kw'>date</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>())</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>date</th>
+      <td><p>Date in &lt;YYYY-MM-DD&gt; format; This is the date up to which
+extracted data reports to. Default is current date (<code><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date()</a></code>)</p></td>
+    </tr>
+    </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data.frame of Philippines-specific CoMo model parameters for
-  COVID-19 cases</p>
+    <p>Value for duration of hospitalised infection.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) <span class='fu'>ph_set_cases</span>()</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>ph_calculate_nus</span>(<span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"2020-05-20"</span>)</div><div class='output co'>#&gt; 
+#&gt; 	One Sample t-test
+#&gt; 
+#&gt; data:  x
+#&gt; t = 49.073 days, df = 1373, p-value &lt; 2.2e-16
+#&gt; alternative hypothesis: true mean is not equal to 0
+#&gt; 95 percent confidence interval:
+#&gt;  12.68155 days 13.73766 days
+#&gt; sample estimates:
+#&gt; Time difference of 13.20961 days
+#&gt; </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

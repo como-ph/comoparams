@@ -195,6 +195,23 @@ ph_get_wpp2019_births <- function(file,
   }
   ##
   df$birth <- as.numeric(df$birth) * 1000
+  ## Fill empty rows
+  xx <- data.frame(area = rep("Philippines", 3),
+                   year = period,
+                   age_category = c("0-4 y.o.", "5-9 y.o", "10-14 y.o."),
+                   birth = NA)
+  yy <- data.frame(area = rep("Philippines", 11),
+                   year = period,
+                   age_category = c("50-54 y.o.", "55-59 y.o.",
+                                    "60-64 y.o.", "65-69 y.o.",
+                                    "70-74 y.o.", "75-79 y.o.",
+                                    "80-84 y.o.", "85-89 y.o.",
+                                    "90-94 y.o.", "95-99 y.o.", "100+ y.o."),
+                   birth = NA)
+  ## Rename
+  names(xx) <- names(yy) <- c("area", "year", "age_category", "birth")
+  ## Concatenate data.frames
+  df <- rbind(xx, df, yy)
   ## Convert df to tibble
   df <- tibble::tibble(df)
   ## Return df

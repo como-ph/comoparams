@@ -17,17 +17,17 @@
 ph_set_cases <- function() {
   ## Check current date and time to see what date is the most recently
   ## available cases data
-  if(lubridate::now(tzone = "UTC") %within%
-     lubridate::interval(lubridate::ymd_hms(paste(Sys.Date(),
-                                                  "12:00:00 UTC",
-                                                  sep = " ")),
-                         lubridate::ymd_hms(paste(Sys.Date(),
-                                                  "23:59:59 UTC",
-                                                  sep = " ")))) {
-    refDate <- Sys.Date()
-  } else {
-    refDate <- lubridate::ymd(Sys.Date()) - lubridate::days(1)
-  }
+  #if(lubridate::now(tzone = "UTC") %within%
+  #   lubridate::interval(lubridate::ymd_hms(paste(Sys.Date(),
+  #                                                "12:00:00 UTC",
+  #                                                sep = " ")),
+  #                       lubridate::ymd_hms(paste(Sys.Date(),
+  #                                                "23:59:59 UTC",
+  #                                                sep = " ")))) {
+  #  refDate <- Sys.Date()
+  #} else {
+  #  refDate <- lubridate::ymd(Sys.Date()) - lubridate::days(1)
+  #}
 
   ## Header
   cat("================================================================================\n")
@@ -47,7 +47,8 @@ ph_set_cases <- function() {
     cat("Calculating cases...")
 
     ##
-    cases <- ph_calculate_cases(date = refDate)
+    #cases <- ph_calculate_cases(date = refDate)
+    cases <- ph_calculate_cases(date = "2020-05-18")
 
     ##
     cat("\n")

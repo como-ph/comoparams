@@ -44,9 +44,10 @@ ph_set_population <- function() {
                                    period = 2019)
 
     ##
-    pop <- merge(pop[ , c("age_category", "total")], birth[ , c("age_category", "birth")], by = "age_category", all.x = TRUE)
-    pop <- merge(pop[ , c("age_category", "total", "birth")], death[ , c("age_category", "death")], by = "age_category", all.x = TRUE)
-
+    pop <- data.frame(pop[ , c("area", "year", "age_category", "total")],
+                      birth[ , "birth"],
+                      death[ , "death"],
+                      stringsAsFactors = FALSE)
     ##
     cat("\n")
     cat("================================================================================\n")

@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">comoparams</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2.9000</span>
       </span>
     </div>
 
@@ -132,6 +132,7 @@
 <p>The output of these functions is a <code>tibble</code>.</p>
 <p>To pull the data on <code>cases</code> up to the current date, we use the function <code><a href="reference/ph_get_cases.html">ph_get_cases()</a></code> as follows:</p>
 <div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="reference/ph_get_cases.html">ph_get_cases</a></span>()</pre></div>
+<p>To pull the data on <code>cases</code> for up to 5 May 2020, we use the function <code><a href="reference/ph_get_cases.html">ph_get_cases()</a></code> as follows:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co">#&gt; # A tibble: 9,684 x 18</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt;    CaseCode   Age AgeGroup Sex   DateRepConf DateDied DateRecover RemovalType</span></a>
 <a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt;    &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt;      </span></a>
@@ -226,16 +227,20 @@
 <div class="sourceCode" id="cb8"><pre class="r"><span class="no">linkToFile</span> <span class="kw">&lt;-</span> <span class="st">"https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/EXCEL_FILES/2_Fertility/WPP2019_FERT_F06_BIRTHS_BY_AGE_OF_MOTHER.xlsx"</span>
 
 <span class="fu"><a href="reference/ph_get_wpp2019_births.html">ph_get_wpp2019_births</a></span>(<span class="kw">file</span> <span class="kw">=</span> <span class="no">linkToFile</span>, <span class="kw">period</span> <span class="kw">=</span> <span class="fl">2019</span>)
-<span class="co">#&gt; # A tibble: 7 x 4</span>
-<span class="co">#&gt;   area        year      age_category   birth</span>
-<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 Philippines 2015-2020 15-19 y.o.   1358136</span>
-<span class="co">#&gt; 2 Philippines 2015-2020 20-24 y.o.   2986917</span>
-<span class="co">#&gt; 3 Philippines 2015-2020 25-29 y.o.   2594038</span>
-<span class="co">#&gt; 4 Philippines 2015-2020 30-34 y.o.   2121630</span>
-<span class="co">#&gt; 5 Philippines 2015-2020 35-39 y.o.   1239266</span>
-<span class="co">#&gt; 6 Philippines 2015-2020 40-44 y.o.    488424</span>
-<span class="co">#&gt; 7 Philippines 2015-2020 45-49 y.o.    100986</span></pre></div>
+<span class="co">#&gt; # A tibble: 21 x 4</span>
+<span class="co">#&gt;    area        year      age_category   birth</span>
+<span class="co">#&gt;    &lt;fct&gt;       &lt;fct&gt;     &lt;fct&gt;          &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 Philippines 2015-2020 0-4 y.o.          NA</span>
+<span class="co">#&gt;  2 Philippines 2015-2020 5-9 y.o           NA</span>
+<span class="co">#&gt;  3 Philippines 2015-2020 10-14 y.o.        NA</span>
+<span class="co">#&gt;  4 Philippines 2015-2020 15-19 y.o.   1358136</span>
+<span class="co">#&gt;  5 Philippines 2015-2020 20-24 y.o.   2986917</span>
+<span class="co">#&gt;  6 Philippines 2015-2020 25-29 y.o.   2594038</span>
+<span class="co">#&gt;  7 Philippines 2015-2020 30-34 y.o.   2121630</span>
+<span class="co">#&gt;  8 Philippines 2015-2020 35-39 y.o.   1239266</span>
+<span class="co">#&gt;  9 Philippines 2015-2020 40-44 y.o.    488424</span>
+<span class="co">#&gt; 10 Philippines 2015-2020 45-49 y.o.    100986</span>
+<span class="co">#&gt; # … with 11 more rows</span></pre></div>
 <p>To pull the number of deaths by 5-year age groups and by male and female, we make a call for the following:</p>
 <div class="sourceCode" id="cb9"><pre class="r"><span class="no">linkToFile</span> <span class="kw">&lt;-</span> <span class="st">"https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/EXCEL_FILES/3_Mortality/WPP2019_MORT_F04_1_DEATHS_BY_AGE_BOTH_SEXES.xlsx"</span>
 
