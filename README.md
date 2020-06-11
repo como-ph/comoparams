@@ -22,12 +22,12 @@ addition, a user friendly application and interface is being developed
 to enable widespread utility.
 
 The CoMo-PH group is the Philippines country team that is supporting the
-use of the model specific to the Philppines as part of the **COVID-19
+use of the model specific to the Philippines as part of the **COVID-19
 International Modeling Consortium (CoMo Consortium)**.
 
 This R package has been developed by the **CoMo-PH** group to support
 its efforts in the collection of Philippines-specific and
-Philppines-appropriate data that will define the parameters used in the
+Philippines-appropriate data that will define the parameters used in the
 **CoMo Consortium Model** as applied to the Philippines. This package
 facilitates the processing of Philippines national and/or subnational
 input data and parameter values into data structures appropriate for use
@@ -74,7 +74,7 @@ Prospects 2019](https://population.un.org/wpp/).
 
 On the 14th of April 2020, the [Philippines Department of
 Health](https://www.doh.gov.ph) released publicly its data related to
-COVID-19 initally in Google Sheets format and subsequently as
+COVID-19 initially in Google Sheets format and subsequently as
 comma-separated value (CSV) files stored in Google Drive. There are 4
 functions in `comoparams` that interacts with the [Philippines COVID-19
 DataDrop](https://drive.google.com/drive/folders/10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP).
@@ -102,7 +102,7 @@ The syntax for this set of pull functions has a common prefix of
 above.
 
 All four functions in this set has one argument - `date` - which is the
-date (in <YYYY-MM-DD> format) up to which exracted data reports to. This
+date (in <YYYY-MM-DD> format) up to which exacted data reports to. This
 argument defaults to the current date as given by `Sys.Date()` and will
 only accept dates starting from 14 April 2020 when [COVID-19
 DataDrop](https://drive.google.com/drive/folders/10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP)
@@ -128,29 +128,32 @@ ph_get_cases()
 To pull the data on `cases` for up to 5 May 2020, we use the function
 `ph_get_cases()` as follows:
 
-    #> # A tibble: 9,684 x 18
-    #>    CaseCode   Age AgeGroup Sex   DateRepConf DateDied DateRecover RemovalType
-    #>    <chr>    <int> <chr>    <chr> <chr>       <chr>    <chr>       <chr>      
-    #>  1 C100119     31 30 to 34 Male  2020-04-12  ""       ""          ""         
-    #>  2 C100264     58 55 to 59 Male  2020-03-29  ""       ""          ""         
-    #>  3 C100648     34 30 to 34 Fema… 2020-04-16  ""       ""          ""         
-    #>  4 C100660     43 40 to 44 Fema… 2020-04-02  ""       "2020-04-2… ""         
-    #>  5 C100776     43 40 to 44 Male  2020-04-01  ""       ""          ""         
-    #>  6 C101015     79 75 to 79 Male  2020-04-03  ""       ""          ""         
-    #>  7 C101097     33 30 to 34 Male  2020-03-27  ""       ""          ""         
-    #>  8 C101232     31 30 to 34 Male  2020-03-21  ""       "2020-03-2… "Recovered"
-    #>  9 C101376     30 30 to 34 Male  2020-04-11  ""       ""          ""         
-    #> 10 C101483     40 40 to 44 Fema… 2020-04-14  ""       ""          ""         
-    #> # … with 9,674 more rows, and 10 more variables: DateRepRem <chr>,
-    #> #   Admitted <chr>, RegionRes <chr>, ProvRes <chr>, CityMunRes <chr>,
-    #> #   RegionPSGC <chr>, ProvPSGC <chr>, CityMuniPSGC <chr>, HealthStatus <chr>,
-    #> #   Quarantined <chr>
+``` r
+ph_get_cases(version = "archive", date = "2020-05-05")
+#> # A tibble: 9,684 x 18
+#>    CaseCode   Age AgeGroup Sex   DateRepConf DateDied DateRecover RemovalType
+#>    <chr>    <int> <chr>    <chr> <chr>       <chr>    <chr>       <chr>      
+#>  1 C100119     31 30 to 34 Male  2020-04-12  ""       ""          ""         
+#>  2 C100264     58 55 to 59 Male  2020-03-29  ""       ""          ""         
+#>  3 C100648     34 30 to 34 Fema… 2020-04-16  ""       ""          ""         
+#>  4 C100660     43 40 to 44 Fema… 2020-04-02  ""       "2020-04-2… ""         
+#>  5 C100776     43 40 to 44 Male  2020-04-01  ""       ""          ""         
+#>  6 C101015     79 75 to 79 Male  2020-04-03  ""       ""          ""         
+#>  7 C101097     33 30 to 34 Male  2020-03-27  ""       ""          ""         
+#>  8 C101232     31 30 to 34 Male  2020-03-21  ""       "2020-03-2… "Recovered"
+#>  9 C101376     30 30 to 34 Male  2020-04-11  ""       ""          ""         
+#> 10 C101483     40 40 to 44 Fema… 2020-04-14  ""       ""          ""         
+#> # … with 9,674 more rows, and 10 more variables: DateRepRem <chr>,
+#> #   Admitted <chr>, RegionRes <chr>, ProvRes <chr>, CityMunRes <chr>,
+#> #   RegionPSGC <chr>, ProvPSGC <chr>, CityMuniPSGC <chr>, HealthStatus <chr>,
+#> #   Quarantined <chr>
+```
 
 To pull the data on `cases` for up to 1 May 2020, we use the function
 `ph_get_cases()` as follows:
 
 ``` r
-ph_get_cases(date = "2020-05-01")
+ph_get_cases(version = "archive", date = "2020-05-01")
 #> # A tibble: 8,772 x 18
 #>    CaseCode   Age AgeGroup Sex   DateRepConf DateRecover DateDied RemovalType
 #>    <chr>    <int> <chr>    <chr> <chr>       <chr>       <chr>    <chr>      
@@ -172,14 +175,14 @@ ph_get_cases(date = "2020-05-01")
 
 The **pull data** set of functions in `comoparams` are helper functions
 that are called within the **calculate** set of functions to extract
-data needed to make specfic calculations needed for the actual **CoMo
+data needed to make specific calculations needed for the actual **CoMo
 Consortium Model**
 parameters.
 
 #### Pulling data from the Philippines Statistics Authority (PSA) 2015 Population Census (2015 POPCEN)
 
 The last Philippines census was in 2015. A 2020 census was planned but
-due to the COVID-19 pandemic, this is most likely goint to be put on
+due to the COVID-19 pandemic, this is most likely going to be put on
 hold. The [Philippines Statistics Authority
 (PSA)](http://www.psa.gov.ph) provides an XLSX file for its updated 2020
 population projections based on the 2015 POPCEN. This file is
@@ -276,7 +279,7 @@ linkToFile <- "https://population.un.org/wpp/Download/Files/1_Indicators%20(Stan
 ph_get_wpp2019_births(file = linkToFile, period = 2019)
 #> # A tibble: 21 x 4
 #>    area        year      age_category   birth
-#>    <fct>       <fct>     <fct>          <dbl>
+#>    <chr>       <chr>     <chr>          <dbl>
 #>  1 Philippines 2015-2020 0-4 y.o.          NA
 #>  2 Philippines 2015-2020 5-9 y.o           NA
 #>  3 Philippines 2015-2020 10-14 y.o.        NA
@@ -331,50 +334,222 @@ cases and deaths since the first reported case in the Philippines and
 The daily cases and deaths output can be produced as follows:
 
 ``` r
-ph_calculate_cases()
+ph_get_cases() %>% ph_calculate_cases()
+#>        repDate cases deaths
+#> 1   2020-01-01     0      0
+#> 2   2020-01-02     0      0
+#> 3   2020-01-03     0      0
+#> 4   2020-01-04     0      0
+#> 5   2020-01-05     0      0
+#> 6   2020-01-06     0      0
+#> 7   2020-01-07     0      0
+#> 8   2020-01-08     0      0
+#> 9   2020-01-09     0      0
+#> 10  2020-01-10     0      0
+#> 11  2020-01-11     0      0
+#> 12  2020-01-12     0      0
+#> 13  2020-01-13     0      0
+#> 14  2020-01-14     0      0
+#> 15  2020-01-15     0      0
+#> 16  2020-01-16     0      0
+#> 17  2020-01-17     0      0
+#> 18  2020-01-18     0      0
+#> 19  2020-01-19     0      0
+#> 20  2020-01-20     0      0
+#> 21  2020-01-21     0      0
+#> 22  2020-01-22     0      0
+#> 23  2020-01-23     0      0
+#> 24  2020-01-24     0      0
+#> 25  2020-01-25     0      0
+#> 26  2020-01-26     0      0
+#> 27  2020-01-27     0      0
+#> 28  2020-01-28     0      0
+#> 29  2020-01-29     0      0
+#> 30  2020-01-30     1      0
+#> 31  2020-01-31     0      0
+#> 32  2020-02-01     0      1
+#> 33  2020-02-02     0      0
+#> 34  2020-02-03     1      1
+#> 35  2020-02-04     0      0
+#> 36  2020-02-05     1      0
+#> 37  2020-02-06     0      0
+#> 38  2020-02-07     0      0
+#> 39  2020-02-08     0      0
+#> 40  2020-02-09     0      0
+#> 41  2020-02-10     0      0
+#> 42  2020-02-11     0      0
+#> 43  2020-02-12     0      0
+#> 44  2020-02-13     0      0
+#> 45  2020-02-14     0      0
+#> 46  2020-02-15     0      0
+#> 47  2020-02-16     0      0
+#> 48  2020-02-17     0      0
+#> 49  2020-02-18     0      0
+#> 50  2020-02-19     0      0
+#> 51  2020-02-20     0      0
+#> 52  2020-02-21     0      0
+#> 53  2020-02-22     0      0
+#> 54  2020-02-23     0      0
+#> 55  2020-02-24     0      0
+#> 56  2020-02-25     0      0
+#> 57  2020-02-26     0      0
+#> 58  2020-02-27     0      0
+#> 59  2020-02-28     0      0
+#> 60  2020-02-29     0      0
+#> 61  2020-03-01     0      0
+#> 62  2020-03-02     0      0
+#> 63  2020-03-03     0      0
+#> 64  2020-03-04     0      0
+#> 65  2020-03-05     0      0
+#> 66  2020-03-06     2      0
+#> 67  2020-03-07     1      0
+#> 68  2020-03-08     4      0
+#> 69  2020-03-09    14      0
+#> 70  2020-03-10     9      0
+#> 71  2020-03-11    16      3
+#> 72  2020-03-12     3      3
+#> 73  2020-03-13    12      4
+#> 74  2020-03-14    47      5
+#> 75  2020-03-15    29      6
+#> 76  2020-03-16     2      5
+#> 77  2020-03-17    45     12
+#> 78  2020-03-18    15      9
+#> 79  2020-03-19    15     14
+#> 80  2020-03-20    13     16
+#> 81  2020-03-21    77     14
+#> 82  2020-03-22    73     22
+#> 83  2020-03-23    82     30
+#> 84  2020-03-24    90     23
+#> 85  2020-03-25    84     23
+#> 86  2020-03-26    70     33
+#> 87  2020-03-27   102     38
+#> 88  2020-03-28   267     32
+#> 89  2020-03-29   343     29
+#> 90  2020-03-30   128     38
+#> 91  2020-03-31   538     25
+#> 92  2020-04-01   227     26
+#> 93  2020-04-02   322     24
+#> 94  2020-04-03   385     17
+#> 95  2020-04-04    76     26
+#> 96  2020-04-05   152     21
+#> 97  2020-04-06   414     18
+#> 98  2020-04-07   104     15
+#> 99  2020-04-08   106     18
+#> 100 2020-04-09   206     18
+#> 101 2020-04-10   119     18
+#> 102 2020-04-11   233     21
+#> 103 2020-04-12   220     14
+#> 104 2020-04-13   284     16
+#> 105 2020-04-14   291     11
+#> 106 2020-04-15   230     18
+#> 107 2020-04-16   207      2
+#> 108 2020-04-17   218      8
+#> 109 2020-04-18   209     13
+#> 110 2020-04-19   172      8
+#> 111 2020-04-20   200     13
+#> 112 2020-04-21   140     10
+#> 113 2020-04-22   111     11
+#> 114 2020-04-23   271     14
+#> 115 2020-04-24   211      7
+#> 116 2020-04-25   102      6
+#> 117 2020-04-26   285      6
+#> 118 2020-04-27   198     16
+#> 119 2020-04-28   181      3
+#> 120 2020-04-29   254      8
+#> 121 2020-04-30   276      7
+#> 122 2020-05-01   284      4
+#> 123 2020-05-02   156      5
+#> 124 2020-05-03   295      8
+#> 125 2020-05-04   262      7
+#> 126 2020-05-05   199      5
+#> 127 2020-05-06   321     11
+#> 128 2020-05-07   338      5
+#> 129 2020-05-08   120      2
+#> 130 2020-05-09   147     14
+#> 131 2020-05-10   184      4
+#> 132 2020-05-11   292      6
+#> 133 2020-05-12   264      5
+#> 134 2020-05-13   268      8
+#> 135 2020-05-14   258      8
+#> 136 2020-05-15   215      8
+#> 137 2020-05-16   214      7
+#> 138 2020-05-17   208      2
+#> 139 2020-05-18   205      3
+#> 140 2020-05-19   224     11
+#> 141 2020-05-20   279      2
+#> 142 2020-05-21   213      4
+#> 143 2020-05-22   163      6
+#> 144 2020-05-23   180      4
+#> 145 2020-05-24   258      1
+#> 146 2020-05-25   284      2
+#> 147 2020-05-26   350      4
+#> 148 2020-05-27   380      1
+#> 149 2020-05-28   539      1
+#> 150 2020-05-29  1046      1
+#> 151 2020-05-30   590      1
+#> 152 2020-05-31   862      0
+#> 153 2020-06-01   552      1
+#> 154 2020-06-02   359      0
+#> 155 2020-06-03   751      0
+#> 156 2020-06-04   634      1
+#> 157 2020-06-05   244      0
+#> 158 2020-06-06   714      0
+#> 159 2020-06-07   555      1
+#> 160 2020-06-08   579      0
+#> 161 2020-06-09   518      0
+#> 162 2020-06-10   740      0
+#> 163 2020-06-11     0      0
 ```
 
-    #>       repDate cases deaths
-    #> 1  2020-01-01     0      0
-    #> 2  2020-01-02     0      0
-    #> 3  2020-01-03     0      0
-    #> 4  2020-01-04     0      0
-    #> 5  2020-01-05     0      0
-    #> 6  2020-01-06     0      0
-    #> 7  2020-01-07     0      0
-    #> 8  2020-01-08     0      0
-    #> 9  2020-01-09     0      0
-    #> 10 2020-01-10     0      0
-
-The IFR and IHR output can be produced as
-    follows:
+The IFR and IHR output can be produced as follows:
 
 ``` r
-ph_calculate_rates()
+ph_get_cases() %>% ph_calculate_rates()
+#>    age_category deaths deathsAdmitted admissions cases         ifr        ihr
+#> 1      0-5 y.o.     11              4         71   432 0.025462963 0.16435185
+#> 2     5-10 y.o.      2              2         23   257 0.007782101 0.08949416
+#> 3    10-15 y.o.      2              2         27   409 0.004889976 0.06601467
+#> 4    15-20 y.o.      9              7         68   638 0.014106583 0.10658307
+#> 5    20-25 y.o.      3              3        255  1800 0.001666667 0.14166667
+#> 6    25-30 y.o.     15              5        454  2853 0.005257624 0.15913074
+#> 7    30-35 y.o.     12              7        545  3078 0.003898635 0.17706303
+#> 8    35-40 y.o.     26             16        389  2333 0.011144449 0.16673811
+#> 9    40-45 y.o.     45             29        378  2150 0.020930233 0.17581395
+#> 10   45-50 y.o.     46             29        432  2032 0.022637795 0.21259843
+#> 11   50-55 y.o.     74             54        425  1824 0.040570175 0.23300439
+#> 12   55-60 y.o.    101             67        466  1677 0.060226595 0.27787716
+#> 13   60-65 y.o.    164            113        494  1397 0.117394417 0.35361489
+#> 14   65-70 y.o.    147            103        459  1061 0.138548539 0.43261074
+#> 15   70-75 y.o.    143             98        353   785 0.182165605 0.44968153
+#> 16   75-80 y.o.     97             67        201   444 0.218468468 0.45270270
+#> 17   80-85 y.o.     71             52        124   263 0.269961977 0.47148289
+#> 18   85-90 y.o.     37             31         65   121 0.305785124 0.53719008
+#> 19   90-95 y.o.     15              8         17    37 0.405405405 0.45945946
+#> 20  95-100 y.o.      5              5          7    11 0.454545455 0.63636364
+#> 21    100+ y.o.      2              1          3   130 0.015384615 0.02307692
+#>           hfr
+#> 1  0.05633803
+#> 2  0.08695652
+#> 3  0.07407407
+#> 4  0.10294118
+#> 5  0.01176471
+#> 6  0.01101322
+#> 7  0.01284404
+#> 8  0.04113111
+#> 9  0.07671958
+#> 10 0.06712963
+#> 11 0.12705882
+#> 12 0.14377682
+#> 13 0.22874494
+#> 14 0.22440087
+#> 15 0.27762040
+#> 16 0.33333333
+#> 17 0.41935484
+#> 18 0.47692308
+#> 19 0.47058824
+#> 20 0.71428571
+#> 21 0.33333333
 ```
-
-    #>    age_category deaths deathsAdmitted admissions cases         ifr       ihr
-    #> 1      0-5 y.o.      2              2         49    93 0.021505376 0.5268817
-    #> 2     5-10 y.o.      1              1         29    71 0.014084507 0.4084507
-    #> 3    10-15 y.o.      1              1         21    80 0.012500000 0.2625000
-    #> 4    15-20 y.o.      5              4         59   165 0.030303030 0.3575758
-    #> 5    20-25 y.o.      2              2        282   583 0.003430532 0.4837050
-    #> 6    25-30 y.o.      4              3        545  1070 0.003738318 0.5093458
-    #> 7    30-35 y.o.      7              6        597  1134 0.006172840 0.5264550
-    #> 8    35-40 y.o.     10              9        422   810 0.012345679 0.5209877
-    #> 9    40-45 y.o.     24             16        402   738 0.032520325 0.5447154
-    #> 10   45-50 y.o.     29             25        464   805 0.036024845 0.5763975
-    #>            hfr
-    #> 1  0.040816327
-    #> 2  0.034482759
-    #> 3  0.047619048
-    #> 4  0.067796610
-    #> 5  0.007092199
-    #> 6  0.005504587
-    #> 7  0.010050251
-    #> 8  0.021327014
-    #> 9  0.039800995
-    #> 10 0.053879310
 
 As mentioned earlier, these two functions use the pull functions for the
 Philippines COVID-19 DataDrop (described above) to pull the cases
@@ -395,29 +570,29 @@ defined or set. This syntax applies to 18 of the 19 functions in the
 set. The descriptors
 are:
 
-| **Descriptor**  | **Definition**                                                                                                                                                         |
-| :-------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `cases`         | Set the *cases parameters* using the `ph_calculate_cases()` function to process, calculate and output the cases data in the appropriate parameters format.             |
-| `severe`        | Set the *severty-mortality parameters* using the `ph_calculate_rates()` function to process, calculate and output the cases data in the appropriate parameters format. |
-| `population`    | Set the *populations parameters* using the `ph_get_population()` function to process and output the population data in the appropriate parameters format.              |
-| `general`       | Set the *general* and *country parameters*                                                                                                                             |
-| `virus`         | Set the *virus parameters*                                                                                                                                             |
-| `hospital`      | Set the *hospitalisation parameters*                                                                                                                                   |
-| `lockdown`      | Set the *lockdown intervention parameters*                                                                                                                             |
-| `isolation`     | Set the *self-isolation interveniton parameters*                                                                                                                       |
-| `distancing`    | Set the *social distancing interveniton parameters*                                                                                                                    |
-| `handwashing`   | Set the *handwashing intervention parameters*                                                                                                                          |
-| `work`          | Set the *work from home intervention parameters*                                                                                                                       |
-| `school`        | Set the *schools closure intervention parameters*                                                                                                                      |
-| `elderly`       | Set the *shielding the elderly interveniton parameters*                                                                                                                |
-| `travel`        | Set the *travel ban intervention parameters*                                                                                                                           |
-| `quarantine`    | Set the *voluntary home quarantine parameters*                                                                                                                         |
-| `vaccination`   | Set the *vaccination interveniton parameters*                                                                                                                          |
-| `interventions` | Set all the *intervention parameters* using all the single intervention paramter setting functions                                                                     |
+| **Descriptor**  | **Definition**                                                                                                                                                          |
+| :-------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `cases`         | Set the *cases parameters* using the `ph_calculate_cases()` function to process, calculate and output the cases data in the appropriate parameters format.              |
+| `severe`        | Set the *severity-mortality parameters* using the `ph_calculate_rates()` function to process, calculate and output the cases data in the appropriate parameters format. |
+| `population`    | Set the *populations parameters* using the `ph_get_population()` function to process and output the population data in the appropriate parameters format.               |
+| `general`       | Set the *general* and *country parameters*                                                                                                                              |
+| `virus`         | Set the *virus parameters*                                                                                                                                              |
+| `hospital`      | Set the *hospitalisation parameters*                                                                                                                                    |
+| `lockdown`      | Set the *lockdown intervention parameters*                                                                                                                              |
+| `isolation`     | Set the *self-isolation intervention parameters*                                                                                                                        |
+| `distancing`    | Set the *social distancing intervention parameters*                                                                                                                     |
+| `handwashing`   | Set the *handwashing intervention parameters*                                                                                                                           |
+| `work`          | Set the *work from home intervention parameters*                                                                                                                        |
+| `school`        | Set the *schools closure intervention parameters*                                                                                                                       |
+| `elderly`       | Set the *shielding the elderly intervention parameters*                                                                                                                 |
+| `travel`        | Set the *travel ban intervention parameters*                                                                                                                            |
+| `quarantine`    | Set the *voluntary home quarantine parameters*                                                                                                                          |
+| `vaccination`   | Set the *vaccination intervention parameters*                                                                                                                           |
+| `interventions` | Set all the *intervention parameters* using all the single intervention parameter setting functions                                                                     |
 
 The functions with this syntax are interactive command line functions
 that guide the user through the various parameters required and
-faciliates the user to input values for the needed parameters. In this
+facilitates the user to input values for the needed parameters. In this
 set, there is a summary function (`ph_set_params`) that pulls together
 all the interactive command line functions and guides the user in
 specifying all the parameters.
