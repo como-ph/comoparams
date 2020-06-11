@@ -39,7 +39,8 @@ ph_gdrive_files <- function(version = "current", date = NULL) {
 
   readme <- pdftools::pdf_text(pdf = destFile) %>%
     stringr::str_split(pattern = "\n") %>%
-    unlist()
+    unlist() %>%
+    stringr::str_remove_all(pattern = "\r")
 
   x <- stringr::word(readme[stringr::str_detect(string = readme, pattern = "bit.ly/*")][1], -1) %>%
     decode_short_url() %>%
