@@ -11,8 +11,7 @@
 #'   requirements.
 #'
 #' @examples
-#' df <- ph_get_cases()
-#' ph_calculate_cases(df = df)
+#' ph_calculate_cases(df = ph_get_cases())
 #'
 #' @export
 #'
