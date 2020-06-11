@@ -11,6 +11,7 @@ maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www
 status](https://travis-ci.org/como-ph/comoparams.svg?branch=master)](https://travis-ci.org/como-ph/comoparams)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/como-ph/comoparams?branch=master&svg=true)](https://ci.appveyor.com/project/como-ph/comoparams)
+![R-CMD-check](https://github.com/como-ph/comoparams/workflows/R-CMD-check/badge.svg)
 [![DOI](https://zenodo.org/badge/255850150.svg)](https://zenodo.org/badge/latestdoi/255850150)
 <!-- badges: end -->
 
@@ -279,7 +280,7 @@ linkToFile <- "https://population.un.org/wpp/Download/Files/1_Indicators%20(Stan
 ph_get_wpp2019_births(file = linkToFile, period = 2019)
 #> # A tibble: 21 x 4
 #>    area        year      age_category   birth
-#>    <chr>       <chr>     <chr>          <dbl>
+#>    <fct>       <fct>     <fct>          <dbl>
 #>  1 Philippines 2015-2020 0-4 y.o.          NA
 #>  2 Philippines 2015-2020 5-9 y.o           NA
 #>  3 Philippines 2015-2020 10-14 y.o.        NA
