@@ -15,6 +15,7 @@ reference:
 - title: Utility functions
   contents:
   - ph_gdrive_files
+  - decode_short_url
 
 - title: Pull data
   contents:
