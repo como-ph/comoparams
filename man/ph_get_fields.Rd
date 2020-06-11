@@ -5,13 +5,16 @@
 \title{Pull Philippines data fields information from the publicly available
 Department of Health COVID-19 Data Drop}
 \usage{
-ph_get_fields(date = Sys.Date())
+ph_get_fields(version = "current", date = NULL)
 }
 \arguments{
+\item{version}{A character value specifying whether to get the most
+currently available dataset (\code{"current"}) or to get archive data
+(\code{"archive"}). Default to \code{"current"}}
+
 \item{date}{Date in <YYYY-MM-DD> format; This is the date up to which
-extracted data reports to. Default is current date (\code{Sys.Date()}).
-Data Drop started on 14 April 2020 so earliest date value that can be used
-is 2020-04-14.}
+extracted data reports to. Only used when \code{version} is set to
+\code{"archive"} otherwise ignored.}
 }
 \value{
 A tibble of metadata for the fields used in the various datasets
@@ -23,6 +26,6 @@ Philppines' COVID-19 Data Drop resource that is publicly distributed via
 Google Drive
 }
 \examples{
-ph_get_fields(date = "2020-04-17")
+ph_get_fields()
 
 }

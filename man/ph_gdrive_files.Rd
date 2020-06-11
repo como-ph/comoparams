@@ -5,13 +5,16 @@
 \title{Get Department of Health COVID-19 Data Drop Google Drive specific directory
 information}
 \usage{
-ph_gdrive_files(date = Sys.Date())
+ph_gdrive_files(version = "current", date = NULL)
 }
 \arguments{
+\item{version}{A character value specifying whether to get the most
+currently available dataset (\code{"current"}) or to get archive data
+(\code{"archive"}). Default to \code{"current"}}
+
 \item{date}{Date in <YYYY-MM-DD> format; This is the date up to which
-extracted data reports to. Default is current date (\code{Sys.Date()}).
-Data Drop started on 14 April 2020 so earliest date value that can be used
-is 2020-04-14.}
+extracted data reports to. Only used when \code{version} is set to
+\code{"archive"} otherwise ignored.}
 }
 \value{
 A tibble containing information on the various files in a specified
@@ -22,6 +25,6 @@ A wrapper to googledrive functions to extract information on contents of
 a specific COVID-19 Data Drop Google Drive directory
 }
 \examples{
-ph_gdrive_files(date = "2020-06-01")
+ph_gdrive_files()
 
 }

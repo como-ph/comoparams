@@ -4,11 +4,11 @@
 \alias{ph_calculate_cases}
 \title{Calculate daily cases and daily deaths from Philippines COVID-19 Data Drop}
 \usage{
-ph_calculate_cases(date = Sys.Date())
+ph_calculate_cases(df)
 }
 \arguments{
-\item{date}{Date in <YYYY-MM-DD> format; This is the date up to which
-extracted data reports to. Default is current date (\code{Sys.Date()})}
+\item{df}{A data.frame of cases data pulled from the Philippines COVID-19
+Data Drop.}
 }
 \value{
 A data.frame with calculated number of cases per and number of deaths
@@ -19,6 +19,7 @@ A data.frame with calculated number of cases per and number of deaths
 Calculate daily cases and daily deaths from Philippines COVID-19 Data Drop
 }
 \examples{
-ph_calculate_cases(date = "2020-04-17")
+df <- ph_get_cases()
+ph_calculate_cases(df = df)
 
 }

@@ -5,11 +5,11 @@
 \title{Calculate infection fatality rate (IFR), infection hospitalisation rate, and
 hospitalisation fatality rate (HFR) from Philippines data}
 \usage{
-ph_calculate_rates(date = Sys.Date())
+ph_calculate_rates(df)
 }
 \arguments{
-\item{date}{Date in <YYYY-MM-DD> format; This is the date up to which
-extracted data reports to. Default is current date (\code{Sys.Date()})}
+\item{df}{A data.frame of cases data pulled from the Philippines COVID-19
+Data Drop.}
 }
 \value{
 A data.frame with calculated IHR, IFR, and HFR by age group structure
@@ -20,6 +20,7 @@ Calculate infection fatality rate (IFR), infection hospitalisation rate, and
 hospitalisation fatality rate (HFR) from Philippines data
 }
 \examples{
-ph_calculate_rates(date = "2020-04-17")
+df <- ph_get_cases()
+ph_calculate_rates(df = df)
 
 }

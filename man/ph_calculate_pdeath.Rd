@@ -4,11 +4,11 @@
 \alias{ph_calculate_pdeath}
 \title{Calculate probability of dying when hospitalised}
 \usage{
-ph_calculate_pdeath(date = Sys.Date())
+ph_calculate_pdeath(df)
 }
 \arguments{
-\item{date}{Date in <YYYY-MM-DD> format; This is the date up to which
-extracted data reports to. Default is current date (\code{Sys.Date()})}
+\item{df}{A data.frame of cases data pulled from the Philippines COVID-19
+Data Drop.}
 }
 \value{
 Value for probability of dying when hospitalised.
@@ -17,6 +17,7 @@ Value for probability of dying when hospitalised.
 Calculate probability of dying when hospitalised
 }
 \examples{
-ph_calculate_pdeath(date = "2020-04-17")
+df <- ph_get_cases()
+ph_calculate_pdeath(df = df)
 
 }
