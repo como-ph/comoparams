@@ -4,11 +4,11 @@
 \alias{ph_calculate_nus}
 \title{Duration of hospitalised infection}
 \usage{
-ph_calculate_nus(date = Sys.Date())
+ph_calculate_nus(df)
 }
 \arguments{
-\item{date}{Date in <YYYY-MM-DD> format; This is the date up to which
-extracted data reports to. Default is current date (\code{Sys.Date()})}
+\item{df}{A data.frame of cases data pulled from the Philippines COVID-19
+Data Drop.}
 }
 \value{
 Value for duration of hospitalised infection.
@@ -17,6 +17,7 @@ Value for duration of hospitalised infection.
 Duration of hospitalised infection
 }
 \examples{
-ph_calculate_nus(date = "2020-05-20")
+df <- ph_get_cases()
+ph_calculate_nus(df = df)
 
 }

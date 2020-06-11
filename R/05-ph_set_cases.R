@@ -48,7 +48,7 @@ ph_set_cases <- function() {
 
     ##
     #cases <- ph_calculate_cases(date = refDate)
-    cases <- ph_calculate_cases(date = "2020-05-18")
+    cases <- ph_get_cases() %>% ph_calculate_cases()
 
     ##
     cat("\n")

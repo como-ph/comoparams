@@ -30,7 +30,10 @@ Imports:
     lubridate,
     openxlsx,
     tidyr,
-    dplyr
+    dplyr,
+    RCurl,
+    pdftools,
+    curl
 Suggests: 
     knitr,
     rmarkdown
@@ -40,4 +43,3 @@ RoxygenNote: 7.1.0
 VignetteBuilder: knitr
 URL: https://github.com/como-ph/comoparams,https://como-ph.github.io/comoparams
 BugReports: https://github.com/como-ph/comoparams/issues
-

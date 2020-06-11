@@ -5,11 +5,16 @@
 \title{Pull Philippines data on testing aggregates from the publicly available
 Department of Health COVID-19 Data Drop}
 \usage{
-ph_get_tests(date = Sys.Date())
+ph_get_tests(version = "current", date = NULL)
 }
 \arguments{
+\item{version}{A character value specifying whether to get the most
+currently available dataset (\code{"current"}) or to get archive data
+(\code{"archive"}). Default to \code{"current"}}
+
 \item{date}{Date in <YYYY-MM-DD> format; This is the date up to which
-extracted data reports to. Default is current date (\code{Sys.Date()})}
+extracted data reports to. Only used when \code{version} is set to
+\code{"archive"} otherwise ignored.}
 }
 \value{
 A tibble of case information on testing aggregates distributed
@@ -21,6 +26,6 @@ Philppines' COVID-19 Data Drop resource that is publicly distributed via
 Google Drive
 }
 \examples{
-ph_get_tests(date = "2020-04-17")
+ph_get_tests()
 
 }

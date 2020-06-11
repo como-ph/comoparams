@@ -49,7 +49,7 @@ ph_set_severe <- function() {
 
     ##
     #sm <- ph_calculate_rates(date = refDate)
-    sm <- ph_calculate_rates(date = "2020-05-18")
+    sm <- ph_get_cases() %>% ph_calculate_cases()
 
     ##
     cat("\n")
