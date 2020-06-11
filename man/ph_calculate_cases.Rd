@@ -2,7 +2,8 @@
 % Please edit documentation in R/02-ph_calculate_cases.R
 \name{ph_calculate_cases}
 \alias{ph_calculate_cases}
-\title{Calculate daily cases and daily deaths from Philippines COVID-19 Data Drop}
+\title{Calculate daily cases, daily deaths and daily recoveries from Philippines
+COVID-19 Data Drop}
 \usage{
 ph_calculate_cases(df)
 }
@@ -11,15 +12,15 @@ ph_calculate_cases(df)
 Data Drop.}
 }
 \value{
-A data.frame with calculated number of cases per and number of deaths
-  per day with structure consistent with CoMo model data structure
-  requirements.
+A data.frame with calculated number of cases per day and number
+  of deaths per day and number of recovered per day with structure consistent
+  with CoMo model data structure requirements.
 }
 \description{
-Calculate daily cases and daily deaths from Philippines COVID-19 Data Drop
+Calculate daily cases, daily deaths and daily recoveries from Philippines
+COVID-19 Data Drop
 }
 \examples{
-df <- ph_get_cases()
-ph_calculate_cases(df = df)
+ph_calculate_cases(df = ph_get_cases())
 
 }
