@@ -29,23 +29,44 @@ ph_gdrive_files <- function(version = "current", date = NULL) {
   ## Google Drive deauthorisation
   googledrive::drive_deauth()
 
-  dropCurrent <- googledrive::drive_ls(googledrive::drive_get(id = "1ZPPcVU4M7T-dtRyUceb0pMAd8ickYf8o"))$id
+  ## Get current data link folder information and contents
+  dropCurrent <- googledrive::drive_ls(googledrive::drive_get(id = "1ZPPcVU4M7T-dtRyUceb0pMAd8ickYf8o"))
 
+  ## Get dropDate
+  dropDate <- stringr::str_extract(string = dropCurrent$name,
+                                   pattern = "[0-9]{2}/[0-9]{2}") %>%
+    paste("2020", sep = "/") %>%
+    lubridate::mdy()
+
+  ## Provide message to user
+  message(
+    paste("Getting information on Google Drive directory structure for latest available data up to ",
+          dropDate, ".", sep = "")
+  )
+
+  ## Create temporary file
   destFile <- tempfile()
 
-  link <- sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", dropCurrent)
+  ## Create link for download of README
+  link <- sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download",
+                  dropCurrent$id)
 
+  ## Download README to temp directory
   curl::curl_download(url = link, destfile = destFile)
 
+  ## Extract information from PDF on link to folder of current data
   readme <- pdftools::pdf_text(pdf = destFile) %>%
     stringr::str_split(pattern = "\n|\r\n") %>%
     unlist()
 
-  x <- stringr::word(readme[stringr::str_detect(string = readme, pattern = "bit.ly/*")][1], -1) %>%
+  ## Ged id for current data google drive folder
+  x <- stringr::word(readme[stringr::str_detect(string = readme,
+                                                pattern = "bit.ly/*")][1], -1) %>%
     decode_short_url() %>%
     stringr::str_split(pattern = "/|\\?") %>%
     unlist()
 
+  ## Get google drive directory sturcture and information
   y <- googledrive::drive_ls(googledrive::drive_get(id = x[6]))
 
   if(version == "archive") {
@@ -62,7 +83,7 @@ ph_gdrive_files <- function(version = "current", date = NULL) {
     ## Check whether date is within range
     if(!lubridate::ymd(date) %within% lubridate::interval(lubridate::ymd("2020-04-14"), Sys.Date())) {
       stop("Earliest COVID-19 Data Drop record is for 2020-04-14.
-         Only provide dates as early as 2020-04-14 or later. Try again.",
+         Only provide dates as early as 2020-04-14 or later. Please try again.",
            call. = TRUE)
     }
 
@@ -123,24 +144,6 @@ ph_gdrive_files <- function(version = "current", date = NULL) {
 ################################################################################
 
 ph_get_fields <- function(version = "current", date = NULL) {
-  ## Check whether date is within range
-  #if(!lubridate::ymd(date) %within% lubridate::interval(lubridate::ymd("2020-04-14"), Sys.Date())) {
-  #  stop("Earliest COVID-19 Data Drop record is for 2020-04-14.
-  #       Only provide dates as early as 2020-04-14 or later. Try again.",
-  #       call. = TRUE)
-  #}
-
-  ## Check curren time to see if current data downloadable
-  #if(date == Sys.Date()) {
-  #  if(!lubridate::now(tzone = "UTC") %within%
-  #     lubridate::interval(lubridate::ymd_hms(paste(Sys.Date(), "12:00:00 UTC")),
-  #                         lubridate::ymd_hms(paste(Sys.Date(), "23:59:59 UTC")))) {
-  #    stop("COVID-19 Data Drop is updated everyday at 16:00 Philippines Standard Time.
-  #         Try again later for today's data drop or try yesterday's data drop.",
-  #         call. = TRUE)
-  #  }
-  #}
-
   ## Get list of contents of specified Google drive directory
   y <- ph_gdrive_files(version = version, date = date)
 
@@ -186,24 +189,6 @@ ph_get_fields <- function(version = "current", date = NULL) {
 ################################################################################
 
 ph_get_cases <- function(version = "current", date = NULL) {
-  ## Check whether date is within range
-  #if(!lubridate::ymd(date) %within% lubridate::interval(lubridate::ymd("2020-04-14"), Sys.Date())) {
-  #  stop("Earliest COVID-19 Data Drop record is for 2020-04-14.
-  #       Only provide dates as early as 2020-04-14 or later. Try again.",
-  #       call. = TRUE)
-  #}
-
-  ## Check current time to see if current data downloadable
-  #if(date == Sys.Date()) {
-  #  if(!lubridate::now(tzone = "UTC") %within%
-  #     lubridate::interval(lubridate::ymd_hms(paste(Sys.Date(), "12:00:00 UTC")),
-  #                         lubridate::ymd_hms(paste(Sys.Date(), "23:59:59 UTC")))) {
-  #    stop("COVID-19 Data Drop is updated everyday at 16:00 Philippines Standard Time.
-  #         Try again later for today's data drop or try yesterday's data drop.",
-  #         call. = TRUE)
-  #  }
-  #}
-
   ## Get list of contents of specified Google Drive directory
   y <- ph_gdrive_files(version = version, date = date)
 
@@ -258,24 +243,6 @@ ph_get_cases <- function(version = "current", date = NULL) {
 ################################################################################
 
 ph_get_tests <- function(version = "current", date = NULL) {
-  ## Check whether date is within range
-  #if(!lubridate::ymd(date) %within% lubridate::interval(lubridate::ymd("2020-04-14"), Sys.Date())) {
-  #  stop("Earliest COVID-19 Data Drop record is for 2020-04-14.
-  #       Only provide dates as early as 2020-04-14 or later. Try again.",
-  #       call. = TRUE)
-  #}
-
-  ## Check curren time to see if current data downloadable
-  #if(date == Sys.Date()) {
-  #  if(!lubridate::now(tzone = "UTC") %within%
-  #     lubridate::interval(lubridate::ymd_hms(paste(Sys.Date(), "12:00:00 UTC")),
-  #                         lubridate::ymd_hms(paste(Sys.Date(), "23:59:59 UTC")))) {
-  #    stop("COVID-19 Data Drop is updated everyday at 16:00 Philippines Standard Time.
-  #         Try again later for today's data drop or try yesterday's data drop.",
-  #         call. = TRUE)
-  #  }
-  #}
-
   ## Get list of contents of specified Google Drive directory
   y <- ph_gdrive_files(version = version, date = date)
 
@@ -321,23 +288,6 @@ ph_get_tests <- function(version = "current", date = NULL) {
 ################################################################################
 
 ph_get_daily <- function(version = "current", date = NULL) {
-  ## Check whether date is within range
-  #if(!lubridate::ymd(date) %within% lubridate::interval(lubridate::ymd("2020-04-14"), Sys.Date())) {
-  #  stop("Earliest COVID-19 Data Drop record is for 2020-04-14.
-  #       Only provide dates as early as 2020-04-14 or later. Try again.",
-  #       call. = TRUE)
-  #}
-  ## Check curren time to see if current data downloadable
-  #if(date == Sys.Date()) {
-  #  if(!lubridate::now(tzone = "UTC") %within%
-  #     lubridate::interval(lubridate::ymd_hms(paste(Sys.Date(), "12:00:00 UTC")),
-  #                         lubridate::ymd_hms(paste(Sys.Date(), "23:59:59 UTC")))) {
-  #    stop("COVID-19 Data Drop is updated everyday at 16:00 Philippines Standard Time.
-  #         Try again later for today's data drop or try yesterday's data drop.",
-  #         call. = TRUE)
-  #  }
-  #}
-
   ## Get list of contents of specified Google Drive directory
   y <- ph_gdrive_files(version = version, date = date)
 
