@@ -151,7 +151,7 @@ ph_get_wpp2019_deaths(file = linkToFile, period = 2019)
 
 For some of the required parameters, further calculation and processing of data is required. Specifically, the cases data needs to be processed into number of cases and number of deaths per day since the start of the COVID-19 pandemic in the Philippines. The cases data also needs to be processed to calculate the infection fatality rate (IFR) and the infection hospitalisation rate (IHR) by 5-year age groups. Two calculate functions are available in `comoparams` for this purpose. Both functions have the same prefix syntax of `ph_calculate_` followed by a descriptor for the type of output calculation it will produce - `cases` for daily cases and deaths since the first reported case in the Philippines and `rates` for the IFR and IHR output.
 
-The daily cases and deaths output can be produced as follows:
+The daily cases, deaths and recoveries output can be produced as follows:
 
 ```{r calculate1a, echo = TRUE, eval = TRUE}
 ph_get_cases() %>% ph_calculate_cases()
