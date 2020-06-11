@@ -86,9 +86,6 @@ ph_calculate_rates <- function(df) {
 ################################################################################
 
 ph_calculate_pdeath <- function(df) {
-  ## Get dataset
-  #df <- ph_get_cases(date = date)
-  ## Recode cases and deaths
   cases <- 1
   admissions <- ifelse(df$Admitted != "Yes" | is.na(df$Admitted), 0, 1)
   deaths <- ifelse(df$RemovalType != "Died" | is.na(df$RemovalType), 0, 1)
@@ -128,9 +125,6 @@ ph_calculate_pdeath <- function(df) {
 ################################################################################
 
 ph_calculate_nus <- function(df) {
-  ## Get dataset
-  #df <- ph_get_cases(date = date)
-  ##
   x <- tryCatch(lubridate::dmy(df$DateRecover) - lubridate::dmy(df$DateRepConf),
                 warning = function(e) e)
   ##

@@ -1,7 +1,8 @@
 ################################################################################
 #
 #'
-#' Calculate daily cases and daily deaths from Philippines COVID-19 Data Drop
+#' Calculate daily cases, daily deaths and daily recoveries from Philippines
+#' COVID-19 Data Drop
 #'
 #' @param df A data.frame of cases data pulled from the Philippines COVID-19
 #'   Data Drop.
@@ -24,7 +25,7 @@ ph_calculate_cases <- function(df) {
 
   ## Get current data link folder information and contents
   dropDate <- googledrive::drive_ls(googledrive::drive_get(id = "1ZPPcVU4M7T-dtRyUceb0pMAd8ickYf8o")) %>%
-    dplyr::select(name) %>%
+    dplyr::select("name") %>%
     stringr::str_extract(pattern = "[0-9]{2}/[0-9]{2}") %>%
     paste("2020", sep = "/") %>%
     lubridate::mdy()
