@@ -20,7 +20,7 @@ this purpose.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/como-ph/comoparams,https://como-ph.github.io/comoparams}
+  \item \url{https://github.com/como-ph/comoparams}
   \item Report bugs at \url{https://github.com/como-ph/comoparams/issues}
 }
 
