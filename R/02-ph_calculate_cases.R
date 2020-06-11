@@ -3,28 +3,29 @@
 #'
 #' Calculate daily cases and daily deaths from Philippines COVID-19 Data Drop
 #'
-#' @param date Date in <YYYY-MM-DD> format; This is the date up to which
-#'   extracted data reports to. Default is current date (\code{Sys.Date()})
+#' @param df A data.frame of cases data pulled from the Philippines COVID-19
+#'   Data Drop.
 #'
 #' @return A data.frame with calculated number of cases per and number of deaths
 #'   per day with structure consistent with CoMo model data structure
 #'   requirements.
 #'
 #' @examples
-#' ph_calculate_cases(date = "2020-04-17")
+#' df <- ph_get_cases()
+#' ph_calculate_cases(df = df)
 #'
 #' @export
 #'
 #
 ################################################################################
 
-ph_calculate_cases <- function(date = Sys.Date()) {
+ph_calculate_cases <- function(df) {
   ## Get dataset
-  df <- ph_get_cases(date = date)
+  #df <- ph_get_cases(date = date)
 
   ## Create reporting date vector
   repDate <- seq.Date(from = as.Date("2020-01-01"),
-                      to = as.Date(date),
+                      to = as.Date(Sys.Date()),
                       by = 1)
 
   ## Recode cases and deaths

@@ -28,6 +28,9 @@
 #' @importFrom openxlsx read.xlsx createWorkbook addWorksheet writeData
 #'   saveWorkbook getSheetNames
 #' @importFrom tidyr pivot_longer
+#' @importFrom RCurl getURL
+#' @importFrom pdftools pdf_text
+#' @importFrom curl curl_download
 #'
 #'
 #
