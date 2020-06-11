@@ -1,3 +1,7 @@
+# comoparams 0.1.2.9000
+
+
+
 # comoparams 0.1.1.9000
 
 * Revised README using tables
@@ -11,7 +15,6 @@
 * Created new calculate functions for certain rates needed for model parameters: `ph_calcualte_pdeath()` for calculating probability of dying when hospitalised; `ph_calculate_nus()` for calculating duration of hospitalised infection
 
 * Updated pull functions for COVID-19 Data Drop to account for non-standard naming of directories in the Google Drive archives
-
 
 # comoparams 0.1.0.9000
 
