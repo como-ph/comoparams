@@ -61,7 +61,9 @@ ph_gdrive_files <- function(version = "current", date = NULL) {
 
   ## Ged id for current data google drive folder
   x <- stringr::word(readme[stringr::str_detect(string = readme,
-                                                pattern = "bit.ly/*")][1], -1) %>%
+                                                pattern = "bit.ly/*")][1], -1)
+
+  x <- paste("http://", x, sep = "") %>%
     decode_short_url() %>%
     stringr::str_split(pattern = "/|\\?") %>%
     unlist()
