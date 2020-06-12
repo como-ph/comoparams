@@ -6,5 +6,9 @@ cache: packages
 addons:
   apt:
     packages:
-      - libxml2-dev
+      - libwebp-dev
       - libpoppler-cpp-dev
+      - poppler-data
+      - libtesseract-dev
+      - libleptonica-dev
+      - tesseract-ocr-eng
