@@ -6,8 +6,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>The Philippines births by age group of mother for 2020 from the World
-Population Prospects 2019 — births_wpp_2019 • comoparams</title>
+<title>Get Philippines age-specific number of births estimates or projections
+by 5-year periods given a year or range of years from the World Population
+Prospects 2019 — ph_get_wpp2019_births • comoparams</title>
 
 
 <!-- jquery -->
@@ -40,10 +41,12 @@ Population Prospects 2019 — births_wpp_2019 • comoparams</title>
 
 
 
-<meta property="og:title" content="The Philippines births by age group of mother for 2020 from the World
-Population Prospects 2019 — births_wpp_2019" />
-<meta property="og:description" content="The Philippines births by age group of mother for 2020 from the World
-Population Prospects 2019" />
+<meta property="og:title" content="Get Philippines age-specific number of births estimates or projections
+by 5-year periods given a year or range of years from the World Population
+Prospects 2019 — ph_get_wpp2019_births" />
+<meta property="og:description" content="Get Philippines age-specific number of births estimates or projections
+by 5-year periods given a year or range of years from the World Population
+Prospects 2019" />
 
 
 
@@ -126,51 +129,59 @@ Population Prospects 2019" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>The Philippines births by age group of mother for 2020 from the World
-Population Prospects 2019</h1>
-    <small class="dont-index">Source: <a href='https://github.com/como-ph/comoparams/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>births_wpp_2019.Rd</code></div>
+    <h1>Get Philippines age-specific number of births estimates or projections
+by 5-year periods given a year or range of years from the World Population
+Prospects 2019</h1>
+    <small class="dont-index">Source: <a href='https://github.com/como-ph/comoparams/blob/master/R/04-ph_get_population.R'><code>R/04-ph_get_population.R</code></a></small>
+    <div class="hidden name"><code>ph_get_wpp2019_births.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The Philippines births by age group of mother for 2020 from the World
-Population Prospects 2019</p>
+    <p>Get Philippines age-specific number of births estimates or projections
+by 5-year periods given a year or range of years from the World Population
+Prospects 2019</p>
     </div>
 
-    <pre class="usage"><span class='no'>births_wpp_2019</span></pre>
+    <pre class="usage"><span class='fu'>ph_get_wpp2019_births</span>(
+  <span class='no'>file</span>,
+  <span class='kw'>location</span> <span class='kw'>=</span> <span class='st'>"Philippines"</span>,
+  <span class='kw'>period</span> <span class='kw'>=</span> <span class='kw pkg'>lubridate</span><span class='kw ns'>::</span><span class='fu'><a href='http://lubridate.tidyverse.org/reference/year.html'>year</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>())
+)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>file</th>
+      <td><p>Either a path or a URL to the World Population Prospects 2019
+file containing population estimates and projections in 5-year age groups</p></td>
+    </tr>
+    <tr>
+      <th>location</th>
+      <td><p>Location to get population estimates/projections for;
+Default to the "Philippines"</p></td>
+    </tr>
+    <tr>
+      <th>period</th>
+      <td><p>A year (numeric) or range of years (YYYY:YYYY) in 5 year
+intervals starting from 1950 to get population estimates/projections for;
+Default is current year corresponding to the five year period that
+contains the current year</p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble with 4 columns and 21 rows:</p><dl'>
-  <dt><code>area</code></dt><dd><p>Area i.e., country</p></dd>
-  <dt><code>year</code></dt><dd><p>Year i.e., 2015-2020</p></dd>
-  <dt><code>age_category</code></dt><dd><p>Five-year age groups</p></dd>
-  <dt><code>birth</code></dt><dd><p>Number of births</p></dd>
-
-</dl>
-
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    <p>World Population Prospects 2019</p>
+    <p>A tibble in tidy format containing age-specific number of births
+  for the entire Philippines from 1950 to 2100</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>births_wpp_2019</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 21 x 4</span><span>
-#&gt;    area        year      age_category   birth
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> Philippines 2015-2020 0-4 y.o.          </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'> 2</span><span> Philippines 2015-2020 5-9 y.o           </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'> 3</span><span> Philippines 2015-2020 10-14 y.o.        </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'> 4</span><span> Philippines 2015-2020 15-19 y.o.   1</span><span style='text-decoration: underline;'>358</span><span>136
-#&gt; </span><span style='color: #555555;'> 5</span><span> Philippines 2015-2020 20-24 y.o.   2</span><span style='text-decoration: underline;'>986</span><span>917
-#&gt; </span><span style='color: #555555;'> 6</span><span> Philippines 2015-2020 25-29 y.o.   2</span><span style='text-decoration: underline;'>594</span><span>038
-#&gt; </span><span style='color: #555555;'> 7</span><span> Philippines 2015-2020 30-34 y.o.   2</span><span style='text-decoration: underline;'>121</span><span>630
-#&gt; </span><span style='color: #555555;'> 8</span><span> Philippines 2015-2020 35-39 y.o.   1</span><span style='text-decoration: underline;'>239</span><span>266
-#&gt; </span><span style='color: #555555;'> 9</span><span> Philippines 2015-2020 40-44 y.o.    </span><span style='text-decoration: underline;'>488</span><span>424
-#&gt; </span><span style='color: #555555;'>10</span><span> Philippines 2015-2020 45-49 y.o.    </span><span style='text-decoration: underline;'>100</span><span>986
-#&gt; </span><span style='color: #555555;'># … with 11 more rows</span><span></div><div class='input'>
-
-</div></span></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='no'>link</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span>(<span class='no'>dataSources</span>,
+             <span class='no'>link</span>[<span class='no'>source</span> <span class='kw'>==</span> <span class='st'>"World Population Prospects 2019"</span> <span class='kw'>&amp;</span>
+                  <span class='no'>parameter</span> <span class='kw'>==</span> <span class='st'>"births"</span>])
+<span class='fu'>ph_get_wpp2019_births</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>link</span>, <span class='kw'>period</span> <span class='kw'>=</span> <span class='fl'>2019</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
