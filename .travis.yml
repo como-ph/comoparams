@@ -1,0 +1,14 @@
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+
+language: R
+cache: packages
+
+addons:
+  apt:
+    packages:
+      - libwebp-dev
+      - libpoppler-cpp-dev
+      - poppler-data
+      - libtesseract-dev
+      - libleptonica-dev
+      - tesseract-ocr-eng

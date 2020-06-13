@@ -1,8 +1,8 @@
 ################################################################################
 #
 #'
-#' COVID-19 International Modelling Consortium Parameters Processor and
-#' Aggregator in R
+#' R Utility Tool to Extract, Process and Structure Philippines-specific Datasets
+#' for Use in CoMo Consortium Model
 #'
 #' The Oxford Modelling Group for Global Health (OMGH) is developing model
 #' structures to estimate the impact of potential mitigation strategies. By
@@ -17,10 +17,22 @@
 #' @docType package
 #' @name comoparams
 #' @keywords internal
-#' @importFrom googlesheets4 read_sheet
-#' @importFrom stringr str_remove_all str_replace_all
-#' @importFrom stats aggregate
+#' @importFrom googledrive drive_deauth drive_get drive_ls
+#' @importFrom stringr str_remove_all str_replace_all str_to_title
+#' @importFrom stats aggregate prop.test t.test
 #' @importFrom magrittr %>%
+#' @importFrom tibble tibble
+#' @importFrom dplyr select
+#' @importFrom utils read.csv tail download.file menu
+#' @importFrom lubridate %within% interval ymd ymd_hms year dmy days mdy
+#'   is.Date parse_date_time month
+#' @importFrom openxlsx read.xlsx createWorkbook addWorksheet writeData
+#'   saveWorkbook getSheetNames
+#' @importFrom tidyr pivot_longer
+#' @importFrom RCurl getURL
+#' @importFrom pdftools pdf_text
+#' @importFrom curl curl_download
+#'
 #'
 #
 ################################################################################

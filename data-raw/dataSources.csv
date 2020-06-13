@@ -1,0 +1,10 @@
+description,parameter,source,scode,format,link
+The Philippines 2015 Census of Population (POPCEN 2015),population,Philippines Statistics Authority,PSA,XLSX,https://psa.gov.ph/sites/default/files/attachments/hsd/pressrelease/Updated%20Population%20Projections%20based%20on%202015%20POPCEN_0.xlsx
+Registered Deaths in the Philippines 2018,deaths,Philippines Statistics Authority,PSA,XLSX,https://psa.gov.ph/sites/default/files/attachments/crd/specialrelease/2018%20Death%20Statistical%20Tables.xlsx
+Registered Births in the Philippines 2018,births,Philippines Statistics Authority,PSA,XLSX,https://psa.gov.ph/sites/default/files/attachments/crd/specialrelease/2018%20Births_SR%20Tables%20%28FINAL%29_0.xlsx
+Annual world population by 5-year age groups medium variant from 1950 to 2100,population,World Population Prospects 2019,WPP,CSV,https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/CSV_FILES/WPP2019_PopulationByAgeSex_Medium.csv
+Number of births over a given period classified by age group of mother,births,World Population Prospects 2019,WPP,XLSX,https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/EXCEL_FILES/2_Fertility/WPP2019_FERT_F06_BIRTHS_BY_AGE_OF_MOTHER.xlsx
+Number of deaths by five-year age groups,deaths,World Population Prospects 2019,WPP,XLSX,https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/EXCEL_FILES/3_Mortality/WPP2019_MORT_F04_1_DEATHS_BY_AGE_BOTH_SEXES.xlsx
+COVID-19 cases and deaths,cases,DOH Data Drop,DOH,Google Drive,http://bit.ly/DataDropPH
+COVID-19 cases and deaths archive,cases,DOH Data Drop,DOH,Google Drive,http://bit.ly/DataDropArchives
+Geographic distribution of COVID-19 cases worldwide,cases,European Centre for Disease Prevention and Control,ECDC,CSV,https://opendata.ecdc.europa.eu/covid19/casedistribution/csv

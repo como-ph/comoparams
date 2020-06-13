@@ -4,8 +4,8 @@
 \name{comoparams}
 \alias{comoparams}
 \alias{comoparams-package}
-\title{COVID-19 International Modelling Consortium Parameters Processor and
-Aggregator in R}
+\title{R Utility Tool to Extract, Process and Structure Philippines-specific Datasets
+for Use in CoMo Consortium Model}
 \description{
 The Oxford Modelling Group for Global Health (OMGH) is developing model
 structures to estimate the impact of potential mitigation strategies. By
@@ -17,8 +17,22 @@ subnational input data and parameter values into data structures appropriate
 for use with the modelling application and/or other packages developed for
 this purpose.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/como-ph/comoparams}
+  \item Report bugs at \url{https://github.com/como-ph/comoparams/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Ernest Guevarra \email{ernest@guevarra.io} (\href{https://orcid.org/0000-0002-4887-4415}{ORCID})
+
+Authors:
+\itemize{
+  \item Chris Mercado \email{cegmercado@gmail.com}
+  \item Robert Medina \email{jcmedina1@up.edu.ph}
+}
 
 }
 \keyword{internal}

@@ -1,0 +1,237 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  error = FALSE,
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+
+library(magrittr)
+```
+
+# comoparams: R utility tool to extract, process and structure Philippines-specific datasets for use in the CoMo Consortium Model <img src="man/figures/comoparams.png" width="200px" align="right" />
+
+<!-- badges: start -->
+[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![Travis build status](https://travis-ci.org/como-ph/comoparams.svg?branch=master)](https://travis-ci.org/como-ph/comoparams)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/como-ph/comoparams?branch=master&svg=true)](https://ci.appveyor.com/project/como-ph/comoparams)
+[![R-CMD-check](https://github.com/como-ph/comoparams/workflows/R-CMD-check/badge.svg)](https://github.com/como-ph/comoparams/actions)
+[![DOI](https://zenodo.org/badge/255850150.svg)](https://zenodo.org/badge/latestdoi/255850150)
+<!-- badges: end -->
+
+The **Oxford Modelling Group for Global Health (OMGH)** is developing model structures to estimate the impact of potential mitigation strategies. By changing the input data and parameter values, the models can be adjusted to represent a national or subnational setting. In addition, a user friendly application and interface is being developed to enable widespread utility.
+
+The CoMo-PH group is the Philippines country team that is supporting the use of the model specific to the Philippines as part of the **COVID-19 International Modeling Consortium (CoMo Consortium)**.
+
+This R package has been developed by the **CoMo-PH** group to support its efforts in the collection of Philippines-specific and Philippines-appropriate data that will define the parameters used in the **CoMo Consortium Model** as applied to the Philippines. This package facilitates the processing of Philippines national and/or subnational input data and parameter values into data structures appropriate for use with the modelling application and/or other packages developed for the **CoMo Consortium Model**.
+
+## Installation
+
+`comoparams` is in active development and is currently only available to install via [GitHub](https://github.com/como-ph/comoparams):
+
+```{r install, echo = TRUE, eval = FALSE}
+if(!requireNamespace("remotes")) install.packages("remotes")
+remotes::install_github("como-ph/comoparams")
+```
+
+To use, load the package:
+
+```{r load, echo = TRUE, eval = TRUE}
+library(comoparams)
+```
+
+## Usage
+
+`comoparams` currently has three main function sets: 1) **pull data** functions; 2) **calculate** values functions; and, 3) **parameter** setting functions.
+
+### Pull data
+
+`comoparams` incorporates functions that support the extraction of data relevant to the **CoMo Model** parameters and specific to the Philippines. Currently, these functions allow for 1) pulling of data from the Philippines [Department of Health's official COVID-19 DataDrop](https://drive.google.com/drive/folders/10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP) repository; 2) pulling of data from the [Philippines Statistics Authority (PSA)](http://www.psa.gov.ph) [2015 Population Census (2015 POPCEN)](http://www.psa.gov.ph/content/highlights-philippine-population-2015-census-population); and 3) pulling of population, births and deaths data from the [World Population Prospects 2019](https://population.un.org/wpp/).
+
+#### Pulling data from the Philippines Department of Health COVID-19 DataDrop
+
+On the 14th of April 2020, the [Philippines Department of Health](https://www.doh.gov.ph) released publicly its data related to COVID-19 initially in Google Sheets format and subsequently as comma-separated value (CSV) files stored in Google Drive. There are 4 functions in `comoparams` that interacts with the [Philippines COVID-19 DataDrop](https://drive.google.com/drive/folders/10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP). These functions are wrapper functions utilising the `googledrive` package functions in R. Each of these functions pulls a specific type of data from the [COVID-19 DataDrop](https://drive.google.com/drive/folders/10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP) repository.
+
+* `fields` - data describing the various fields or variables in the different datasets found in [COVID-19 DataDrop](https://drive.google.com/drive/folders/10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP).
+
+* `cases` - data on all COVID-19 cases recorded up to the date the specific dataset has been released.
+
+* `tests` - data on tests performed and recorded up to the date the specific dataset has been released.
+
+* `daily` - data on health facilities' daily COVID-19 specific equipment status.
+
+The syntax for this set of pull functions has a common prefix of `ph_get_` followed by the short name of the specific dataset listed above.
+
+All four functions in this set has two arguments - `version` and `date`. The `version` argument is used to specify whether to pull the most recent or current data (specified as `current`) or to pull previous data (specified as `archive`). The default is `current`. The `date` argument is ignored if `version` is set to current. However, if `version` is set to `archive`, the `date` argument needs to be specified (in <YYYY-MM-DD> format) which will determine up to which exacted data reports to. This argument will only accept dates starting from 14 April 2020 when [COVID-19 DataDrop](https://drive.google.com/drive/folders/10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP) was launched.
+
+The output of these functions is a `tibble`.
+
+To pull the most current data on `cases`, we use the function `ph_get_cases()` as follows:
+
+```{r pull1a, echo = TRUE, eval = TRUE}
+ph_get_cases()
+```
+
+To pull the data on `cases` for up to 5 May 2020, we use the function `ph_get_cases()` as follows:
+
+```{r pull1b, echo = TRUE, eval = TRUE}
+ph_get_cases(version = "archive", date = "2020-05-05")
+```
+
+To pull the data on `cases` for up to 1 May 2020, we use the function `ph_get_cases()` as follows:
+
+```{r pull1c, echo = TRUE, eval = TRUE}
+ph_get_cases(version = "archive", date = "2020-05-01")
+```
+
+#### Pulling data from the Philippines Statistics Authority (PSA) 2015 Population Census (2015 POPCEN)
+
+The last Philippines census was in 2015. A 2020 census was planned but due to the COVID-19 pandemic, this is most likely going to be put on hold. The [Philippines Statistics Authority (PSA)](http://www.psa.gov.ph) provides an XLSX file for its updated 2020 population projections based on the 2015 POPCEN. This file is downloadable from the [PSA](http://www.psa.gov.ph) website via this [link](https://psa.gov.ph/sites/default/files/attachments/hsd/pressrelease/Updated%20Population%20Projections%20based%20on%202015%20POPCEN_0.xlsx).
+
+A helper function with the same `ph_get_` prefix is provided by the `comoparams` package - `ph_get_psa2015_pop()` - which downloads the XLSX file from the [PSA](http://www.psa.gov.ph) website, reads the file and then extracts and re-structures the population data in the file to long format (tidy format).
+
+The function can be called as follows:
+
+```{r pull2, echo = TRUE, eval = FALSE}
+linkToFile <- "https://psa.gov.ph/sites/default/files/attachments/hsd/pressrelease/Updated%20Population%20Projections%20based%20on%202015%20POPCEN_0.xlsx"
+
+ph_get_psa2015_pop(file = linkToFile)
+```
+
+```{r pull2a, echo = FALSE, eval = TRUE}
+population_psa_2015
+```
+
+The main limitation of the PSA population projections based on the 2015 POPCEN is that the age grouping only goes up 85+ whilst the **CoMo Consortium Model** requires population data with an age-structure that goes up to 95+. However, this can potentially be imputed to create the additional older age groupings if needed/wanted.
+
+#### Pulling population, births and deaths data from the World Population Prospects 2019
+
+The [United Nations World Population Prospects 2019](https://population.un.org/wpp/) provides population projections for 152 countries with a 5-year age grouping structure required by the **CoMo Consortium Model** which are available either as XLSX or as CSV files. The `comoparams` package provides three functions to extract these datasets. These functions follow the same prefix syntax of `ph_get_` as the other pull data functions followed by a descriptor of the data that is being pulled. The descriptors used are:
+
+* `wpp2019_pop` - Five-year age group structured population by male and female
+
+* `wpp2019_births` - Number of births by age of mother in 5-year age groups
+
+* `wpp2019_deaths` - Number of deaths by 5-year age groups and by male and female
+
+To pull the five-year age group structured population, we make a call for the following:
+
+```{r pull3a, echo = TRUE, eval = FALSE}
+linkToFile <- "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/CSV_FILES/WPP2019_PopulationByAgeSex_Medium.csv"
+
+ph_get_wpp2019_pop(file = linkToFile, location = "Philippines")
+```
+
+```{r pull3aa, echo = FALSE, eval = TRUE}
+population_wpp_2019
+```
+
+To pull the number of births by age of mother in 5-year age groups, we make a call for the following:
+
+```{r pull3b, echo = TRUE, eval = FALSE}
+linkToFile <- "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/EXCEL_FILES/2_Fertility/WPP2019_FERT_F06_BIRTHS_BY_AGE_OF_MOTHER.xlsx"
+
+ph_get_wpp2019_births(file = linkToFile, period = 2019)
+```
+
+```{r pull3bb, echo = FALSE, eval = TRUE}
+births_wpp_2019
+```
+
+To pull the number of deaths by 5-year age groups and by male and female, we make a call for the following:
+
+```{r pull3c, echo = TRUE, eval = FALSE}
+linkToFile <- "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/EXCEL_FILES/3_Mortality/WPP2019_MORT_F04_1_DEATHS_BY_AGE_BOTH_SEXES.xlsx"
+
+ph_get_wpp2019_deaths(file = linkToFile, period = 2019)
+```
+
+```{r pull3cc, echo = FALSE, eval = TRUE}
+deaths_wpp_2019
+```
+
+### Calculate values
+
+For some of the required parameters, further calculation and processing of data is required. Specifically, the cases data needs to be processed into number of cases and number of deaths per day since the start of the COVID-19 pandemic in the Philippines. The cases data also needs to be processed to calculate the infection fatality rate (IFR) and the infection hospitalisation rate (IHR) by 5-year age groups. Two calculate functions are available in `comoparams` for this purpose. Both functions have the same prefix syntax of `ph_calculate_` followed by a descriptor for the type of output calculation it will produce - `cases` for daily cases and deaths since the first reported case in the Philippines and `rates` for the IFR and IHR output.
+
+The daily cases, deaths and recoveries output can be produced as follows:
+
+```{r calculate1a, echo = TRUE, eval = TRUE}
+ph_get_cases() %>% ph_calculate_cases()
+```
+
+The IFR and IHR output can be produced as follows:
+
+```{r calculate2a, echo = TRUE, eval = TRUE}
+ph_get_cases() %>% ph_calculate_rates()
+```
+
+### Parameters setting
+
+The final set of functions in the `comoparams` package is the **parameters setting** functions. This set contains majority of the functions within `comoparams` (a total of 19 functions).
+
+The **parameter settings** functions again uses a common prefix syntax of `ph_set_` followed by the descriptor of the parameter that is being defined or set. This syntax applies to 18 of the 19 functions in the set. The descriptors are:
+
++--------------------+----------------------------------------------------------------------+
+| **Descriptor**     | **Definition**                                                       |
++:===================+:=====================================================================+
+| `cases`            | Set the *cases parameters* using the `ph_calculate_cases()` function |
+|                    | to process, calculate and output the cases data in the appropriate   |
+|                    | parameters format.                                                   |
++--------------------+----------------------------------------------------------------------+
+| `severe`           | Set the *severity-mortality parameters* using the                     |
+|                    | `ph_calculate_rates()` function to process, calculate and output the |
+|                    | cases data in the appropriate parameters format.                     |
++--------------------+----------------------------------------------------------------------+
+| `population`       | Set the *populations parameters* using the `ph_get_population()`     |
+|                    | function to process and output the population data in the appropriate|
+|                    | parameters format.                                                   |
++--------------------+----------------------------------------------------------------------+
+| `general`          | Set the *general* and *country parameters*                           |
++--------------------+----------------------------------------------------------------------+
+| `virus`            | Set the *virus parameters*                                           |
++--------------------+----------------------------------------------------------------------+
+| `hospital`         | Set the *hospitalisation parameters*                                 |
++--------------------+----------------------------------------------------------------------+
+| `lockdown`         | Set the *lockdown intervention parameters*                           |
++--------------------+----------------------------------------------------------------------+
+| `isolation`        | Set the *self-isolation intervention parameters*                     |
++--------------------+----------------------------------------------------------------------+
+| `distancing`       | Set the *social distancing intervention parameters*                  |
++--------------------+----------------------------------------------------------------------+
+| `handwashing`      | Set the *handwashing intervention parameters*                        |
++--------------------+----------------------------------------------------------------------+
+| `work`             | Set the *work from home intervention parameters*                     |
++--------------------+----------------------------------------------------------------------+
+| `school`           | Set the *schools closure intervention parameters*                    |
++--------------------+----------------------------------------------------------------------+
+| `elderly`          | Set the *shielding the elderly intervention parameters*              |
++--------------------+----------------------------------------------------------------------+
+| `travel`           | Set the *travel ban intervention parameters*                         |
++--------------------+----------------------------------------------------------------------+
+| `quarantine`       | Set the *voluntary home quarantine parameters*                       |
++--------------------+----------------------------------------------------------------------+
+| `vaccination`      | Set the *vaccination intervention parameters*                        |
++--------------------+----------------------------------------------------------------------+
+| `interventions`    | Set all the *intervention parameters* using all the single           |
+|                    | intervention parameter setting functions                              |
++--------------------+----------------------------------------------------------------------+
+
+The functions with this syntax are interactive command line functions that guide the user through the various parameters required and facilitates the user to input values for the needed parameters. In this set, there is a summary function (`ph_set_params`) that pulls together all the interactive command line functions and guides the user in specifying all the parameters.
+
+Finally, the 19th function in the parameter setting function set is a function that takes the output of `ph_set_params()` and then converts it into the **CoMo Consortium Model** parameters template format in an XLSX workbook and saves it as an XLSX file in the specified directory.
+
+```{r params, echo = TRUE, eval = FALSE}
+ph_create_params(params = ph_set_params(), path = ".")
+```
+
+
