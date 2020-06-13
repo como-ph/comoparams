@@ -6,6 +6,8 @@
 
 * added dataset for mapping of data sources
 
+# updated README to describe new function specifications
+
 
 # comoparams 0.1.3.9000
 
