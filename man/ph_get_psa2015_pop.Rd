@@ -23,8 +23,7 @@ based on the results of the Philippines 2015 POPCEN
 \examples{
 \dontrun{
 link <- with(dataSources,
-             link[source == "Philippines Statistics Authority" &
-                  parameter == "population"])
+             link[source == "PSA" & parameter == "population"])
 ph_get_psa2015_pop(file = link)
 }
 
