@@ -12,7 +12,10 @@
 #'   with CoMo model data structure requirements.
 #'
 #' @examples
-#' ph_calculate_cases(df = ph_get_cases())
+#' \dontrun{
+#' df <- ph_get_cases()
+#' ph_calculate_cases(df = df)
+#' }
 #'
 #' @export
 #'
