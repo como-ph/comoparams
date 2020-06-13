@@ -12,10 +12,8 @@
 #'   with CoMo model data structure requirements.
 #'
 #' @examples
-#' \dontrun{
 #' df <- ph_get_cases()
 #' ph_calculate_cases(df = df)
-#' }
 #'
 #' @export
 #'
