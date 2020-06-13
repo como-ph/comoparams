@@ -63,7 +63,7 @@ ph_gdrive_files <- function(version = "current", date = NULL) {
   x <- stringr::word(readme[stringr::str_detect(string = readme,
                                                 pattern = "bit.ly/*")][1], -1)
 
-  x <- x %>%
+  x <- paste("http://", x, sep = "") %>%
     #decode_short_url() %>%
     RCurl::getURL() %>%
     stringr::str_extract_all(pattern = "[A-Za-z0-9@%#&()+*$,._\\-]{33}") %>%
