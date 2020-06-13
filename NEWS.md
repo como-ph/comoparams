@@ -1,5 +1,21 @@
-# comoparams 0.1.2.9000
+# comoparams 0.2.0.9000
 
+* updated pull functions for population
+
+* added datasets for population
+
+* added dataset for mapping of data sources
+
+
+# comoparams 0.1.3.9000
+
+* Re-configured functions for pulling data from Data Drop by separating get functions from calculate functions
+
+* Adjusted get functions to be more universal to allow for capture of new data for new months considering how Data Drop Google Drive folder/directory is organised
+
+* Added main functionality for get functions to pull the latest release data using the dynamic link sent everyday via a PDF document
+
+* Added GitHub actions ![R-CMD-check](https://github.com/como-ph/comoparams/workflows/R-CMD-check/badge.svg)
 
 
 # comoparams 0.1.1.9000
