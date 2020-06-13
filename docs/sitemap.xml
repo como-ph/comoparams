@@ -4,7 +4,16 @@
     <loc>https://como-ph.github.io/comoparams/index.html</loc>
   </url>
   <url>
+    <loc>https://como-ph.github.io/comoparams/reference/births_wpp_2019.html</loc>
+  </url>
+  <url>
     <loc>https://como-ph.github.io/comoparams/reference/comoparams.html</loc>
+  </url>
+  <url>
+    <loc>https://como-ph.github.io/comoparams/reference/dataSources.html</loc>
+  </url>
+  <url>
+    <loc>https://como-ph.github.io/comoparams/reference/deaths_wpp_2019.html</loc>
   </url>
   <url>
     <loc>https://como-ph.github.io/comoparams/reference/decode_short_url.html</loc>
@@ -104,6 +113,12 @@
   </url>
   <url>
     <loc>https://como-ph.github.io/comoparams/reference/ph_set_work.html</loc>
+  </url>
+  <url>
+    <loc>https://como-ph.github.io/comoparams/reference/population_psa_2015.html</loc>
+  </url>
+  <url>
+    <loc>https://como-ph.github.io/comoparams/reference/population_wpp_2019.html</loc>
   </url>
   <url>
     <loc>https://como-ph.github.io/comoparams/articles/model.html</loc>

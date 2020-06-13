@@ -75,7 +75,7 @@ given a year or range of years from the World Population Prospects 2019" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">comoparams</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -171,23 +171,12 @@ contains the current year</p></td>
   for the entire Philippines from 1950 to 2100</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>link</span> <span class='kw'>&lt;-</span> <span class='st'>"https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/"</span>
-<span class='no'>fname</span> <span class='kw'>&lt;-</span> <span class='st'>"EXCEL_FILES/3_Mortality/WPP2019_MORT_F04_1_DEATHS_BY_AGE_BOTH_SEXES.xlsx"</span>
-<span class='fu'>ph_get_wpp2019_deaths</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='no'>link</span>, <span class='no'>fname</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>), <span class='kw'>period</span> <span class='kw'>=</span> <span class='fl'>2019</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 21 x 4</span><span>
-#&gt;    area        year      age_category  death
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> Philippines 2015-2020 0-4 y.o.     </span><span style='text-decoration: underline;'>306</span><span>206
-#&gt; </span><span style='color: #555555;'> 2</span><span> Philippines 2015-2020 5-9 y.o.      </span><span style='text-decoration: underline;'>34</span><span>260
-#&gt; </span><span style='color: #555555;'> 3</span><span> Philippines 2015-2020 10-14 y.o.    </span><span style='text-decoration: underline;'>28</span><span>539
-#&gt; </span><span style='color: #555555;'> 4</span><span> Philippines 2015-2020 15-19 y.o.    </span><span style='text-decoration: underline;'>59</span><span>008
-#&gt; </span><span style='color: #555555;'> 5</span><span> Philippines 2015-2020 20-24 y.o.    </span><span style='text-decoration: underline;'>78</span><span>740
-#&gt; </span><span style='color: #555555;'> 6</span><span> Philippines 2015-2020 25-29 y.o.    </span><span style='text-decoration: underline;'>77</span><span>908
-#&gt; </span><span style='color: #555555;'> 7</span><span> Philippines 2015-2020 30-34 y.o.    </span><span style='text-decoration: underline;'>81</span><span>415
-#&gt; </span><span style='color: #555555;'> 8</span><span> Philippines 2015-2020 35-39 y.o.    </span><span style='text-decoration: underline;'>96</span><span>548
-#&gt; </span><span style='color: #555555;'> 9</span><span> Philippines 2015-2020 40-44 y.o.   </span><span style='text-decoration: underline;'>121</span><span>537
-#&gt; </span><span style='color: #555555;'>10</span><span> Philippines 2015-2020 45-49 y.o.   </span><span style='text-decoration: underline;'>160</span><span>660
-#&gt; </span><span style='color: #555555;'># … with 11 more rows</span><span></div><div class='input'>
-</div></span></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='no'>link</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span>(<span class='no'>dataSources</span>,
+             <span class='no'>link</span>[<span class='no'>source</span> <span class='kw'>==</span> <span class='st'>"World Population Prospects 2019"</span> <span class='kw'>&amp;</span>
+                  <span class='no'>parameter</span> <span class='kw'>==</span> <span class='st'>"deaths"</span>])
+<span class='fu'>ph_get_wpp2019_deaths</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>link</span>, <span class='kw'>period</span> <span class='kw'>=</span> <span class='fl'>2019</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

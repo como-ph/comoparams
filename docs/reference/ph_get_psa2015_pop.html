@@ -75,7 +75,7 @@ based on the results of the Philippines 2015 POPCEN" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">comoparams</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -156,23 +156,12 @@ population projections</p></td>
   2025 (projections)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>link</span> <span class='kw'>&lt;-</span> <span class='st'>"https://psa.gov.ph/sites/default/files/attachments/hsd/pressrelease/"</span>
-<span class='no'>fname</span> <span class='kw'>&lt;-</span> <span class='st'>"Updated%20Population%20Projections%20based%20on%202015%20POPCEN_0.xlsx"</span>
-<span class='fu'>ph_get_psa2015_pop</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='no'>link</span>, <span class='no'>fname</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>))</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 87,567 x 6</span><span>
-#&gt;    area         year age_category    total    male  female
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> Philippines  </span><span style='text-decoration: underline;'>2</span><span>015 0-4          10</span><span style='text-decoration: underline;'>803</span><span>297 5</span><span style='text-decoration: underline;'>582</span><span>405 5</span><span style='text-decoration: underline;'>220</span><span>892
-#&gt; </span><span style='color: #555555;'> 2</span><span> Philippines  </span><span style='text-decoration: underline;'>2</span><span>015 5-9          10</span><span style='text-decoration: underline;'>827</span><span>294 5</span><span style='text-decoration: underline;'>588</span><span>769 5</span><span style='text-decoration: underline;'>238</span><span>525
-#&gt; </span><span style='color: #555555;'> 3</span><span> Philippines  </span><span style='text-decoration: underline;'>2</span><span>015 10-14        10</span><span style='text-decoration: underline;'>478</span><span>834 5</span><span style='text-decoration: underline;'>397</span><span>638 5</span><span style='text-decoration: underline;'>081</span><span>196
-#&gt; </span><span style='color: #555555;'> 4</span><span> Philippines  </span><span style='text-decoration: underline;'>2</span><span>015 15-19        10</span><span style='text-decoration: underline;'>176</span><span>450 5</span><span style='text-decoration: underline;'>194</span><span>725 4</span><span style='text-decoration: underline;'>981</span><span>725
-#&gt; </span><span style='color: #555555;'> 5</span><span> Philippines  </span><span style='text-decoration: underline;'>2</span><span>015 20-24         9</span><span style='text-decoration: underline;'>453</span><span>737 4</span><span style='text-decoration: underline;'>788</span><span>812 4</span><span style='text-decoration: underline;'>664</span><span>925
-#&gt; </span><span style='color: #555555;'> 6</span><span> Philippines  </span><span style='text-decoration: underline;'>2</span><span>015 25-29         8</span><span style='text-decoration: underline;'>348</span><span>285 4</span><span style='text-decoration: underline;'>246</span><span>632 4</span><span style='text-decoration: underline;'>101</span><span>653
-#&gt; </span><span style='color: #555555;'> 7</span><span> Philippines  </span><span style='text-decoration: underline;'>2</span><span>015 30-34         7</span><span style='text-decoration: underline;'>331</span><span>213 3</span><span style='text-decoration: underline;'>750</span><span>503 3</span><span style='text-decoration: underline;'>580</span><span>710
-#&gt; </span><span style='color: #555555;'> 8</span><span> Philippines  </span><span style='text-decoration: underline;'>2</span><span>015 35-39         6</span><span style='text-decoration: underline;'>732</span><span>896 3</span><span style='text-decoration: underline;'>442</span><span>349 3</span><span style='text-decoration: underline;'>290</span><span>547
-#&gt; </span><span style='color: #555555;'> 9</span><span> Philippines  </span><span style='text-decoration: underline;'>2</span><span>015 40-44         5</span><span style='text-decoration: underline;'>840</span><span>861 2</span><span style='text-decoration: underline;'>991</span><span>059 2</span><span style='text-decoration: underline;'>849</span><span>802
-#&gt; </span><span style='color: #555555;'>10</span><span> Philippines  </span><span style='text-decoration: underline;'>2</span><span>015 45-49         5</span><span style='text-decoration: underline;'>276</span><span>700 2</span><span style='text-decoration: underline;'>676</span><span>602 2</span><span style='text-decoration: underline;'>600</span><span>098
-#&gt; </span><span style='color: #555555;'># … with 87,557 more rows</span><span></div><div class='input'>
-</div></span></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='no'>link</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span>(<span class='no'>dataSources</span>,
+             <span class='no'>link</span>[<span class='no'>source</span> <span class='kw'>==</span> <span class='st'>"Philippines Statistics Authority"</span> <span class='kw'>&amp;</span>
+                  <span class='no'>parameter</span> <span class='kw'>==</span> <span class='st'>"population"</span>])
+<span class='fu'>ph_get_psa2015_pop</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>link</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

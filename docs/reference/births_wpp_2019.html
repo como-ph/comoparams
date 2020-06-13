@@ -6,8 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get Department of Health COVID-19 Data Drop Google Drive specific directory
-information — ph_gdrive_files • comoparams</title>
+<title>The Philippines births by age group of mother for 2020 from the World
+Population Prospects 2019 — births_wpp_2019 • comoparams</title>
 
 
 <!-- jquery -->
@@ -40,10 +40,10 @@ information — ph_gdrive_files • comoparams</title>
 
 
 
-<meta property="og:title" content="Get Department of Health COVID-19 Data Drop Google Drive specific directory
-information — ph_gdrive_files" />
-<meta property="og:description" content="A wrapper to googledrive functions to extract information on contents of
-a specific COVID-19 Data Drop Google Drive directory" />
+<meta property="og:title" content="The Philippines births by age group of mother for 2020 from the World
+Population Prospects 2019 — births_wpp_2019" />
+<meta property="og:description" content="The Philippines births by age group of mother for 2020 from the World
+Population Prospects 2019" />
 
 
 
@@ -126,54 +126,50 @@ a specific COVID-19 Data Drop Google Drive directory" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get Department of Health COVID-19 Data Drop Google Drive specific directory
-information</h1>
-    <small class="dont-index">Source: <a href='https://github.com/como-ph/comoparams/blob/master/R/01-ph_datadrop.R'><code>R/01-ph_datadrop.R</code></a></small>
-    <div class="hidden name"><code>ph_gdrive_files.Rd</code></div>
+    <h1>The Philippines births by age group of mother for 2020 from the World
+Population Prospects 2019</h1>
+    <small class="dont-index">Source: <a href='https://github.com/como-ph/comoparams/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>births_wpp_2019.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A wrapper to googledrive functions to extract information on contents of
-a specific COVID-19 Data Drop Google Drive directory</p>
+    <p>The Philippines births by age group of mother for 2020 from the World
+Population Prospects 2019</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ph_gdrive_files</span>(<span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>"current"</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='no'>births_wpp_2019</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>version</th>
-      <td><p>A character value specifying whether to get the most
-currently available dataset (<code>"current"</code>) or to get archive data
-(<code>"archive"</code>). Default to <code>"current"</code></p></td>
-    </tr>
-    <tr>
-      <th>date</th>
-      <td><p>Date in &lt;YYYY-MM-DD&gt; format; This is the date up to which
-extracted data reports to. Only used when <code>version</code> is set to
-<code>"archive"</code> otherwise ignored.</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A tibble containing information on the various files in a specified
-  COVID-19 Data Drop Google Drive directory</p>
+    <p>A tibble with 4 columns and 21 rows:</p><dl'>
+  <dt><code>area</code></dt><dd><p>Area i.e., country</p></dd>
+  <dt><code>year</code></dt><dd><p>Year i.e., 2015-2020</p></dd>
+  <dt><code>age_category</code></dt><dd><p>Five-year age groups</p></dd>
+  <dt><code>birth</code></dt><dd><p>Number of births</p></dd>
+
+</dl>
+
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p>World Population Prospects 2019</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>ph_gdrive_files</span>()</div><div class='output co'>#&gt; <span class='message'>Getting information on Google Drive directory structure for latest available data up to 2020-06-12.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 9 x 3</span><span>
-#&gt;   name                                      id                   drive_resource 
-#&gt; </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #555555;font-style: italic;'>&lt;list&gt;</span><span>         
-#&gt; </span><span style='color: #555555;'>1</span><span> 01 READ ME FIRST (06/12).pdf              1AAm5AkY3AaOuWpQS-b… </span><span style='color: #555555;'>&lt;named list [3</span><span>…
-#&gt; </span><span style='color: #555555;'>2</span><span> DOH COVID Data Drop_ 20200612 - 03 Metad… 1jj3y38PRUGWve5WXOL… </span><span style='color: #555555;'>&lt;named list [3</span><span>…
-#&gt; </span><span style='color: #555555;'>3</span><span> DOH COVID Data Drop_ 20200612 - 05 DOH D… 15sF7gEh_Y14lYPixy3… </span><span style='color: #555555;'>&lt;named list [3</span><span>…
-#&gt; </span><span style='color: #555555;'>4</span><span> DOH COVID Data Drop_ 20200612 - 02 Metad… 1F2i-Ndkpf3IGGGFM-5… </span><span style='color: #555555;'>&lt;named list [3</span><span>…
-#&gt; </span><span style='color: #555555;'>5</span><span> DOH COVID Data Drop_ 20200612 - 04 Case … 1VahaiYURQFQZQSeE-S… </span><span style='color: #555555;'>&lt;named list [3</span><span>…
-#&gt; </span><span style='color: #555555;'>6</span><span> DOH COVID Data Drop_ 20200612 - 06 DOH D… 1aRm8AZwr-VDgXN-MZN… </span><span style='color: #555555;'>&lt;named list [3</span><span>…
-#&gt; </span><span style='color: #555555;'>7</span><span> DOH COVID Data Drop_ 20200612 - 07 Testi… 1qedIqKm8wZYLIU03sW… </span><span style='color: #555555;'>&lt;named list [3</span><span>…
-#&gt; </span><span style='color: #555555;'>8</span><span> DOH Data Drop 20200612.xlsx               18FlF7QPvu4MwbmCLx3… </span><span style='color: #555555;'>&lt;named list [3</span><span>…
-#&gt; </span><span style='color: #555555;'>9</span><span> DOH Data Drop 20200612 - Changelog.xlsx   1zVianmnpyBL7elVnmI… </span><span style='color: #555555;'>&lt;named list [3</span><span>…</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>births_wpp_2019</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 21 x 4</span><span>
+#&gt;    area        year      age_category   birth
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> Philippines 2015-2020 0-4 y.o.          </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'> 2</span><span> Philippines 2015-2020 5-9 y.o           </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'> 3</span><span> Philippines 2015-2020 10-14 y.o.        </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'> 4</span><span> Philippines 2015-2020 15-19 y.o.   1</span><span style='text-decoration: underline;'>358</span><span>136
+#&gt; </span><span style='color: #555555;'> 5</span><span> Philippines 2015-2020 20-24 y.o.   2</span><span style='text-decoration: underline;'>986</span><span>917
+#&gt; </span><span style='color: #555555;'> 6</span><span> Philippines 2015-2020 25-29 y.o.   2</span><span style='text-decoration: underline;'>594</span><span>038
+#&gt; </span><span style='color: #555555;'> 7</span><span> Philippines 2015-2020 30-34 y.o.   2</span><span style='text-decoration: underline;'>121</span><span>630
+#&gt; </span><span style='color: #555555;'> 8</span><span> Philippines 2015-2020 35-39 y.o.   1</span><span style='text-decoration: underline;'>239</span><span>266
+#&gt; </span><span style='color: #555555;'> 9</span><span> Philippines 2015-2020 40-44 y.o.    </span><span style='text-decoration: underline;'>488</span><span>424
+#&gt; </span><span style='color: #555555;'>10</span><span> Philippines 2015-2020 45-49 y.o.    </span><span style='text-decoration: underline;'>100</span><span>986
+#&gt; </span><span style='color: #555555;'># … with 11 more rows</span><span></div><div class='input'>
+
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

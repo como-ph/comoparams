@@ -75,7 +75,7 @@ hospitalisation fatality rate (HFR) from Philippines data" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">comoparams</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -155,51 +155,21 @@ Data Drop.</p></td>
   consistent with CoMo model data structure requirements.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ph_get_cases.html'>ph_get_cases</a></span>()</div><div class='output co'>#&gt; <span class='message'>Getting information on Google Drive directory structure for latest available data up to 2020-06-10.</span></div><div class='input'><span class='fu'>ph_calculate_rates</span>(<span class='kw'>df</span> <span class='kw'>=</span> <span class='no'>df</span>)</div><div class='output co'>#&gt; <span class='message'>Getting information on Google Drive directory structure for latest available data up to 2020-06-10.</span></div><div class='output co'>#&gt;    age_category deaths deathsAdmitted admissions cases         ifr        ihr
-#&gt; 1      0-5 y.o.     11              4         71   432 0.025462963 0.16435185
-#&gt; 2     5-10 y.o.      2              2         23   257 0.007782101 0.08949416
-#&gt; 3    10-15 y.o.      2              2         27   409 0.004889976 0.06601467
-#&gt; 4    15-20 y.o.      9              7         68   638 0.014106583 0.10658307
-#&gt; 5    20-25 y.o.      3              3        255  1800 0.001666667 0.14166667
-#&gt; 6    25-30 y.o.     15              5        454  2853 0.005257624 0.15913074
-#&gt; 7    30-35 y.o.     12              7        545  3078 0.003898635 0.17706303
-#&gt; 8    35-40 y.o.     26             16        389  2333 0.011144449 0.16673811
-#&gt; 9    40-45 y.o.     45             29        378  2150 0.020930233 0.17581395
-#&gt; 10   45-50 y.o.     46             29        432  2032 0.022637795 0.21259843
-#&gt; 11   50-55 y.o.     74             54        425  1824 0.040570175 0.23300439
-#&gt; 12   55-60 y.o.    101             67        466  1677 0.060226595 0.27787716
-#&gt; 13   60-65 y.o.    164            113        494  1397 0.117394417 0.35361489
-#&gt; 14   65-70 y.o.    147            103        459  1061 0.138548539 0.43261074
-#&gt; 15   70-75 y.o.    143             98        353   785 0.182165605 0.44968153
-#&gt; 16   75-80 y.o.     97             67        201   444 0.218468468 0.45270270
-#&gt; 17   80-85 y.o.     71             52        124   263 0.269961977 0.47148289
-#&gt; 18   85-90 y.o.     37             31         65   121 0.305785124 0.53719008
-#&gt; 19   90-95 y.o.     15              8         17    37 0.405405405 0.45945946
-#&gt; 20  95-100 y.o.      5              5          7    11 0.454545455 0.63636364
-#&gt; 21    100+ y.o.      2              1          3   130 0.015384615 0.02307692
-#&gt;           hfr
-#&gt; 1  0.05633803
-#&gt; 2  0.08695652
-#&gt; 3  0.07407407
-#&gt; 4  0.10294118
-#&gt; 5  0.01176471
-#&gt; 6  0.01101322
-#&gt; 7  0.01284404
-#&gt; 8  0.04113111
-#&gt; 9  0.07671958
-#&gt; 10 0.06712963
-#&gt; 11 0.12705882
-#&gt; 12 0.14377682
-#&gt; 13 0.22874494
-#&gt; 14 0.22440087
-#&gt; 15 0.27762040
-#&gt; 16 0.33333333
-#&gt; 17 0.41935484
-#&gt; 18 0.47692308
-#&gt; 19 0.47058824
-#&gt; 20 0.71428571
-#&gt; 21 0.33333333</div><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ph_get_cases.html'>ph_get_cases</a></span>()</div><div class='output co'>#&gt; <span class='message'>Getting information on Google Drive directory structure for latest available data up to 2020-06-12.</span></div><div class='input'><span class='fu'>ph_calculate_rates</span>(<span class='kw'>df</span> <span class='kw'>=</span> <span class='no'>df</span>)</div><div class='output co'>#&gt; <span class='message'>Getting information on Google Drive directory structure for latest available data up to 2020-06-12.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 21 x 8</span><span>
+#&gt;    age_category deaths deathsAdmitted admissions cases     ifr    ihr    hfr
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> 0-5 y.o.         12              4         70   452 0.026</span><span style='text-decoration: underline;'>5</span><span>  0.155  0.057</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #555555;'> 2</span><span> 5-10 y.o.         3              2         23   270 0.011</span><span style='text-decoration: underline;'>1</span><span>  0.085</span><span style='text-decoration: underline;'>2</span><span> 0.087</span><span style='text-decoration: underline;'>0</span><span>
+#&gt; </span><span style='color: #555555;'> 3</span><span> 10-15 y.o.        2              2         27   422 0.004</span><span style='text-decoration: underline;'>74</span><span> 0.064</span><span style='text-decoration: underline;'>0</span><span> 0.074</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #555555;'> 4</span><span> 15-20 y.o.        9              7         73   675 0.013</span><span style='text-decoration: underline;'>3</span><span>  0.108  0.095</span><span style='text-decoration: underline;'>9</span><span>
+#&gt; </span><span style='color: #555555;'> 5</span><span> 20-25 y.o.        3              3        263  </span><span style='text-decoration: underline;'>1</span><span>894 0.001</span><span style='text-decoration: underline;'>58</span><span> 0.139  0.011</span><span style='text-decoration: underline;'>4</span><span>
+#&gt; </span><span style='color: #555555;'> 6</span><span> 25-30 y.o.       15              5        459  </span><span style='text-decoration: underline;'>3</span><span>020 0.004</span><span style='text-decoration: underline;'>97</span><span> 0.152  0.010</span><span style='text-decoration: underline;'>9</span><span>
+#&gt; </span><span style='color: #555555;'> 7</span><span> 30-35 y.o.       12              7        563  </span><span style='text-decoration: underline;'>3</span><span>225 0.003</span><span style='text-decoration: underline;'>72</span><span> 0.175  0.012</span><span style='text-decoration: underline;'>4</span><span>
+#&gt; </span><span style='color: #555555;'> 8</span><span> 35-40 y.o.       27             16        398  </span><span style='text-decoration: underline;'>2</span><span>441 0.011</span><span style='text-decoration: underline;'>1</span><span>  0.163  0.040</span><span style='text-decoration: underline;'>2</span><span>
+#&gt; </span><span style='color: #555555;'> 9</span><span> 40-45 y.o.       45             29        382  </span><span style='text-decoration: underline;'>2</span><span>233 0.020</span><span style='text-decoration: underline;'>2</span><span>  0.171  0.075</span><span style='text-decoration: underline;'>9</span><span>
+#&gt; </span><span style='color: #555555;'>10</span><span> 45-50 y.o.       48             30        436  </span><span style='text-decoration: underline;'>2</span><span>111 0.022</span><span style='text-decoration: underline;'>7</span><span>  0.207  0.068</span><span style='text-decoration: underline;'>8</span><span>
+#&gt; </span><span style='color: #555555;'># … with 11 more rows</span><span></div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

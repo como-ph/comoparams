@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get Department of Health COVID-19 Data Drop Google Drive specific directory
-information — ph_gdrive_files • comoparams</title>
+<title>Table of data sources used for parameters — dataSources • comoparams</title>
 
 
 <!-- jquery -->
@@ -40,10 +39,8 @@ information — ph_gdrive_files • comoparams</title>
 
 
 
-<meta property="og:title" content="Get Department of Health COVID-19 Data Drop Google Drive specific directory
-information — ph_gdrive_files" />
-<meta property="og:description" content="A wrapper to googledrive functions to extract information on contents of
-a specific COVID-19 Data Drop Google Drive directory" />
+<meta property="og:title" content="Table of data sources used for parameters — dataSources" />
+<meta property="og:description" content="Table of data sources used for parameters" />
 
 
 
@@ -126,54 +123,45 @@ a specific COVID-19 Data Drop Google Drive directory" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get Department of Health COVID-19 Data Drop Google Drive specific directory
-information</h1>
-    <small class="dont-index">Source: <a href='https://github.com/como-ph/comoparams/blob/master/R/01-ph_datadrop.R'><code>R/01-ph_datadrop.R</code></a></small>
-    <div class="hidden name"><code>ph_gdrive_files.Rd</code></div>
+    <h1>Table of data sources used for parameters</h1>
+    <small class="dont-index">Source: <a href='https://github.com/como-ph/comoparams/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>dataSources.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A wrapper to googledrive functions to extract information on contents of
-a specific COVID-19 Data Drop Google Drive directory</p>
+    <p>Table of data sources used for parameters</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ph_gdrive_files</span>(<span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>"current"</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='no'>dataSources</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>version</th>
-      <td><p>A character value specifying whether to get the most
-currently available dataset (<code>"current"</code>) or to get archive data
-(<code>"archive"</code>). Default to <code>"current"</code></p></td>
-    </tr>
-    <tr>
-      <th>date</th>
-      <td><p>Date in &lt;YYYY-MM-DD&gt; format; This is the date up to which
-extracted data reports to. Only used when <code>version</code> is set to
-<code>"archive"</code> otherwise ignored.</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A tibble containing information on the various files in a specified
-  COVID-19 Data Drop Google Drive directory</p>
+    <p>A tibble with 5 columns and 8 rows:</p><dl'>
+  <dt><code>description</code></dt><dd><p>Description of data source</p></dd>
+  <dt><code>parameter</code></dt><dd><p>Model parameter data source addresses</p></dd>
+  <dt><code>source</code></dt><dd><p>Issuing authority or body of the data source</p></dd>
+  <dt><code>scode</code></dt><dd><p>Source code</p></dd>
+  <dt><code>format</code></dt><dd><p>Format of the data available from the data source</p></dd>
+  <dt><code>link</code></dt><dd><p>URL for data source</p></dd>
+
+</dl>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>ph_gdrive_files</span>()</div><div class='output co'>#&gt; <span class='message'>Getting information on Google Drive directory structure for latest available data up to 2020-06-12.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 9 x 3</span><span>
-#&gt;   name                                      id                   drive_resource 
-#&gt; </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #555555;font-style: italic;'>&lt;list&gt;</span><span>         
-#&gt; </span><span style='color: #555555;'>1</span><span> 01 READ ME FIRST (06/12).pdf              1AAm5AkY3AaOuWpQS-b… </span><span style='color: #555555;'>&lt;named list [3</span><span>…
-#&gt; </span><span style='color: #555555;'>2</span><span> DOH COVID Data Drop_ 20200612 - 03 Metad… 1jj3y38PRUGWve5WXOL… </span><span style='color: #555555;'>&lt;named list [3</span><span>…
-#&gt; </span><span style='color: #555555;'>3</span><span> DOH COVID Data Drop_ 20200612 - 05 DOH D… 15sF7gEh_Y14lYPixy3… </span><span style='color: #555555;'>&lt;named list [3</span><span>…
-#&gt; </span><span style='color: #555555;'>4</span><span> DOH COVID Data Drop_ 20200612 - 02 Metad… 1F2i-Ndkpf3IGGGFM-5… </span><span style='color: #555555;'>&lt;named list [3</span><span>…
-#&gt; </span><span style='color: #555555;'>5</span><span> DOH COVID Data Drop_ 20200612 - 04 Case … 1VahaiYURQFQZQSeE-S… </span><span style='color: #555555;'>&lt;named list [3</span><span>…
-#&gt; </span><span style='color: #555555;'>6</span><span> DOH COVID Data Drop_ 20200612 - 06 DOH D… 1aRm8AZwr-VDgXN-MZN… </span><span style='color: #555555;'>&lt;named list [3</span><span>…
-#&gt; </span><span style='color: #555555;'>7</span><span> DOH COVID Data Drop_ 20200612 - 07 Testi… 1qedIqKm8wZYLIU03sW… </span><span style='color: #555555;'>&lt;named list [3</span><span>…
-#&gt; </span><span style='color: #555555;'>8</span><span> DOH Data Drop 20200612.xlsx               18FlF7QPvu4MwbmCLx3… </span><span style='color: #555555;'>&lt;named list [3</span><span>…
-#&gt; </span><span style='color: #555555;'>9</span><span> DOH Data Drop 20200612 - Changelog.xlsx   1zVianmnpyBL7elVnmI… </span><span style='color: #555555;'>&lt;named list [3</span><span>…</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>dataSources</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 9 x 6</span><span>
+#&gt;   description            parameter  source         scode format link            
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           
+#&gt; </span><span style='color: #555555;'>1</span><span> The Philippines 2015 … population Philippines S… PSA   XLSX   https://psa.gov…
+#&gt; </span><span style='color: #555555;'>2</span><span> Registered Deaths in … deaths     Philippines S… PSA   XLSX   https://psa.gov…
+#&gt; </span><span style='color: #555555;'>3</span><span> Registered Births in … births     Philippines S… PSA   XLSX   https://psa.gov…
+#&gt; </span><span style='color: #555555;'>4</span><span> Annual world populati… population World Populat… WPP   CSV    https://populat…
+#&gt; </span><span style='color: #555555;'>5</span><span> Number of births over… births     World Populat… WPP   XLSX   https://populat…
+#&gt; </span><span style='color: #555555;'>6</span><span> Number of deaths by f… deaths     World Populat… WPP   XLSX   https://populat…
+#&gt; </span><span style='color: #555555;'>7</span><span> COVID-19 cases and de… cases      DOH Data Drop  DOH   Googl… http://bit.ly/D…
+#&gt; </span><span style='color: #555555;'>8</span><span> COVID-19 cases and de… cases      DOH Data Drop  DOH   Googl… http://bit.ly/D…
+#&gt; </span><span style='color: #555555;'>9</span><span> Geographic distributi… cases      European Cent… ECDC  CSV    https://opendat…</div><div class='input'>
+
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
