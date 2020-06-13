@@ -102,28 +102,43 @@ The syntax for this set of pull functions has a common prefix of
 `ph_get_` followed by the short name of the specific dataset listed
 above.
 
-All four functions in this set has one argument - `date` - which is the
-date (in <YYYY-MM-DD> format) up to which exacted data reports to. This
-argument defaults to the current date as given by `Sys.Date()` and will
-only accept dates starting from 14 April 2020 when [COVID-19
+All four functions in this set has two arguments - `version` and `date`.
+The `version` argument is used to specify whether to pull the most
+recent or current data (specified as `current`) or to pull previous data
+(specified as `archive`). The default is `current`. The `date` argument
+is ignored if `version` is set to current. However, if `version` is set
+to `archive`, the `date` argument needs to be specified (in <YYYY-MM-DD>
+format) which will determine up to which exacted data reports to. This
+argument will only accept dates starting from 14 April 2020 when
+[COVID-19
 DataDrop](https://drive.google.com/drive/folders/10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP)
 was launched.
 
-It should be noted that [COVID-19
-DataDrop](https://drive.google.com/drive/folders/10VkiUA8x7TS2jkibhSZK1gmWxFM-EoZP)
-is updated everyday at 16:00 Philippine Standard Time (PHT). If these
-functions are used without specifying a `date` and at a time that is
-before 16:00 PHT, an error message will indicate that the dataset for
-the current day is not yet available and will suggest to specify a date
-at least one day earlier.
-
 The output of these functions is a `tibble`.
 
-To pull the data on `cases` up to the current date, we use the function
+To pull the most current data on `cases`, we use the function
 `ph_get_cases()` as follows:
 
 ``` r
 ph_get_cases()
+#> # A tibble: 24,787 x 21
+#>    CaseCode   Age AgeGroup Sex   DateSpecimen DateResultRelea… DateRepConf
+#>    <chr>    <int> <chr>    <chr> <chr>        <chr>            <chr>      
+#>  1 C100018     53 50 to 54 Fema… "2020-04-30" "2020-05-09"     2020-05-11 
+#>  2 C100119     31 30 to 34 Male  "2020-04-05" "2020-04-10"     2020-04-12 
+#>  3 C100130     33 30 to 34 Fema… ""           ""               2020-05-19 
+#>  4 C100148     35 35 to 39 Male  "2020-04-29" "2020-04-30"     2020-05-29 
+#>  5 C100158     68 65 to 69 Male  "2020-05-01" "2020-05-20"     2020-05-29 
+#>  6 C100218     19 15 to 19 Male  "2020-04-27" "2020-05-18"     2020-05-29 
+#>  7 C100264     58 55 to 59 Male  "2020-03-16" "2020-03-25"     2020-03-29 
+#>  8 C100364     28 25 to 29 Male  "2020-06-05" "2020-06-08"     2020-06-10 
+#>  9 C100429     46 45 to 49 Male  "2020-05-20" ""               2020-05-31 
+#> 10 C100452     55 55 to 59 Fema… ""           "2020-06-06"     2020-06-11 
+#> # … with 24,777 more rows, and 14 more variables: DateDied <chr>,
+#> #   DateRecover <chr>, RemovalType <chr>, DateRepRem <chr>, Admitted <chr>,
+#> #   RegionRes <chr>, ProvRes <chr>, CityMunRes <chr>, CityMuniPSGC <chr>,
+#> #   HealthStatus <chr>, Quarantined <chr>, DateOnset <chr>, Pregnanttab <chr>,
+#> #   ValidationStatus <chr>
 ```
 
 To pull the data on `cases` for up to 5 May 2020, we use the function
@@ -174,12 +189,6 @@ ph_get_cases(version = "archive", date = "2020-05-01")
 #> #   Quarantined <chr>
 ```
 
-The **pull data** set of functions in `comoparams` are helper functions
-that are called within the **calculate** set of functions to extract
-data needed to make specific calculations needed for the actual **CoMo
-Consortium Model**
-parameters.
-
 #### Pulling data from the Philippines Statistics Authority (PSA) 2015 Population Census (2015 POPCEN)
 
 The last Philippines census was in 2015. A 2020 census was planned but
@@ -203,21 +212,22 @@ follows:
 linkToFile <- "https://psa.gov.ph/sites/default/files/attachments/hsd/pressrelease/Updated%20Population%20Projections%20based%20on%202015%20POPCEN_0.xlsx"
 
 ph_get_psa2015_pop(file = linkToFile)
-#> # A tibble: 87,567 x 6
-#>    area         year age_category    total    male  female
-#>    <chr>       <dbl> <chr>           <dbl>   <dbl>   <dbl>
-#>  1 Philippines  2015 0-4          10803297 5582405 5220892
-#>  2 Philippines  2015 5-9          10827294 5588769 5238525
-#>  3 Philippines  2015 10-14        10478834 5397638 5081196
-#>  4 Philippines  2015 15-19        10176450 5194725 4981725
-#>  5 Philippines  2015 20-24         9453737 4788812 4664925
-#>  6 Philippines  2015 25-29         8348285 4246632 4101653
-#>  7 Philippines  2015 30-34         7331213 3750503 3580710
-#>  8 Philippines  2015 35-39         6732896 3442349 3290547
-#>  9 Philippines  2015 40-44         5840861 2991059 2849802
-#> 10 Philippines  2015 45-49         5276700 2676602 2600098
-#> # … with 87,557 more rows
 ```
+
+    #> # A tibble: 87,567 x 6
+    #>    area         year age_category    total    male  female
+    #>    <chr>       <dbl> <chr>           <dbl>   <dbl>   <dbl>
+    #>  1 Philippines  2015 0-4          10803297 5582405 5220892
+    #>  2 Philippines  2015 5-9          10827294 5588769 5238525
+    #>  3 Philippines  2015 10-14        10478834 5397638 5081196
+    #>  4 Philippines  2015 15-19        10176450 5194725 4981725
+    #>  5 Philippines  2015 20-24         9453737 4788812 4664925
+    #>  6 Philippines  2015 25-29         8348285 4246632 4101653
+    #>  7 Philippines  2015 30-34         7331213 3750503 3580710
+    #>  8 Philippines  2015 35-39         6732896 3442349 3290547
+    #>  9 Philippines  2015 40-44         5840861 2991059 2849802
+    #> 10 Philippines  2015 45-49         5276700 2676602 2600098
+    #> # … with 87,557 more rows
 
 The main limitation of the PSA population projections based on the 2015
 POPCEN is that the age grouping only goes up 85+ whilst the **CoMo
@@ -254,21 +264,22 @@ following:
 linkToFile <- "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/CSV_FILES/WPP2019_PopulationByAgeSex_Medium.csv"
 
 ph_get_wpp2019_pop(file = linkToFile, location = "Philippines")
-#> # A tibble: 21 x 6
-#>    area         year age_category    total     male  female
-#>    <chr>       <int> <chr>           <dbl>    <dbl>   <dbl>
-#>  1 Philippines  2020 0-4 y.o.     10616342 5450633  5165709
-#>  2 Philippines  2020 5-9 y.o.     11397952 5846072  5551880
-#>  3 Philippines  2020 10-14 y.o.   10906801 5578251  5328550
-#>  4 Philippines  2020 15-19 y.o.   10462894 5407659  5055235
-#>  5 Philippines  2020 20-24 y.o.   10104334 5191755  4912579
-#>  6 Philippines  2020 25-29 y.o.    9479780 4807611  4672169
-#>  7 Philippines  2020 30-34 y.o.    8247197 4166778. 4080419
-#>  8 Philippines  2020 35-39 y.o.    7254730 3644549  3610181
-#>  9 Philippines  2020 40-44 y.o.    6551963 3297341  3254622
-#> 10 Philippines  2020 45-49 y.o.    5759264 2883722  2875542
-#> # … with 11 more rows
 ```
+
+    #> # A tibble: 21 x 6
+    #>    area         year age_category    total     male  female
+    #>    <chr>       <int> <chr>           <dbl>    <dbl>   <dbl>
+    #>  1 Philippines  2020 0-4 y.o.     10616342 5450633  5165709
+    #>  2 Philippines  2020 5-9 y.o.     11397952 5846072  5551880
+    #>  3 Philippines  2020 10-14 y.o.   10906801 5578251  5328550
+    #>  4 Philippines  2020 15-19 y.o.   10462894 5407659  5055235
+    #>  5 Philippines  2020 20-24 y.o.   10104334 5191755  4912579
+    #>  6 Philippines  2020 25-29 y.o.    9479780 4807611  4672169
+    #>  7 Philippines  2020 30-34 y.o.    8247197 4166778. 4080419
+    #>  8 Philippines  2020 35-39 y.o.    7254730 3644549  3610181
+    #>  9 Philippines  2020 40-44 y.o.    6551963 3297341  3254622
+    #> 10 Philippines  2020 45-49 y.o.    5759264 2883722  2875542
+    #> # … with 11 more rows
 
 To pull the number of births by age of mother in 5-year age groups, we
 make a call for the
@@ -278,21 +289,22 @@ following:
 linkToFile <- "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/EXCEL_FILES/2_Fertility/WPP2019_FERT_F06_BIRTHS_BY_AGE_OF_MOTHER.xlsx"
 
 ph_get_wpp2019_births(file = linkToFile, period = 2019)
-#> # A tibble: 21 x 4
-#>    area        year      age_category   birth
-#>    <fct>       <fct>     <fct>          <dbl>
-#>  1 Philippines 2015-2020 0-4 y.o.          NA
-#>  2 Philippines 2015-2020 5-9 y.o           NA
-#>  3 Philippines 2015-2020 10-14 y.o.        NA
-#>  4 Philippines 2015-2020 15-19 y.o.   1358136
-#>  5 Philippines 2015-2020 20-24 y.o.   2986917
-#>  6 Philippines 2015-2020 25-29 y.o.   2594038
-#>  7 Philippines 2015-2020 30-34 y.o.   2121630
-#>  8 Philippines 2015-2020 35-39 y.o.   1239266
-#>  9 Philippines 2015-2020 40-44 y.o.    488424
-#> 10 Philippines 2015-2020 45-49 y.o.    100986
-#> # … with 11 more rows
 ```
+
+    #> # A tibble: 21 x 4
+    #>    area        year      age_category   birth
+    #>    <fct>       <fct>     <fct>          <dbl>
+    #>  1 Philippines 2015-2020 0-4 y.o.          NA
+    #>  2 Philippines 2015-2020 5-9 y.o           NA
+    #>  3 Philippines 2015-2020 10-14 y.o.        NA
+    #>  4 Philippines 2015-2020 15-19 y.o.   1358136
+    #>  5 Philippines 2015-2020 20-24 y.o.   2986917
+    #>  6 Philippines 2015-2020 25-29 y.o.   2594038
+    #>  7 Philippines 2015-2020 30-34 y.o.   2121630
+    #>  8 Philippines 2015-2020 35-39 y.o.   1239266
+    #>  9 Philippines 2015-2020 40-44 y.o.    488424
+    #> 10 Philippines 2015-2020 45-49 y.o.    100986
+    #> # … with 11 more rows
 
 To pull the number of deaths by 5-year age groups and by male and
 female, we make a call for the
@@ -302,21 +314,22 @@ following:
 linkToFile <- "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/EXCEL_FILES/3_Mortality/WPP2019_MORT_F04_1_DEATHS_BY_AGE_BOTH_SEXES.xlsx"
 
 ph_get_wpp2019_deaths(file = linkToFile, period = 2019)
-#> # A tibble: 21 x 4
-#>    area        year      age_category  death
-#>    <chr>       <chr>     <chr>         <dbl>
-#>  1 Philippines 2015-2020 0-4 y.o.     306206
-#>  2 Philippines 2015-2020 5-9 y.o.      34260
-#>  3 Philippines 2015-2020 10-14 y.o.    28539
-#>  4 Philippines 2015-2020 15-19 y.o.    59008
-#>  5 Philippines 2015-2020 20-24 y.o.    78740
-#>  6 Philippines 2015-2020 25-29 y.o.    77908
-#>  7 Philippines 2015-2020 30-34 y.o.    81415
-#>  8 Philippines 2015-2020 35-39 y.o.    96548
-#>  9 Philippines 2015-2020 40-44 y.o.   121537
-#> 10 Philippines 2015-2020 45-49 y.o.   160660
-#> # … with 11 more rows
 ```
+
+    #> # A tibble: 21 x 4
+    #>    area        year      age_category  death
+    #>    <chr>       <chr>     <chr>         <dbl>
+    #>  1 Philippines 2015-2020 0-4 y.o.     306206
+    #>  2 Philippines 2015-2020 5-9 y.o.      34260
+    #>  3 Philippines 2015-2020 10-14 y.o.    28539
+    #>  4 Philippines 2015-2020 15-19 y.o.    59008
+    #>  5 Philippines 2015-2020 20-24 y.o.    78740
+    #>  6 Philippines 2015-2020 25-29 y.o.    77908
+    #>  7 Philippines 2015-2020 30-34 y.o.    81415
+    #>  8 Philippines 2015-2020 35-39 y.o.    96548
+    #>  9 Philippines 2015-2020 40-44 y.o.   121537
+    #> 10 Philippines 2015-2020 45-49 y.o.   160660
+    #> # … with 11 more rows
 
 ### Calculate values
 
@@ -337,228 +350,41 @@ follows:
 
 ``` r
 ph_get_cases() %>% ph_calculate_cases()
-#>        repDate cases deaths recovered
-#> 1   2020-01-01     0      0         0
-#> 2   2020-01-02     0      0         0
-#> 3   2020-01-03     0      0         0
-#> 4   2020-01-04     0      0         0
-#> 5   2020-01-05     0      0         0
-#> 6   2020-01-06     0      0         0
-#> 7   2020-01-07     0      0         0
-#> 8   2020-01-08     0      0         0
-#> 9   2020-01-09     0      0         0
-#> 10  2020-01-10     0      0         0
-#> 11  2020-01-11     0      0         0
-#> 12  2020-01-12     0      0         0
-#> 13  2020-01-13     0      0         0
-#> 14  2020-01-14     0      0         0
-#> 15  2020-01-15     0      0         0
-#> 16  2020-01-16     0      0         0
-#> 17  2020-01-17     0      0         0
-#> 18  2020-01-18     0      0         0
-#> 19  2020-01-19     0      0         0
-#> 20  2020-01-20     0      0         0
-#> 21  2020-01-21     0      0         0
-#> 22  2020-01-22     0      0         0
-#> 23  2020-01-23     0      0         0
-#> 24  2020-01-24     0      0         0
-#> 25  2020-01-25     0      0         0
-#> 26  2020-01-26     0      0         0
-#> 27  2020-01-27     0      0         0
-#> 28  2020-01-28     0      0         0
-#> 29  2020-01-29     0      0         0
-#> 30  2020-01-30     1      0         0
-#> 31  2020-01-31     0      0         1
-#> 32  2020-02-01     0      1         0
-#> 33  2020-02-02     0      0         0
-#> 34  2020-02-03     1      1         0
-#> 35  2020-02-04     0      0         0
-#> 36  2020-02-05     1      0         0
-#> 37  2020-02-06     0      0         0
-#> 38  2020-02-07     0      0         0
-#> 39  2020-02-08     0      0         1
-#> 40  2020-02-09     0      0         0
-#> 41  2020-02-10     0      0         0
-#> 42  2020-02-11     0      0         0
-#> 43  2020-02-12     0      0         0
-#> 44  2020-02-13     0      0         0
-#> 45  2020-02-14     0      0         0
-#> 46  2020-02-15     0      0         0
-#> 47  2020-02-16     0      0         0
-#> 48  2020-02-17     0      0         0
-#> 49  2020-02-18     0      0         0
-#> 50  2020-02-19     0      0         0
-#> 51  2020-02-20     0      0         0
-#> 52  2020-02-21     0      0         0
-#> 53  2020-02-22     0      0         0
-#> 54  2020-02-23     0      0         0
-#> 55  2020-02-24     0      0         0
-#> 56  2020-02-25     0      0         0
-#> 57  2020-02-26     0      0         0
-#> 58  2020-02-27     0      0         0
-#> 59  2020-02-28     0      0         0
-#> 60  2020-02-29     0      0         0
-#> 61  2020-03-01     0      0         0
-#> 62  2020-03-02     0      0         0
-#> 63  2020-03-03     0      0         0
-#> 64  2020-03-04     0      0         0
-#> 65  2020-03-05     0      0         1
-#> 66  2020-03-06     2      0         1
-#> 67  2020-03-07     1      0         0
-#> 68  2020-03-08     4      0         0
-#> 69  2020-03-09    14      0         0
-#> 70  2020-03-10     9      0         1
-#> 71  2020-03-11    16      3         2
-#> 72  2020-03-12     3      3         1
-#> 73  2020-03-13    12      4         0
-#> 74  2020-03-14    47      5         0
-#> 75  2020-03-15    29      6         4
-#> 76  2020-03-16     2      5         0
-#> 77  2020-03-17    45     12         9
-#> 78  2020-03-18    15      9         6
-#> 79  2020-03-19    15     14         3
-#> 80  2020-03-20    13     16         8
-#> 81  2020-03-21    77     14         9
-#> 82  2020-03-22    73     22         7
-#> 83  2020-03-23    82     30        12
-#> 84  2020-03-24    90     23        12
-#> 85  2020-03-25    84     23         5
-#> 86  2020-03-26    70     33        11
-#> 87  2020-03-27   102     38        12
-#> 88  2020-03-28   267     32        17
-#> 89  2020-03-29   343     29        20
-#> 90  2020-03-30   128     38        15
-#> 91  2020-03-31   538     25        35
-#> 92  2020-04-01   227     26        33
-#> 93  2020-04-02   322     24        27
-#> 94  2020-04-03   385     17        43
-#> 95  2020-04-04    76     26        38
-#> 96  2020-04-05   152     21        25
-#> 97  2020-04-06   414     18        41
-#> 98  2020-04-07   104     15        46
-#> 99  2020-04-08   106     18        62
-#> 100 2020-04-09   206     18        37
-#> 101 2020-04-10   119     18        30
-#> 102 2020-04-11   233     21        40
-#> 103 2020-04-12   220     14        33
-#> 104 2020-04-13   284     16        41
-#> 105 2020-04-14   291     11        40
-#> 106 2020-04-15   230     18        48
-#> 107 2020-04-16   207      2        44
-#> 108 2020-04-17   218      8        39
-#> 109 2020-04-18   209     13        47
-#> 110 2020-04-19   172      8        35
-#> 111 2020-04-20   200     13        49
-#> 112 2020-04-21   140     10        41
-#> 113 2020-04-22   111     11        33
-#> 114 2020-04-23   271     14        56
-#> 115 2020-04-24   211      7        30
-#> 116 2020-04-25   102      6        35
-#> 117 2020-04-26   285      6        29
-#> 118 2020-04-27   198     16        54
-#> 119 2020-04-28   181      3        34
-#> 120 2020-04-29   254      8        48
-#> 121 2020-04-30   276      7        55
-#> 122 2020-05-01   284      4        29
-#> 123 2020-05-02   156      5        43
-#> 124 2020-05-03   295      8        17
-#> 125 2020-05-04   262      7        29
-#> 126 2020-05-05   199      5        68
-#> 127 2020-05-06   321     12        48
-#> 128 2020-05-07   338      5        31
-#> 129 2020-05-08   120      2        51
-#> 130 2020-05-09   147     14        28
-#> 131 2020-05-10   184      4        19
-#> 132 2020-05-11   292      6        36
-#> 133 2020-05-12   264      5        43
-#> 134 2020-05-13   268      8        43
-#> 135 2020-05-14   258      9        34
-#> 136 2020-05-15   215      8        34
-#> 137 2020-05-16   214      7        24
-#> 138 2020-05-17   208      2        15
-#> 139 2020-05-18   205      3        21
-#> 140 2020-05-19   224     11        26
-#> 141 2020-05-20   279      2        24
-#> 142 2020-05-21   213      5        28
-#> 143 2020-05-22   163      6        23
-#> 144 2020-05-23   180      5        20
-#> 145 2020-05-24   258      1         6
-#> 146 2020-05-25   284      2        15
-#> 147 2020-05-26   350      5        17
-#> 148 2020-05-27   380      1        11
-#> 149 2020-05-28   539      3       103
-#> 150 2020-05-29  1046      1        79
-#> 151 2020-05-30   590      3        57
-#> 152 2020-05-31   862      0        85
-#> 153 2020-06-01   552      1        78
-#> 154 2020-06-02   359      0        71
-#> 155 2020-06-03   751      2        33
-#> 156 2020-06-04   634      1         3
-#> 157 2020-06-05   244      0         4
-#> 158 2020-06-06   714      0         0
-#> 159 2020-06-07   555      1         2
-#> 160 2020-06-08   579      0         0
-#> 161 2020-06-09   518      0         1
-#> 162 2020-06-10   740      0         0
-#> 163 2020-06-11   443      0         0
+#> # A tibble: 164 x 4
+#>    repDate    cases deaths recovered
+#>    <date>     <dbl>  <dbl>     <dbl>
+#>  1 2020-01-01     0      0         0
+#>  2 2020-01-02     0      0         0
+#>  3 2020-01-03     0      0         0
+#>  4 2020-01-04     0      0         0
+#>  5 2020-01-05     0      0         0
+#>  6 2020-01-06     0      0         0
+#>  7 2020-01-07     0      0         0
+#>  8 2020-01-08     0      0         0
+#>  9 2020-01-09     0      0         0
+#> 10 2020-01-10     0      0         0
+#> # … with 154 more rows
 ```
 
 The IFR and IHR output can be produced as follows:
 
 ``` r
 ph_get_cases() %>% ph_calculate_rates()
-#>    age_category deaths deathsAdmitted admissions cases         ifr        ihr
-#> 1      0-5 y.o.     11              4         70   437 0.025171625 0.16018307
-#> 2     5-10 y.o.      2              2         23   262 0.007633588 0.08778626
-#> 3    10-15 y.o.      2              2         27   412 0.004854369 0.06553398
-#> 4    15-20 y.o.      9              7         70   652 0.013803681 0.10736196
-#> 5    20-25 y.o.      3              3        261  1844 0.001626898 0.14154013
-#> 6    25-30 y.o.     15              5        458  2935 0.005110733 0.15604770
-#> 7    30-35 y.o.     12              7        561  3135 0.003827751 0.17894737
-#> 8    35-40 y.o.     27             16        394  2379 0.011349306 0.16561580
-#> 9    40-45 y.o.     45             29        382  2185 0.020594966 0.17482838
-#> 10   45-50 y.o.     47             30        436  2061 0.022804464 0.21154779
-#> 11   50-55 y.o.     76             56        431  1863 0.040794418 0.23134729
-#> 12   55-60 y.o.    102             67        471  1703 0.059894304 0.27657076
-#> 13   60-65 y.o.    164            113        497  1424 0.115168539 0.34901685
-#> 14   65-70 y.o.    148            104        465  1074 0.137802607 0.43296089
-#> 15   70-75 y.o.    144            100        356   792 0.181818182 0.44949495
-#> 16   75-80 y.o.     99             67        206   453 0.218543046 0.45474614
-#> 17   80-85 y.o.     71             52        124   266 0.266917293 0.46616541
-#> 18   85-90 y.o.     37             31         65   123 0.300813008 0.52845528
-#> 19   90-95 y.o.     15              8         17    37 0.405405405 0.45945946
-#> 20  95-100 y.o.      5              5          7    11 0.454545455 0.63636364
-#> 21    100+ y.o.      2              1          3   127 0.015748031 0.02362205
-#>           hfr
-#> 1  0.05714286
-#> 2  0.08695652
-#> 3  0.07407407
-#> 4  0.10000000
-#> 5  0.01149425
-#> 6  0.01091703
-#> 7  0.01247772
-#> 8  0.04060914
-#> 9  0.07591623
-#> 10 0.06880734
-#> 11 0.12993039
-#> 12 0.14225053
-#> 13 0.22736419
-#> 14 0.22365591
-#> 15 0.28089888
-#> 16 0.32524272
-#> 17 0.41935484
-#> 18 0.47692308
-#> 19 0.47058824
-#> 20 0.71428571
-#> 21 0.33333333
+#> # A tibble: 21 x 8
+#>    age_category deaths deathsAdmitted admissions cases     ifr    ihr    hfr
+#>    <fct>         <dbl>          <dbl>      <dbl> <dbl>   <dbl>  <dbl>  <dbl>
+#>  1 0-5 y.o.         12              4         70   452 0.0265  0.155  0.0571
+#>  2 5-10 y.o.         3              2         23   270 0.0111  0.0852 0.0870
+#>  3 10-15 y.o.        2              2         27   422 0.00474 0.0640 0.0741
+#>  4 15-20 y.o.        9              7         73   675 0.0133  0.108  0.0959
+#>  5 20-25 y.o.        3              3        263  1894 0.00158 0.139  0.0114
+#>  6 25-30 y.o.       15              5        459  3020 0.00497 0.152  0.0109
+#>  7 30-35 y.o.       12              7        563  3225 0.00372 0.175  0.0124
+#>  8 35-40 y.o.       27             16        398  2441 0.0111  0.163  0.0402
+#>  9 40-45 y.o.       45             29        382  2233 0.0202  0.171  0.0759
+#> 10 45-50 y.o.       48             30        436  2111 0.0227  0.207  0.0688
+#> # … with 11 more rows
 ```
-
-As mentioned earlier, these two functions use the pull functions for the
-Philippines COVID-19 DataDrop (described above) to pull the cases
-information and then processes these to get the needed output. It is
-important to note therefore that when calling these two calculate
-functions, the `date` argument will need to be considered particularly
-when the current time is before 16:00 PHT.
 
 ### Parameters setting
 
