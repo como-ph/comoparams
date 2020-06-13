@@ -34,8 +34,11 @@ by 5-year periods given a year or range of years from the World Population
 Prospects 2019
 }
 \examples{
-link <- "https://population.un.org/wpp/Download/Files/1_Indicators\%20(Standard)/"
-fname <- "EXCEL_FILES/2_Fertility/WPP2019_FERT_F06_BIRTHS_BY_AGE_OF_MOTHER.xlsx"
-ph_get_wpp2019_births(file = paste(link, fname, sep = ""), period = 2019)
+\dontrun{
+link <- with(dataSources,
+             link[source == "World Population Prospects 2019" &
+                  parameter == "births"])
+ph_get_wpp2019_births(file = link, period = 2019)
+}
 
 }

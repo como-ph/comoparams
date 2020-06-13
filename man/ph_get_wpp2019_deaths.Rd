@@ -32,8 +32,11 @@ Get Philippines number of deaths estimates or projections by 5-year periods
 given a year or range of years from the World Population Prospects 2019
 }
 \examples{
-link <- "https://population.un.org/wpp/Download/Files/1_Indicators\%20(Standard)/"
-fname <- "EXCEL_FILES/3_Mortality/WPP2019_MORT_F04_1_DEATHS_BY_AGE_BOTH_SEXES.xlsx"
-ph_get_wpp2019_deaths(file = paste(link, fname, sep = ""), period = 2019)
+\dontrun{
+link <- with(dataSources,
+             link[source == "World Population Prospects 2019" &
+                  parameter == "deaths"])
+ph_get_wpp2019_deaths(file = link, period = 2019)
+}
 
 }

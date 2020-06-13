@@ -21,8 +21,11 @@ Get Philippines population estimates for 2015 and projections for 2016-2025
 based on the results of the Philippines 2015 POPCEN
 }
 \examples{
-link <- "https://psa.gov.ph/sites/default/files/attachments/hsd/pressrelease/"
-fname <- "Updated\%20Population\%20Projections\%20based\%20on\%202015\%20POPCEN_0.xlsx"
-ph_get_psa2015_pop(file = paste(link, fname, sep = ""))
+\dontrun{
+link <- with(dataSources,
+             link[source == "Philippines Statistics Authority" &
+                  parameter == "population"])
+ph_get_psa2015_pop(file = link)
+}
 
 }

@@ -12,7 +12,7 @@ ph_calculate_cases(df)
 Data Drop.}
 }
 \value{
-A data.frame with calculated number of cases per day and number
+A tibble with calculated number of cases per day and number
   of deaths per day and number of recovered per day with structure consistent
   with CoMo model data structure requirements.
 }

@@ -31,8 +31,11 @@ Get Philippines population estimates or projections by 5-year age groups
 given a year or range of years from the World Population Prospects 2019
 }
 \examples{
-link <- "https://population.un.org/wpp/Download/Files/1_Indicators\%20(Standard)/CSV_FILES/"
-fname <- "WPP2019_PopulationByAgeSex_Medium.csv"
-ph_get_wpp2019_pop(file = paste(link, fname, sep = ""))
+\dontrun{
+link <- with(dataSources,
+             link[source == "World Population Prospects 2019" &
+             parameter == "population"])
+ph_get_wpp2019_pop(file = link)
+}
 
 }

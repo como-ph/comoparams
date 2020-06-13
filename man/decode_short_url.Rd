@@ -2,19 +2,19 @@
 % Please edit documentation in R/00-utilities.R
 \name{decode_short_url}
 \alias{decode_short_url}
-\title{Lengthen a shortened URL to its full URL format}
+\title{Expand a shortened URL to its full URL format}
 \usage{
 decode_short_url(url)
 }
 \arguments{
 \item{url}{Shortened URL to lengthen. Currently tested to work for shortened
-URL using bit.ly}
+URL using \code{bitly}}
 }
 \value{
 A character value for lengthened URL
 }
 \description{
-A utility function to lengthen shortened URL created via \code{bit.ly}.
+A utility function to expand short format URLs
 }
 \examples{
 decode_short_url(url = "bit.ly/30xo3xk")
