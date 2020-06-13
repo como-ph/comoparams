@@ -12,9 +12,11 @@
 #'   2025 (projections)
 #'
 #' @examples
-#' link <- "https://psa.gov.ph/sites/default/files/attachments/hsd/pressrelease/"
-#' fname <- "Updated%20Population%20Projections%20based%20on%202015%20POPCEN_0.xlsx"
-#' ph_get_psa2015_pop(file = paste(link, fname, sep = ""))
+#' \dontrun{
+#' link <- with(dataSources,
+#'              link[source == "PSA" & parameter == "population"])
+#' ph_get_psa2015_pop(file = link)
+#' }
 #'
 #' @export
 #'
@@ -97,9 +99,11 @@ ph_get_psa2015_pop <- function(file) {
 #'   2025 (projections)
 #'
 #' @examples
-#' link <- "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/CSV_FILES/"
-#' fname <- "WPP2019_PopulationByAgeSex_Medium.csv"
-#' ph_get_wpp2019_pop(file = paste(link, fname, sep = ""))
+#' \dontrun{
+#' link <- with(dataSources,
+#'              link[source == "WPP" & parameter == "population"])
+#' ph_get_wpp2019_pop(file = link)
+#' }
 #'
 #' @export
 #'
@@ -147,9 +151,11 @@ ph_get_wpp2019_pop <- function(file,
 #'   for the entire Philippines from 1950 to 2100
 #'
 #' @examples
-#' link <- "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/"
-#' fname <- "EXCEL_FILES/2_Fertility/WPP2019_FERT_F06_BIRTHS_BY_AGE_OF_MOTHER.xlsx"
-#' ph_get_wpp2019_births(file = paste(link, fname, sep = ""), period = 2019)
+#' \dontrun{
+#' link <- with(dataSources,
+#'              link[source == "WPP" & parameter == "births"])
+#' ph_get_wpp2019_births(file = link, period = 2019)
+#' }
 #'
 #' @export
 #'
@@ -238,9 +244,11 @@ ph_get_wpp2019_births <- function(file,
 #'   for the entire Philippines from 1950 to 2100
 #'
 #' @examples
-#' link <- "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/"
-#' fname <- "EXCEL_FILES/3_Mortality/WPP2019_MORT_F04_1_DEATHS_BY_AGE_BOTH_SEXES.xlsx"
-#' ph_get_wpp2019_deaths(file = paste(link, fname, sep = ""), period = 2019)
+#' \dontrun{
+#' link <- with(dataSources,
+#'              link[source == "WPP" & parameter == "deaths"])
+#' ph_get_wpp2019_deaths(file = link, period = 2019)
+#' }
 #'
 #' @export
 #'

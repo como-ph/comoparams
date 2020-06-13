@@ -1,11 +1,11 @@
 ################################################################################
 #
-#' Lengthen a shortened URL to its full URL format
+#' Expand a shortened URL to its full URL format
 #'
-#' A utility function to lengthen shortened URL created via \code{bit.ly}.
+#' A utility function to expand short format URLs
 #'
 #' @param url Shortened URL to lengthen. Currently tested to work for shortened
-#'   URL using bit.ly
+#'   URL using \code{bitly}
 #'
 #' @return A character value for lengthened URL
 #'
@@ -32,4 +32,6 @@ decode_short_url <- function(url) {
     return(gsub(".*Location: (\\S+).*", "\\1", x))
   }
 }
+
+
 

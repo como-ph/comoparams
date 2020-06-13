@@ -55,12 +55,18 @@ ph_calculate_rates <- function(df) {
                                                     deathsAdmitted,
                                                     cases),
                                   FUN = sum)
-  ##
+
+  ## Calculate rates
   ifr <- casesDeaths$deaths / casesDeaths$cases
   ihr <- casesDeaths$admissions / casesDeaths$cases
   hfr <- casesDeaths$deathsAdmitted / casesDeaths$admissions
-  ##
+
+  ## Concatenate rates
   casesDeaths <- data.frame(casesDeaths, ifr, ihr, hfr)
+
+  ## Convert to tibble
+  casesDeaths <- tibble::tibble(casesDeaths)
+
   ##
   return(casesDeaths)
 }

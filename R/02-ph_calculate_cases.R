@@ -7,7 +7,7 @@
 #' @param df A data.frame of cases data pulled from the Philippines COVID-19
 #'   Data Drop.
 #'
-#' @return A data.frame with calculated number of cases per day and number
+#' @return A tibble with calculated number of cases per day and number
 #'   of deaths per day and number of recovered per day with structure consistent
 #'   with CoMo model data structure requirements.
 #'
@@ -130,9 +130,12 @@ ph_calculate_cases <- function(df) {
 
   dailyRecovered$recovered <- ifelse(is.na(dailyRecovered$recovered), 0, dailyRecovered$recovered)
 
-  ##
+  ## Merge datasets
   casesDeathsRecovered <- merge(dailyCases, dailyDeaths, all.x = TRUE)
   casesDeathsRecovered <- merge(casesDeathsRecovered, dailyRecovered, all.x = TRUE)
+
+  ## Convert to tibble
+  casesDeathsRecovered <- tibble::tibble(casesDeathsRecovered)
 
   ##
   return(casesDeathsRecovered)

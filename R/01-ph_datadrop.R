@@ -63,13 +63,14 @@ ph_gdrive_files <- function(version = "current", date = NULL) {
   x <- stringr::word(readme[stringr::str_detect(string = readme,
                                                 pattern = "bit.ly/*")][1], -1)
 
-  x <- paste("http://", x, sep = "") %>%
-    decode_short_url() %>%
-    stringr::str_split(pattern = "/|\\?") %>%
+  x <- x %>%
+    #decode_short_url() %>%
+    RCurl::getURL() %>%
+    stringr::str_extract_all(pattern = "[A-Za-z0-9@%#&()+*$,._\\-]{33}") %>%
     unlist()
 
   ## Get google drive directory sturcture and information
-  y <- googledrive::drive_ls(googledrive::drive_get(id = x[6]))
+  y <- googledrive::drive_ls(googledrive::drive_get(id = x))
 
   if(version == "archive") {
     if(is.null(date)) {
