@@ -34,8 +34,7 @@ given a year or range of years from the World Population Prospects 2019
 \examples{
 \dontrun{
 link <- with(dataSources,
-             link[source == "World Population Prospects 2019" &
-                  parameter == "deaths"])
+             link[source == "WPP" & parameter == "deaths"])
 ph_get_wpp2019_deaths(file = link, period = 2019)
 }
 

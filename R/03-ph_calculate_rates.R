@@ -21,8 +21,6 @@
 ################################################################################
 
 ph_calculate_rates <- function(df) {
-  ## Get dataset
-  df <- ph_get_cases(date = date)
   ## Create age group and express as factor
   labs <- cut(x = 0:100,
               breaks = seq(from = 0, to = 105, by = 5),

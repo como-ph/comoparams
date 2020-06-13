@@ -21,6 +21,9 @@ Calculate daily cases, daily deaths and daily recoveries from Philippines
 COVID-19 Data Drop
 }
 \examples{
-ph_calculate_cases(df = ph_get_cases())
+\dontrun{
+df <- ph_get_cases()
+ph_calculate_cases(df = df)
+}
 
 }

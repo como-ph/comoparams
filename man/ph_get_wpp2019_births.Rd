@@ -36,8 +36,7 @@ Prospects 2019
 \examples{
 \dontrun{
 link <- with(dataSources,
-             link[source == "World Population Prospects 2019" &
-                  parameter == "births"])
+             link[source == "WPP" & parameter == "births"])
 ph_get_wpp2019_births(file = link, period = 2019)
 }
 
