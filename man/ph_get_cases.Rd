@@ -26,8 +26,6 @@ Philppines' COVID-19 Data Drop resource that is publicly distributed via
 Google Drive
 }
 \examples{
-\dontrun{
 ph_get_cases()
-}
 
 }
