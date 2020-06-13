@@ -184,7 +184,9 @@ ph_get_fields <- function(version = "current", date = NULL) {
 #'   via the COVID-19 Data Drop
 #'
 #' @examples
+#' \dontrun{
 #' ph_get_cases()
+#' }
 #'
 #' @export
 #'
