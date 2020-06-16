@@ -40,7 +40,7 @@ ph_gdrive_files <- function(version = "current", date = NULL) {
 
   ## Provide message to user
   message(
-    paste("Getting information on Google Drive directory structure for latest available data up to ",
+    paste("Getting information on Google Drive directory structure of the DoH Data Drop for latest available data up to ",
           dropDate, ".", sep = "")
   )
 
