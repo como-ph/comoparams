@@ -37,3 +37,7 @@
 #
 ################################################################################
 "_PACKAGE"
+
+if(getRversion() >= "2.15.1")  utils::globalVariables(c("births_wpp_2019",
+                                                        "deaths_wpp_2019",
+                                                        "population_wpp_2019"))

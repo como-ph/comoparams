@@ -34,7 +34,7 @@ ph_gdrive_files <- function(version = "current", date = NULL) {
 
   ## Get dropDate
   dropDate <- stringr::str_extract(string = dropCurrent$name,
-                                   pattern = "[0-9]{2}/[0-9]{2}") %>%
+                                   pattern = "[0-9]{2}/[0-9]{2}|[0-9]{2}\\_[0-9]{2}") %>%
     paste("2020", sep = "/") %>%
     lubridate::mdy()
 
@@ -63,8 +63,7 @@ ph_gdrive_files <- function(version = "current", date = NULL) {
   x <- stringr::word(readme[stringr::str_detect(string = readme,
                                                 pattern = "bit.ly/*")][1], -1)
 
-  x <- paste("http://", x, sep = "") %>%
-    #decode_short_url() %>%
+  x <- x %>%
     RCurl::getURL() %>%
     stringr::str_extract_all(pattern = "[A-Za-z0-9@%#&()+*$,._\\-]{33}") %>%
     unlist()

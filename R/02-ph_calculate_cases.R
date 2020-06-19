@@ -27,7 +27,7 @@ ph_calculate_cases <- function(df) {
   ## Get current data link folder information and contents
   dropDate <- googledrive::drive_ls(googledrive::drive_get(id = "1ZPPcVU4M7T-dtRyUceb0pMAd8ickYf8o")) %>%
     dplyr::select("name") %>%
-    stringr::str_extract(pattern = "[0-9]{2}/[0-9]{2}") %>%
+    stringr::str_extract(pattern = "[0-9]{2}/[0-9]{2}|[0-9]{2}\\_[0-9]{2}") %>%
     paste("2020", sep = "/") %>%
     lubridate::mdy()
 
