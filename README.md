@@ -5,9 +5,6 @@
 
 <!-- badges: start -->
 
-[![Project Status: WIP – Initial development is in progress, but there
-has not yet been a stable, usable release suitable for the
-public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![Lifecycle:
 maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Travis build
@@ -15,6 +12,7 @@ status](https://travis-ci.org/como-ph/comoparams.svg?branch=master)](https://tra
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/como-ph/comoparams?branch=master&svg=true)](https://ci.appveyor.com/project/como-ph/comoparams)
 [![R-CMD-check](https://github.com/como-ph/comoparams/workflows/R-CMD-check/badge.svg)](https://github.com/como-ph/comoparams/actions)
+[![CodeFactor](https://www.codefactor.io/repository/github/como-ph/comoparams/badge)](https://www.codefactor.io/repository/github/como-ph/comoparams)
 [![DOI](https://zenodo.org/badge/255850150.svg)](https://zenodo.org/badge/latestdoi/255850150)
 <!-- badges: end -->
 
@@ -71,8 +69,7 @@ repository; 2) pulling of data from the [Philippines Statistics
 Authority (PSA)](http://www.psa.gov.ph) [2015 Population Census (2015
 POPCEN)](http://www.psa.gov.ph/content/highlights-philippine-population-2015-census-population);
 and 3) pulling of population, births and deaths data from the [World
-Population
-Prospects 2019](https://population.un.org/wpp/).
+Population Prospects 2019](https://population.un.org/wpp/).
 
 #### Pulling data from the Philippines Department of Health COVID-19 DataDrop
 
@@ -124,20 +121,20 @@ To pull the most current data on `cases`, we use the function
 
 ``` r
 ph_get_cases()
-#> # A tibble: 24,787 x 21
+#> # A tibble: 27,799 x 21
 #>    CaseCode   Age AgeGroup Sex   DateSpecimen DateResultRelea… DateRepConf
 #>    <chr>    <int> <chr>    <chr> <chr>        <chr>            <chr>      
 #>  1 C100018     53 50 to 54 Fema… "2020-04-30" "2020-05-09"     2020-05-11 
-#>  2 C100119     31 30 to 34 Male  "2020-04-05" "2020-04-10"     2020-04-12 
-#>  3 C100130     33 30 to 34 Fema… ""           ""               2020-05-19 
-#>  4 C100148     35 35 to 39 Male  "2020-04-29" "2020-04-30"     2020-05-29 
-#>  5 C100158     68 65 to 69 Male  "2020-05-01" "2020-05-20"     2020-05-29 
-#>  6 C100218     19 15 to 19 Male  "2020-04-27" "2020-05-18"     2020-05-29 
-#>  7 C100264     58 55 to 59 Male  "2020-03-16" "2020-03-25"     2020-03-29 
-#>  8 C100364     28 25 to 29 Male  "2020-06-05" "2020-06-08"     2020-06-10 
-#>  9 C100429     46 45 to 49 Male  "2020-05-20" ""               2020-05-31 
-#> 10 C100452     55 55 to 59 Fema… ""           "2020-06-06"     2020-06-11 
-#> # … with 24,777 more rows, and 14 more variables: DateDied <chr>,
+#>  2 C100115     34 30 to 34 Male  "2020-06-11" "2020-06-11"     2020-06-14 
+#>  3 C100119     31 30 to 34 Male  "2020-04-05" "2020-04-10"     2020-04-12 
+#>  4 C100130     33 30 to 34 Fema… ""           ""               2020-05-19 
+#>  5 C100148     35 35 to 39 Male  "2020-04-29" "2020-04-30"     2020-05-29 
+#>  6 C100158     68 65 to 69 Male  "2020-05-01" "2020-05-20"     2020-05-29 
+#>  7 C100218     19 15 to 19 Male  "2020-04-27" "2020-05-18"     2020-05-29 
+#>  8 C100264     58 55 to 59 Male  "2020-03-16" "2020-03-25"     2020-03-29 
+#>  9 C100364     28 25 to 29 Male  "2020-06-05" "2020-06-08"     2020-06-10 
+#> 10 C100426     28 25 to 29 Fema… "2020-06-09" "2020-06-16"     2020-06-17 
+#> # … with 27,789 more rows, and 14 more variables: DateDied <chr>,
 #> #   DateRecover <chr>, RemovalType <chr>, DateRepRem <chr>, Admitted <chr>,
 #> #   RegionRes <chr>, ProvRes <chr>, CityMunRes <chr>, CityMuniPSGC <chr>,
 #> #   HealthStatus <chr>, Quarantined <chr>, DateOnset <chr>, Pregnanttab <chr>,
@@ -208,8 +205,7 @@ file from the [PSA](http://www.psa.gov.ph) website, reads the file and
 then extracts and re-structures the population data in the file to long
 format (tidy format).
 
-The function can be called as
-follows:
+The function can be called as follows:
 
 ``` r
 linkToFile <- "https://psa.gov.ph/sites/default/files/attachments/hsd/pressrelease/Updated%20Population%20Projections%20based%20on%202015%20POPCEN_0.xlsx"
@@ -236,8 +232,7 @@ The main limitation of the PSA population projections based on the 2015
 POPCEN is that the age grouping only goes up 85+ whilst the **CoMo
 Consortium Model** requires population data with an age-structure that
 goes up to 95+. However, this can potentially be imputed to create the
-additional older age groupings if
-needed/wanted.
+additional older age groupings if needed/wanted.
 
 #### Pulling population, births and deaths data from the World Population Prospects 2019
 
@@ -260,8 +255,7 @@ of the data that is being pulled. The descriptors used are:
     and female
 
 To pull the five-year age group structured population, we make a call
-for the
-following:
+for the following:
 
 ``` r
 linkToFile <- "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/CSV_FILES/WPP2019_PopulationByAgeSex_Medium.csv"
@@ -285,8 +279,7 @@ ph_get_wpp2019_pop(file = linkToFile, location = "Philippines")
     #> # … with 11 more rows
 
 To pull the number of births by age of mother in 5-year age groups, we
-make a call for the
-following:
+make a call for the following:
 
 ``` r
 linkToFile <- "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/EXCEL_FILES/2_Fertility/WPP2019_FERT_F06_BIRTHS_BY_AGE_OF_MOTHER.xlsx"
@@ -310,8 +303,7 @@ ph_get_wpp2019_births(file = linkToFile, period = 2019)
     #> # … with 11 more rows
 
 To pull the number of deaths by 5-year age groups and by male and
-female, we make a call for the
-following:
+female, we make a call for the following:
 
 ``` r
 linkToFile <- "https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/EXCEL_FILES/3_Mortality/WPP2019_MORT_F04_1_DEATHS_BY_AGE_BOTH_SEXES.xlsx"
@@ -353,7 +345,7 @@ follows:
 
 ``` r
 ph_get_cases() %>% ph_calculate_cases()
-#> # A tibble: 164 x 4
+#> # A tibble: 170 x 4
 #>    repDate    cases deaths recovered
 #>    <date>     <dbl>  <dbl>     <dbl>
 #>  1 2020-01-01     0      0         0
@@ -366,7 +358,7 @@ ph_get_cases() %>% ph_calculate_cases()
 #>  8 2020-01-08     0      0         0
 #>  9 2020-01-09     0      0         0
 #> 10 2020-01-10     0      0         0
-#> # … with 154 more rows
+#> # … with 160 more rows
 ```
 
 The IFR and IHR output can be produced as follows:
@@ -374,18 +366,18 @@ The IFR and IHR output can be produced as follows:
 ``` r
 ph_get_cases() %>% ph_calculate_rates()
 #> # A tibble: 21 x 8
-#>    age_category deaths deathsAdmitted admissions cases     ifr    ihr    hfr
-#>    <fct>         <dbl>          <dbl>      <dbl> <dbl>   <dbl>  <dbl>  <dbl>
-#>  1 0-5 y.o.         12              4         70   452 0.0265  0.155  0.0571
-#>  2 5-10 y.o.         3              2         23   270 0.0111  0.0852 0.0870
-#>  3 10-15 y.o.        2              2         27   422 0.00474 0.0640 0.0741
-#>  4 15-20 y.o.        9              7         73   675 0.0133  0.108  0.0959
-#>  5 20-25 y.o.        3              3        263  1894 0.00158 0.139  0.0114
-#>  6 25-30 y.o.       15              5        459  3020 0.00497 0.152  0.0109
-#>  7 30-35 y.o.       12              7        563  3225 0.00372 0.175  0.0124
-#>  8 35-40 y.o.       27             16        398  2441 0.0111  0.163  0.0402
-#>  9 40-45 y.o.       45             29        382  2233 0.0202  0.171  0.0759
-#> 10 45-50 y.o.       48             30        436  2111 0.0227  0.207  0.0688
+#>    age_category deaths deathsAdmitted admissions cases     ifr    ihr     hfr
+#>    <fct>         <dbl>          <dbl>      <dbl> <dbl>   <dbl>  <dbl>   <dbl>
+#>  1 0-5 y.o.         13              6         80   510 0.0255  0.157  0.075  
+#>  2 5-10 y.o.         3              2         28   311 0.00965 0.0900 0.0714 
+#>  3 10-15 y.o.        2              2         35   495 0.00404 0.0707 0.0571 
+#>  4 15-20 y.o.        9              9         87   773 0.0116  0.113  0.103  
+#>  5 20-25 y.o.        3              3        296  2208 0.00136 0.134  0.0101 
+#>  6 25-30 y.o.       16              5        514  3463 0.00462 0.148  0.00973
+#>  7 30-35 y.o.       13              7        612  3603 0.00361 0.170  0.0114 
+#>  8 35-40 y.o.       28             17        431  2747 0.0102  0.157  0.0394 
+#>  9 40-45 y.o.       51             33        414  2486 0.0205  0.167  0.0797 
+#> 10 45-50 y.o.       50             30        468  2368 0.0211  0.198  0.0641 
 #> # … with 11 more rows
 ```
 
@@ -398,8 +390,7 @@ functions within `comoparams` (a total of 19 functions).
 The **parameter settings** functions again uses a common prefix syntax
 of `ph_set_` followed by the descriptor of the parameter that is being
 defined or set. This syntax applies to 18 of the 19 functions in the
-set. The descriptors
-are:
+set. The descriptors are:
 
 | **Descriptor**  | **Definition**                                                                                                                                                          |
 | :-------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
