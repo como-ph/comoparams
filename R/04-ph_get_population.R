@@ -191,7 +191,7 @@ ph_get_wpp2019_births <- function(file,
     t <- stringr::str_replace_all(string = yrGrp, pattern = "-", replacement = ":")
     u <- NULL
     ## Cycle through various year groups
-    for(i in 1:length(t)) {
+    for(i in seq_len(length(t))) {
       u[i] <- period %in% eval(parse(text = t[i]))[1:5]
     }
     ## Convert single year to 5-year groups
@@ -286,7 +286,7 @@ ph_get_wpp2019_deaths <- function(file,
     t <- stringr::str_replace_all(string = yrGrp, pattern = "-", replacement = ":")
     u <- NULL
     ## Cycle through various year groups
-    for(i in 1:length(t)) {
+    for(i in seq_len(length(t))) {
       u[i] <- period %in% eval(parse(text = t[i]))[1:5]
     }
     ## Convert single year to 5-year groups
