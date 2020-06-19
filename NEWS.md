@@ -6,8 +6,11 @@
 
 * added dataset for mapping of data sources
 
-# updated README to describe new function specifications
+* updated README to describe new function specifications
 
+* added pattern to recognise variant dates on filename of README which changed in format for 2020-06-18 (from MM/DD to MM_DD) which caused an error
+
+* added codefactor checks [![CodeFactor](https://www.codefactor.io/repository/github/como-ph/comoparams/badge)](https://www.codefactor.io/repository/github/como-ph/comoparams)
 
 # comoparams 0.1.3.9000
 

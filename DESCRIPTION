@@ -7,11 +7,11 @@ Authors@R: c(person(given = "Ernest", family = "Guevarra",
                     email = "ernest@guevarra.io", role = c("aut", "cre"),
                     comment = c(ORCID = "0000-0002-4887-4415")),
              person(given = "Chris", family = "Mercado", 
-                    email = "cegmercado@gmail.com",
-                    role = "aut"),
+                    email = "cegmercado@gmail.com", role = "aut",
+                    comment = c(ORCID = "0000-0002-5588-9543")),
              person(given = "Robert", family = "Medina", 
-                    email = "jcmedina1@up.edu.ph",
-                    role = "aut"))
+                    email = "jcmedina1@up.edu.ph", role = "aut",
+                    comment = c(ORCID = "0000-0001-6647-5453")))
 Description: The Oxford Modelling Group for Global Health (OMGH) is developing 
     model structures to estimate the impact of potential mitigation strategies. 
     By changing the input data and parameter values, the models can be adjusted 

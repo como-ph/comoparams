@@ -34,13 +34,13 @@ ph_gdrive_files <- function(version = "current", date = NULL) {
 
   ## Get dropDate
   dropDate <- stringr::str_extract(string = dropCurrent$name,
-                                   pattern = "[0-9]{2}/[0-9]{2}") %>%
+                                   pattern = "[0-9]{2}/[0-9]{2}|[0-9]{2}\\_[0-9]{2}") %>%
     paste("2020", sep = "/") %>%
     lubridate::mdy()
 
   ## Provide message to user
   message(
-    paste("Getting information on Google Drive directory structure for latest available data up to ",
+    paste("Getting information on Google Drive directory structure of the DoH Data Drop for latest available data up to ",
           dropDate, ".", sep = "")
   )
 
@@ -64,7 +64,6 @@ ph_gdrive_files <- function(version = "current", date = NULL) {
                                                 pattern = "bit.ly/*")][1], -1)
 
   x <- x %>%
-    #decode_short_url() %>%
     RCurl::getURL() %>%
     stringr::str_extract_all(pattern = "[A-Za-z0-9@%#&()+*$,._\\-]{33}") %>%
     unlist()
