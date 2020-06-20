@@ -10,6 +10,8 @@
 
 * added pattern to recognise variant dates on filename of README which changed in format for 2020-06-18 (from MM/DD to MM_DD) which caused an error
 
+* added check for bit.ly links to include http (not https) for getURL
+
 * added codefactor checks [![CodeFactor](https://www.codefactor.io/repository/github/como-ph/comoparams/badge)](https://www.codefactor.io/repository/github/como-ph/comoparams)
 
 # comoparams 0.1.3.9000
