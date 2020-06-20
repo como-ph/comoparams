@@ -63,8 +63,12 @@ ph_gdrive_files <- function(version = "current", date = NULL) {
   x <- stringr::word(readme[stringr::str_detect(string = readme,
                                                 pattern = "bit.ly/*")][1], -1)
 
+  if(!stringr::str_detect(string = x, pattern = "http")) {
+    x <- paste("http://", x, sep = "")
+  }
+
   x <- x %>%
-    stringr::str_remove(pattern = "http\\://|https\\://") %>%
+    stringr::str_replace(pattern = "https", replacement = "http") %>%
     RCurl::getURL() %>%
     stringr::str_extract_all(pattern = "[A-Za-z0-9@%#&()+*$,._\\-]{33}") %>%
     unlist()
