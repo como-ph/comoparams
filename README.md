@@ -23,9 +23,10 @@ can be adjusted to represent a national or subnational setting. In
 addition, a user friendly application and interface is being developed
 to enable widespread utility.
 
-The CoMo-PH group is the Philippines country team that is supporting the
-use of the model specific to the Philippines as part of the **COVID-19
-International Modeling Consortium (CoMo Consortium)**.
+The **CoMo Philippines (CoMo-PH)** group is the Philippines country team
+that is supporting the use of the model specific to the Philippines as
+part of the **COVID-19 International Modeling Consortium (CoMo
+Consortium)**.
 
 This R package has been developed by the **CoMo-PH** group to support
 its efforts in the collection of Philippines-specific and
@@ -121,20 +122,20 @@ To pull the most current data on `cases`, we use the function
 
 ``` r
 ph_get_cases()
-#> # A tibble: 27,799 x 21
+#> # A tibble: 28,459 x 21
 #>    CaseCode   Age AgeGroup Sex   DateSpecimen DateResultRelea… DateRepConf
-#>    <chr>    <int> <chr>    <chr> <chr>        <chr>            <chr>      
-#>  1 C100018     53 50 to 54 Fema… "2020-04-30" "2020-05-09"     2020-05-11 
-#>  2 C100115     34 30 to 34 Male  "2020-06-11" "2020-06-11"     2020-06-14 
-#>  3 C100119     31 30 to 34 Male  "2020-04-05" "2020-04-10"     2020-04-12 
-#>  4 C100130     33 30 to 34 Fema… ""           ""               2020-05-19 
-#>  5 C100148     35 35 to 39 Male  "2020-04-29" "2020-04-30"     2020-05-29 
-#>  6 C100158     68 65 to 69 Male  "2020-05-01" "2020-05-20"     2020-05-29 
-#>  7 C100218     19 15 to 19 Male  "2020-04-27" "2020-05-18"     2020-05-29 
-#>  8 C100264     58 55 to 59 Male  "2020-03-16" "2020-03-25"     2020-03-29 
-#>  9 C100364     28 25 to 29 Male  "2020-06-05" "2020-06-08"     2020-06-10 
-#> 10 C100426     28 25 to 29 Fema… "2020-06-09" "2020-06-16"     2020-06-17 
-#> # … with 27,789 more rows, and 14 more variables: DateDied <chr>,
+#>    <chr>    <dbl> <chr>    <chr> <chr>        <chr>            <chr>      
+#>  1 C760966     24 20 to 24 Male  2020-06-14   2020-06-16       2020-06-19 
+#>  2 C391945     37 35 to 39 Male  2020-06-10   2020-06-16       2020-06-19 
+#>  3 C345251     38 35 to 39 Fema… 2020-06-11   2020-06-16       2020-06-19 
+#>  4 C279792     56 55 to 59 Fema… 2020-06-15   2020-06-16       2020-06-19 
+#>  5 C183201     44 40 to 44 Fema… 2020-06-15   2020-06-16       2020-06-19 
+#>  6 C442346     28 25 to 29 Fema… 2020-06-14   2020-06-16       2020-06-19 
+#>  7 C328191     33 30 to 34 Male  2020-06-14   2020-06-16       2020-06-19 
+#>  8 C685818     25 25 to 29 Fema… 2020-06-14   2020-06-16       2020-06-19 
+#>  9 C923980     26 25 to 29 Fema… 2020-06-16   2020-06-17       2020-06-19 
+#> 10 C933886     31 30 to 34 Fema… 2020-06-09   2020-06-11       2020-06-19 
+#> # … with 28,449 more rows, and 14 more variables: DateDied <chr>,
 #> #   DateRecover <chr>, RemovalType <chr>, DateRepRem <chr>, Admitted <chr>,
 #> #   RegionRes <chr>, ProvRes <chr>, CityMunRes <chr>, CityMuniPSGC <chr>,
 #> #   HealthStatus <chr>, Quarantined <chr>, DateOnset <chr>, Pregnanttab <chr>,
@@ -345,7 +346,7 @@ follows:
 
 ``` r
 ph_get_cases() %>% ph_calculate_cases()
-#> # A tibble: 170 x 4
+#> # A tibble: 171 x 4
 #>    repDate    cases deaths recovered
 #>    <date>     <dbl>  <dbl>     <dbl>
 #>  1 2020-01-01     0      0         0
@@ -358,7 +359,7 @@ ph_get_cases() %>% ph_calculate_cases()
 #>  8 2020-01-08     0      0         0
 #>  9 2020-01-09     0      0         0
 #> 10 2020-01-10     0      0         0
-#> # … with 160 more rows
+#> # … with 161 more rows
 ```
 
 The IFR and IHR output can be produced as follows:
@@ -368,16 +369,16 @@ ph_get_cases() %>% ph_calculate_rates()
 #> # A tibble: 21 x 8
 #>    age_category deaths deathsAdmitted admissions cases     ifr    ihr     hfr
 #>    <fct>         <dbl>          <dbl>      <dbl> <dbl>   <dbl>  <dbl>   <dbl>
-#>  1 0-5 y.o.         13              6         80   510 0.0255  0.157  0.075  
-#>  2 5-10 y.o.         3              2         28   311 0.00965 0.0900 0.0714 
-#>  3 10-15 y.o.        2              2         35   495 0.00404 0.0707 0.0571 
-#>  4 15-20 y.o.        9              9         87   773 0.0116  0.113  0.103  
-#>  5 20-25 y.o.        3              3        296  2208 0.00136 0.134  0.0101 
-#>  6 25-30 y.o.       16              5        514  3463 0.00462 0.148  0.00973
-#>  7 30-35 y.o.       13              7        612  3603 0.00361 0.170  0.0114 
-#>  8 35-40 y.o.       28             17        431  2747 0.0102  0.157  0.0394 
-#>  9 40-45 y.o.       51             33        414  2486 0.0205  0.167  0.0797 
-#> 10 45-50 y.o.       50             30        468  2368 0.0211  0.198  0.0641 
+#>  1 0-5 y.o.         12              5         81   588 0.0204  0.138  0.0617 
+#>  2 5-10 y.o.         3              2         28   322 0.00932 0.0870 0.0714 
+#>  3 10-15 y.o.        2              2         35   504 0.00397 0.0694 0.0571 
+#>  4 15-20 y.o.        9              9         92   800 0.0112  0.115  0.0978 
+#>  5 20-25 y.o.        3              3        312  2289 0.00131 0.136  0.00962
+#>  6 25-30 y.o.       17              5        528  3567 0.00477 0.148  0.00947
+#>  7 30-35 y.o.       13              7        626  3699 0.00351 0.169  0.0112 
+#>  8 35-40 y.o.       30             17        438  2820 0.0106  0.155  0.0388 
+#>  9 40-45 y.o.       51             35        423  2532 0.0201  0.167  0.0827 
+#> 10 45-50 y.o.       51             31        472  2422 0.0211  0.195  0.0657 
 #> # … with 11 more rows
 ```
 
