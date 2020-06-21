@@ -164,20 +164,20 @@ extracted data reports to. Only used when <code>version</code> is set to
   via the COVID-19 Data Drop</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>ph_get_cases</span>()</div><div class='output co'>#&gt; <span class='message'>Getting information on Google Drive directory structure of the DoH Data Drop for latest available data up to 2020-06-19.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 28,459 x 21</span><span>
+    <pre class="examples"><div class='input'><span class='fu'>ph_get_cases</span>()</div><div class='output co'>#&gt; <span class='message'>Getting information on Google Drive directory structure of the DoH Data Drop for latest available data up to 2020-06-20.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 29,400 x 21</span><span>
 #&gt;    CaseCode   Age AgeGroup Sex   DateSpecimen DateResultRelea… DateRepConf
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      
-#&gt; </span><span style='color: #555555;'> 1</span><span> C760966     24 20 to 24 Male  2020-06-14   2020-06-16       2020-06-19 
-#&gt; </span><span style='color: #555555;'> 2</span><span> C391945     37 35 to 39 Male  2020-06-10   2020-06-16       2020-06-19 
-#&gt; </span><span style='color: #555555;'> 3</span><span> C345251     38 35 to 39 Fema… 2020-06-11   2020-06-16       2020-06-19 
-#&gt; </span><span style='color: #555555;'> 4</span><span> C279792     56 55 to 59 Fema… 2020-06-15   2020-06-16       2020-06-19 
-#&gt; </span><span style='color: #555555;'> 5</span><span> C183201     44 40 to 44 Fema… 2020-06-15   2020-06-16       2020-06-19 
-#&gt; </span><span style='color: #555555;'> 6</span><span> C442346     28 25 to 29 Fema… 2020-06-14   2020-06-16       2020-06-19 
-#&gt; </span><span style='color: #555555;'> 7</span><span> C328191     33 30 to 34 Male  2020-06-14   2020-06-16       2020-06-19 
-#&gt; </span><span style='color: #555555;'> 8</span><span> C685818     25 25 to 29 Fema… 2020-06-14   2020-06-16       2020-06-19 
-#&gt; </span><span style='color: #555555;'> 9</span><span> C923980     26 25 to 29 Fema… 2020-06-16   2020-06-17       2020-06-19 
-#&gt; </span><span style='color: #555555;'>10</span><span> C933886     31 30 to 34 Fema… 2020-06-09   2020-06-11       2020-06-19 
-#&gt; </span><span style='color: #555555;'># … with 28,449 more rows, and 14 more variables: DateDied </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> C299320     39 35 to 39 Male  2020-06-14   2020-06-15       2020-06-19 
+#&gt; </span><span style='color: #555555;'> 2</span><span> C724193     47 45 to 49 Male  2020-06-15   2020-06-17       2020-06-19 
+#&gt; </span><span style='color: #555555;'> 3</span><span> C183117     80 80+      Fema… 2020-06-16   2020-06-17       2020-06-19 
+#&gt; </span><span style='color: #555555;'> 4</span><span> C225853     36 35 to 39 Fema… 2020-06-15   2020-06-16       2020-06-19 
+#&gt; </span><span style='color: #555555;'> 5</span><span> C424197     50 50 to 54 Male  2020-06-15   2020-06-17       2020-06-19 
+#&gt; </span><span style='color: #555555;'> 6</span><span> C570945     33 30 to 34 Fema… 2020-06-10   2020-06-12       2020-06-19 
+#&gt; </span><span style='color: #555555;'> 7</span><span> C974300     48 45 to 49 Male  2020-06-15   2020-06-16       2020-06-19 
+#&gt; </span><span style='color: #555555;'> 8</span><span> C876001     31 30 to 34 Male  2020-06-15   2020-06-16       2020-06-19 
+#&gt; </span><span style='color: #555555;'> 9</span><span> C734349     37 35 to 39 Male  2020-06-15   2020-06-16       2020-06-19 
+#&gt; </span><span style='color: #555555;'>10</span><span> C455443     28 25 to 29 Male  2020-06-15   2020-06-17       2020-06-19 
+#&gt; </span><span style='color: #555555;'># … with 29,390 more rows, and 14 more variables: DateDied </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   DateRecover </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, RemovalType </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, DateRepRem </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, Admitted </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   RegionRes </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, ProvRes </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, CityMunRes </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, CityMuniPSGC </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   HealthStatus </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, Quarantined </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, DateOnset </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, Pregnanttab </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
