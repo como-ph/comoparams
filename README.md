@@ -23,9 +23,10 @@ can be adjusted to represent a national or subnational setting. In
 addition, a user friendly application and interface is being developed
 to enable widespread utility.
 
-The CoMo-PH group is the Philippines country team that is supporting the
-use of the model specific to the Philippines as part of the **COVID-19
-International Modeling Consortium (CoMo Consortium)**.
+The **CoMo Philippines (CoMo-PH)** group is the Philippines country team
+that is supporting the use of the model specific to the Philippines as
+part of the **COVID-19 International Modeling Consortium (CoMo
+Consortium)**.
 
 This R package has been developed by the **CoMo-PH** group to support
 its efforts in the collection of Philippines-specific and
