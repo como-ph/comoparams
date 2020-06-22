@@ -79,7 +79,7 @@
 
       
 
-      </header><script src="model_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>The Model</h1>
@@ -94,6 +94,8 @@
     
 <p>The age structured SEIR model with infected compartments stratified by symptoms, severity and treatment seeking and access.</p>
 <p><img src="../man/figures/CoMoModel.png" width="98%"></p>
+<p>The model uses publicly available country-specific data to define the population structure <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> as a model input. The model interface uses publicly available country-specific data on cases and mortality <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> for visual calibration of model parameters to user selected baseline scenarios. More elaborate calibration methods are under consideration but are not a priority since the system is unidentifiable and therefore calibration will be entirely dependent on user-selected baseline scenarios.</p>
+<p>The model interface can be found here: <a href="https://comomodel.net/" class="uri">https://comomodel.net/</a>. The equations for the basic model structure follow (Equation 1).</p>
 <p><span class="math display">\[ \begin{aligned}
 \frac{dS}{dt} ~  &amp; = ~ -S ~ \circ ~ \Lambda ~ + ~ \omega R ~ + ~ A ~ \cdot ~ S ~ - ~ \mu ~ \cdot ~ S ~ + ~ bP \\
 \\
@@ -136,60 +138,157 @@ W ~ &amp; = ~ W_{home} ~ + ~ W_{work} ~ + ~ W_{school} ~ + ~ W_{other} \\
 A ~ &amp; = ~ 
 \begin{pmatrix} 
 \begin{pmatrix} -1 &amp; 0 \\ 1 &amp; -1 \end{pmatrix} &amp; \ldots &amp; 0 \\ 
-\vdots &amp; \ddots \begin{pmatrix} -1 &amp; 0 \\ 1 &amp; -1 \end{pmatrix} \ddots  &amp; \vdots \\ 
+\vdots &amp; \ddots \begin{pmatrix} -1 &amp; 0 \\ 1 &amp; -1 \end{pmatrix} \ddots &amp; \vdots \\ 
 0 &amp; \ldots &amp; \begin{pmatrix} -1 &amp; 0 \\ 1 &amp; 0 \end{pmatrix} 
 \end{pmatrix} \\
 \\
 \\
+p_{K_H} ~ &amp; = ~
+\begin{Bmatrix}
+0 ~ \text{for} ~ H &lt; K_H \\ 
+1 ~ \text{for} ~ H \geq K_H \\
+\end{Bmatrix} \\
+\\
+p_{K_U} ~ &amp; = ~
+\begin{Bmatrix}
+0 ~ \text{for} ~ U &lt; K_U \\ 
+1 ~ \text{for} ~ U \geq K_U \\
+\end{Bmatrix} \\
+\\
+p_{K_V} ~ &amp; = ~
+\begin{Bmatrix}
+0 ~ \text{for} ~ V &lt; K_V \\ 
+1 ~ \text{for} ~ V \geq K_V \\
+\end{Bmatrix} \\
+\\
+\\
 &amp; \text{where model variables are defined as:} \\
 \\
+\\
 S ~ &amp; = ~ \text{Susceptible} \\
+\\
 E ~ &amp; = ~ \text{Infected and incubating} \\
+\\
 I ~ &amp; = ~ \text{Infected and asymptomatic following incubation} \\
+\\
 C ~ &amp; = ~ \text{Infected and mildly symptomatic following incubation} \\
+\\
 R ~ &amp; = ~ \text{Recovered and immune} \\
+\\
 H ~ &amp; = ~ \text{Severe infection: hospitalised} \\
+\\
 H_c ~ &amp; = ~ \text{Severe infection: not hospitalised due to lack of capacity} \\
+\\
 U ~ &amp; = ~ \text{Severe infection: hospitalised in ICU} \\
+\\
 U_c ~ &amp; = ~ \text{Severe infection: hospitalised and requiring ICU but placed in surge ward} \\
+\\
 V ~ &amp; = ~ \text{Severe infection: hospitalised in ICU and on a ventilator} \\
+\\
 V_c ~ &amp; = ~ \text{Severe infection: hospitalised in ICU requiring a ventilator but not on one} \\
+\\
 \\
 &amp; \text{and model parameters are defined as:} \\
 \\
-W_{home} ~ &amp; = ~ \text{} \\
-W_{work} ~ &amp; = ~ \text{} \\
-W_{school} ~ &amp; = ~ \text{} \\
-W_{other} ~ &amp; = ~ \text{} \\
-\mu ~ &amp; = ~ \text{} \\
-b ~ &amp; = ~ \text{} \\
+\\
+W_{home} ~ &amp; = ~ 
+\begin{aligned} 
+&amp; \text{Country-specific age-dependent contact matrix describing the} \\ 
+&amp; \text{number of potentially infectious contacts at home per person per day} 
+\end{aligned} \\
+\\
+W_{work} ~ &amp; = ~ 
+\begin{aligned}
+&amp; \text{Country-specific age-dependent contact matrix describing the} \\ 
+&amp; \text{number of potentially infectious contacts at work per person per day}
+\end{aligned} \\
+\\
+W_{school} ~ &amp; = ~ 
+\begin{aligned}
+&amp; \text{Country-specific age-dependent contact matrix describing the} \\ 
+&amp; \text{number of potentially infectious contacts at work per person per day} 
+\end{aligned} \\
+\\
+W_{other} ~ &amp; = ~ 
+\begin{aligned}
+&amp; \text{Country-specific age-dependent contact matrix describing the} \\
+&amp; \text{number of potentially infectious societal contacts per person per day} 
+\end{aligned} \\
+\\
+\mu ~ &amp; = ~ \frac{1}{\text{Age-dependent non-covid related death rate}} \\
+\\
+b ~ &amp; = ~ \frac{1}{\text{Age-dependent fertility rate}} \\
+\\
+\alpha ~ &amp; = ~ \frac{1}{\text{Duration in each category}} \\
+\\
 p ~ &amp; = ~ \text{Probability of infection given a single contact} \\
+\\
 \gamma ~ &amp; = ~ \frac{1}{\text{Duration of incubation period}} \\
+\\
 \rho ~ &amp; = ~ \text{Relative infectiousness of incubating phase per contact} \\
+\\
 p_{clin} ~ &amp; = ~ \text{Proportion of all infections that ever develop symptoms} \\
+\\
 \nu_I ~ &amp; = ~ \frac{1}{\text{Duration of infectious phase}} \\
+\\
 \rho_s ~ &amp; = ~ \text{Relative number of contacts for hospitalised patients} \\
+\\
 \omega ~ &amp; = ~ \frac{1}{\text{Duration of immunity}} \\
+\\
 \alpha ~ &amp; = ~ \text{Relative variation in transmissibility throughout the year} \pm \text{a proportion} \\
+\\
 \phi ~ &amp; = ~ \text{Month of peak in transmissibility} \\
+\\
 t_{in} ~ &amp; = ~ \text{Start date} \\
+\\
 p_{ihr} ~ &amp; = ~ \text{Probability of an infection being severe (requiring hospitalisation) by age} \\
+\\
 p_{ifr} ~ &amp; = ~ \text{Probability of an infection being fatal by age} \\
+\\
 \nu_H ~ &amp; = ~ \text{Duration of hospitalised infection} \\
+\\
 \nu_U ~ &amp; = ~ \text{Duration of ICU infection} \\
+\\
 \nu_V ~ &amp; = ~ \text{Duration of ventilated infection} \\
+\\
 \delta_H ~ &amp; = ~ \text{Probability of death for a hospitalised infection} \\
+\\
 \delta_{H_c} ~ &amp; = ~ \text{Probability of death for an infection requiring hospital not get} \\
-\delta_U ~ &amp; = ~ \text{} \\
-\delta_{U_c} ~ &amp; = ~ \text{} \\
-\delta_V ~ &amp; = ~ \text{} \\
-\delta_{V_c} ~ &amp; = ~ \text{} \\
+\\
+\delta_U ~ &amp; = ~ \text{Maximum death probability for a hospitalized infection requiring ICU admission} \\
+\\
+\delta_{U_c} ~ &amp; = ~ 
+\begin{aligned}
+&amp; \text{Maximum death probability for a hospitalized infection that} \\
+&amp; \text{would require ICU admission but was not admitted to the ICU} 
+\end{aligned} \\
+\\
+\delta_V ~ &amp; = ~ \text{Maximum death probability for a hospitalized infection requiring a ventilator} \\
+\\
+\delta_{V_c} ~ &amp; = ~ 
+\begin{aligned}
+&amp; \text{Maximum death probability for a hospitalized infection that} \\ 
+&amp; \text{would require a ventilator but did not get one}
+\end{aligned} \\
+\\
 p_U ~ &amp; = ~ \text{Probability of an infected patient needing ICU} \\
+\\
 p_V ~ &amp; = ~ \text{Probability of an infected patient needing ICU and a ventilator} \\
+\\
 p_{K_H} ~ &amp; = ~ \text{Decision to assign a patient a hospital bed depending on capacity} \\
+\\
 p_{K_U} ~ &amp; = ~ \text{Decision to assign a patient an ICU bed depending on capacity} \\
+\\
 p_{K_V} ~ &amp; = ~ \text{Decision to assign a patient a ventilator depending on capacity}
 \end{aligned} \]</span></p>
+<p><br><br></p>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn1"><p>UN Department of Economic and Social Affairs Population Dynamics. Available from: <a href="https://population.un.org/wpp/Download/Standard/Population/" class="uri">https://population.un.org/wpp/Download/Standard/Population/</a>.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>European Centre for Disease Prevention and Control. Available from: <a href="https://www.ecdc.europa.eu/en" class="uri">https://www.ecdc.europa.eu/en</a>.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
