@@ -103,7 +103,7 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p><code>comoparams</code> is in active development and is currently only available to install via <a href="https://github.com/como-ph/comoparams">GitHub</a>:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span>(<span class="st">"remotes"</span>)) <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"remotes"</span>)
+<div class="sourceCode" id="cb1"><pre class="r"><span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="st">"remotes"</span>)) <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"remotes"</span>)
 <span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"como-ph/comoparams"</span>)</pre></div>
 <p>To use, load the package:</p>
 <div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">comoparams</span>)</pre></div>
@@ -131,20 +131,20 @@
 <p>The output of these functions is a <code>tibble</code>.</p>
 <p>To pull the most current data on <code>cases</code>, we use the function <code><a href="reference/ph_get_cases.html">ph_get_cases()</a></code> as follows:</p>
 <div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="reference/ph_get_cases.html">ph_get_cases</a></span>()
-<span class="co">#&gt; # A tibble: 29,400 x 21</span>
+<span class="co">#&gt; # A tibble: 30,052 x 21</span>
 <span class="co">#&gt;    CaseCode   Age AgeGroup Sex   DateSpecimen DateResultRelea… DateRepConf</span>
 <span class="co">#&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;            &lt;chr&gt;      </span>
-<span class="co">#&gt;  1 C299320     39 35 to 39 Male  2020-06-14   2020-06-15       2020-06-19 </span>
-<span class="co">#&gt;  2 C724193     47 45 to 49 Male  2020-06-15   2020-06-17       2020-06-19 </span>
-<span class="co">#&gt;  3 C183117     80 80+      Fema… 2020-06-16   2020-06-17       2020-06-19 </span>
-<span class="co">#&gt;  4 C225853     36 35 to 39 Fema… 2020-06-15   2020-06-16       2020-06-19 </span>
-<span class="co">#&gt;  5 C424197     50 50 to 54 Male  2020-06-15   2020-06-17       2020-06-19 </span>
-<span class="co">#&gt;  6 C570945     33 30 to 34 Fema… 2020-06-10   2020-06-12       2020-06-19 </span>
-<span class="co">#&gt;  7 C974300     48 45 to 49 Male  2020-06-15   2020-06-16       2020-06-19 </span>
-<span class="co">#&gt;  8 C876001     31 30 to 34 Male  2020-06-15   2020-06-16       2020-06-19 </span>
-<span class="co">#&gt;  9 C734349     37 35 to 39 Male  2020-06-15   2020-06-16       2020-06-19 </span>
-<span class="co">#&gt; 10 C455443     28 25 to 29 Male  2020-06-15   2020-06-17       2020-06-19 </span>
-<span class="co">#&gt; # … with 29,390 more rows, and 14 more variables: DateDied &lt;chr&gt;,</span>
+<span class="co">#&gt;  1 C142253     32 30 to 34 Male  2020-06-14   2020-06-16       2020-06-19 </span>
+<span class="co">#&gt;  2 C500185     46 45 to 49 Fema… 2020-06-15   2020-06-17       2020-06-19 </span>
+<span class="co">#&gt;  3 C479596     37 35 to 39 Male  2020-06-17   2020-06-17       2020-06-19 </span>
+<span class="co">#&gt;  4 C706177     44 40 to 44 Male  2020-06-10   2020-06-16       2020-06-19 </span>
+<span class="co">#&gt;  5 C701208     78 75 to 79 Fema… 2020-06-15   2020-06-17       2020-06-19 </span>
+<span class="co">#&gt;  6 C640388      2 0 to 4   Fema… 2020-06-15   2020-06-17       2020-06-19 </span>
+<span class="co">#&gt;  7 C818960     27 25 to 29 Fema… 2020-06-14   2020-06-16       2020-06-19 </span>
+<span class="co">#&gt;  8 C733348     12 10 to 14 Male  2020-06-14   2020-06-16       2020-06-19 </span>
+<span class="co">#&gt;  9 C929357     58 55 to 59 Fema… 2020-06-15   2020-06-17       2020-06-19 </span>
+<span class="co">#&gt; 10 C924392     28 25 to 29 Male  2020-06-11   2020-06-16       2020-06-19 </span>
+<span class="co">#&gt; # … with 30,042 more rows, and 14 more variables: DateDied &lt;chr&gt;,</span>
 <span class="co">#&gt; #   DateRecover &lt;chr&gt;, RemovalType &lt;chr&gt;, DateRepRem &lt;chr&gt;, Admitted &lt;chr&gt;,</span>
 <span class="co">#&gt; #   RegionRes &lt;chr&gt;, ProvRes &lt;chr&gt;, CityMunRes &lt;chr&gt;, CityMuniPSGC &lt;chr&gt;,</span>
 <span class="co">#&gt; #   HealthStatus &lt;chr&gt;, Quarantined &lt;chr&gt;, DateOnset &lt;chr&gt;, Pregnanttab &lt;chr&gt;,</span>
@@ -284,7 +284,7 @@
 <p>For some of the required parameters, further calculation and processing of data is required. Specifically, the cases data needs to be processed into number of cases and number of deaths per day since the start of the COVID-19 pandemic in the Philippines. The cases data also needs to be processed to calculate the infection fatality rate (IFR) and the infection hospitalisation rate (IHR) by 5-year age groups. Two calculate functions are available in <code>comoparams</code> for this purpose. Both functions have the same prefix syntax of <code>ph_calculate_</code> followed by a descriptor for the type of output calculation it will produce - <code>cases</code> for daily cases and deaths since the first reported case in the Philippines and <code>rates</code> for the IFR and IHR output.</p>
 <p>The daily cases, deaths and recoveries output can be produced as follows:</p>
 <div class="sourceCode" id="cb14"><pre class="r"><span class="fu"><a href="reference/ph_get_cases.html">ph_get_cases</a></span>() <span class="kw">%&gt;%</span> <span class="fu"><a href="reference/ph_calculate_cases.html">ph_calculate_cases</a></span>()
-<span class="co">#&gt; # A tibble: 172 x 4</span>
+<span class="co">#&gt; # A tibble: 173 x 4</span>
 <span class="co">#&gt;    repDate    cases deaths recovered</span>
 <span class="co">#&gt;    &lt;date&gt;     &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;</span>
 <span class="co">#&gt;  1 2020-01-01     0      0         0</span>
@@ -297,22 +297,22 @@
 <span class="co">#&gt;  8 2020-01-08     0      0         0</span>
 <span class="co">#&gt;  9 2020-01-09     0      0         0</span>
 <span class="co">#&gt; 10 2020-01-10     0      0         0</span>
-<span class="co">#&gt; # … with 162 more rows</span></pre></div>
+<span class="co">#&gt; # … with 163 more rows</span></pre></div>
 <p>The IFR and IHR output can be produced as follows:</p>
 <div class="sourceCode" id="cb15"><pre class="r"><span class="fu"><a href="reference/ph_get_cases.html">ph_get_cases</a></span>() <span class="kw">%&gt;%</span> <span class="fu"><a href="reference/ph_calculate_rates.html">ph_calculate_rates</a></span>()
 <span class="co">#&gt; # A tibble: 21 x 8</span>
 <span class="co">#&gt;    age_category deaths deathsAdmitted admissions cases     ifr    ihr     hfr</span>
 <span class="co">#&gt;    &lt;fct&gt;         &lt;dbl&gt;          &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 0-5 y.o.         13              6         83   402 0.0323  0.206  0.0723 </span>
-<span class="co">#&gt;  2 5-10 y.o.         3              2         29   331 0.00906 0.0876 0.0690 </span>
-<span class="co">#&gt;  3 10-15 y.o.        2              2         35   510 0.00392 0.0686 0.0571 </span>
-<span class="co">#&gt;  4 15-20 y.o.        9              9         96   829 0.0109  0.116  0.0938 </span>
-<span class="co">#&gt;  5 20-25 y.o.        3              3        323  2386 0.00126 0.135  0.00929</span>
-<span class="co">#&gt;  6 25-30 y.o.       20              6        553  3721 0.00537 0.149  0.0108 </span>
-<span class="co">#&gt;  7 30-35 y.o.       13              7        641  3830 0.00339 0.167  0.0109 </span>
-<span class="co">#&gt;  8 35-40 y.o.       31             18        460  2896 0.0107  0.159  0.0391 </span>
-<span class="co">#&gt;  9 40-45 y.o.       50             35        432  2615 0.0191  0.165  0.0810 </span>
-<span class="co">#&gt; 10 45-50 y.o.       54             34        488  2497 0.0216  0.195  0.0697 </span>
+<span class="co">#&gt;  1 0-5 y.o.         14              7         83   404 0.0347  0.205  0.0843 </span>
+<span class="co">#&gt;  2 5-10 y.o.         3              2         29   345 0.00870 0.0841 0.0690 </span>
+<span class="co">#&gt;  3 10-15 y.o.        2              2         35   530 0.00377 0.0660 0.0571 </span>
+<span class="co">#&gt;  4 15-20 y.o.        9              9         98   853 0.0106  0.115  0.0918 </span>
+<span class="co">#&gt;  5 20-25 y.o.        3              3        328  2450 0.00122 0.134  0.00915</span>
+<span class="co">#&gt;  6 25-30 y.o.       21              6        554  3819 0.00550 0.145  0.0108 </span>
+<span class="co">#&gt;  7 30-35 y.o.       13              7        643  3918 0.00332 0.164  0.0109 </span>
+<span class="co">#&gt;  8 35-40 y.o.       34             20        463  2972 0.0114  0.156  0.0432 </span>
+<span class="co">#&gt;  9 40-45 y.o.       50             35        436  2660 0.0188  0.164  0.0803 </span>
+<span class="co">#&gt; 10 45-50 y.o.       54             34        493  2542 0.0212  0.194  0.0690 </span>
 <span class="co">#&gt; # … with 11 more rows</span></pre></div>
 </div>
 <div id="parameters-setting" class="section level3">
