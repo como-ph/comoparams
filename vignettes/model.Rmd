@@ -24,6 +24,10 @@ The age structured SEIR model with infected compartments stratified by symptoms,
 knitr::include_graphics(path = "../man/figures/CoMoModel.png")
 ```
 
+The model uses publicly available country-specific data to define the population structure [^1] as a model input. The model interface uses publicly available country-specific data on cases and mortality [^2] for visual calibration of model parameters to user selected baseline scenarios. More elaborate calibration methods are under consideration but are not a priority since the system is unidentifiable and therefore calibration will be entirely dependent on user-selected baseline scenarios.
+
+The model interface can be found here: https://comomodel.net/. The equations for the basic model structure follow (Equation 1).
+
 $$ \begin{aligned}
 \frac{dS}{dt} ~  & = ~ -S ~ \circ ~ \Lambda ~ + ~ \omega R ~ + ~ A ~ \cdot ~ S ~ - ~ \mu ~ \cdot ~ S ~ + ~ bP \\
 \\
@@ -66,61 +70,155 @@ W ~ & = ~ W_{home} ~ + ~ W_{work} ~ + ~ W_{school} ~ + ~ W_{other} \\
 A ~ & = ~ 
 \begin{pmatrix} 
 \begin{pmatrix} -1 & 0 \\ 1 & -1 \end{pmatrix} & \ldots & 0 \\ 
-\vdots & \ddots \begin{pmatrix} -1 & 0 \\ 1 & -1 \end{pmatrix} \ddots  & \vdots \\ 
+\vdots & \ddots \begin{pmatrix} -1 & 0 \\ 1 & -1 \end{pmatrix} \ddots & \vdots \\ 
 0 & \ldots & \begin{pmatrix} -1 & 0 \\ 1 & 0 \end{pmatrix} 
 \end{pmatrix} \\
 \\
 \\
+p_{K_H} ~ & = ~
+\begin{Bmatrix}
+0 ~ \text{for} ~ H < K_H \\ 
+1 ~ \text{for} ~ H \geq K_H \\
+\end{Bmatrix} \\
+\\
+p_{K_U} ~ & = ~
+\begin{Bmatrix}
+0 ~ \text{for} ~ U < K_U \\ 
+1 ~ \text{for} ~ U \geq K_U \\
+\end{Bmatrix} \\
+\\
+p_{K_V} ~ & = ~
+\begin{Bmatrix}
+0 ~ \text{for} ~ V < K_V \\ 
+1 ~ \text{for} ~ V \geq K_V \\
+\end{Bmatrix} \\
+\\
+\\
 & \text{where model variables are defined as:} \\
 \\
+\\
 S ~ & = ~ \text{Susceptible} \\
+\\
 E ~ & = ~ \text{Infected and incubating} \\
+\\
 I ~ & = ~ \text{Infected and asymptomatic following incubation} \\
+\\
 C ~ & = ~ \text{Infected and mildly symptomatic following incubation} \\
+\\
 R ~ & = ~ \text{Recovered and immune} \\
+\\
 H ~ & = ~ \text{Severe infection: hospitalised} \\
+\\
 H_c ~ & = ~ \text{Severe infection: not hospitalised due to lack of capacity} \\
+\\
 U ~ & = ~ \text{Severe infection: hospitalised in ICU} \\
+\\
 U_c ~ & = ~ \text{Severe infection: hospitalised and requiring ICU but placed in surge ward} \\
+\\
 V ~ & = ~ \text{Severe infection: hospitalised in ICU and on a ventilator} \\
+\\
 V_c ~ & = ~ \text{Severe infection: hospitalised in ICU requiring a ventilator but not on one} \\
+\\
 \\
 & \text{and model parameters are defined as:} \\
 \\
-W_{home} ~ & = ~ \text{} \\
-W_{work} ~ & = ~ \text{} \\
-W_{school} ~ & = ~ \text{} \\
-W_{other} ~ & = ~ \text{} \\
-\mu ~ & = ~ \text{} \\
-b ~ & = ~ \text{} \\
+\\
+W_{home} ~ & = ~ 
+\begin{aligned} 
+& \text{Country-specific age-dependent contact matrix describing the} \\ 
+& \text{number of potentially infectious contacts at home per person per day} 
+\end{aligned} \\
+\\
+W_{work} ~ & = ~ 
+\begin{aligned}
+& \text{Country-specific age-dependent contact matrix describing the} \\ 
+& \text{number of potentially infectious contacts at work per person per day}
+\end{aligned} \\
+\\
+W_{school} ~ & = ~ 
+\begin{aligned}
+& \text{Country-specific age-dependent contact matrix describing the} \\ 
+& \text{number of potentially infectious contacts at work per person per day} 
+\end{aligned} \\
+\\
+W_{other} ~ & = ~ 
+\begin{aligned}
+& \text{Country-specific age-dependent contact matrix describing the} \\
+& \text{number of potentially infectious societal contacts per person per day} 
+\end{aligned} \\
+\\
+\mu ~ & = ~ \frac{1}{\text{Age-dependent non-covid related death rate}} \\
+\\
+b ~ & = ~ \frac{1}{\text{Age-dependent fertility rate}} \\
+\\
+\alpha ~ & = ~ \frac{1}{\text{Duration in each category}} \\
+\\
 p ~ & = ~ \text{Probability of infection given a single contact} \\
+\\
 \gamma ~ & = ~ \frac{1}{\text{Duration of incubation period}} \\
+\\
 \rho ~ & = ~ \text{Relative infectiousness of incubating phase per contact} \\
+\\
 p_{clin} ~ & = ~ \text{Proportion of all infections that ever develop symptoms} \\
+\\
 \nu_I ~ & = ~ \frac{1}{\text{Duration of infectious phase}} \\
+\\
 \rho_s ~ & = ~ \text{Relative number of contacts for hospitalised patients} \\
+\\
 \omega ~ & = ~ \frac{1}{\text{Duration of immunity}} \\
+\\
 \alpha ~ & = ~ \text{Relative variation in transmissibility throughout the year} \pm \text{a proportion} \\
+\\
 \phi ~ & = ~ \text{Month of peak in transmissibility} \\
+\\
 t_{in} ~ & = ~ \text{Start date} \\
+\\
 p_{ihr} ~ & = ~ \text{Probability of an infection being severe (requiring hospitalisation) by age} \\
+\\
 p_{ifr} ~ & = ~ \text{Probability of an infection being fatal by age} \\
+\\
 \nu_H ~ & = ~ \text{Duration of hospitalised infection} \\
+\\
 \nu_U ~ & = ~ \text{Duration of ICU infection} \\
+\\
 \nu_V ~ & = ~ \text{Duration of ventilated infection} \\
+\\
 \delta_H ~ & = ~ \text{Probability of death for a hospitalised infection} \\
+\\
 \delta_{H_c} ~ & = ~ \text{Probability of death for an infection requiring hospital not get} \\
-\delta_U ~ & = ~ \text{} \\
-\delta_{U_c} ~ & = ~ \text{} \\
-\delta_V ~ & = ~ \text{} \\
-\delta_{V_c} ~ & = ~ \text{} \\
+\\
+\delta_U ~ & = ~ \text{Maximum death probability for a hospitalized infection requiring ICU admission} \\
+\\
+\delta_{U_c} ~ & = ~ 
+\begin{aligned}
+& \text{Maximum death probability for a hospitalized infection that} \\
+& \text{would require ICU admission but was not admitted to the ICU} 
+\end{aligned} \\
+\\
+\delta_V ~ & = ~ \text{Maximum death probability for a hospitalized infection requiring a ventilator} \\
+\\
+\delta_{V_c} ~ & = ~ 
+\begin{aligned}
+& \text{Maximum death probability for a hospitalized infection that} \\ 
+& \text{would require a ventilator but did not get one}
+\end{aligned} \\
+\\
 p_U ~ & = ~ \text{Probability of an infected patient needing ICU} \\
+\\
 p_V ~ & = ~ \text{Probability of an infected patient needing ICU and a ventilator} \\
+\\
 p_{K_H} ~ & = ~ \text{Decision to assign a patient a hospital bed depending on capacity} \\
+\\
 p_{K_U} ~ & = ~ \text{Decision to assign a patient an ICU bed depending on capacity} \\
+\\
 p_{K_V} ~ & = ~ \text{Decision to assign a patient a ventilator depending on capacity}
 \end{aligned} $$
 
+<br>
+<br>
 
+[^1]: UN Department of Economic and Social Affairs Population Dynamics. Available
+from: https://population.un.org/wpp/Download/Standard/Population/.
 
-
+[^2]: European Centre for Disease Prevention and Control. Available from:
+https://www.ecdc.europa.eu/en.
