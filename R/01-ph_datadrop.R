@@ -48,8 +48,9 @@ ph_gdrive_files <- function(version = "current", date = NULL) {
   destFile <- tempfile()
 
   ## Create link for download of README
-  link <- sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download",
-                  dropCurrent$id)
+  #link <- sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download",
+  #                dropCurrent$id)
+  link <- sprintf(fmt = "https://docs.google.com/uc?id=%s", dropCurrent$id)
 
   ## Download README to temp directory
   curl::curl_download(url = link, destfile = destFile)
