@@ -158,7 +158,9 @@ ph_get_fields <- function(version = "current", date = NULL) {
   z <- y$id[stringr::str_detect(string = y$name, pattern = "Fields.csv")]
 
   ## Read fields data CSV
-  fields <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
+  #fields <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
+  fields <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s", z),
+                            stringsAsFactors = FALSE)
 
   ## Convert to tibble
   fields <- tibble::tibble(fields)
@@ -211,7 +213,9 @@ ph_get_cases <- function(version = "current", date = NULL) {
   z <- y$id[stringr::str_detect(string = y$name, pattern = "Case Information.csv")]
 
   ## Read Case Information CSV
-  cases <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z),
+  #cases <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z),
+  #                         stringsAsFactors = FALSE)
+  cases <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s", z),
                            stringsAsFactors = FALSE)
 
   ## Convert to tibble
@@ -257,7 +261,9 @@ ph_get_tests <- function(version = "current", date = NULL) {
   z <- y$id[stringr::str_detect(string = y$name, pattern = "Testing Aggregates.csv")]
 
   ## Read testing aggregates CSV
-  tests <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
+  #tests <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
+  tests <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s", z),
+                           stringsAsFactors = FALSE)
 
   ## Convert to tibble
   tests <- tibble::tibble(tests)
@@ -302,7 +308,9 @@ ph_get_daily <- function(version = "current", date = NULL) {
   z <- y$id[stringr::str_detect(string = y$name, pattern = "Daily Report.csv")]
 
   ## Read daily report CSV
-  daily <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
+  #daily <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
+  daily <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s", z),
+                           stringsAsFactors = FALSE)
 
   ## Convert to tibble
   daily <- tibble::tibble(daily)
