@@ -12,6 +12,7 @@ status](https://travis-ci.org/como-ph/comoparams.svg?branch=master)](https://tra
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/como-ph/comoparams?branch=master&svg=true)](https://ci.appveyor.com/project/como-ph/comoparams)
 [![R-CMD-check](https://github.com/como-ph/comoparams/workflows/R-CMD-check/badge.svg)](https://github.com/como-ph/comoparams/actions)
+[![codecov](https://codecov.io/gh/como-ph/comoparams/branch/master/graph/badge.svg)](https://codecov.io/gh/como-ph/comoparams)
 [![CodeFactor](https://www.codefactor.io/repository/github/como-ph/comoparams/badge)](https://www.codefactor.io/repository/github/como-ph/comoparams)
 [![DOI](https://zenodo.org/badge/255850150.svg)](https://zenodo.org/badge/latestdoi/255850150)
 <!-- badges: end -->
@@ -122,20 +123,20 @@ To pull the most current data on `cases`, we use the function
 
 ``` r
 ph_get_cases()
-#> # A tibble: 30,052 x 21
+#> # A tibble: 31,825 x 21
 #>    CaseCode   Age AgeGroup Sex   DateSpecimen DateResultRelea… DateRepConf
 #>    <chr>    <dbl> <chr>    <chr> <chr>        <chr>            <chr>      
-#>  1 C142253     32 30 to 34 Male  2020-06-14   2020-06-16       2020-06-19 
-#>  2 C500185     46 45 to 49 Fema… 2020-06-15   2020-06-17       2020-06-19 
-#>  3 C479596     37 35 to 39 Male  2020-06-17   2020-06-17       2020-06-19 
-#>  4 C706177     44 40 to 44 Male  2020-06-10   2020-06-16       2020-06-19 
-#>  5 C701208     78 75 to 79 Fema… 2020-06-15   2020-06-17       2020-06-19 
-#>  6 C640388      2 0 to 4   Fema… 2020-06-15   2020-06-17       2020-06-19 
-#>  7 C818960     27 25 to 29 Fema… 2020-06-14   2020-06-16       2020-06-19 
-#>  8 C733348     12 10 to 14 Male  2020-06-14   2020-06-16       2020-06-19 
-#>  9 C929357     58 55 to 59 Fema… 2020-06-15   2020-06-17       2020-06-19 
-#> 10 C924392     28 25 to 29 Male  2020-06-11   2020-06-16       2020-06-19 
-#> # … with 30,042 more rows, and 14 more variables: DateDied <chr>,
+#>  1 C896932     30 30 to 34 Fema… 2020-06-14   ""               2020-06-19 
+#>  2 C679761     29 25 to 29 Fema… 2020-06-14   "2020-06-16"     2020-06-19 
+#>  3 C345251     38 35 to 39 Fema… 2020-06-11   "2020-06-16"     2020-06-19 
+#>  4 C685818     25 25 to 29 Fema… 2020-06-14   "2020-06-16"     2020-06-19 
+#>  5 C629593     26 25 to 29 Male  2020-06-15   "2020-06-17"     2020-06-19 
+#>  6 C222820     48 45 to 49 Male  2020-06-15   "2020-06-17"     2020-06-19 
+#>  7 C228086     31 30 to 34 Fema… 2020-06-09   "2020-06-11"     2020-06-19 
+#>  8 C686978     27 25 to 29 Male  2020-06-14   "2020-06-16"     2020-06-19 
+#>  9 C730849     34 30 to 34 Male  2020-06-14   "2020-06-16"     2020-06-19 
+#> 10 C565692     33 30 to 34 Fema… 2020-06-15   "2020-06-17"     2020-06-19 
+#> # … with 31,815 more rows, and 14 more variables: DateDied <chr>,
 #> #   DateRecover <chr>, RemovalType <chr>, DateRepRem <chr>, Admitted <chr>,
 #> #   RegionRes <chr>, ProvRes <chr>, CityMunRes <chr>, CityMuniPSGC <chr>,
 #> #   HealthStatus <chr>, Quarantined <chr>, DateOnset <chr>, Pregnanttab <chr>,
@@ -346,7 +347,7 @@ follows:
 
 ``` r
 ph_get_cases() %>% ph_calculate_cases()
-#> # A tibble: 173 x 4
+#> # A tibble: 175 x 4
 #>    repDate    cases deaths recovered
 #>    <date>     <dbl>  <dbl>     <dbl>
 #>  1 2020-01-01     0      0         0
@@ -359,7 +360,7 @@ ph_get_cases() %>% ph_calculate_cases()
 #>  8 2020-01-08     0      0         0
 #>  9 2020-01-09     0      0         0
 #> 10 2020-01-10     0      0         0
-#> # … with 163 more rows
+#> # … with 165 more rows
 ```
 
 The IFR and IHR output can be produced as follows:
@@ -369,16 +370,16 @@ ph_get_cases() %>% ph_calculate_rates()
 #> # A tibble: 21 x 8
 #>    age_category deaths deathsAdmitted admissions cases     ifr    ihr     hfr
 #>    <fct>         <dbl>          <dbl>      <dbl> <dbl>   <dbl>  <dbl>   <dbl>
-#>  1 0-5 y.o.         14              7         83   404 0.0347  0.205  0.0843 
-#>  2 5-10 y.o.         3              2         29   345 0.00870 0.0841 0.0690 
-#>  3 10-15 y.o.        2              2         35   530 0.00377 0.0660 0.0571 
-#>  4 15-20 y.o.        9              9         98   853 0.0106  0.115  0.0918 
-#>  5 20-25 y.o.        3              3        328  2450 0.00122 0.134  0.00915
-#>  6 25-30 y.o.       21              6        554  3819 0.00550 0.145  0.0108 
-#>  7 30-35 y.o.       13              7        643  3918 0.00332 0.164  0.0109 
-#>  8 35-40 y.o.       34             20        463  2972 0.0114  0.156  0.0432 
-#>  9 40-45 y.o.       50             35        436  2660 0.0188  0.164  0.0803 
-#> 10 45-50 y.o.       54             34        493  2542 0.0212  0.194  0.0690 
+#>  1 0-5 y.o.         14              7         93   579 0.0242  0.161  0.0753 
+#>  2 5-10 y.o.         3              2         32   372 0.00806 0.0860 0.0625 
+#>  3 10-15 y.o.        2              2         41   558 0.00358 0.0735 0.0488 
+#>  4 15-20 y.o.        9              9        104   895 0.0101  0.116  0.0865 
+#>  5 20-25 y.o.        4              3        355  2640 0.00152 0.134  0.00845
+#>  6 25-30 y.o.       21              7        591  4097 0.00513 0.144  0.0118 
+#>  7 30-35 y.o.       13              7        689  4175 0.00311 0.165  0.0102 
+#>  8 35-40 y.o.       34             21        503  3127 0.0109  0.161  0.0417 
+#>  9 40-45 y.o.       50             35        453  2804 0.0178  0.162  0.0773 
+#> 10 45-50 y.o.       55             34        521  2674 0.0206  0.195  0.0653 
 #> # … with 11 more rows
 ```
 
