@@ -38,7 +38,7 @@ ph_gdrive_files <- function(version = "current", date = NULL) {
     paste("2020", sep = "/") %>%
     lubridate::mdy()
 
-  dropDate <- if(version == "archive") date
+  if(version == "archive") dropDate <- date
 
   ## Provide message to user
   message(
@@ -166,7 +166,8 @@ ph_get_fields <- function(version = "current", date = NULL) {
   destFile <- tempfile()
 
   ## Download Fields.csv to temp directory
-  googledrive::drive_download(file = googledrive::as_id(link), path = destFile)
+  googledrive::drive_download(file = googledrive::as_id(link),
+                              path = destFile, verbose = FALSE)
 
   ## Read fields CSV
   fields <- utils::read.csv(file = destFile, stringsAsFactors = FALSE)
@@ -228,7 +229,8 @@ ph_get_cases <- function(version = "current", date = NULL) {
   destFile <- tempfile()
 
   ## Download Cases Information.csv
-  googledrive::drive_download(file = googledrive::as_id(link), path = destFile)
+  googledrive::drive_download(file = googledrive::as_id(link),
+                              path = destFile, verbose = FALSE)
 
   ## Read cases CSV
   cases <- utils::read.csv(file = destFile, stringsAsFactors = FALSE)
@@ -282,7 +284,8 @@ ph_get_tests <- function(version = "current", date = NULL) {
   destFile <- tempfile()
 
   ## Download Testing aggregates.csv
-  googledrive::drive_download(file = googledrive::as_id(link), path = destFile)
+  googledrive::drive_download(file = googledrive::as_id(link),
+                              path = destFile, verbose = FALSE)
 
   ## Read testing aggregates CSV file
   tests <- utils::read.csv(file = destFile, stringsAsFactors = FALSE)
@@ -336,7 +339,8 @@ ph_get_daily <- function(version = "current", date = NULL) {
   destFile <- tempfile()
 
   ## Download daily report.csv
-  googledrive::drive_download(file = googledrive::as_id(link), path = destFile)
+  googledrive::drive_download(file = googledrive::as_id(link),
+                              path = destFile, verbose = FALSE)
 
   ## Read daily report CSV
   daily <- utils::read.csv(file = destFile, stringsAsFactors = FALSE)
