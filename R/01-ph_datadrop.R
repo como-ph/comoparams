@@ -48,12 +48,14 @@ ph_gdrive_files <- function(version = "current", date = NULL) {
   destFile <- tempfile()
 
   ## Create link for download of README
-  #link <- sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download",
-  #                dropCurrent$id)
-  link <- sprintf(fmt = "https://docs.google.com/uc?id=%s", dropCurrent$id)
+  link <- sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download",
+                  dropCurrent$id)
+
+  h <- curl::new_handle()
+  curl::handle_setopt(h, http_version = 0L)
 
   ## Download README to temp directory
-  curl::curl_download(url = link, destfile = destFile)
+  curl::curl_download(url = link, destfile = destFile, handle = h)
 
   ## Extract information from PDF on link to folder of current data
   readme <- pdftools::pdf_text(pdf = destFile) %>%
@@ -216,8 +218,10 @@ ph_get_cases <- function(version = "current", date = NULL) {
   ## Read Case Information CSV
   #cases <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z),
   #                         stringsAsFactors = FALSE)
-  cases <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s", z),
-                           stringsAsFactors = FALSE)
+
+  link <- sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z)
+
+  cases <- utils::read.csv(file = link, stringsAsFactors = FALSE)
 
   ## Convert to tibble
   cases <- tibble::tibble(cases)
