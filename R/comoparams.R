@@ -31,7 +31,7 @@
 #' @importFrom tidyr pivot_longer
 #' @importFrom RCurl getURL
 #' @importFrom pdftools pdf_text
-#' @importFrom curl curl_download
+#' @importFrom curl curl_download new_handle handle_setopt
 #'
 #'
 #
