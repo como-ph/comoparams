@@ -1,3 +1,15 @@
+# comoparams 0.2.1.9000
+
+* removed dependency to `curl` in data drop functions which were causing **HTML 404 and 403 errors consistently**
+
+* replaced `curl` with `googledrive::drive_download` which sorts out the proper way of downloading from Google Drive
+
+* added unit tests using `testthat`
+
+* updated set parameter functions based on new CoMo Model template (v13)
+
+* updated set parameter functions to use `cli`
+
 # comoparams 0.2.0.9000
 
 * updated pull functions for population

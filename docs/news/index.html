@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">comoparams</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1.9000</span>
       </span>
     </div>
 
@@ -126,6 +126,17 @@
       <small>Source: <a href='https://github.com/como-ph/comoparams/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="comoparams-0219000" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.1.9000">
+<a href="#comoparams-0219000" class="anchor"></a>comoparams 0.2.1.9000</h1>
+<ul>
+<li><p>removed dependency to <code>curl</code> in data drop functions which were causing <strong>HTML 404 and 403 errors consistently</strong></p></li>
+<li><p>replaced <code>curl</code> with <code><a href="https://googledrive.tidyverse.org/reference/drive_download.html">googledrive::drive_download</a></code> which sorts out the proper way of downloading from Google Drive</p></li>
+<li><p>added unit tests using <code>testthat</code></p></li>
+<li><p>updated set parameter functions based on new CoMo Model template (v13)</p></li>
+<li><p>updated set parameter functions to use <code>cli</code></p></li>
+</ul>
+</div>
     <div id="comoparams-0209000" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.0.9000">
 <a href="#comoparams-0209000" class="anchor"></a>comoparams 0.2.0.9000</h1>

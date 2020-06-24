@@ -25,6 +25,7 @@ library(magrittr)
 [![Travis build status](https://travis-ci.org/como-ph/comoparams.svg?branch=master)](https://travis-ci.org/como-ph/comoparams)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/como-ph/comoparams?branch=master&svg=true)](https://ci.appveyor.com/project/como-ph/comoparams)
 [![R-CMD-check](https://github.com/como-ph/comoparams/workflows/R-CMD-check/badge.svg)](https://github.com/como-ph/comoparams/actions)
+[![codecov](https://codecov.io/gh/como-ph/comoparams/branch/master/graph/badge.svg)](https://codecov.io/gh/como-ph/comoparams)
 [![CodeFactor](https://www.codefactor.io/repository/github/como-ph/comoparams/badge)](https://www.codefactor.io/repository/github/como-ph/comoparams)
 [![DOI](https://zenodo.org/badge/255850150.svg)](https://zenodo.org/badge/latestdoi/255850150)
 <!-- badges: end -->
