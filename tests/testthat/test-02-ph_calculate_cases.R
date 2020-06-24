@@ -1,10 +1,15 @@
+x <- ph_get_cases()
+
+y <- x %>% ph_calculate_cases()
+
+
 test_that("output is tibble", {
-  expect_is(ph_get_cases() %>% ph_calculate_cases(), "tbl")
+  expect_is(y, "tbl")
 })
 
 test_that("output names are correct", {
-  expect_equal(names(ph_get_cases() %>% ph_calculate_cases())[1], "repDate")
-  expect_equal(names(ph_get_cases() %>% ph_calculate_cases())[2], "cases")
-  expect_equal(names(ph_get_cases() %>% ph_calculate_cases())[3], "deaths")
-  expect_equal(names(ph_get_cases() %>% ph_calculate_cases())[4], "recovered")
+  expect_equal(names(y)[1], "repDate")
+  expect_equal(names(y)[2], "cases")
+  expect_equal(names(y)[3], "deaths")
+  expect_equal(names(y)[4], "recovered")
 })
