@@ -51,11 +51,14 @@ ph_gdrive_files <- function(version = "current", date = NULL) {
   link <- sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download",
                   dropCurrent$id)
 
-  h <- curl::new_handle()
-  curl::handle_setopt(h, http_version = 0L)
+  handle <- curl::new_handle() %>%
+    curl::handle_setopt(.list = list(http_version = 0L,
+                                     useragent = "comoparams - R package"))
 
   ## Download README to temp directory
-  curl::curl_download(url = link, destfile = destFile, handle = h)
+  curl::curl_download(url = link,
+                      destfile = destFile,
+                      handle = handle)
 
   ## Extract information from PDF on link to folder of current data
   readme <- pdftools::pdf_text(pdf = destFile) %>%
@@ -160,10 +163,26 @@ ph_get_fields <- function(version = "current", date = NULL) {
   ## Get identifier of Fields data
   z <- y$id[stringr::str_detect(string = y$name, pattern = "Fields.csv")]
 
-  ## Read fields data CSV
+  ## Get fields data CSV link
   #fields <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
-  fields <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s", z),
-                            stringsAsFactors = FALSE)
+  #fields <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s", z),
+  #                          stringsAsFactors = FALSE)
+  link <- sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z)
+
+  ## Create temporary file
+  destFile <- tempfile()
+
+  handle <- curl::new_handle() %>%
+    curl::handle_setopt(.list = list(http_version = 0L,
+                                     useragent = "comoparams - R package"))
+
+  ## Download README to temp directory
+  curl::curl_download(url = link,
+                      destfile = destFile,
+                      handle = handle)
+
+  ## Read fields CSV
+  fields <- utils::read.csv(file = destFile, stringsAsFactors = FALSE)
 
   ## Convert to tibble
   fields <- tibble::tibble(fields)
@@ -215,13 +234,26 @@ ph_get_cases <- function(version = "current", date = NULL) {
   ## Get unique identifier for Cases data
   z <- y$id[stringr::str_detect(string = y$name, pattern = "Case Information.csv")]
 
-  ## Read Case Information CSV
+  ## Get Case Information CSV link
   #cases <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z),
   #                         stringsAsFactors = FALSE)
 
   link <- sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z)
 
-  cases <- utils::read.csv(file = link, stringsAsFactors = FALSE)
+  ## Create temporary file
+  destFile <- tempfile()
+
+  handle <- curl::new_handle() %>%
+    curl::handle_setopt(.list = list(http_version = 0L,
+                                     useragent = "comoparams - R package"))
+
+  ## Download README to temp directory
+  curl::curl_download(url = link,
+                      destfile = destFile,
+                      handle = handle)
+
+  ## Read cases CSV
+  cases <- utils::read.csv(file = destFile, stringsAsFactors = FALSE)
 
   ## Convert to tibble
   cases <- tibble::tibble(cases)
@@ -265,10 +297,25 @@ ph_get_tests <- function(version = "current", date = NULL) {
   ## Get unique identifier for testing aggregates dataset
   z <- y$id[stringr::str_detect(string = y$name, pattern = "Testing Aggregates.csv")]
 
-  ## Read testing aggregates CSV
-  #tests <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
-  tests <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s", z),
-                           stringsAsFactors = FALSE)
+  ## Get testing aggregates CSV link
+  link <- sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z)
+  #tests <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s", z),
+  #                         stringsAsFactors = FALSE)
+
+  ## Create temporary file
+  destFile <- tempfile()
+
+  handle <- curl::new_handle() %>%
+    curl::handle_setopt(.list = list(http_version = 0L,
+                                     useragent = "comoparams - R package"))
+
+  ## Download README to temp directory
+  curl::curl_download(url = link,
+                      destfile = destFile,
+                      handle = handle)
+
+  ## Read testing aggregates CSV file
+  test <- utils::read.csv(file = destFile, stringsAsFactors = FALSE)
 
   ## Convert to tibble
   tests <- tibble::tibble(tests)
@@ -313,9 +360,10 @@ ph_get_daily <- function(version = "current", date = NULL) {
   z <- y$id[stringr::str_detect(string = y$name, pattern = "Daily Report.csv")]
 
   ## Read daily report CSV
-  #daily <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
-  daily <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s", z),
+  daily <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z),
                            stringsAsFactors = FALSE)
+  #daily <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s", z),
+  #                         stringsAsFactors = FALSE)
 
   ## Convert to tibble
   daily <- tibble::tibble(daily)
