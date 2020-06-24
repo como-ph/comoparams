@@ -38,6 +38,8 @@ ph_gdrive_files <- function(version = "current", date = NULL) {
     paste("2020", sep = "/") %>%
     lubridate::mdy()
 
+  dropDate <- if(version == "archive") date
+
   ## Provide message to user
   message(
     paste("Getting information on Google Drive directory structure of the DoH Data Drop for latest available data up to ",
@@ -51,7 +53,8 @@ ph_gdrive_files <- function(version = "current", date = NULL) {
   link <- sprintf(fmt = "https://docs.google.com/uc?id=%s",
                   dropCurrent$id)
 
-  googledrive::drive_download(file = googledrive::as_id(link), path = destFile)
+  googledrive::drive_download(file = googledrive::as_id(link),
+                              path = destFile, verbose = FALSE)
 
   ## Extract information from PDF on link to folder of current data
   readme <- pdftools::pdf_text(pdf = destFile) %>%
