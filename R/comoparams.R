@@ -17,7 +17,7 @@
 #' @docType package
 #' @name comoparams
 #' @keywords internal
-#' @importFrom googledrive drive_deauth drive_get drive_ls
+#' @importFrom googledrive drive_deauth drive_get drive_ls drive_download as_id
 #' @importFrom stringr str_remove_all str_replace_all str_to_title
 #' @importFrom stats aggregate prop.test t.test
 #' @importFrom magrittr %>%
@@ -31,7 +31,6 @@
 #' @importFrom tidyr pivot_longer
 #' @importFrom RCurl getURL
 #' @importFrom pdftools pdf_text
-#' @importFrom curl curl_download
 #'
 #'
 #

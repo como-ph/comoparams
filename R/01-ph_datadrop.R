@@ -48,11 +48,10 @@ ph_gdrive_files <- function(version = "current", date = NULL) {
   destFile <- tempfile()
 
   ## Create link for download of README
-  link <- sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download",
+  link <- sprintf(fmt = "https://docs.google.com/uc?id=%s",
                   dropCurrent$id)
 
-  ## Download README to temp directory
-  curl::curl_download(url = link, destfile = destFile)
+  googledrive::drive_download(file = googledrive::as_id(link), path = destFile)
 
   ## Extract information from PDF on link to folder of current data
   readme <- pdftools::pdf_text(pdf = destFile) %>%
@@ -157,8 +156,17 @@ ph_get_fields <- function(version = "current", date = NULL) {
   ## Get identifier of Fields data
   z <- y$id[stringr::str_detect(string = y$name, pattern = "Fields.csv")]
 
-  ## Read fields data CSV
-  fields <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
+  ## Get fields data CSV link
+  link <- sprintf(fmt = "https://docs.google.com/uc?id=%s", z)
+
+  ## Create temporary file
+  destFile <- tempfile()
+
+  ## Download Fields.csv to temp directory
+  googledrive::drive_download(file = googledrive::as_id(link), path = destFile)
+
+  ## Read fields CSV
+  fields <- utils::read.csv(file = destFile, stringsAsFactors = FALSE)
 
   ## Convert to tibble
   fields <- tibble::tibble(fields)
@@ -210,9 +218,17 @@ ph_get_cases <- function(version = "current", date = NULL) {
   ## Get unique identifier for Cases data
   z <- y$id[stringr::str_detect(string = y$name, pattern = "Case Information.csv")]
 
-  ## Read Case Information CSV
-  cases <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z),
-                           stringsAsFactors = FALSE)
+  ## Get link for Case Information.csv
+  link <- sprintf(fmt = "https://docs.google.com/uc?id=%s", z)
+
+  ## Create temporary file
+  destFile <- tempfile()
+
+  ## Download Cases Information.csv
+  googledrive::drive_download(file = googledrive::as_id(link), path = destFile)
+
+  ## Read cases CSV
+  cases <- utils::read.csv(file = destFile, stringsAsFactors = FALSE)
 
   ## Convert to tibble
   cases <- tibble::tibble(cases)
@@ -256,8 +272,17 @@ ph_get_tests <- function(version = "current", date = NULL) {
   ## Get unique identifier for testing aggregates dataset
   z <- y$id[stringr::str_detect(string = y$name, pattern = "Testing Aggregates.csv")]
 
-  ## Read testing aggregates CSV
-  tests <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
+  ## Get testing aggregates CSV link
+  link <- sprintf(fmt = "https://docs.google.com/uc?id=%s", z)
+
+  ## Create temporary file
+  destFile <- tempfile()
+
+  ## Download Testing aggregates.csv
+  googledrive::drive_download(file = googledrive::as_id(link), path = destFile)
+
+  ## Read testing aggregates CSV file
+  tests <- utils::read.csv(file = destFile, stringsAsFactors = FALSE)
 
   ## Convert to tibble
   tests <- tibble::tibble(tests)
@@ -301,8 +326,17 @@ ph_get_daily <- function(version = "current", date = NULL) {
   ## Get unique identifier for Daily Report CSV
   z <- y$id[stringr::str_detect(string = y$name, pattern = "Daily Report.csv")]
 
+  ## Get link for daily CSV
+  link <- sprintf(fmt = "https://docs.google.com/uc?id=%s", z)
+
+  ## Create temporary file
+  destFile <- tempfile()
+
+  ## Download daily report.csv
+  googledrive::drive_download(file = googledrive::as_id(link), path = destFile)
+
   ## Read daily report CSV
-  daily <- utils::read.csv(sprintf(fmt = "https://docs.google.com/uc?id=%s&export=download", z))
+  daily <- utils::read.csv(file = destFile, stringsAsFactors = FALSE)
 
   ## Convert to tibble
   daily <- tibble::tibble(daily)
