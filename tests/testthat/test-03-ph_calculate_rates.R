@@ -16,3 +16,8 @@ test_that("sequence of age_category is correct", {
   expect_true((ph_get_cases() %>% ph_calculate_rates())[15, "age_category"] == "70-75 y.o.")
   expect_true((ph_get_cases() %>% ph_calculate_rates())[21, "age_category"] == "100+ y.o.")
 })
+
+test_that("that pdeath is class htest", {
+  expect_is(ph_get_cases() %>% ph_calculate_pdeath(), "htest")
+  expect_is(ph_get_cases() %>% ph_calculate_nus(), "htest")
+})
