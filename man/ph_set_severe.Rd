@@ -16,6 +16,6 @@ Set Philippines-specific CoMo model simulation parameters for severity of
 cases and mortality
 }
 \examples{
-if(interactive()) ph_set_severe()
+ph_set_severe()
 
 }
