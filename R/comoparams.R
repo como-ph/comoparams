@@ -31,6 +31,7 @@
 #' @importFrom tidyr pivot_longer
 #' @importFrom RCurl getURL
 #' @importFrom pdftools pdf_text
+#' @importFrom cli cli_h1 col_red col_blue symbol cli_text cli_alert_warning
 #'
 #'
 #
