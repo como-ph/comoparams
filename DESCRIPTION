@@ -32,7 +32,8 @@ Imports:
     tidyr,
     dplyr,
     RCurl,
-    pdftools
+    pdftools,
+    cli
 Suggests: 
     knitr,
     rmarkdown,
