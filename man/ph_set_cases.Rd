@@ -14,6 +14,6 @@ A data.frame of Philippines-specific CoMo model parameters for
 Set Philippines-specific CoMo model simulation parameters for COVID-19 cases
 }
 \examples{
-if(interactive()) ph_set_cases()
+ph_set_cases()
 
 }

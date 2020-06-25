@@ -7,7 +7,7 @@
 #'   COVID-19 cases
 #'
 #' @examples
-#' if(interactive()) ph_set_cases()
+#' ph_set_cases()
 #'
 #' @export
 #'
@@ -15,56 +15,52 @@
 ################################################################################
 
 ph_set_cases <- function() {
-  ## Check current date and time to see what date is the most recently
-  ## available cases data
-  #if(lubridate::now(tzone = "UTC") %within%
-  #   lubridate::interval(lubridate::ymd_hms(paste(Sys.Date(),
-  #                                                "12:00:00 UTC",
-  #                                                sep = " ")),
-  #                       lubridate::ymd_hms(paste(Sys.Date(),
-  #                                                "23:59:59 UTC",
-  #                                                sep = " ")))) {
-  #  refDate <- Sys.Date()
-  #} else {
-  #  refDate <- lubridate::ymd(Sys.Date()) - lubridate::days(1)
-  #}
-
   ## Header
-  cat("================================================================================\n")
+  cli::cli_h1(text = "Setting CoMo modelling CASES parameters for the Philippines")
   cat("\n")
-  cat("Setting CoMo modelling CASES parameters for the Philippines\n")
-  cat("\n")
-  cat("================================================================================\n")
-  cat("\n")
-  ## Confirm if ready to proceed
-  set_params <- utils::menu(choices = c("Yes", "No"),
-                            title = "Are you ready to proceed?")
 
-  if(set_params == 1) {
-    cat("\n")
-    cat("================================================================================\n")
-    cat("\n")
-    cat("Calculating cases...")
+  ## Check if interactive
+  if(interactive()) {
+
+    ## Confirm if ready to proceed
+    set_params <- utils::menu(choices = c("Yes", "No"),
+                              title = "Are you ready to proceed?")
 
     ##
-    #cases <- ph_calculate_cases(date = refDate)
+    if(set_params == 1) {
+      cat("\n")
+      cli::cli_text(text = "Calculating cases...")
+      cat("\n")
+
+      ## Calculate cases
+      cases <- ph_get_cases() %>% ph_calculate_cases()
+
+      cat("\n")
+      cli::cli_text(text = "{cli::col_green(cli::symbol$tick)} CASES parameters have been set. |
+                    {cli::col_blue(cli::symbol$arrow_right)} Proceed to next paramter.")
+
+      cat("\n")
+    } else {
+      cases <- NA
+      cat("\n")
+      cli::cli_alert_warning("CASES parameters have NOT been set.")
+      cat("\n")
+    }
+  } else {
+    cat("\n")
+    cli::cli_text(text = "Calculating cases...")
+    cat("\n")
+
+    ## Calculate cases
     cases <- ph_get_cases() %>% ph_calculate_cases()
 
-    ##
     cat("\n")
-    cat("================================================================================\n")
-    cat("\n")
-    cat("CASES parameters have been set. Proceed to next parameter.\n")
-    cat("\n")
-  } else {
-    cases <- NA
-    cat("\n")
-    cat("================================================================================\n")
-    cat("\n")
-    cat("CASES parameters have NOT been set.\n")
+    cli::cli_text(text = "{cli::col_green(cli::symbol$tick)} CASES parameters have been set. |
+                    {cli::col_blue(cli::symbol$arrow_right)} Proceed to next paramter.")
+
     cat("\n")
   }
 
-  ##
+  ## Return results
   return(cases)
 }
