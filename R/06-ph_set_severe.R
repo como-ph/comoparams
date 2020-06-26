@@ -26,35 +26,42 @@ ph_set_severe <- function() {
     set_params <- utils::menu(choices = c("Yes", "No"),
                               title = "Are you ready to proceed?")
 
+    ## Check user answer
     if(set_params == 1) {
       cat("\n")
       cli::cli_text("Calculating severity and mortality...")
-
-      ##
-      sm <- ph_get_cases() %>% ph_calculate_cases()
-
-      ##
       cat("\n")
-      cli::cli_text(text = "{cli::col_green(cli::symbol$tick)} SEVERITY and MORTALITY parameters have been set. |
-                    {cli::col_blue(cli::symbol$arrow_right)} Proceed to next parameter." )
+
+      ## Calculate rates
+      sm <- ph_get_cases() %>% ph_calculate_rates()
+
+      ## Calculation completed
+      cat("\n")
+      cli::cli_text(text = "{cli::col_green(cli::symbol$tick)}
+                          {cli::col_green('SEVERITY and MORTALITY parameters have been set.')} |
+                          {cli::col_blue(cli::symbol$arrow_right)}
+                          {cli::col_blue('Proceed to next parameter.')}")
       cat("\n")
     } else {
-      cases <- NA
+      sm <- NA
       cat("\n")
-      cli::cli_alert_warning(text = "SEVERITY and MORTALITY parameters have NOT been set.")
+      cli::cli_alert_warning(text = "{cli::col_yellow('SEVERITY and MORTALITY parameters have NOT been set.')}")
       cat("\n")
     }
   } else {
     cat("\n")
     cli::cli_text("Calculating severity and mortality...")
-
-    ##
-    sm <- ph_get_cases() %>% ph_calculate_cases()
-
-    ##
     cat("\n")
-    cli::cli_text(text = "{cli::col_green(cli::symbol$tick)} SEVERITY and MORTALITY parameters have been set. |
-                    {cli::col_blue(cli::symbol$arrow_right)} Proceed to next parameter." )
+
+    ## Calculate rates
+    sm <- ph_get_cases() %>% ph_calculate_rates()
+
+    ## Calculation completed
+    cat("\n")
+    cli::cli_text(text = "{cli::col_green(cli::symbol$tick)}
+                          {cli::col_green('SEVERITY and MORTALITY parameters have been set.')} |
+                          {cli::col_blue(cli::symbol$arrow_right)}
+                          {cli::col_blue('Proceed to next parameter.')}")
     cat("\n")
   }
 
