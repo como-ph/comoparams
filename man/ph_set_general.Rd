@@ -16,6 +16,6 @@ Set Philippines-specific CoMo model simulation parameters for general and
 area factors
 }
 \examples{
-if(interactive()) ph_set_general()
+ph_set_general()
 
 }
