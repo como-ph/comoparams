@@ -26,7 +26,7 @@ ph_set_cases <- function() {
     set_params <- utils::menu(choices = c("Yes", "No"),
                               title = "Are you ready to proceed?")
 
-    ##
+    ## Check user answer
     if(set_params == 1) {
       cat("\n")
       cli::cli_text(text = "Calculating cases...")
@@ -35,15 +35,17 @@ ph_set_cases <- function() {
       ## Calculate cases
       cases <- ph_get_cases() %>% ph_calculate_cases()
 
+      ## Calculation completed
       cat("\n")
-      cli::cli_text(text = "{cli::col_green(cli::symbol$tick)} CASES parameters have been set. |
-                    {cli::col_blue(cli::symbol$arrow_right)} Proceed to next paramter.")
-
+      cli::cli_text(text = "{cli::col_green(cli::symbol$tick)}
+                            {cli::col_green('CASES parameters have been set.')} |
+                            {cli::col_blue(cli::symbol$arrow_right)}
+                            {cli::col_blue('Proceed to next parameter.')}")
       cat("\n")
     } else {
       cases <- NA
       cat("\n")
-      cli::cli_alert_warning("CASES parameters have NOT been set.")
+      cli::cli_alert_warning("{cli::col_yellow('CASES parameters have NOT been set.')}")
       cat("\n")
     }
   } else {
@@ -54,10 +56,12 @@ ph_set_cases <- function() {
     ## Calculate cases
     cases <- ph_get_cases() %>% ph_calculate_cases()
 
+    ## Calculation completed
     cat("\n")
-    cli::cli_text(text = "{cli::col_green(cli::symbol$tick)} CASES parameters have been set. |
-                    {cli::col_blue(cli::symbol$arrow_right)} Proceed to next paramter.")
-
+    cli::cli_text(text = "{cli::col_green(cli::symbol$tick)}
+                          {cli::col_green('CASES parameters have been set.')} |
+                          {cli::col_blue(cli::symbol$arrow_right)}
+                          {cli::col_blue('Proceed to next parameter.')}")
     cat("\n")
   }
 
