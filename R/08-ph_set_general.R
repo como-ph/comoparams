@@ -32,7 +32,8 @@ ph_set_general <- function() {
 
       ## Input mean household size
       cat("\n")
-      cli::cli_h2(text = paste("What is the mean household size in ", country, "/area of ", country, "?\n", sep = ""))
+      cli::cli_h2(text = paste("What is the mean household size in ",
+                               country, "/area of ", country, "?\n", sep = ""))
       cat("\n")
 
       ## Receive and check response
@@ -74,7 +75,8 @@ ph_set_general <- function() {
       ## Input mean number of infectious migrants per day
       if(!is.null(household_size) | !is.na(household_size)) {
         cat("\n")
-        cli::cli_h2(paste("What is the mean number of infectious migrants per day in ", country, "/area of ", country, "?\n", sep = ""))
+        cli::cli_h2(paste("What is the mean number of infectious migrants per day in ",
+                          country, "/area of ", country, "?\n", sep = ""))
         cat("\n")
 
         ## Receive and check response
@@ -359,11 +361,14 @@ ph_set_general <- function() {
                     date_range_simul_start, date_range_simul_end,
                     p, report, reportc, reporth)))) {
       cat("\n")
-      cli::cli_h1("GENERAL modeling parameters have been set. Proceed to  next set of parameters")
+      cli::cli_text(text = "{cli::col_green(cli::symbol$tick)}
+                          {cli::col_green('GENERAL modelling parameters have been set.')} |
+                          {cli::col_blue(cli::symbol$arrow_right)}
+                          {cli::col_blue('Proceed to next parameter.')}")
       cat("\n")
     }
   } else {
-    cli::cli_alert_danger(text = "{cli::col_red('GENERAL modelling parameters have not been set.')}")
+    cli::cli_alert_danger(text = "{cli::col_red('GENERAL modelling parameters have NOT been set.')}")
     cli::col_red(text = "Setting GENERAL modelling parameters require interactive input from user. Try again.")
 
     country                <- NA
