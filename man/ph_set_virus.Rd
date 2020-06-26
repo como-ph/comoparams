@@ -16,6 +16,6 @@ Set Philippines-specific CoMo model simulation parameters for virus
 parameters
 }
 \examples{
-if(interactive()) ph_set_virus()
+ph_set_virus()
 
 }
