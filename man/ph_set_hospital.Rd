@@ -16,6 +16,6 @@ Set Philippines-specific CoMo model simulation parameters for hospitalisation
 parameters
 }
 \examples{
-if(interactive()) ph_set_hospital()
+ph_set_hospital()
 
 }
