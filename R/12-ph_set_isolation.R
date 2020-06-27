@@ -133,9 +133,7 @@ ph_set_isolation <- function() {
       selfis_eff            <- NA
     }
 
-    if(all(!is.na(c(selfis, date_selfis_on, selfis_dur, selfis_cov, selfis_eff,
-                    screen_switch, date_screen_on, screen_cov, screen_dur,
-                    screen_overdispersion, screen_contacts)))) {
+    if(all(!is.na(c(selfis, selfis_cov, selfis_eff)))) {
       cat("\n")
       cli::cli_text(text = "{cli::col_green(cli::symbol$tick)}
                             {cli::col_green('SELF-ISOLATION intervention parameters have been set.')} |
