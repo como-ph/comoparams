@@ -116,7 +116,7 @@ ph_set_isolation <- function() {
         }
       } else {
         cat("\n")
-        cli::cli_alert_danger("{cli::col_red('SELF-ISOLATION intervention parameters have NOT been set.')}")
+        cli::cli_alert_warning("{cli::col_yellow('SELF-ISOLATION intervention has NOT been implemented yet. Proceed to next intervention.')}")
         cat("\n")
         ## set params to NA
         selfis                <- FALSE
@@ -125,7 +125,7 @@ ph_set_isolation <- function() {
       }
     } else {
       cat("\n")
-      cli::cli_alert_warning("{cli::col_yellow('SELF-ISOLATION intervention has NOT been implemented yet. Proceed to next intervention.')}")
+      cli::cli_alert_danger("{cli::col_red('SELF-ISOLATION intervention parameters have NOT been set.')}")
       cat("\n")
       ## set params to NA
       selfis                <- FALSE
