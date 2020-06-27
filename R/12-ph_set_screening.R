@@ -186,9 +186,10 @@ ph_set_screening <- function() {
     screen_test_sens      <- NA
   }
 
-  if(all(!is.na(c(selfis, date_selfis_on, selfis_dur, selfis_cov, selfis_eff,
-                  screen_switch, date_screen_on, screen_cov, screen_dur,
-                  screen_overdispersion, screen_contacts)))) {
+  if(all(!is.na(c(screen,
+                  screen_cov,
+                  screen_overdispersion,
+                  screen_test_sens)))) {
     cat("\n")
     cli::cli_text(text = "{cli::col_green(cli::symbol$tick)}
                           {cli::col_green('SCRENING TEST intervention parameters have been set.')} |

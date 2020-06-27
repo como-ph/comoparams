@@ -155,15 +155,14 @@ ph_set_isolation <- function() {
   }
 
   ## Concatenate params
-  params <- list(selfis, date_selfis_on, as.numeric(selfis_dur), as.numeric(selfis_cov),
-                 as.numeric(selfis_eff), screen_switch, date_screen_on,
-                 as.numeric(screen_cov), as.numeric(screen_dur),
-                 as.numeric(screen_overdispersion), as.numeric(screen_contacts))
+  params <- list(selfis,
+                 as.numeric(selfis_cov),
+                 as.numeric(selfis_eff))
 
   ##
-  names(params) <- list("selfis", "date_selfis_on", "selfis_dur", "selfis_cov", "selfis_eff",
-                        "screen_switch", "date_screen_on", "screen_cov",
-                        "screen_dur", "screen_overdispersion", "screen_contacts")
+  names(params) <- list("selfis",
+                        "selfis_cov",
+                        "selfis_eff")
 
   ## Return params
   return(params)
