@@ -16,6 +16,6 @@ Set Philippines-specific CoMo model simulation self-isolation intervention
 parameters
 }
 \examples{
-if(inreractive()) ph_set_household()
+if(interactive()) ph_set_household()
 
 }

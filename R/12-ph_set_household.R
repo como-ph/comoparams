@@ -8,7 +8,7 @@
 #'   parameters
 #'
 #' @examples
-#' if(inreractive()) ph_set_household()
+#' if(interactive()) ph_set_household()
 #'
 #' @export
 #'
