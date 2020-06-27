@@ -8,14 +8,14 @@
 #'   parameters
 #'
 #' @examples
-#' if(inreractive()) ph_set_isolation()
+#' if(inreractive()) ph_set_household()
 #'
 #' @export
 #'
 #
 ################################################################################
 
-ph_set_isolation <- function() {
+ph_set_household <- function() {
   ## Header
   cat("================================================================================\n")
   cat("\n")
