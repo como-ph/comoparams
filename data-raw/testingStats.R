@@ -40,6 +40,9 @@ aggregate(x = y[ , c("HealthStatus", "OnsetToTest")],
           by = list(y$HealthStatus), FUN = median, na.rm = TRUE)
 
 
+
+
+
 ## Number of days from test to confirmed results -------------------------------
 
 ## Histogram of time in days between test to confirmed results by month of test
@@ -62,3 +65,5 @@ aggregate(x = y[ , c("MonthTested", "TestToConfirm")],
 aggregate(x = y[ , c("HealthStatus", "TestToConfirm")],
           by = list(y$HealthStatus), FUN = median, na.rm = TRUE)
 
+
+##
